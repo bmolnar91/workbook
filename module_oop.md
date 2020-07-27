@@ -551,6 +551,13 @@ If you use Enums instead of integers (or String codes), you increase compile-tim
 #### How do you prevent developers from overriding a method in a subclass?
 #### How do you prevent developers from changing the value of a variable?
 #### Think about money ;) How would you store a currency value, that shall support decimal parts? Think it through again, and try to think outside of the box!
+IN PROGRESS
+
+Java has Currency class that represents the ISO 4217 currency codes. BigDecimal is the best type for representing currency decimal values.
+
+//Note: Never store money in a floating point format as they have imprecisions in their representation.//
+
+
 #### What happens if you try to call something, that you have no access to, because of data hiding?
 #### What happens if you try to delete/drop an item from an array, while you are iterating over it?
 #### What happens if you try to delete/drop/add an item from a List, while you are iterating over it?
