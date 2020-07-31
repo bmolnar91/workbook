@@ -5,18 +5,16 @@
 ### Error handling
 
 #### What does 'fail fast' mean in terms of exception handling? Why is it a good practice?
-IN PROGRESS
-
 The 'fail-fast' principle encourages us to fail fast and early: If an error occurs, fail immediately and visibily. If something unusually or unexpectedly occurs, let the software fail immediately instead of postponing the failure or working around the failure. The longer it takes for a bug to appear on the surface, the longer it takes to fix and the greater it costs.
 
 Fail-fast makes bugs and failures appear sooner, thus:
-- Bugs are
+* Bugs are
     - earlier to detect,
     - easier to reproduce and
     - faster to fix.  
-- It’s faster to stabilize softwares.
-- Fewer bugs and defects will go into production, thus leading to higher-quality and more production-ready software.
-- The cost of failures and bugs are reduced.
+* It’s faster to stabilize softwares.
+* Fewer bugs and defects will go into production, thus leading to higher-quality and more production-ready software.
+* The cost of failures and bugs are reduced.
 
 
 ## Computer Science
@@ -185,16 +183,16 @@ A single class can have multiple constructors with different numbers of paramete
 #### What is an interface?
 An interface is a completely 'abstract' class that contains only 'abstract' methods.
 Some specifications for interfaces:
-- Defined using the 'interface' keyword.
-- May contain only static final variables.
-- Cannot contain a constructor because interfaces cannot be instantiated.
-- Interfaces can extend other interfaces.
-- A class can implement any number of interfaces.
+* Defined using the 'interface' keyword.
+* May contain only public static final variables.
+* Cannot contain a constructor because interfaces cannot be instantiated.
+* Interfaces can extend other interfaces.
+* A class can implement any number of interfaces.
 
 Interfaces have the following properties:
-- An interface is implicitly abstract. You do not need to use the abstract keyword while declaring an         interface.
-- Each method in an interface is also implicitly abstract, so the abstract keyword is not needed.
-- Methods in an interface are implicitly public.
+* An interface is implicitly abstract. You do not need to use the 'abstract' keyword while declaring an         interface.
+* Each method in an interface is also implicitly abstract, so the abstract keyword is not needed.
+* Methods in an interface are implicitly public.
 
 Use the 'implements' keyword to use an interface with your class.
 When you implement an interface, you need to override all of its methods.
@@ -208,11 +206,15 @@ You mark a method in an interface as a default method using the 'default' keywor
 
 //Default methods can be overriden.//
 
+//In some cases it can make sense to define constants in an interface, otherwise it's better to avoid variables/fields altogether.//
+
+//Static methods in interfaces can be useful when you have some utility methods you would like to make available, which fit naturally into an interface related to the same responsibility. For instance, a Vehicle interface could have a printVehicle(Vehicle v) static method.//
+
 
 #### What are access modifiers?
 IN PROGRESS
 
-The access modifiers in Java specifies the accessibility or scope of a field, method, constructor, or class. We can change the access level of fields, constructors, methods, and class by applying the access modifier on it.
+The access modifiers in Java specify the accessibility or scope of a field, method, constructor, or class. We can change the access level of fields, constructors, methods, and classes by applying the access modifier on it.
 
 
 #### What is data hiding?
@@ -224,9 +226,7 @@ To achieve encapsulation in Java, declare the class' variables as private and pr
 
 
 #### Can a static method use non-static members?
-IN PROGRESS
-
-No. Non-static members (fields / methods) cannot be referenced from a static context.
+No. One of the basic rules of working with static methods is that you can’t access a nonstatic method or field from a static method because the static method doesn’t have an instance of the class to use to reference instance methods or fields.
 
 
 #### What is the difference between hiding a static method and overriding an instance method?
@@ -373,16 +373,19 @@ IN PROGRESS
 Happens at compile time. A subclass can define a behavior that's specific to the subclass type, meaning that a subclass can implement a parent class method based on its requirement.
 When methods have the same name, but different parameters, this feature is known as method 'overloading', also known as 'compile-time polymorphism'.
 
-An overloaded method must have a different argument list; the parameters should differ in their type, number, or both.
+In order to overload a method, the argument lists of the methods must differ in either of these:
+* number of parameters
+* data type of parameters
+* sequence of Data type of parameters
 
-It can be very useful when you need the same method functionality for different types of parameters.
+If two methods have same name, same parameters and have different 'return type', then this is NOT a valid method overloading example - this will throw compilation error.
+
+//Very useful for when you need the same method functionality for different types of parameters.//
 
 
 #### What is method overriding?
-IN PROGRESS
-
 Happens at runtime. A subclass can define a behavior that's specific to the subclass type, meaning that a subclass can implement a parent class method based on its requirement.
-This feature is known as method 'overriding', also known as 'runtime polymorphism'.
+This feature is known as method 'overriding', also known as 'runtime polymorphism', or 'dynamic method dispatch'.
 
 Rules for Method Overriding:
     - Should have the same return type and arguments
@@ -394,12 +397,24 @@ Rules for Method Overriding:
 The '@Override' annotation is used to make your code easier to understand, because it makes it more obvious when methods are overridden.
 It also instructs the compiler: if you make any mistake such as wrong method name, wrong parameter types while overriding, you would get a compile time error.
 
+Rules of method overriding in Java:
+* Argument list: The argument list of overriding method (method of child class) must match the Overridden method(the method of parent class). The data types of the arguments and their sequence should exactly match.
+* Access Modifier of the 'overriding' method (method of subclass) cannot be more restrictive than the 'overridden' method of parent class. 
+* Private, static and final methods cannot be overridden as they are local to the class. However static methods can be re-declared in the sub class, in this case the sub-class method would act differently and will have nothing to do with the same static method of parent class.
+* Overriding method (method of subclass class) can throw unchecked exceptions, regardless of whether the overridden method (method of superclass) throws any exceptions or not. However the overriding method should not throw checked exceptions that are new or broader than the ones declared by the overridden method.
+* Binding of overridden methods happen at runtime which is known as dynamic binding.
+* If a class is extending an abstract class or implementing an interface then it has to override all the abstract methods unless the class itself is a abstract class.
+
 
 #### Explain how object oriented languages attempt to simplify memory management for Programmers.
 #### Explain the “Single Responsibility” principle!
 #### What is an object oriented program? Explain, show.
 #### How do you make a class immutable? What do you need to watch out for?
 #### How many instances can be created for an abstract class?
+None.
+
+Abstract classes cannot be instantiated. The purpose of an abstract class is to function as a base for subclasses.
+
 
 ## Programming languages
 
@@ -437,6 +452,9 @@ When you declare a variable or a method as 'static', it belongs to the 'class', 
 
 //It’s a common practice to use upper case when naming a static variable, although not mandatory.//
 
+!
+//Static fields are created and initialized when the class is first loaded. That happens when a static member of the class is referred to or when an instance of the class is created, whichever comes first.//
+!
 
 #### Why is the main() method declared as static? Explain.
 IN PROGRESS
@@ -518,18 +536,17 @@ Arrays, Scanner ...
 IN PROGRESS
 
 Top level (classes):
-- default (no modifier): The class is accessible only by classes in the same package. Also known as           'package-private'.
-- public: The class is accessible by any other class.
+* default (no modifier): The class is accessible only by classes in the same package. Also known as           'package-private'.
+* public: The class is accessible by any other class.
 
 Member level (attributes and methods):
-- default (no modifier): A variable or method declared with 'no access control modifier' is available to      any other class in the same package. Also known as 'package-private'.
-- public: Accessible from any other class.
-- protected: Provides the same access as the 'default' access modifier, with the addition that subclasses     can access 'protected' methods and variables of the superclass.
+* private: Accessible only within the declared class itself.
+* default (no modifier): A variable or method declared with 'no access control modifier' is available to      any other class in the same package. Also known as 'package-private'.
+* protected: Provides the same access as the 'default' access modifier, with the addition that subclasses     can access 'protected' methods and variables of the superclass.
   //Makes the members visible (or "public") only to the subclasses//
-- private: Accessible only within the declared class itself.
+* public: Accessible from any other class.
 
 //It's a best practice to keep the variables within a class private. The variables are accessible and modified using Getters and Setters.//
-
 
 
 #### Can an “enum” contain methods in Java? Explain.
@@ -600,9 +617,9 @@ Exceptions are events that occurs in the code. A programmer can handle such cond
 IN PROGRESS
 
 The circumstances that prevent execution of the code in a finally block are:
-- The death of a Thread.
-- Using of the System. exit() method.
-- Due to an exception arising in the finally block.
+* The death of a Thread.
+* Using of the System.exit() method.
+* Due to an exception arising in the finally block.
 It always runs otherwise (even despite a return statement).
 
 It's a good practice to use 'close()' inside finally block. You can be sure that all input and output streams are closed properly regardless of whether the exception occurs or not.
@@ -610,10 +627,35 @@ It is the right place to close files, recover resources, and otherwise clean up 
 
 
 #### What is the largest number you can work with in Java?
+java.math.BigInteger
+
+(Integer.MAX_VALUE is approx. 2^31, which exceeds the 32bit memory.)
+
+BigInteger can grow as large as your ram.
+
+
 #### When you use method overriding, can you change the access level of the method, from protected to public? Why? When you use method overriding, can you change the access level of the method, from public to protected? Why?
+You can expand, but not narrow, the accessibility of an ovverriden method.
+
+//SUPERCLASS access modifier <= SUBCLASS access modifier//
+
+
 #### Can the main method be overridden? Explain your answer!
+No. Because it's a static method, it can't be overriden (but it can be overloaded!).
+
+//The best-known static method is main, which is called by the Java runtime to start an application. The main method must be static, which means that applications run in a static context by default.//
+
+
 #### When you use method overriding, can you throw fewer exceptions in the subclass than in the parent class? Why?
+If the superclass method declares an exception, subclass overridden method can declare same, subclass exception or no exception but cannot declare parent exception.
+
+
 #### When you use method overriding, can you throw more exceptions in the subclass than in the parent class? Why?
+Unchecked exceptions: Yes.
+
+Checked exceptions: The overriding method must NOT throw checked exceptions that are new or broader than those declared by the overridden method. For example, a method that declares a FileNotFoundException cannot be overridden by a method that declares a SQLException, Exception, or any other non-runtime exception unless it's a subclass of FileNotFoundException.
+
+
 #### What does "final" mean in case of a variable, method or a class?
 IN PROGRESS
 
