@@ -119,17 +119,18 @@ IN PROGRESS
 
 Assigning a value of one type to a variable of another type is known as 'Type Casting'.
 To cast a value to a specific type, place the type in parentheses and position it in front of the value:
-    int a = (int) 3.14;
+  `int a = (int) 3.14;`
 
 Upcasting:
-    You can cast an instance of a subclass to its superclass (Java does it automatically):
-        Animal a = new Cat();
+  You can cast an instance of a subclass to its superclass (Java does it automatically):
+  `Animal a = new Cat();`
 
 Downcasting:
-    Casting an object of a superclass to its subclass is called downcasting.
-        Animal a = new Cat();
-        ((Cat)a).makeSound();
-
+  Casting an object of a superclass to its subclass is called downcasting.
+  ```java
+  Animal a = new Cat();
+  ((Cat)a).makeSound();
+  ```
 
 
 #### Which order should we catch the exceptions? Why?
@@ -327,7 +328,6 @@ Differences:
 - Binding of private, static and final methods always happen at compile time since these methods cannot be overridden.
 When the method overriding is actually happening and the reference of parent type is assigned to the object of child class type then such binding is resolved during runtime.
 - The binding of overloaded methods is static and the binding of overridden methods is dynamic.
-
 
 
 #### What are the Object Oriented Principles? Explain the concepts with realistic examples!
@@ -604,6 +604,10 @@ A 'checked exception' is an exception that the compiler requires you to provide 
 
 An 'unchecked exception' is an exception that you can provide for, but you don’t have to. //Checked at runtime//
 
+//ALL exceptions other than Runtime Exceptions are known as Checked exceptions.//
+
+//Object <- Throwable <- Exception <- RuntimeException*; IOException, etc.//
+
 
 #### What is Error in Java and how does it relate to Exception?
 IN PROGRESS
@@ -614,8 +618,6 @@ Exceptions are events that occurs in the code. A programmer can handle such cond
 
 
 #### When does 'finally' block run? What it is used for? Could you give an example from your projects when you would use 'finally'?
-IN PROGRESS
-
 The circumstances that prevent execution of the code in a finally block are:
 * The death of a Thread.
 * Using of the System.exit() method.
@@ -674,14 +676,42 @@ You can access the superclass from the subclass using the 'super' keyword.
 For example, super.var accesses the var member of the superclass.
 
 The super keyword is similar to this keyword. It is mainly used to:
-- differentiate the members of superclass from the members of subclass, if they have same names
-- invoke the superclass constructor from subclass
+* differentiate the members of superclass from the members of subclass, if they have same names
+* invoke the superclass constructor from subclass
 
 
 #### What are “generics”? When to use? Show examples.
+In a nutshell, generics enable *types* (classes and interfaces) to be parameters when defining classes, interfaces and methods.
+
+Abstract types declared between angle brackets<> (a.k.a. *diamond operator*) can be used as wildcards.
+
+Code that uses generics has many benefits over non-generic code:
+* Stronger type checks at compile time.
+  A Java compiler applies strong type checking to generic code and issues errors if the code violates type safety. Fixing compile-time errors is easier than fixing runtime errors, which can be difficult to find.
+* Elimination of casts.
+* Enabling programmers to implement generic algorithms.
+  By using generics, programmers can implement generic algorithms that work on collections of different types, can be customized, and are type safe and easier to read.
+
+
 #### What is the benefit of having “generic” containers?
+See above.
+
+
 #### Given two Java programs on two different machines. How can you communicate between the two? What are the possible ways?
+In a nutshell: There are multiple choices, the optimal solution depends on what kind of data is to be transferred. If data is String: most simple: System.out/System.in + ProcessBuilder; For low number of processes(<10): Through Sockets; For large number of processes: JMS; If data can be even Objects as well: Less processes: RMI; More processes: JMS; +Http
+
+
 #### What is an annotation? What can be annotated and how? Show examples.
+Annotations, a form of metadata, provide data about a program that is not part of the program itself. Annotations have no direct effect on the operation of the code they annotate.
+
+Annotations have a number of uses, among them:
+* Instructions to the compiler:
+  There are three built-in annotations available in Java (`@Deprecated`, `@Override` & `@SuppressWarnings`) that can be used for giving certain instructions to the compiler.
+* Compile-time instructors:
+  Annotations can provide compile-time instructions to the compiler that can be further used by software build tools for generating code, XML files etc.
+* Runtime instructions:
+  We can define annotations to be available at runtime which we can access using java reflection and can be used to give instructions to the program at runtime.
+
 
 ### C&#35;
 
@@ -734,4 +764,8 @@ The super keyword is similar to this keyword. It is mainly used to:
 ### Database
 
 #### How can you connect your application to a database server? What are the possible ways?
+Examples to connect to db: Psycopg2 in Python and JDBC in Java.
+
+
 #### What do you know about database normalization?
+Database normalization is the restructuring process by which the database is organized into tables and columns, in order to reduce data redundancy and improve data integrity. The idea is that tables should be about a specific topic and only columns that are related to that topic are included in the table. A fully normalized database allows its structure to be extended to accommodate new types of data without changing existing structure too much. As a result, applications interacting with the database are minimally affected. Normalized relations, and the relationship between one normalized relation and another, mirror real-world concepts and their interrelationships.
