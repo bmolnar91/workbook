@@ -239,39 +239,29 @@ When you override a method, you still get the benefits of run-time polymorphism,
 
 
 #### Define the following terms: Instantiation, Attribute, Method
-IN PROGRESS
-
 Instantiation:
-    Creating a new instance of a class is called 'instantiation'. The 'new' keyword is used to instantiate a class object.
+  Creating a new instance of a class is called 'instantiation'. The 'new' keyword is used to instantiate a class object.
 
 Attribute:
-    An attribute is another term for a field. It's typically a public constant or a public variable that can be accessed directly.
+  An attribute is another term for a field. It's typically a public constant or a public variable that can be accessed directly.
 
 Method:
-    A method is a block of code which only runs when it is called. Methods (also known as functions) are used to perform certain actions.
+  A method is a block of code which only runs when it is called. Methods (also known as functions) are used to perform certain actions.
 
 
 #### Could we access a static variable (or method) from a non-static method? Why?
-IN PROGRESS
-
 Yes, instance methods can access class variables and class methods directly.
 
 
 #### Could we access a non-static variable (or method) from a static method? Why?
-IN PROGRESS
-
-Class methods cannot access instance variables or instance methods directly—they must use an object reference. Also, class methods cannot use the this keyword as there is no instance for this to refer to.
+No, class methods cannot access instance variables or instance methods directly — they must use an object reference. Also, class methods cannot use the *this* keyword as there is no instance for *this* to refer to.
 
 
 #### How many instances you have of a static variable of a given class?
-IN PROGRESS
-
 Only one.
 
 
 #### Why is it not a good practice to write a lot of static methods?
-IN PROGRESS
-
 Our code may become too specific/rigid, which makes it hard to extend/maintain it.
 
 
@@ -281,13 +271,11 @@ Our code may become too specific/rigid, which makes it hard to extend/maintain i
 
 
 #### What are the features of static attributes and static methods of a class? What are the benefits, when to use them?
-IN PROGRESS
-
 Class members represent states and behaviours connected to the 'class' itself, all of its instances at the same time.
 
 Benefits:
-- There's one version of them in memory, bound at compile-time (early binding).
-- Depending on access level, class members can be reached from anywhere without needing an instance of the class.
+* There's one version of them in memory, bound at compile-time (early binding).
+* Depending on access level, class members can be reached from anywhere without needing an instance of the class.
 
 When to use: see above
 
@@ -295,39 +283,35 @@ When to use: see above
 #### What is the ‘this’ reference?
 IN PROGRESS
 
-Within an instance method or a constructor, 'this' is a reference to the current object — the object whose method or constructor is being called. You can refer to any member of the current object from within an instance method or a constructor by using 'this'.
+Within an instance method or a constructor, `this` is a reference to the current object — the object whose method or constructor is being called. You can refer to any member of the current object from within an instance method or a constructor by using `this`.
 
-The most common reason for using the 'this' keyword is because a field is shadowed by a method or constructor parameter.
+The most common reason for using the `this` keyword is because a field is shadowed by a method or constructor parameter.
 
 
 #### What are base class, subclass and superclass?
-IN PROGRESS
-
 Tied with the concept of inheritance.
 The class inheriting the properties of another is the 'subclass' (also called 'derived class', or 'child class'); the class whose properties are inherited is the 'superclass' ('base class', or 'parent class').
 
-To inherit from a class, use the 'extends' keyword.
+To inherit from a class, use the `extends` keyword.
 
 The purpose of inheritance is twofold:
-- to design a class structure in line with the real structure of the problem domain;
-- to prevent code duplication: common parts of different classes (both variables and methods) should be written once and used through a common class.
+* to design a class structure in line with the real structure of the problem domain;
+* to prevent code duplication: common parts of different classes (both variables and methods) should be written once and used through a common class.
 
 
 #### Draw an object oriented family (as entities, with relations) on the whiteboard.
 #### Difference between overloading and overriding?
-IN PROGRESS (not strictly related)
-
 Static Binding or Early Binding:
-    The binding which can be resolved at compile time by compiler is known as static or early binding. The binding of 'static', 'private' and 'final' methods is compile-time. The reason is that the these method cannot be overridden and the type of the class is determined at the compile time.
+  The binding which can be resolved at compile time by compiler is known as static or early binding. The binding of 'static', 'private' and 'final' methods is compile-time. The reason is that the these method cannot be overridden and the type of the class is determined at the compile time.
 
 Dynamic Binding or Late Binding:
-    When compiler is not able to resolve the call / binding at compile time, such binding is known as Dynamic or Late Binding. Method Overriding is a perfect example of dynamic binding as in overriding both parent and child classes have same method and in this case the type of the object determines which method is to be executed.
+  When compiler is not able to resolve the call/binding at compile time, such binding is known as Dynamic or Late Binding. Method 'Overriding' is a perfect example of dynamic binding as in overriding both parent and child classes have same method and in this case the type of the object determines which method is to be executed.
 
 Differences:
-- Static binding happens at compile-time while dynamic binding happens at runtime.
-- Binding of private, static and final methods always happen at compile time since these methods cannot be overridden.
+* Static binding happens at compile-time while dynamic binding happens at runtime.
+* Binding of private, static and final methods always happen at compile time since these methods cannot be overridden.
 When the method overriding is actually happening and the reference of parent type is assigned to the object of child class type then such binding is resolved during runtime.
-- The binding of overloaded methods is static and the binding of overridden methods is dynamic.
+* The binding of overloaded methods is static and the binding of overridden methods is dynamic.
 
 
 #### What are the Object Oriented Principles? Explain the concepts with realistic examples!
@@ -428,21 +412,29 @@ The 'short' type. 0-200 is well within the bounds of the 16 bits it uses.
 
 
 #### What is the "golden rule" of variable scoping in Java? What is the lifetime of variables?
-#### What is the purpose of the ‘equals()’ method?
-IN PROGRESS
+General convention for a variable’s scope is, it is accessible only within the block in which it is declared.
 
-Each object has a predefined 'equals()' method that is used for semantical equality testing.
+1. Class variables:
+  A variable which is declared inside a class, outside all the blocks and is marked static is known as a class variable.The lifetime of a class variable is until the end of the program or as long as the class is loaded in memory.
+
+2. Instance variables:
+  A variable which is declared inside a class and outside all the methods and blocks is an instance variable. Lifetime of an instance variable is until the object stays in memory.
+
+3. Local variables:
+  All other variables which are not instance and class variables are treated as local variables including the parameters in a method.The lifetime of a local variable is until the control leaves the block in which it is declared.
+
+
+#### What is the purpose of the ‘equals()’ method?
+Each object has a predefined `equals()` method that is used for semantical equality testing.
 
 To make it work for our classes, we need to override it and check the conditions we need.
 There is a simple and fast way of generating the equals() method, other than writing it manually (from within the IDE).
 
 
 #### What is the difference between '==' and 'equals()'?
-IN PROGRESS
+When you compare objects using the equality testing operator (`==`), it actually compares the references and not the object values.
 
-When you compare objects using the equality testing operator (==), it actually compares the references and not the object values.
-
-The 'equals()' method is used for semantical equality testing.
+The `equals()` method is used for semantical equality testing.
 
 
 #### What does the ‘static’ keyword mean?
