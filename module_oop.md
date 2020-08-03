@@ -213,17 +213,15 @@ You mark a method in an interface as a default method using the 'default' keywor
 
 
 #### What are access modifiers?
-IN PROGRESS
-
 The access modifiers in Java specify the accessibility or scope of a field, method, constructor, or class. We can change the access level of fields, constructors, methods, and classes by applying the access modifier on it.
 
 
 #### What is data hiding?
-IN PROGRESS
+The idea behind **encapsulation** is to ensure that implementation details are not visible to users. The variables of one class will be *hidden* from the other classes, accessible only through the methods of the current class. This is called **data hiding**.
 
-The idea behind 'encapsulation' is to ensure that implementation details are not visible to users. The variables of one class will be hidden from the other classes, accessible only through the methods of the current class. This is called 'data hiding'.
+To achieve encapsulation in Java, declare the class' variables as `private` and provide public setter and getter methods to modify and view the variables' values.
 
-To achieve encapsulation in Java, declare the class' variables as private and provide public setter and getter methods to modify and view the variables' values.
+//Use setters only if you must.//
 
 
 #### Can a static method use non-static members?
@@ -240,10 +238,10 @@ When you override a method, you still get the benefits of run-time polymorphism,
 
 #### Define the following terms: Instantiation, Attribute, Method
 Instantiation:
-  Creating a new instance of a class is called 'instantiation'. The 'new' keyword is used to instantiate a class object.
+  Creating a new instance of a class is called *instantiation*. The `new` keyword is used to instantiate a class object.
 
 Attribute:
-  An attribute is another term for a field. It's typically a public constant or a public variable that can be accessed directly.
+  An *attribute* is another term for a *field*. It's typically a public constant or a public variable that can be accessed directly.
 
 Method:
   A method is a block of code which only runs when it is called. Methods (also known as functions) are used to perform certain actions.
@@ -254,7 +252,7 @@ Yes, instance methods can access class variables and class methods directly.
 
 
 #### Could we access a non-static variable (or method) from a static method? Why?
-No, class methods cannot access instance variables or instance methods directly — they must use an object reference. Also, class methods cannot use the *this* keyword as there is no instance for *this* to refer to.
+No, class methods cannot access instance variables or instance methods directly — they must use an object reference. Also, class methods cannot use the `this` keyword as there is no instance for `this` to refer to.
 
 
 #### How many instances you have of a static variable of a given class?
@@ -373,7 +371,7 @@ This feature is known as method 'overriding', also known as 'runtime polymorphis
 
 Rules for Method Overriding:
     - Should have the same return type and arguments
-    - The access level cannot be more restrictive than the overridden method's access level (Example: If      the superclass method is declared public, the overriding method in the sub class can be neither         private nor protected)
+    - The access level cannot be more restrictive than the overridden method's access level (Example: If the superclass method is declared public, the overriding method in the sub class can be neither private nor protected)
     - A method declared final or static cannot be overridden
     - If a method cannot be inherited, it cannot be overridden
     - Constructors cannot be overridden
@@ -466,7 +464,7 @@ for (int i = 0; i < 50; i++)
 
 
 #### If you have a variable, that shall store a positive whole number between 0 and 200, what primitive type would you use to store it?
-The 'short' type. 0-200 is well within the bounds of the 16 bits it uses.
+The `short` type. 0-200 is well within the bounds of the 16 bits it uses.
 
 
 #### What is the "golden rule" of variable scoping in Java? What is the lifetime of variables?
@@ -486,7 +484,7 @@ General convention for a variable’s scope is, it is accessible only within the
 Each object has a predefined `equals()` method that is used for semantical equality testing.
 
 To make it work for our classes, we need to override it and check the conditions we need.
-There is a simple and fast way of generating the equals() method, other than writing it manually (from within the IDE).
+There is a simple and fast way of generating the `equals()` method from within the IDE (other than writing it manually).
 
 
 #### What is the difference between '==' and 'equals()'?
@@ -617,6 +615,16 @@ If you use Enums instead of integers (or String codes), you increase compile-tim
 
 
 #### When would you use a private/protected/public attribute? What is the difference?
+Private:
+  When I want to achieve *encapsulation*/*data hiding*. Use `private` for your fields unless you have a good reason not to.
+
+Protected:
+  When I want to give access to subclasses outside the package.
+
+Public:
+  When I want to give access to all classes. It's safe to use `public` for your methods most of the time.
+
+
 #### How do you prevent developers from subclassing a class?
 To prevent a class from being extended, it has to be declared with the `final` keyword.
 
@@ -643,14 +651,21 @@ If you are dealing with money, or precision is a must, use `BigDecimal`. Otherwi
 
 
 #### What happens if you try to call something, that you have no access to, because of data hiding?
-#### What happens if you try to delete/drop an item from an array, while you are iterating over it?
-#### What happens if you try to delete/drop/add an item from a List, while you are iterating over it?
-IN PROGRESS
+It is illegal to access a variable declared private outside its class. The compiler throws an error.
 
-A 'ConcurrentModificationException' occurs. You need an Iterator to do that.
+
+#### What happens if you try to delete/drop an item from an array, while you are iterating over it?
+The length of an array is fixed after creation, therefore it is not possible to remove any elements while iterating. However there is a method `removeElement()` in class `ArrayUtils`. This creates a new array without the element we want to remove. This uses iteration.
+
+
+#### What happens if you try to delete/drop/add an item from a List, while you are iterating over it?
+A `ConcurrentModificationException` occurs. You need an `Iterator` to do that.
 
 
 #### What happens if you try to add an item to the end of an array, while you are iterating over it?
+It is not possible, because arrays have a fixed size. It you want to add an element to the end of an array, you have to create a new array with length `.length + 1`, copy the original list elements to the new one, and add your element to the end of the new array.
+
+
 #### If you need to access the iterator variable after a for loop, how would you do it?
 IN PROGRESS
 
@@ -659,6 +674,24 @@ Before you can access a collection through an iterator, you must obtain one. Eac
 
 
 #### Which interfaces extend the Collection interface in Java. Which classes?
+The *Java Collections Framework* hierarchy consists of two distinct interface trees:
+1. `Collection` interface
+2. `Map` interface
+
+The `Collection` interface provides the basic functionality used by all collections, such as *add* and *remove* methods. Its subinterfaces the `Set`, `List`, and `Queue`, provide for more specialized collections.
+* The `Set` interface does not allow duplicate elements.
+  e.g. `HashSet`
+  - `SortedSet` is a subinterface of `Set` interface, that provides for ordering of elements in the set.
+    e.g. `TreeSet` 
+* The `List` interface provides for an ordered collection, for situations in which you need precise control over where each element is inserted.
+  e.g. `ArrayList`, `LinkedList`
+* The `Queue` is a collection for holding elements prior to processing. Elements in a `Queue` are typically ordered in on a *FIFO* (first-in-first-out) basis.
+  e.g. `PriorityQueue`
+  - The `Deque` is a subinterface of `Queue`, a double-ended-queue. The elements can be used in both *LIFO* and *FIFO*.
+    e.g. `ArrayDeque`, `LinkedList`
+
+
+
 #### What is the connection between equals() and hashCode()? How are they used in HashMap?
 IN PROGRESS
 
