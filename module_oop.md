@@ -557,20 +557,18 @@ Top level (classes):
 
 Member level (attributes and methods):
 * private: Accessible only within the declared class itself.
-* default (no modifier): A variable or method declared with 'no access control modifier' is available to      any other class in the same package. Also known as 'package-private'.
-* protected: Provides the same access as the 'default' access modifier, with the addition that subclasses     can access 'protected' methods and variables of the superclass.
+* default (no modifier): A variable or method declared with no access control modifier is available to any other class in the same package.
+* protected: Provides the same access as the *default* access modifier, with the addition that subclasses can access *protected* methods and variables of the superclass.
   //Makes the members visible (or "public") only to the subclasses//
 * public: Accessible from any other class.
 
-//It's a best practice to keep the variables within a class private. The variables are accessible and modified using Getters and Setters.//
+//It's a best practice to keep the variables within a class private. The variables are accessible and modified using getters and setters.//
 
 
 #### Can an “enum” contain methods in Java? Explain.
-IN PROGRESS
-
 No.
 
-An Enum is a special type used to define collections of constants.
+An `Enum` is a special type used to define collections of constants.
 Basically, Enums define variables that represent members of a fixed set.
 
 You should always use Enums when a variable (especially a method parameter) can only take one out of a small set of possible values.
@@ -597,7 +595,7 @@ To prevent a class from being extended, it has to be declared with the `final` k
 #### How do you prevent developers from overriding a method in a subclass?
 To prevent a method from being overridden in a subclass, it has to be declared with the `final` keyword. If we try to override a final method in a subclass, it will lead to an error during the compilation.
 
-Another way is to simply declare the method as `private`.
+Another way is to simply declare the method as `private` (although there's a workaround for that).
 
 
 #### How do you prevent developers from changing the value of a variable?
@@ -605,11 +603,9 @@ If you make any variable `final`, you cannot change its value. It will be a cons
 
 
 #### Think about money ;) How would you store a currency value, that shall support decimal parts? Think it through again, and try to think outside of the box!
-IN PROGRESS
-
 Java has `Currency` class that represents the ISO 4217 currency codes. `BigDecimal` is the best type for representing currency decimal values.
 
-The disadvantage of `BigDecimal` is that it's slower, and it's a bit more difficult to program algorithms that way (due basic arithmetic operations not being overloaded).
+The disadvantage of `BigDecimal` is that it's slower, and it's a bit more difficult to program algorithms that way (due to basic arithmetic operations not being overloaded).
 If you are dealing with money, or precision is a must, use `BigDecimal`. Otherwise `Doubles` tend to be good enough.
 
 //Note: Never store money in a floating point format as they have imprecisions in their representation.//
@@ -632,14 +628,12 @@ It is not possible, because arrays have a fixed size. It you want to add an elem
 
 
 #### If you need to access the iterator variable after a for loop, how would you do it?
-IN PROGRESS
-
-An 'Iterator' is an object that enables to cycle through a collection, obtain or remove elements.
-Before you can access a collection through an iterator, you must obtain one. Each of the collection classes provides an iterator() method that returns an iterator to the start of the collection. By using this iterator object, you can access each element in the collection, one element at a time.
+An `Iterator` is an object that enables to cycle through a collection, obtain or remove elements.
+Before you can access a collection through an iterator, you must obtain one. Each of the collection classes provides an `iterator()` method that returns an iterator to the start of the collection. By using this iterator object, you can access each element in the collection, one element at a time.
 
 
 #### Which interfaces extend the Collection interface in Java. Which classes?
-The *Java Collections Framework* hierarchy consists of two distinct interface trees:
+The *Java collections framework* hierarchy consists of two distinct interface trees:
 1. `Collection` interface
 2. `Map` interface
 
@@ -661,11 +655,9 @@ The `Collection` interface provides the basic functionality used by all collecti
 
 
 #### What is the connection between equals() and hashCode()? How are they used in HashMap?
-IN PROGRESS
-
 When we put a value in the map, the key's `hashCode()` method is used to determine the bucket in which the value will be stored.
 
-To retrieve the value, HashMap calculates the bucket in the same way – using `hashCode()`. Then it iterates through the objects found in that bucket and use key's `equals()` method to find the exact match.
+To retrieve the value, `HashMap` calculates the bucket in the same way – using `hashCode()`. Then it iterates through the objects found in that bucket and use the key's `equals()` method to find the exact match.
 
 //Note that `hashCode()` and `equals()` need to be overridden only for classes that we want to use as map keys, not for classes that are only used as values in a map.//
 
@@ -673,50 +665,57 @@ To retrieve the value, HashMap calculates the bucket in the same way – using `
 
 
 #### What is the difference between checked exceptions and unchecked exceptions? Could you bring example for each?
-IN PROGRESS
-
-An 'exception' is an object that’s created when an error occurs in a Java program, and Java can’t automatically fix the error. The exception object contains information about the type of error that occurred.
+An `Exception` is an object that’s created when an error occurs in a Java program, and Java can’t automatically fix the error. The exception object contains information about the type of error that occurred.
 
 The most important information — the cause of the error — is indicated by the name of the exception class used to create the exception. You usually don’t have to do anything with an exception object other than figure out which one you have.
 
-A 'checked exception' is an exception that the compiler requires you to provide for it one way or another. If you don’t, your program doesn’t compile. //Checked when compiled//
+A *checked exception* is an exception that the compiler requires you to provide for it one way or another. If you don’t, your program doesn’t compile. //Checked when compiled//
 
-An 'unchecked exception' is an exception that you can provide for, but you don’t have to. //Checked at runtime//
+An *unchecked exception* is an exception that you can provide for, but you don’t have to. //Checked at runtime//
 
-//ALL exceptions other than Runtime Exceptions are known as Checked exceptions.//
+//ALL exceptions other than *runtime exceptions* are known as *checked exceptions*.//
 
-//Object <- Throwable <- Exception <- RuntimeException*; IOException, etc.//
+//`Object` <- `Throwable` <- `Exception` <- `RuntimeException`*; `IOException`, etc.//
 
 
 #### What is Error in Java and how does it relate to Exception?
-IN PROGRESS
+Exceptions are events that occurs in the code. A programmer can handle such conditions and take necessary corrective actions.
 
 Errors indicate that something severe enough has gone wrong, the application should crash rather than try to handle the error.
 
-Exceptions are events that occurs in the code. A programmer can handle such conditions and take necessary corrective actions.
+Both `Error` and `Exception` are subclasses of the `Throwable` class.
+
+Errors belong to unchecked type and mostly occur at runtime.
+
+e.g. `StackOverflowError`
 
 
 #### When does 'finally' block run? What it is used for? Could you give an example from your projects when you would use 'finally'?
 The circumstances that prevent execution of the code in a finally block are:
-* The death of a Thread.
-* Using of the System.exit() method.
+* The death of a thread.
+* Using of the `System.exit()` method.
 * Due to an exception arising in the finally block.
-It always runs otherwise (even despite a return statement).
+It always runs otherwise (even despite a `return` statement).
 
-It's a good practice to use 'close()' inside finally block. You can be sure that all input and output streams are closed properly regardless of whether the exception occurs or not.
+It's a good practice to use `close()` inside finally block. You can be sure that all input and output streams are closed properly regardless of whether the exception occurs or not.
 It is the right place to close files, recover resources, and otherwise clean up after the code enclosed in the try block.
+
+//It's a good practice to use a *try-with-resources* statement for this instead.//
 
 
 #### What is the largest number you can work with in Java?
-java.math.BigInteger
+`java.math.BigInteger`
 
-(Integer.MAX_VALUE is approx. 2^31, which exceeds the 32bit memory.)
+(`Integer.MAX_VALUE` is approx. 2^31, which exceeds the 32-bit memory.)
 
-BigInteger can grow as large as your ram.
+`BigInteger` can grow as large as your RAM.
 
 
 #### When you use method overriding, can you change the access level of the method, from protected to public? Why? When you use method overriding, can you change the access level of the method, from public to protected? Why?
-You can expand, but not narrow, the accessibility of an ovverriden method.
+Yes, and no.
+You can broaden, but not narrow, the accessibility of an overriden method.
+
+It's a fundamental principle in OOP: the child class is a fully-fledged instance of the parent class, and must therefore present *at least* the same interface as the parent class. (Liskov substitution principle of SOLID)?
 
 //SUPERCLASS access modifier <= SUBCLASS access modifier//
 
@@ -728,33 +727,29 @@ No. Because it's a static method, it can't be overriden (but it can be overloade
 
 
 #### When you use method overriding, can you throw fewer exceptions in the subclass than in the parent class? Why?
-If the superclass method declares an exception, subclass overridden method can declare same, subclass exception or no exception but cannot declare parent exception.
+Yes. See below.
 
 
 #### When you use method overriding, can you throw more exceptions in the subclass than in the parent class? Why?
 Unchecked exceptions: Yes.
 
-Checked exceptions: The overriding method must NOT throw checked exceptions that are new or broader than those declared by the overridden method. For example, a method that declares a FileNotFoundException cannot be overridden by a method that declares a SQLException, Exception, or any other non-runtime exception unless it's a subclass of FileNotFoundException.
+Checked exceptions: The overriding method must NOT throw checked exceptions that are new or broader than those declared by the overridden method.
+For example, a method that declares a `FileNotFoundException` cannot be overridden by a method that declares a `SQLException`, `Exception`, or any other non-runtime exception unless it's a subclass of FileNotFoundException.
 
 
 #### What does "final" mean in case of a variable, method or a class?
-IN PROGRESS
+Use the `final` keyword to mark a *variable* constant, so that it can be assigned only once.
 
-Use the 'final' keyword to mark a variable constant, so that it can be assigned only once.
-    public static final double PI = 3.14;
-
-Methods and classes can also be marked final.
-    - methods: can't be overridden
-    - classes: can't be subclassed
+*Methods* and *classes* can also be marked final.
+  * methods: can't be overridden
+  * classes: can't be subclassed
 
 
 #### What is the super keyword?
-IN PROGRESS
+You can access the *superclass* from the *subclass* using the `super` keyword.
+For example, `super.var` accesses the `var` member of the superclass.
 
-You can access the superclass from the subclass using the 'super' keyword.
-For example, super.var accesses the var member of the superclass.
-
-The super keyword is similar to this keyword. It is mainly used to:
+The `super` keyword is similar to `this` keyword. It is mainly used to:
 * differentiate the members of superclass from the members of subclass, if they have same names
 * invoke the superclass constructor from subclass
 
@@ -762,7 +757,7 @@ The super keyword is similar to this keyword. It is mainly used to:
 #### What are “generics”? When to use? Show examples.
 In a nutshell, generics enable *types* (classes and interfaces) to be parameters when defining classes, interfaces and methods.
 
-Abstract types declared between angle brackets (`<>`) (a.k.a. *diamond operator*) can be used as wildcards.
+Abstract types declared between angle brackets (`<>`) (a.k.a. *diamond operator*) can be used as **wildcards**.
 
 Code that uses generics has many benefits over non-generic code:
 * Stronger type checks at compile time.
@@ -772,8 +767,8 @@ Code that uses generics has many benefits over non-generic code:
   By using generics, programmers can implement generic algorithms that work on collections of different types, can be customized, and are type safe and easier to read.
 
 Bounded type parameters:
-  There may be times when you'll want to restrict the kinds of types that are allowed to be passed to a type parameter. For example, a method that operates on numbers might only want to accept instances of Number or its subclasses. This is what *bounded type parameters* are for.
-  To declare a bounded type parameter, list the type parameter's name, followed by the extends  keyword, followed by its upper bound.
+  There may be times when you'll want to restrict the kinds of types that are allowed to be passed to a type parameter. For example, a method that operates on numbers might only want to accept instances of `Number` or its subclasses. This is what *bounded type parameters* are for.
+  To declare a bounded type parameter, list the type parameter's name, followed by the `extends` keyword, followed by its upper bound.
   `public static <T extends Comparable<T>> T maximum(T x, T y, T z) {...}`
 
 
@@ -782,11 +777,13 @@ See above.
 
 
 #### Given two Java programs on two different machines. How can you communicate between the two? What are the possible ways?
-In a nutshell: There are multiple choices, the optimal solution depends on what kind of data is to be transferred. If data is String: most simple: System.out/System.in + ProcessBuilder; For low number of processes(<10): Through Sockets; For large number of processes: JMS; If data can be even Objects as well: Less processes: RMI; More processes: JMS; +Http
+In a nutshell: There are multiple choices, the optimal solution depends on what kind of data is to be transferred.
+
+If data is String: most simple: System.out/System.in + ProcessBuilder; For low number of processes(<10): Through Sockets; For large number of processes: JMS; If data can be even Objects as well: Less processes: RMI; More processes: JMS; +Http
 
 
 #### What is an annotation? What can be annotated and how? Show examples.
-Annotations, a form of metadata, provide data about a program that is not part of the program itself. Annotations have no direct effect on the operation of the code they annotate.
+Annotations, a form of *metadata*, provide data about a program that is not part of the program itself. Annotations have no direct effect on the operation of the code they annotate.
 
 Annotations have a number of uses, among them:
 * Instructions to the compiler:
