@@ -49,7 +49,7 @@ WIP
 
 ArrayList:
 - add(): O(1)
-- add(intex, element): O(n)
+- add(index, element): O(n)
 - get(): O(1)
 - indexOf(): O(n)
 - contains(): O(n)
@@ -78,8 +78,6 @@ Binary Search Tree:
 
 
 #### How does HashMap work?
-IN PROGRESS
-
 *Arrays* and *Lists* store elements as ordered collections, with each element given an integer index.
 
 `HashMap` is used for storing data collections as key and value pairs. One object is used as a *key* (index) to another object, the *value*.
@@ -845,8 +843,49 @@ Annotations have a number of uses, among them:
 ### Database
 
 #### How can you connect your application to a database server? What are the possible ways?
-Examples to connect to db: Psycopg2 in Python and JDBC in Java.
+Using a low-level technology like *JDBC* (Java Database Connectivity) API is one way.
+Use `PGSimpleDataSource` to establish connection:
+1. Create DataSource:
+  First, we must create a class that will establish a *connection* with a database. Let's name it 'BookDatabaseManager'.
+  Our DBM will have a method `connect()` that will create a `DataSource` using `PGSimpleDataSource`.
+  This is the base code:
+
+  ```java
+  private DataSource connect() throws SQLException {
+    PGSimpleDataSource dataSource = new PGSimpleDataSource();
+    return dataSource;
+  }
+  ```
+
+2. Connect to a specific database:
+  To get this code actually running, we must define what database, user and password `PGSimpleDataSource` should use.
+
+  ```java
+  private DataSource connect() throws SQLException {
+    PGSimpleDataSource dataSource = new PGSimpleDataSource();
+    dataSource.setDatabaseName("books");
+    dataSource.setUser("admin");
+    dataSource.setPassword("admin");
+    return dataSource;
+  }
+  ```
+
+3. Test the connection:
+  One last thing we will do in this method is to test whether connection can be established.
+
+  ```java
+  // connecting to database ...
+
+  System.out.println("Trying to connect...");
+  dataSource.getConnection().close();
+  System.out.println("Connection OK");
+
+  return dataSource;
+  ```
+
+  Line `dataSource.getConnection().close();` opens and closes the connection. If this operation did not throw any exceptions, you are good to go!
 
 
 #### What do you know about database normalization?
-Database normalization is the restructuring process by which the database is organized into tables and columns, in order to reduce data redundancy and improve data integrity. The idea is that tables should be about a specific topic and only columns that are related to that topic are included in the table. A fully normalized database allows its structure to be extended to accommodate new types of data without changing existing structure too much. As a result, applications interacting with the database are minimally affected. Normalized relations, and the relationship between one normalized relation and another, mirror real-world concepts and their interrelationships.
+Database normalization is the restructuring process by which the database is organized into tables and columns, in order to reduce data redundancy and improve data integrity. The idea is that tables should be about a specific topic and only columns that are related to that topic are included in the table.
+A fully normalized database allows its structure to be extended to accommodate new types of data without changing existing structure too much. As a result, applications interacting with the database are minimally affected. Normalized relations, and the relationship between one normalized relation and another, mirror real-world concepts and their interrelationships.
