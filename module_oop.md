@@ -391,9 +391,47 @@ Rules of method overriding in Java:
 
 
 #### Explain how object oriented languages attempt to simplify memory management for Programmers.
+Automatic garbage collection surely helps.
+
+*Garbage Collector* is the program running in the background that looks into all the objects in the memory and find out objects that are not referenced by any part of the program. All these unreferenced objects are deleted and space is reclaimed for allocation to other objects.
+
+One of the basic ways of garbage collection involves three steps:
+1. Marking: This is the first step where garbage collector identifies which objects are in use and which ones are not in use.
+2. Normal Deletion: Garbage Collector removes the unused objects and reclaim the free space to be allocated to other objects.
+3. Deletion with Compacting: For better performance, after deleting unused objects, all the survived objects can be moved to be together. This will increase the performance of allocation of memory to newer objects.
+
+//One of the best features of Java programming language is the automatic garbage collection, unlike other programming languages such as C where memory allocation and deallocation is a manual process.//
+
+
 #### Explain the “Single Responsibility” principle!
+This principle states that a class should only have one responsibility. Furthermore, it should only have one reason to change.
+
+Some of its benefits:
+* Lower coupling – Less functionality in a single class will have fewer dependencies.
+* Testing – A class with one responsibility will have far fewer test cases.
+* Organization Smaller – well-organized classes are easier to search than monolithic ones.
+
+//Stands for 'S' in *SOLID*.//
+
+
 #### What is an object oriented program? Explain, show.
+OOP is a programming methodology based on objects, instead of just functions and procedures.
+
+Importance is given to data (properties of the object) rather than just writing instructions to complete a task.
+An object is a real-world problem or idea that you want to model in your program. An object can represent anything, e.g. an employee, bank account, car, tortoise, etc.
+
+
 #### How do you make a class immutable? What do you need to watch out for?
+To create an immutable class in Java, you have to do the following steps:
+1. Declare the class as `final` so it can’t be extended.
+2. Make all fields `private` so that direct access is not allowed.
+3. Don’t provide setter methods for variables.
+4. Make all mutable fields `final` so that its value can be assigned only once.
+...
+
+//Immutable objects are instances whose state doesn’t change after it has been initialized. For example, String is an immutable class and once instantiated its value never changes.//
+
+
 #### How many instances can be created for an abstract class?
 None.
 
@@ -405,9 +443,29 @@ Abstract classes cannot be instantiated. The purpose of an abstract class is to 
 ### Java
 
 #### What is autoboxing and unboxing?
-#### If you have a variable, that shall store a positive whole number between 0 and 200, what primitive type would you use to store it?
-IN PROGRESS
+*Autoboxing* is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes. For example, converting an `int` to an `Integer`.
+If the conversion goes the other way, this is called *unboxing*.
 
+For an autoboxing example, consider the following code:
+
+```java
+List<Integer> li = new ArrayList<>();
+for (int i = 0; i < 50; i++)
+    li.add(i);
+```
+
+The compiler does not generate an error because it creates an `Integer` object from `i` and adds the object to `li`. Thus, the compiler converts the previous code to the following at runtime:
+
+```java
+List<Integer> li = new ArrayList<>();
+for (int i = 0; i < 50; i++)
+    li.add(Integer.valueOf(i));
+```
+
+//Notice the complier uses `.valueOf()` in the background.//
+
+
+#### If you have a variable, that shall store a positive whole number between 0 and 200, what primitive type would you use to store it?
 The 'short' type. 0-200 is well within the bounds of the 16 bits it uses.
 
 
@@ -440,20 +498,23 @@ The `equals()` method is used for semantical equality testing.
 #### What does the ‘static’ keyword mean?
 IN PROGRESS
 
-When you declare a variable or a method as 'static', it belongs to the 'class', rather than to a specific 'instance'. This means that only one 'instance' of a static member exists, even if you create multiple objects of the class, or if you don't create any. It will be 'shared' by all objects.
+When you declare a variable or a method as *static*, it belongs to the *class*, rather than to a specific *instance*. This means that only one *instance* of a static member exists, even if you create multiple objects of the class, or if you don't create any. It will be shared by all objects.
 
 //It’s a common practice to use upper case when naming a static variable, although not mandatory.//
 
-!
 //Static fields are created and initialized when the class is first loaded. That happens when a static member of the class is referred to or when an instance of the class is created, whichever comes first.//
-!
+
 
 #### Why is the main() method declared as static? Explain.
-IN PROGRESS
-
 One of the basic rules of working with static methods is that you can’t access a nonstatic method or field from a static method because the static method doesn’t have an 'instance' of the class to use to reference instance methods or fields.
 
 The best-known static method is 'main', which is called by the 'Java runtime' to start an application. The main method must be static, which means that applications run in a static context by default.
+
+In Java, to start a program is to call an existing `public static void main(String[] args)` method on a class. Let's reverse engineer this signature:
+1. It must be `public` to be reachable from the outer world.
+2. It must be `static` to be callable before creating any objects.
+3. It is `void` since by design it does not return anything when the program ends normally.
+4. It is possible to pass (multiple) arguments after the name of the class to the java runtime – these arguments are visible by the method through the `args` parameter.
 
 
 #### What is the default access modifier in a class?
@@ -557,12 +618,26 @@ If you use Enums instead of integers (or String codes), you increase compile-tim
 
 #### When would you use a private/protected/public attribute? What is the difference?
 #### How do you prevent developers from subclassing a class?
+To prevent a class from being extended, it has to be declared with the `final` keyword.
+
+
 #### How do you prevent developers from overriding a method in a subclass?
+To prevent a method from being overridden in a subclass, it has to be declared with the `final` keyword. If we try to override a final method in a subclass, it will lead to an error during the compilation.
+
+Another way is to simply declare the method as `private`.
+
+
 #### How do you prevent developers from changing the value of a variable?
+If you make any variable `final`, you cannot change its value. It will be a constant.
+
+
 #### Think about money ;) How would you store a currency value, that shall support decimal parts? Think it through again, and try to think outside of the box!
 IN PROGRESS
 
-Java has Currency class that represents the ISO 4217 currency codes. BigDecimal is the best type for representing currency decimal values.
+Java has `Currency` class that represents the ISO 4217 currency codes. `BigDecimal` is the best type for representing currency decimal values.
+
+The disadvantage of `BigDecimal` is that it's slower, and it's a bit more difficult to program algorithms that way (due basic arithmetic operations not being overloaded).
+If you are dealing with money, or precision is a must, use `BigDecimal`. Otherwise `Doubles` tend to be good enough.
 
 //Note: Never store money in a floating point format as they have imprecisions in their representation.//
 
@@ -585,6 +660,17 @@ Before you can access a collection through an iterator, you must obtain one. Eac
 
 #### Which interfaces extend the Collection interface in Java. Which classes?
 #### What is the connection between equals() and hashCode()? How are they used in HashMap?
+IN PROGRESS
+
+When we put a value in the map, the key's `hashCode()` method is used to determine the bucket in which the value will be stored.
+
+To retrieve the value, HashMap calculates the bucket in the same way – using `hashCode()`. Then it iterates through the objects found in that bucket and use key's `equals()` method to find the exact match.
+
+//Note that `hashCode()` and `equals()` need to be overridden only for classes that we want to use as map keys, not for classes that are only used as values in a map.//
+
+//In most cases, we should use immutable keys.//
+
+
 #### What is the difference between checked exceptions and unchecked exceptions? Could you bring example for each?
 IN PROGRESS
 
@@ -675,14 +761,19 @@ The super keyword is similar to this keyword. It is mainly used to:
 #### What are “generics”? When to use? Show examples.
 In a nutshell, generics enable *types* (classes and interfaces) to be parameters when defining classes, interfaces and methods.
 
-Abstract types declared between angle brackets<> (a.k.a. *diamond operator*) can be used as wildcards.
+Abstract types declared between angle brackets (`<>`) (a.k.a. *diamond operator*) can be used as wildcards.
 
 Code that uses generics has many benefits over non-generic code:
 * Stronger type checks at compile time.
-  A Java compiler applies strong type checking to generic code and issues errors if the code violates type safety. Fixing compile-time errors is easier than fixing runtime errors, which can be difficult to find.
+  A Java compiler applies strong type checking to generic code and issues errors if the code violates *type safety*. Fixing compile-time errors is easier than fixing runtime errors.
 * Elimination of casts.
 * Enabling programmers to implement generic algorithms.
   By using generics, programmers can implement generic algorithms that work on collections of different types, can be customized, and are type safe and easier to read.
+
+Bounded type parameters:
+  There may be times when you'll want to restrict the kinds of types that are allowed to be passed to a type parameter. For example, a method that operates on numbers might only want to accept instances of Number or its subclasses. This is what *bounded type parameters* are for.
+  To declare a bounded type parameter, list the type parameter's name, followed by the extends  keyword, followed by its upper bound.
+  `public static <T extends Comparable<T>> T maximum(T x, T y, T z) {...}`
 
 
 #### What is the benefit of having “generic” containers?
