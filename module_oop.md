@@ -889,3 +889,5 @@ Use `PGSimpleDataSource` to establish connection:
 #### What do you know about database normalization?
 Database normalization is the restructuring process by which the database is organized into tables and columns, in order to reduce data redundancy and improve data integrity. The idea is that tables should be about a specific topic and only columns that are related to that topic are included in the table.
 A fully normalized database allows its structure to be extended to accommodate new types of data without changing existing structure too much. As a result, applications interacting with the database are minimally affected. Normalized relations, and the relationship between one normalized relation and another, mirror real-world concepts and their interrelationships.
+
+
