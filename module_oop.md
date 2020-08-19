@@ -795,12 +795,43 @@ Annotations have a number of uses, among them:
 ### C&#35;
 
 #### Explain the purpose of IL and how does it relate to CLR?
+WIP
+
+a product of compilation of code written in high-level .NET languages. Once you compile your code written in one of these languages, you will get a binary that is made out of IL. It is important to note that the IL is independent from any specific language that runs on top of the runtime; there is even a separate specification for it that you can read if you’re so inclined.
+
+
 #### What does “managed code” mean?
+WIP
+
+When the C# program is executed, the *assembly* is loaded into the CLR, which might take various actions based on the information in the manifest. Then, if the security requirements are met, the CLR performs just in time (JIT) compilation to convert the IL code to native machine instructions.Code that is executed by the CLR is sometimes referred to as "*managed code*", in contrast to "unmanaged code" which is compiled into native machine language that targets a specific system.
+
+//To put it very simply, managed code is just that: code whose execution is managed by a runtime. In this case, the runtime in question is called the Common Language Runtime or CLR, regardless of the implementation. CLR is in charge of taking the managed code, compiling it into machine code and then executing it. On top of that, runtime provides several important services such as automatic memory management, security boundaries, type safety etc.//
+
+Managed code is written in one of the high-level languages that can be run on top of .NET, such as C#, Visual Basic, F# and others. When you compile code written in those languages with their respective compiler, you don't get machine code. You get **Intermediate Language** (IL) code which the runtime then compiles and executes. (C++ is the one exception to this rule, as it can also produce native, unmanaged binaries that run on Windows).
+
+
 #### What is an assembly?
+WIP
+
+Source code written in C# is compiled into an intermediate language (IL) that conforms to the CLI specification. The IL code and resources, such as bitmaps and strings, are stored on disk in an executable file called an **assembly**, typically with an extension of .exe or .dll. An assembly contains a manifest that provides information about the assembly's types, version, culture, and security requirements.
+
+Once you produce IL from your high-level code, you will most likely want to run it. This is where the CLR takes over and starts the process of Just-In-Time compiling, or JIT-ing your code from IL to machine code that can actually be run on a CPU. In this way, the CLR knows exactly what your code is doing and can effectively *manage* it.
+
+
 #### What is the difference between an EXE and a DLL?
 #### What is strong-typing versus weak-typing? Which is preferred? Why?
 #### What is a namespace?
+WIP
+
+C# uses the concept of *namespaces* to group logically related classes through the `namespace` keyword. These act similarly to *Java packages*, and a class with the same name might appear within two different namespaces. To access classes defined in a namespace external to the current one, use the `using` directive followed by the namespace name.
+
+
 #### Explain sealed class in C#?
+WIP
+
+A class with the `sealed` modifier on its class declaration is the opposite of an abstract class: it cannot be inherited. You can mark a class as sealed to prevent other classes from overriding its functionality. Naturally, a sealed class cannot be abstract. Also note that a struct is implicitly sealed; therefore, it cannot be inherited. The sealed modifier is equivalent to marking a class with the final keyword in Java.
+
+
 #### What is explicit vs. implicit conversion? Give examples of both of them.
 #### Is a struct stored on the heap or stack?
 #### Can a struct have methods?
@@ -809,21 +840,71 @@ Annotations have a number of uses, among them:
 #### How is the using() pattern useful? What is IDisposable? How does it support deterministic finalization?
 #### How can you make sure that objects using dedicated resources (database connection, files, hardware, OS handle, etc.) are released as early as possible?
 #### Why to use keyword “const” in C#? Give an example.
+WIP
+
+Both Java and C# provide the ability to declare a variable whose value is specified at compile time and cannot be changed at runtime. Java uses the *final* field modifier to declare such a variable, while C# uses the `const` keyword.
+
+
 #### What is the difference between “const” and “readonly” variables in C#?
+WIP
+
+In addition to const, C# provides the `readonly` keyword to declare variables that can be assigned a value once at runtime--either in the declaration statement or else in the constructor. After initialization, the value of a readonly variable cannot change.
+
+One scenario in which readonly variables are useful is when modules that have been compiled separately need to share data such as a version number. If module A is updated and recompiled with a new version number, module B can be initialized with that new constant value without having to be recompiled.
+
+To define a constant in C#, use the `const` or `readonly` modifier in place of Java's *final* keyword. The distinguishing factor between the two modifiers in C# is that const items are dealt with at *compile-time*, while the values of readonly fields are specified at *run time*. This means that assignment to readonly fields may occur in the class constructor as well as in the declaration.
+
+//If a readonly modifier is applied to a static field, it should be initialized in the static constructor of the class.//
+
+
 #### What is a property in C#?
 #### List out two different types of errors in C#?
 #### What is the difference between “out” and “ref” parameters in C#?
 #### Can we override private virtual method in C#?
 #### What's the difference between IEquatable and just overriding Object.Equals()?
 #### Explain the differences between public, protected, private and internal. Explain access modifier – “protected internal” in C#!
+WIP
+
+C# modifiers are quite similar to those in Java, with several small differences. Each member of a class, or the class itself, can be declared with an access modifier to define the scope of permitted access. Classes that are not declared inside other classes can only specify the public or internal modifiers. Nested classes, like other class members, can specify any of the following five access modifiers:
+* public: Visible to all.
+* protected: Visible only from derived classes.
+* private: Visible only within the given class.
+* internal: Visible only within the same assembly.
+* protected internal: Visible only to the current assembly or types derived from the containing class.
+
+//In C#, the default access modifier for members is private, while in Java, access defaults to anywhere from within the containing package!//
+
+
+
 #### What’s the difference between using `override` and `new` keywords when defining method in child class?
 #### Explain StringBuilder class in C#!
+WIP
+
+Just like in Java, C# developers should not use the string type for concatenating strings to avoid the overhead of creating new string classes every time the string is concatenated. Instead, developers can use the `StringBuilder` class, which is functionally equivalent to the Java StringBuffer class.
+
+
 #### How we can sort the array elements in descending order in C#?
 #### Can you use a value type as a generic type argument in C#? For example when implementing an interface like (IEquatable).
 #### What are Nullable Types in C#?
 #### Conceptually, what is the difference between early-binding and late-binding?
 #### What is delegate, event, callback, multicast delegate?
 #### What is enum in C#?
+WIP
+
+Enumerations, or enums, are used to group named constants. In C#, enums are value types, and enum constants must be integral numeric values. The ToString method can be used to print out string representations of the named constants.
+
+
+```C#
+public enum Color
+{
+    Green,   //defaults to 0
+    Orange,  //defaults to 1
+    Red,     //defaults to 2
+    Blue     //defaults to 3
+}
+```
+
+
 #### What is null-conditional operator?
 #### What is null-coalescing operator?
 #### What is serialization?
