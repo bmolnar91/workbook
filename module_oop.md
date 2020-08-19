@@ -835,6 +835,16 @@ A class with the `sealed` modifier on its class declaration is the opposite of a
 #### What is explicit vs. implicit conversion? Give examples of both of them.
 #### Is a struct stored on the heap or stack?
 #### Can a struct have methods?
+WIP
+
+Struct definition:
+C# supports the `struct` keyword, another item that originates in C but is not available in Java.
+You can think of a struct as a lightweight class.
+Although structs can contain constructors, constants, fields, methods, properties, indexers, operators, and nested types, they are mostly used simply to *encapsulate groups of related fields*.
+Because structs are value types, they can be allocated slightly more efficiently than classes.
+Structs differ from classes in that they cannot be abstract and do not support implementation inheritance.
+
+
 #### Can DateTimes be null?
 #### List out the differences between Array and ArrayList in C#?
 #### How is the using() pattern useful? What is IDisposable? How does it support deterministic finalization?
@@ -842,7 +852,8 @@ A class with the `sealed` modifier on its class declaration is the opposite of a
 #### Why to use keyword “const” in C#? Give an example.
 WIP
 
-Both Java and C# provide the ability to declare a variable whose value is specified at compile time and cannot be changed at runtime. Java uses the *final* field modifier to declare such a variable, while C# uses the `const` keyword.
+Both Java and C# provide the ability to declare a variable whose value is specified at compile time and cannot be changed at runtime.
+Java uses the *final* field modifier to declare such a variable, while C# uses the `const` keyword.
 
 
 #### What is the difference between “const” and “readonly” variables in C#?
@@ -858,9 +869,25 @@ To define a constant in C#, use the `const` or `readonly` modifier in place of J
 
 
 #### What is a property in C#?
+WIP
+
+In C#, a property is a named member of a *class*, *struct*, or *interface* offering a neat way to access **private** fields through what are called the **get** and **set** accessor methods.
+
+If a property only has a get accessor, it is a *read-only* property. If it only has a set accessor, it is a *write-only* property. If it has both, it is a *read-write* property.
+
 #### List out two different types of errors in C#?
 #### What is the difference between “out” and “ref” parameters in C#?
+WIP
+
+In C#, to pass a value type by reference, you need to specify one of the keywords `ref` or `out`. The difference between these two keywords is in the parameter initialization. A ref parameter must be initialized before use, while an out parameter does not have to be explicitly initialized before being passed and any previous value is ignored.
+
+
 #### Can we override private virtual method in C#?
+WIP
+
+No. The CLR doesn't allow to write private virtual method.
+
+
 #### What's the difference between IEquatable and just overriding Object.Equals()?
 #### Explain the differences between public, protected, private and internal. Explain access modifier – “protected internal” in C#!
 WIP
@@ -884,6 +911,12 @@ Just like in Java, C# developers should not use the string type for concatenatin
 
 
 #### How we can sort the array elements in descending order in C#?
+WIP
+
+`System.Array.Sort(x);`
+`System.Array.Reverse(x);`
+
+
 #### Can you use a value type as a generic type argument in C#? For example when implementing an interface like (IEquatable).
 #### What are Nullable Types in C#?
 #### Conceptually, what is the difference between early-binding and late-binding?
@@ -910,6 +943,17 @@ public enum Color
 #### What is serialization?
 #### What is the difference between Finalize() and Dispose() methods?
 #### How do you inherit a class from another class in C#?
+WIP
+
+In C#, both inheritance and interface implementation are defined by the `:` operator, equivalent to *extends* and *implements* in Java.
+The base class should always be leftmost in the class declaration.
+
+Like Java, C# does not support multiple inheritance, meaning that classes cannot inherit from more than one class. You can, however, use interfaces for that purpose in the same way as in Java.
+
+You can access base class members in a subclass even when those base members are overridden in the superclass using the `base` keyword. For instance, you can create a derived class which contains a method with the same signature as in the base class.
+If you prefaced that method with the `new` keyword, you indicate that this is an all-new method belonging to the derived class. You could still provide a method for accessing the original method in the base class with the `base` keyword.
+
+
 #### What is difference between “is” and “as” operators in C#?
 #### What are indexers in C# .NET?
 #### What is the difference between returning IQueryable<T> vs. IEnumerable<T>?
