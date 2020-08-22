@@ -817,6 +817,8 @@ Source code written in C# is compiled into an intermediate language (IL) that co
 
 Once you produce IL from your high-level code, you will most likely want to run it. This is where the CLR takes over and starts the process of Just-In-Time compiling, or JIT-ing your code from IL to machine code that can actually be run on a CPU. In this way, the CLR knows exactly what your code is doing and can effectively *manage* it.
 
+//Assembly is similar to Library in Java.//
+
 
 #### What is the difference between an EXE and a DLL?
 #### What is strong-typing versus weak-typing? Which is preferred? Why?
@@ -964,6 +966,10 @@ If you prefaced that method with the `new` keyword, you indicate that this is an
 #### By what mechanism does NUnit know what methods to test?
 #### What is the GAC? What problem does it solve?
 #### What is the largest number you can work with in C#?
+WIP
+
+The BigInteger type is an immutable type that represents an arbitrarily large integer whose value in theory has no upper or lower bounds.
+
 
 ### Database
 
