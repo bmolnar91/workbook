@@ -960,8 +960,33 @@ If you prefaced that method with the `new` keyword, you indicate that this is an
 #### What are indexers in C# .NET?
 #### What is the difference between returning IQueryable<T> vs. IEnumerable<T>?
 #### What is LINQ? Explain the idea of extension methods.
+WIP
+
+**Language-Integrated Query (LINQ)** is the name for a set of technologies based on the integration of query capabilities directly into the C# language.
+Traditionally, queries against data are expressed as simple strings without type checking at compile time or IntelliSense support. Furthermore, you have to learn a different query language for each type of data source: SQL databases, XML documents, various Web services, and so on.
+
+**With LINQ, a query is a first-class language construct**, just like classes, methods, events. You write queries against strongly typed collections of objects by using language keywords and familiar operators. The LINQ family of technologies provides a consistent query experience for objects (LINQ to Objects), relational databases (LINQ to SQL), and XML (LINQ to XML).
+
+The standard query operators are the methods that form the LINQ pattern. Most of these methods operate on sequences, where a sequence is an object whose type implements the `IEnumerable<T>` interface or the `IQueryable<T>` interface. The standard query operators provide query capabilities including filtering, projection, aggregation, sorting and more.
+
+Although it looks as if `IEnumerable<T>` has been redefined to include these additional methods, in fact this is not the case. The standard query operators are implemented as a new kind of method called extension methods. Extensions methods "extend" an existing type; they can be called as if they were instance methods on the type. The standard query operators extend `IEnumerable<T>` and that is why you can write `numbers.Where(...)`.
+
+// To get started using LINQ, all that you really have to know about extension methods is how to bring them into scope in your application by using the correct using directives. From your application's point of view, an extension method and a regular instance method are the same.//
+
+//Query syntax vs. Method syntax//
+
+
 #### What are the advantages and disadvantages of lazy loading?
 #### How to use of “yield” keyword? Mention at least one practical scenario where it can be used?
+WIP
+
+When you use the `yield` contextual keyword in a statement, you indicate that the method, operator, or get accessor in which it appears is an **iterator**.
+
+An iterator is used to perform a custom iteration over a collection. An iterator can be a *method* or a *get accessor*. An iterator uses a `yield return` statement to return each element of the collection one at a time.
+
+You call an iterator by using a `foreach` statement. Each iteration of the foreach loop calls the iterator. When a `yield return` statement is reached in the iterator, an expression is returned, and the current location in code is retained. Execution is restarted from that location the next time that the iterator is called.
+
+
 #### What are attributes in C#? Give some examples of usage of them.
 #### By what mechanism does NUnit know what methods to test?
 #### What is the GAC? What problem does it solve?
