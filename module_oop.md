@@ -927,14 +927,26 @@ Namespace:
 
 Memory:
 * Arrays have fixed size
-* Lists can increase or decrease size dynamically 
+* Lists can increase or decrease size dynamically
 
 If you know the data is fixed length, and you want to micro-optimise for some very specific reason (after benchmarking), then an array may be useful.
 Otherwise use a List<T> in almost all other cases.
 
 
 #### How is the using() pattern useful? What is IDisposable? How does it support deterministic finalization?
+WIP
+
+The `using` statement provides a convenient syntax that ensures the correct use of `IDisposable` objects. It works the same as the try/finally block, but it's shorter.
+
+It supports deterministic finalization by automatically calling the `Dispose()` (e.g. `Close()`) method on the disposable resource once the control reaches the end of the using block.
+
+
 #### How can you make sure that objects using dedicated resources (database connection, files, hardware, OS handle, etc.) are released as early as possible?
+WIP
+
+Instantiating the object in the `using` statement is usually the best way to go.
+
+
 #### Why to use keyword “const” in C#? Give an example.
 WIP
 
@@ -949,7 +961,7 @@ In addition to const, C# provides the `readonly` keyword to declare variables th
 
 One scenario in which readonly variables are useful is when modules that have been compiled separately need to share data such as a version number. If module A is updated and recompiled with a new version number, module B can be initialized with that new constant value without having to be recompiled.
 
-To define a constant in C#, use the `const` or `readonly` modifier in place of Java's *final* keyword. The distinguishing factor between the two modifiers in C# is that const items are dealt with at *compile-time*, while the values of readonly fields are specified at *run time*. This means that assignment to readonly fields may occur in the class constructor as well as in the declaration.
+To define a constant in C#, use the `const` or `readonly` modifier in place of Java's *final* keyword. Const items are dealt with at *compile-time*, while the values of readonly fields are specified at *run time*.
 
 //If a readonly modifier is applied to a static field, it should be initialized in the static constructor of the class.//
 
@@ -975,21 +987,34 @@ No. The CLR doesn't allow to write private virtual method.
 
 
 #### What's the difference between IEquatable and just overriding Object.Equals()?
+WIP
+
+`IEquatable<T>` lets a structure implement a strongly typed `Equals()` method so *no boxing* is required. Thus much better performance when using *value types* with generic collections.
+
+
 #### Explain the differences between public, protected, private and internal. Explain access modifier – “protected internal” in C#!
 WIP
 
 C# modifiers are quite similar to those in Java, with several small differences. Each member of a class, or the class itself, can be declared with an access modifier to define the scope of permitted access. Classes that are not declared inside other classes can only specify the public or internal modifiers. Nested classes, like other class members, can specify any of the following five access modifiers:
-* public: Visible to all.
-* protected: Visible only from derived classes.
 * private: Visible only within the given class.
+* protected: Visible only within the given class and from derived classes.
 * internal: Visible only within the same assembly.
 * protected internal: Visible only to the current assembly or types derived from the containing class.
+* public: Visible to all.
 
 //In C#, the default access modifier for members is private, while in Java, access defaults to anywhere from within the containing package!//
 
 
-
 #### What’s the difference between using `override` and `new` keywords when defining method in child class?
+WIP
+
+Override:
+The `override` modifier *extends* the base class `virtual` method.
+
+New:
+The `new` modifier *hides* an accessible base class method.
+
+
 #### Explain StringBuilder class in C#!
 WIP
 
@@ -999,11 +1024,16 @@ Just like in Java, C# developers should not use the string type for concatenatin
 #### How we can sort the array elements in descending order in C#?
 WIP
 
-`System.Array.Sort(x);`
-`System.Array.Reverse(x);`
+`System.Array.Sort(myArray);`
+`System.Array.Reverse(myArray);`
 
 
 #### Can you use a value type as a generic type argument in C#? For example when implementing an interface like (IEquatable).
+WIP
+
+Yes. (See above).
+
+
 #### What are Nullable Types in C#?
 #### Conceptually, what is the difference between early-binding and late-binding?
 #### What is delegate, event, callback, multicast delegate?
