@@ -1035,8 +1035,70 @@ Yes. (See above).
 
 
 #### What are Nullable Types in C#?
+WIP
+
+A nullable value type `T?` represents all values of its underlying value type `T` and an additional `null` value.
+
+Any nullable value type is an instance of the generic `System.Nullable<T>` structure. You can refer to a nullable value type with an underlying type `T` in any of the following interchangeable forms: `Nullable<T>` or `T?`.
+
+You typically use a nullable value type when you need to represent the undefined value of an underlying value type. For example, a Boolean, or `bool`, variable can only be either `true` or `false`. However, in some applications a variable value can be undefined or missing. For example, a database field may contain `true` or `false`, or it may contain no value at all, that is, `NULL`. You can use the `bool?` type in that scenario.
+
+Use the null-coalescing (`??`) operator to assign a nullable type to a non-nullable type.
+You always can use the following read-only properties to examine and get a value of a nullable value type variable:
+* `Nullable<T>.HasValue` indicates whether an instance of a nullable value type has a value of its underlying type.
+* `Nullable<T>.Valu`e gets the value of an underlying type if `HasValue` is `true`. If `HasValue` is `false`, the `Value` property throws an `InvalidOperationException`.
+
+//Nullable types in C# are similar to Optionals in Java.//
+
+
 #### Conceptually, what is the difference between early-binding and late-binding?
+WIP
+
+In late binding, the compiler does not know about what kind of object it is and what are the methods or properties it holds, here the objects are dynamic objects. The type of the object is decided on the basis of the data it holds on the right-hand side during run-time.
+Basically, late binding is achieved by using `virtual` methods. Late binding is slower than early binding because it requires lookups at run-time.
+
+
 #### What is delegate, event, callback, multicast delegate?
+WIP
+
+Delegate:
+  * Delegates are used to pass methods as arguments to other methods.
+  * A delegate is a type that represents references to methods with a particular parameter list and return type. When you instantiate a delegate, you can associate its instance with any method with a compatible signature and return type. You can invoke (or call) the method through the delegate instance.
+  * Both anonymous methods and lambda expressions (in certain contexts) are compiled to delegate types.
+  * There are 3 types of delegates:
+    1. Single delegate:
+      Used to invoke a single method.
+    2. Multicast delegate:
+      Used to invoke multiple methods. The delegate instance can do multicasting (adding a new method on existing delegate instance). `+` and `–` operators can be used to add or remove a method from a delegate instance. All methods will invoke in sequence as they are assigned.
+    3. Generic delegate:
+      Not require to define the delegate instance in order to invoke the methods.
+      There are 3 types of generic delegates:
+      - ***Func***:
+        `Func<T, TResult>` etc. encapsulates a method that has *0 or more parameters* (1 in this case) and *returns a value of `TResult`*
+      - **Action**:
+        `Action<T>` etc. encapsulates a method that has *0 or more parameters* (1 in this case) and *does not return a value*.
+      - **Predicate**:
+        `Predicate<T>` represents the method that defines a set of criteria and determines whether the specified object meets those criteria. `T` is the type of the object to compare. *It returns a Boolean*.
+
+Event:
+  Events enable a class or object to notify other classes or objects when something of interest occurs. The class that sends (or raises) the event is called the *publisher* and the classes that receive (or handle) the event are called *subscribers*.
+
+  Events have the following properties:
+  * The publisher determines when an event is *raised*; the subscribers determine what action is taken in *response* to the event.
+  * An event can have multiple subscribers. A subscriber can handle multiple events from multiple publishers.
+  * Events that have no subscribers are never raised.
+  * Events are typically used to signal user actions such as button clicks or menu selections in graphical user interfaces.
+  * When an event has multiple subscribers, the event handlers are invoked synchronously when an event is raised. (Events can also be invoked asynchronously).
+  * In the .NET class library, events are based on the `EventHandler` delegate and the `EventArgs` base class.
+
+Callback:
+  In computer programming, a callback is executable code that is passed as an argument to other code.
+  C# has delegates for that purpose. They are heavily used with events, as an event can automatically invoke a number of attached delegates (event handlers).
+
+
+//Event handlers are nothing more than methods that are invoked through delegates.//
+
+
 #### What is enum in C#?
 WIP
 
