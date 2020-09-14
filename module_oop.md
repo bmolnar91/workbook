@@ -797,31 +797,67 @@ Annotations have a number of uses, among them:
 #### Explain the purpose of IL and how does it relate to CLR?
 WIP
 
-a product of compilation of code written in high-level .NET languages. Once you compile your code written in one of these languages, you will get a binary that is made out of IL. It is important to note that the IL is independent from any specific language that runs on top of the runtime; there is even a separate specification for it that you can read if you’re so inclined.
+A product of compilation of code written in high-level .NET languages. Once you compile your code written in one of these languages, you will get a binary that is made out of IL. It is important to note that the IL is independent from any specific language that runs on top of the runtime.
+
+When we run the executable, the *Just-In-Time (JIT)* compiler of CLR compiles the intermediate language in native machine code which is specific to the underlying architecture.
 
 
 #### What does “managed code” mean?
 WIP
 
-When the C# program is executed, the *assembly* is loaded into the CLR, which might take various actions based on the information in the manifest. Then, if the security requirements are met, the CLR performs just in time (JIT) compilation to convert the IL code to native machine instructions.Code that is executed by the CLR is sometimes referred to as "*managed code*", in contrast to "unmanaged code" which is compiled into native machine language that targets a specific system.
+When the C# program is executed, the *assembly* is loaded into the CLR, which might take various actions based on the information in the manifest. Then, if the security requirements are met, the CLR performs just in time (JIT) compilation to convert the IL code to native machine instructions.
+Code that is executed by the CLR is sometimes referred to as "*managed code*", in contrast to "unmanaged code" which is compiled into native machine language that targets a specific system.
 
 //To put it very simply, managed code is just that: code whose execution is managed by a runtime. In this case, the runtime in question is called the Common Language Runtime or CLR, regardless of the implementation. CLR is in charge of taking the managed code, compiling it into machine code and then executing it. On top of that, runtime provides several important services such as automatic memory management, security boundaries, type safety etc.//
 
 Managed code is written in one of the high-level languages that can be run on top of .NET, such as C#, Visual Basic, F# and others. When you compile code written in those languages with their respective compiler, you don't get machine code. You get **Intermediate Language** (IL) code which the runtime then compiles and executes. (C++ is the one exception to this rule, as it can also produce native, unmanaged binaries that run on Windows).
 
+//IL = CIL = MSIL//
+
+//Managed code is executed by the managed runtime environment (CLR), whereas unmanaged code is executed directly by the operating system.
+Applications written in these languages (Java, C#, VB.Net, etc.) are always aimed at runtime environment services to manage the execution and the code written in these types of languages are known as managed code.//
+
 
 #### What is an assembly?
 WIP
 
-Source code written in C# is compiled into an intermediate language (IL) that conforms to the CLI specification. The IL code and resources, such as bitmaps and strings, are stored on disk in an executable file called an **assembly**, typically with an extension of .exe or .dll. An assembly contains a manifest that provides information about the assembly's types, version, culture, and security requirements.
+Source code written in C# is compiled into an intermediate language (IL) that conforms to the CLI (command-line interface) specification. The IL code and resources, such as bitmaps and strings, are stored on disk in an executable file called an **assembly**, typically with an extension of .exe or .dll. An assembly contains a manifest that provides information about the assembly's types, version, culture, and security requirements.
 
-Once you produce IL from your high-level code, you will most likely want to run it. This is where the CLR takes over and starts the process of Just-In-Time compiling, or JIT-ing your code from IL to machine code that can actually be run on a CPU. In this way, the CLR knows exactly what your code is doing and can effectively *manage* it.
+Once you produce IL from your high-level code, you will most likely want to run it. This is where the CLR takes over and starts the process of *Just-In-Time compiling*, or *JIT-ing* your code from IL to machine code that can actually be run on a CPU. In this way, the CLR knows exactly what your code is doing and can effectively manage it.
 
 //Assembly is similar to Library in Java.//
 
 
 #### What is the difference between an EXE and a DLL?
+WIP
+
+EXE:
+* An *executable file*. It's an application by itself rather than a supportive file.
+* Can be run individually as it contains an *entry point* (main function).
+
+DLL (Dynamic-Link Library):
+* Used as a *supportive file* to other applications.
+* The Library Functions are *linked* to the application at runtime *dynamically* (hence the name). 
+* A DLL can't be run by itself as it doesn't contain an entry point.
+
+
+A dynamic-link library (DLL) is a module that contains functions and data that can be used by another module (application or DLL).
+DLLs provide a way to modularize applications so that their functionality can be updated and reused more easily. DLLs also help reduce memory overhead when several applications use the same functionality at the same time.
+
+
 #### What is strong-typing versus weak-typing? Which is preferred? Why?
+WIP
+
+Strong typing means that the type check is done at compile time and weak typing means that the type check is done at run time. .NET languages incorporate strong typing.
+
+Basic rules for strong-typing:
+* All variables (or data types) are known at compile time.
+* There is strict enforcement of typing rules (a String can't be used where an Integer would be expected).
+* All exceptions to typing rules results in a compile time error.
+
+For robust applications, strong-typing is much preferred, whereas small scripts / programs can benefit from weak-typing.
+
+
 #### What is a namespace?
 WIP
 
@@ -831,11 +867,35 @@ C# uses the concept of *namespaces* to group logically related classes through t
 #### Explain sealed class in C#?
 WIP
 
-A class with the `sealed` modifier on its class declaration is the opposite of an abstract class: it cannot be inherited. You can mark a class as sealed to prevent other classes from overriding its functionality. Naturally, a sealed class cannot be abstract. Also note that a struct is implicitly sealed; therefore, it cannot be inherited. The sealed modifier is equivalent to marking a class with the final keyword in Java.
+A class with the `sealed` modifier on its class declaration is the opposite of an abstract class: it cannot be inherited. You can mark a class as sealed to prevent other classes from overriding its functionality. Naturally, a sealed class cannot be abstract. Also note that a struct is implicitly sealed; therefore, it cannot be inherited.
+
+//The sealed modifier is equivalent to marking a class with the final keyword in Java.//
 
 
 #### What is explicit vs. implicit conversion? Give examples of both of them.
+WIP
+
+Implicit conversions:
+No special syntax is required because the conversion always succeeds and no data will be lost.
+E.g.:
+  * smaller to larger integral types
+  * derived classes to base classes
+
+Explicit conversions (casts):
+Require a cast expression. Casting is required when information might be lost in the conversion, or when the conversion might not succeed for other reasons.
+E.g.:
+  * numeric conversion to a type that has less precision or a smaller range
+  * base-class instance to a derived class
+
+
 #### Is a struct stored on the heap or stack?
+WIP
+
+Normally, structs are stored on the **stack**.
+
+A struct in C# is referred to as a *value type*. Variables of this type are not pointers, but the objects themselves. If you create a struct as a function-local variable, its memory will be allocated on the stack. If the struct instance is a class member, its memory will be allocated contiguously as part of the class instance’s memory on the heap.
+
+
 #### Can a struct have methods?
 WIP
 
@@ -848,7 +908,31 @@ Structs differ from classes in that they cannot be abstract and do not support i
 
 
 #### Can DateTimes be null?
+WIP
+
+No.
+
+`DateTime` is a value type, which, just like int and double, has no meaningful `null` value.
+
+
 #### List out the differences between Array and ArrayList in C#?
+WIP
+
+The comparison is made between Array and List<T> since ArrayList is more or less deprecated.
+
+Namespace:
+* Arrays belong to System.Array
+* Lists belong to System.Collections.Generic.List
+* (ArrayLists belong to System.Collections)
+
+Memory:
+* Arrays have fixed size
+* Lists can increase or decrease size dynamically 
+
+If you know the data is fixed length, and you want to micro-optimise for some very specific reason (after benchmarking), then an array may be useful.
+Otherwise use a List<T> in almost all other cases.
+
+
 #### How is the using() pattern useful? What is IDisposable? How does it support deterministic finalization?
 #### How can you make sure that objects using dedicated resources (database connection, files, hardware, OS handle, etc.) are released as early as possible?
 #### Why to use keyword “const” in C#? Give an example.
