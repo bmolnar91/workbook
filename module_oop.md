@@ -1105,7 +1105,7 @@ WIP
 Enumerations, or enums, are used to group named constants. In C#, enums are value types, and enum constants must be integral numeric values. The ToString method can be used to print out string representations of the named constants.
 
 
-```C#
+```csharp
 public enum Color
 {
     Green,   //defaults to 0
@@ -1271,12 +1271,74 @@ You call an iterator by using a `foreach` statement. Each iteration of the forea
 
 
 #### What are attributes in C#? Give some examples of usage of them.
+WIP
+
+Attributes provide a powerful method of associating ***metadata***, or *declarative information*, with code (assemblies, types, methods, properties, and so forth). After an attribute is associated with a program entity, the attribute can be queried at run time by using a technique called *reflection*.
+
+Attributes have the following properties:
+* Attributes add metadata to your program. Metadata is information about the types defined in a program. All .NET assemblies contain a specified set of metadata that describes the types and type members defined in the assembly.
+* You can apply one or more attributes to entire assemblies, modules, or smaller program elements such as classes and properties.
+* Attributes can accept arguments in the same way as methods and properties.
+* Your program can examine its own metadata or the metadata in other programs by using reflection.
+
+Attributes can be placed on most any declaration, though a specific attribute might restrict the types of declarations on which it is valid. In C#, you specify an attribute by placing the name of the attribute enclosed in square brackets ([]) above the declaration of the entity to which it applies.
+
+Common uses for Attributes:
+* (Marking methods using the `WebMethod` attribute in Web services to indicate that the method should be callable over the *SOAP protocol*).
+* (Describing how to *marshal* method parameters when interoperating with native code).
+* (Describing the *COM properties* for classes, methods, and interfaces).
+* (Calling *unmanaged code* using the `DllImportAttribute` class).
+* (Describing your *assembly* in terms of title, version, description, or trademark).
+* Describing which members of a class to *serialize* for persistence.
+* Describing how to *map* between class members and XML nodes for *XML serialization*.
+* (Describing the security requirements for methods).
+* (Specifying characteristics used to enforce security).
+* (Controlling optimizations by the *just-in-time (JIT) compiler* so the code remains easy to debug).
+* Obtaining information about the caller to a method.
+
+
+**Reflection**:
+Reflection provides objects (of type `Type`) that describe assemblies, modules, and types. You can use reflection to dynamically create an instance of a type, bind the type to an existing object, or get the type from an existing object and invoke its methods or access its fields and properties. If you are using attributes in your code, reflection enables you to access them.
+
+```csharp
+// Using GetType to obtain type information
+Type type = i.GetType();
+Console.WriteLine(type);
+```
+The output is: `System.Int32`
+
+
+**Marshaling**:
+Marshaling is the process of transforming types when they need to cross between managed and native code.
+
+Marshaling is needed because the types in the managed and unmanaged code are different. In managed code, for instance, you have a `String`, while in the unmanaged world strings can be Unicode ("wide"), non-Unicode, null-terminated, ASCII, etc.
+
+
 #### By what mechanism does NUnit know what methods to test?
+WIP
+
+NUnit uses attributes to control how tests are executed.
+
+
 #### What is the GAC? What problem does it solve?
+WIP
+
+Each computer where the CLR is installed has a machine-wide code cache called the **global assembly cache**. The GAC stores assemblies that are to be shared by several applications on the computer. This area is typically the folder under windows or winnt in the machine.
+
+Advantages:
+* Only one place to update your assemblys.
+* You use a little less hard drive space.
+
+Disadvantages:
+* If you need to update only one website, you can't. You may end with the other websites in the webserver broken.
+
+GAC is more suitable for frameworks where there is expectation for library to be shared among more applications. In 99% of cases, you don't need it.
+
+
 #### What is the largest number you can work with in C#?
 WIP
 
-The BigInteger type is an immutable type that represents an arbitrarily large integer whose value in theory has no upper or lower bounds.
+The `BigInteger` type is an immutable type that represents an arbitrarily large integer whose value in theory has no upper or lower bounds.
 
 
 ### Database
