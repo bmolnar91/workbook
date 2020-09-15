@@ -1117,9 +1117,62 @@ public enum Color
 
 
 #### What is null-conditional operator?
+WIP
+
+A *null-conditional operator* applies a member access, `?.`, or element access, `?[]`, operation to its operand only if that operand evaluates to non-null; otherwise, it returns `null`.
+* If `a` evaluates to `null`, the result of `a?.x` or `a?[x]` is `null`.
+* If `a` evaluates to non-null, the result of `a?.x` or `a?[x]` is the same as the result of `a.x` or `a[x]`, respectively.
+
+
 #### What is null-coalescing operator?
+WIP
+
+The *null-coalescing operator* `??` returns the value of its left-hand operand if it isn't `null`; otherwise, it evaluates the right-hand operand and returns its result.
+
+The *null-coalescing assignment operator* `??=` assigns the value of its right-hand operand to its left-hand operand only if the left-hand operand evaluates to null.
+
+
 #### What is serialization?
+WIP
+
+Serialization is the process of converting an object into a stream of bytes to store the object or transmit it to memory, a database, or a file. Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization.
+
+JSON serialization:
+* Serializes the public properties of an object into a string, byte array, or stream (that conforms to the RFC 8259 JSON specification).
+* Using the `JsonSerializer` (`System.Text.Json.JsonSerializer`) class.
+
+Binary serialization:
+* Uses binary encoding to produce compact serialization for uses such as storage or socket-based network streams. In binary serialization, all members, even members that are read-only, are serialized, and performance is enhanced.
+* Using the `BinaryFormatter` (`System.Runtime.Serialization.Formatters.Binary.BinaryFormatter`) class.
+
+XML serialization:
+* Serializes the public fields and properties of an object, or the parameters and return values of methods, into an XML stream.
+* Results in strongly typed classes with public properties and fields that are converted to XML.
+* Using the `XmlSerializer` (`System.Xml.Serialization.XmlSerializer`) class.
+
+
 #### What is the difference between Finalize() and Dispose() methods?
+WIP
+
+The garbage collector (GC) plays the main role in .NET for memory management.
+The GC is responsible for releasing the memory (objects) that is not being used by the application, but it can reclaim or release only memory which is used by managed resources. File handlers, window handlers, network sockets, database connections, etc. can cause problems. These resources have to be disposed of manually so that the GC can collect them eventually.
+
+Dispose:
+* The `Dispose()` method is exposed to classes that implement the `IDisposable` interface. For many classes, `Dispose()` just calls the built-in `Close()` method. (One exception are database connections, where these two methods work slightly differently).
+
+Finalize:
+* `Finalize()`, also called the destructor, cannot be called explicitly in the code. Only the GC can call it when object becomes inaccessible.
+* It cannot be implemented directly, only via declaring a destructor. `~MyClass() { this.Dispose(); }`
+* When to implement? There may be any unmanaged resource for example file stream declared at class level. We may not be knowing what stage or which step is appropriate to close the file. This object is being used at many places in the application. So in this scenario Finalize can be appropriate location where unmanaged resource can be released.
+* It's a bit expensive to use.
+
+Some types encapsulate disposable resources in a manner where it is easy to use and dispose of them in a single action. The general usage is often like this: open, read or write, close (Dispose). It fits very well with the `using` construct.
+
+Others are a bit more difficult. `WaitEventHandle`s for instances are not used like this as they are used to signal from one thread to another. The question then becomes who should call `Dispose()` on these? As a safeguard types like these implement a `Finalize()` method, which makes sure resources are disposed when the instance is no longer referenced by the application.
+
+Bottom line: always use `Dispose()` to dispose of unmanaged resources as soon as possible. Implement `Finalize()` only if it's really necessary.
+
+
 #### How do you inherit a class from another class in C#?
 WIP
 
@@ -1133,8 +1186,46 @@ If you prefaced that method with the `new` keyword, you indicate that this is an
 
 
 #### What is difference between “is” and “as” operators in C#?
+Is:
+* The `is` operator is a *type-testing keyword* that checks if the result of an expression is compatible with a given type, or tests an expression against a pattern.
+* Simple type testing: `dog is Animal`
+* Pattern matching (Type pattern):
+ - When using the type pattern to perform pattern matching, `is` tests whether an expression can be converted to a specified type and, if it can be, casts it to a variable of that type.
+ - It's a straightforward extension of the `is` statement that enables concise type evaluation and conversion. The general form of the is type pattern is: `expr is type varname`
+ - `if (o is Employee e) return e.ToString()`
+
+As:
+* to explicitly convert an expression to a given type if its runtime type is compatible with that type
+* The `as` operator explicitly converts the result of an expression to a given reference or nullable value type.
+* If the conversion is not possible, the as operator returns `null`.
+* Unlike a cast expression, the as operator never throws an exception.
+
+
 #### What are indexers in C# .NET?
+WIP
+
+Indexers allow instances of a class or struct to be indexed just like arrays. The indexed value can be set or retrieved without explicitly specifying a type or instance member. Indexers resemble *properties* except that their accessors take parameters.
+
+Overview:
+* Indexers enable objects to be indexed in a similar manner to arrays.
+* A `get` accessor returns a value. A `set` accessor assigns a value.
+* The `this` keyword is used to define the indexer.
+* The `value` keyword is used to define the value being assigned by the `set` accessor.
+* Indexers do not have to be indexed by an integer value; it is up to you how to define the specific look-up mechanism.
+* Indexers can be overloaded.
+* Indexers can have more than one formal parameter, for example, when accessing a two-dimensional array.
+
+
 #### What is the difference between returning IQueryable<T> vs. IEnumerable<T>?
+WIP
+
+The difference is that `IQueryable<T>` is the interface that allows LINQ-to-SQL (LINQ-to-anything really) to work. So if you further refine your query on an `IQueryable<T>`, that query will be executed in the database, if possible.
+
+For the `IEnumerable<T>` case, it will be LINQ-to-object, meaning that all objects matching the original query will have to be loaded into memory from the database.
+
+This is quite an important difference, and working on `IQueryable<T>` can in many cases save you from returning too many rows from the database. Another prime example is doing paging: If you use `Take` and `Skip` on `IQueryable<T>`, you will only get the number of rows requested; doing that on an `IEnumerable<T>` will cause all of your rows to be loaded in memory.
+
+
 #### What is LINQ? Explain the idea of extension methods.
 WIP
 
@@ -1145,14 +1236,30 @@ Traditionally, queries against data are expressed as simple strings without type
 
 The standard query operators are the methods that form the LINQ pattern. Most of these methods operate on sequences, where a sequence is an object whose type implements the `IEnumerable<T>` interface or the `IQueryable<T>` interface. The standard query operators provide query capabilities including filtering, projection, aggregation, sorting and more.
 
-Although it looks as if `IEnumerable<T>` has been redefined to include these additional methods, in fact this is not the case. The standard query operators are implemented as a new kind of method called extension methods. Extensions methods "extend" an existing type; they can be called as if they were instance methods on the type. The standard query operators extend `IEnumerable<T>` and that is why you can write `numbers.Where(...)`.
+Although it looks as if `IEnumerable<T>` has been redefined to include these additional methods, in fact this is not the case. The standard query operators are implemented as a new kind of method called extension methods. Extension methods "extend" an existing type; they can be called as if they were instance methods on the type. The standard query operators extend `IEnumerable<T>` and that is why you can write `numbers.Where(...)`.
 
-// To get started using LINQ, all that you really have to know about extension methods is how to bring them into scope in your application by using the correct using directives. From your application's point of view, an extension method and a regular instance method are the same.//
+//To get started using LINQ, all that you really have to know about extension methods is how to bring them into scope in your application by using the correct using directives. From your application's point of view, an extension method and a regular instance method are the same.//
 
-//Query syntax vs. Method syntax//
+//For readability, use Query syntax over Method syntax whenever possible.//
 
 
 #### What are the advantages and disadvantages of lazy loading?
+WIP
+
+Lazy loading (also called on-demand loading) is an optimization technique for the online content, be it a website or a web app.
+
+Instead of loading the entire web page and rendering it to the user in one go as in bulk loading, the concept of lazy loading assists in loading only the required section and delays the remaining, until it is needed by the user.
+
+Advantages:
+* On-demand loading reduces *time consumption* and *memory usage* thereby optimizing content delivery. Only a fraction of the web page is loaded at first, which takes considerably less time, while the loading of the rest of the section is delayed which saves storage. All of this enhances UX as the requested content is fed in no time.
+* Unnecessary code execution is avoided.
+* Optimal usage of time and space resources makes it a cost-effective approach from the point of view of business persons (website owners).
+
+Disadvantages:
+* The extra lines of code, to be added to the existing ones, to implement lazy load makes the code a bit complicated.
+* May affect the website's ranking on search engines sometimes, due to improper indexing of the unloaded content.
+
+
 #### How to use of “yield” keyword? Mention at least one practical scenario where it can be used?
 WIP
 
