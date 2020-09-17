@@ -1120,7 +1120,7 @@ Delegate:
   3. Generic delegate:
      Not require to define the delegate instance in order to invoke the methods.
      There are 3 types of generic delegates:
-  - **_Func_**:
+  - **Func**:
     `Func<T, TResult>` etc. encapsulates a method that has _0 or more parameters_ (1 in this case) and _returns a value of `TResult`_
   - **Action**:
     `Action<T>` etc. encapsulates a method that has _0 or more parameters_ (1 in this case) and _does not return a value_.
@@ -1246,7 +1246,7 @@ Is:
 
 * When using the type pattern to perform pattern matching, `is` tests whether an expression can be converted to a specified type and, if it can be, casts it to a variable of that type.
 * It's a straightforward extension of the `is` statement that enables concise type evaluation and conversion. The general form of the is type pattern is: `expr is type varname`
-* `if (o is Employee e) return e.ToString()`
+* `if (o is Employee e) return e.ToString();`
 
 As:
 
