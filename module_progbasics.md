@@ -10,27 +10,27 @@ The list is the most versatile compound data type. It can be indexed and sliced,
 
 List methods:
 
-- list.**append**(x):
+- `list.append(x)`:
   Add an item to the end of the list. Equivalent to `a[len(a):] = [x]`.
-- list.**extend**(iterable):
+- `list.extend(iterable)`:
   Extend the list by appending all the items from the iterable. Equivalent to `a[len(a):] = iterable`.
-- list.**insert**(i, x):
+- `list.insert(i, x)`:
   Insert an item at a given position. The first argument is the index before which to insert. `a.insert(len(a), x)` is equivalent to `a.append(x)`.
-- list.**remove**(x):
+- `list.remove(x)`:
   Remove the first item from the list whose value is equal to `x`.
-- list.**pop**(i=optional):
+- `list.pop(i=optional)`:
   Remove the item at the given position in the list, and return it. If no index is specified, `a.pop()` removes and returns the last item in the list.
-- list.**clear**():
+- `list.clear()`:
   Remove all items from the list. Equivalent to `del a[:]`.
-- list.**index**(x, start=optional, end=optional):
+- `list.index(x, start=optional, end=optional)`:
   Return index in the list of the first item whose value is equal to `x`. The optional arguments start and end are interpreted as in the slice notation and are used to limit the search to a particular subsequence of the list. The returned index is computed relative to the beginning of the full sequence rather than the start argument.
-- list.**count**(x):
+- `list.count(x)`:
   Return the number of times `x` appears in the list.
-- list.**sort**(key=None, reverse=False):
+- `list.sort(key=None, reverse=False)`:
   Sort the items of the list _in place_.
-- list.**reverse**():
+- `list.reverse()`:
   Reverse the elements of the list _in place_.
-- list.**copy**():
+- `list.copy()`:
   Return a _shallow copy_ of the list. Equivalent to `a[:]`.
 
 #### What is the difference between a list/array and a set?
@@ -146,12 +146,12 @@ def get_max(numbers):
 
 ```python
 def get_average_numbers(numbers):
-    sum = 0
     length = 0
+    sum = 0
 
     for number in numbers:
-        sum += number
         length += 1
+        sum += number
 
     return sum / length
 ```
@@ -531,8 +531,8 @@ Personal files are in the Home directory.
 #### How can you install an application in Linux?
 
 You can download and install it from the Ubuntu Software Center (or equivalent), or download it using the terminal.
-`sudo apt-get install _application_` (Ubuntu)
-`brew install _application_` (macOS)
+`sudo apt-get install application_name` (Ubuntu)
+`brew install application_name` (macOS)
 
 #### What is package management in Linux, what are repositories?
 
@@ -556,8 +556,8 @@ The repository is storage location where new softwares get installed and existin
 
 #### How can you look up what does a command do in Linux if you have no internet connection?
 
-`man` command
-`_command_ --help`
+- `man command_name`
+- `command_name --help`
 
 #### What does the following commands do: head, tail, more, less?
 
@@ -568,4 +568,4 @@ The repository is storage location where new softwares get installed and existin
 
 #### How do you download a file from internet using the terminal?
 
-`wget _URL_`
+`wget URL`
