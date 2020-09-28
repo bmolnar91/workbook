@@ -10,27 +10,27 @@ The list is the most versatile compound data type. It can be indexed and sliced,
 
 List methods:
 
-- `list.append(x)`:
+- `my_list.append(x)`:
   Add an item to the end of the list. Equivalent to `a[len(a):] = [x]`.
-- `list.extend(iterable)`:
+- `my_list.extend(iterable)`:
   Extend the list by appending all the items from the iterable. Equivalent to `a[len(a):] = iterable`.
-- `list.insert(i, x)`:
+- `my_list.insert(i, x)`:
   Insert an item at a given position. The first argument is the index before which to insert. `a.insert(len(a), x)` is equivalent to `a.append(x)`.
-- `list.remove(x)`:
+- `my_list.remove(x)`:
   Remove the first item from the list whose value is equal to `x`.
-- `list.pop(i=optional)`:
+- `my_list.pop(i=optional)`:
   Remove the item at the given position in the list, and return it. If no index is specified, `a.pop()` removes and returns the last item in the list.
-- `list.clear()`:
+- `my_list.clear()`:
   Remove all items from the list. Equivalent to `del a[:]`.
-- `list.index(x, start=optional, end=optional)`:
+- `my_list.index(x, start=optional, end=optional)`:
   Return index in the list of the first item whose value is equal to `x`. The optional arguments start and end are interpreted as in the slice notation and are used to limit the search to a particular subsequence of the list. The returned index is computed relative to the beginning of the full sequence rather than the start argument.
-- `list.count(x)`:
+- `my_list.count(x)`:
   Return the number of times `x` appears in the list.
-- `list.sort(key=None, reverse=False)`:
+- `my_list.sort(key=None, reverse=False)`:
   Sort the items of the list _in place_.
-- `list.reverse()`:
+- `my_list.reverse()`:
   Reverse the elements of the list _in place_.
-- `list.copy()`:
+- `my_list.copy()`:
   Return a _shallow copy_ of the list. Equivalent to `a[:]`.
 
 #### What is the difference between a list/array and a set?
@@ -64,31 +64,31 @@ The main operations on a dictionary are storing a value with some key and extrac
 
 Dictionary methods:
 
-- `list(d)`:
+- `list(my_dict)`:
   Return a list of all the keys in the dictionary, in insertion order.
-- `sorted(d)`:
+- `sorted(my_dict)`:
   Return a list of all the keys in the dictionary, in a specified order.
-- `dict.clear()`:
+- `my_dict.clear()`:
   Remove all the elements from the dictionary.
-- `dict.copy()`:
+- `my_dict.copy()`:
   Return a copy of the dictionary.
-- `dict.get(k)`:
+- `my_dict.get(k)`:
   Return the value of the specified key `k`.
-- `dict.keys()`:
+- `my_dict.keys()`:
   Return a list containing the dictionary's keys.
-- `dict.values()`:
+- `my_dict.values()`:
   Return a list of all the values in the dictionary.
-- `dict.items()`:
+- `my_dict.items()`:
   Return a list containing a tuple for each key-value pair.
-- `dict.pop(k)`:
+- `my_dict.pop(k)`:
   Remove and return the element with the specified key `k`.
-- `dict.popitem()`:
+- `my_dict.popitem()`:
   Remove and return a tuple of the last inserted key-value pair.
-- `dict.setdefault(k, v)`:
+- `my_dict.setdefault(k, v)`:
   Return a value of the specified key `k`. If the key does not exist, insert the key with the specified value `v`.
-- `dict.update({k: v, k: v, ...})`:
+- `my_dict.update({k: v, k: v, ...})`:
   Update the dictionary with the specified key-value pairs. If a key already extists, the old value associated with that key is forgotten.
-- `dict.fromkeys(x, y)`:
+- `my_dict.fromkeys(x, y)`:
   Return a dictionary with the specified keys and values. Here, `x` could represent a list `['key1', 'key2', ...]` of keys, `y` could represent an integer value `1`.
 
 ### Algorithms
@@ -280,7 +280,7 @@ Lists can contain any built-in data type.
 
 Using a slice operator does not change the list in-place but creates a new object.
 
-- `list[start:end:step]` (the end index is non-inclusive)
+- `list[start:end:step]` -- Creates a new list from the elements between `start` and `end`(the end index is non-inclusive).
 - `list[:]` -- Creates a new (independent) copy of the list. Modifying this list won't affect the original list.
 - `list[::-1]` -- Reverses the list.
 
@@ -379,7 +379,7 @@ You can use doctest, a linter (PEP8), the `print()` statement (poor man's debugg
 
 Among the various techniques for debugging are:
 
-- a linter (e.g. PEP8)
+- a linter (e.g. PEP8, flake8)
 - the `print()` statement (poor man's debugger)
 - Debug tool in text editor / IDE
 - doctest: The _doctest_ module searches for pieces of text that look like interactive Python sessions, and then executes those sessions to verify that they work exactly as shown.
@@ -467,7 +467,8 @@ Exception handling is the process of responding to the occurrence of _exceptions
 
 We use _try-except_ blocks.
 
-If the `try` block runs to failure, it jumps to the except block rather than crashing. The `except` block contains the logic that deals with the exception gracefully.
+If the `try` block runs to failure, it jumps to the except block rather than crashing.
+The `except` block contains the logic that deals with the exception gracefully.
 
 #### In which case should we catch an exception? Why?
 
@@ -479,7 +480,8 @@ We should tell the program how to continue executing our code. E.g. to print an 
 
 #### What does the else and finally statement do in a try-except block in Python?
 
-The `else` block is executed when the except block doesn't catch an exception. The `finally` block is always executed.
+The `else` block is executed when the except block doesn't catch an exception.
+The `finally` block is always executed.
 
 ## Software Development Methodologies
 
@@ -518,7 +520,7 @@ Bash is a command processor that runs in a text window where the user types comm
 #### What does root means in a Linux environment?
 
 An account that has access to all commands and files. It is usually referred to as the superuser.
-`sudo -i`
+`sudo`
 
 There's also a root directory, all of the directories and files are in there.
 `cd /`
@@ -531,8 +533,9 @@ Personal files are in the Home directory.
 #### How can you install an application in Linux?
 
 You can download and install it from the Ubuntu Software Center (or equivalent), or download it using the terminal.
-`sudo apt-get install application_name` (Ubuntu)
-`brew install application_name` (macOS)
+
+- `sudo apt-get install application_name` (Ubuntu)
+- `brew install application_name` (macOS)
 
 #### What is package management in Linux, what are repositories?
 
