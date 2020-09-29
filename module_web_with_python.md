@@ -213,15 +213,15 @@ Iterate through the array and return the sum of the numbers divided by the lengt
 #### What is Big O complexity? Explain time and space complexity!
 
 In computer science, big O notation is used to classify algorithms according to how their run time or space requirements grow as the input size grows.
+
 Big O specifically describes the worst-case scenario, and can be used to describe the execution time required or the space used (e.g. in memory or on disk) by an algorithm.
 
-O(1):
-Describes an algorithm that will always execute in the same time (or space) regardless of the size of the input data set.
+- O(1) -- constant:
+  Describes an algorithm that will always execute in the same time (or space) regardless of the size of the input data set.
+  `return elements[0] === null;`
 
-    return elements[0] === null;
-
-O(N):
-Describes an algorithm whose performance will grow linearly and in direct proportion to the size of the input data set.
+- O(N) -- linear:
+  Describes an algorithm whose performance will grow linearly and in direct proportion to the size of the input data set.
 
 ```javascript
 for (let element of elements) {
@@ -233,44 +233,50 @@ for (let element of elements) {
 }
 ```
 
-O(N2):
-Represents an algorithm whose performance is directly proportional to the square of the size of the input data set. This is common with algorithms that involve nested iterations over the data set. Deeper nested iterations will result in O(N3), O(N4) etc.
+- O(N^2) -- quadratic:
+  Represents an algorithm whose performance is directly proportional to the square of the size of the input data set. This is common with algorithms that involve **nested iterations** over the data set. Deeper nested iterations will result in O(N^3), O(N^4) etc.
 
-O(2N):
-Denotes an algorithm whose growth doubles with each additon to the input data set. The growth curve of an O(2N) function is exponential - starting off very shallow, then rising meteorically.
+- O(2^N):
+  Denotes an algorithm whose growth doubles with each additon to the input data set. The growth curve of an O(2N) function is exponential - starting off very shallow, then rising meteorically.
+  E.g. recursive calculation of **Fibonacci numbers**
 
-    E.g. recursive calculation of Fibonacci numbers
+- O(log N) -- logarithmic:
+  E.g. **Binary Search**:
+  Binary search is a technique used to search sorted data sets. It works by selecting the middle element of the data set, essentially the median, and compares it against a target value. If the values match it will return success. If the target value is higher than the value of the probe element it will take the upper half of the data set and perform the same operation against it. Likewise, if the target value is lower than the value of the probe element it will perform the operation against the lower half. It will continue to halve the data set with each iteration until the value has been found or until it can no longer split the data set.
 
-O(log N):
-E.g. Binary Search:
-Binary search is a technique used to search sorted data sets. It works by selecting the middle element of the data set, essentially the median, and compares it against a target value. If the values match it will return success. If the target value is higher than the value of the probe element it will take the upper half of the data set and perform the same operation against it. Likewise, if the target value is lower than the value of the probe element it will perform the operation against the lower half. It will continue to halve the data set with each iteration until the value has been found or until it can no longer split the data set.
-
-    The iterative halving of data sets described in the binary search example produces a growth curve that peaks at the beginning and slowly flattens out as the size of the data sets increase e.g. an input data set containing 10 items takes one second to complete, a data set containing 100 items takes two seconds, and a data set containing 1000 items will take three seconds. Doubling the size of the input data set has little effect on its growth as after a single iteration of the algorithm the data set will be halved and therefore on a par with an input data set half the size. This makes algorithms like binary search extremely efficient when dealing with large data sets.
+  (The iterative halving of data sets described in the binary search example produces a growth curve that peaks at the beginning and slowly flattens out as the size of the data sets increase e.g. an input data set containing 10 items takes one second to complete, a data set containing 100 items takes two seconds, and a data set containing 1000 items will take three seconds. Doubling the size of the input data set has little effect on its growth as after a single iteration of the algorithm the data set will be halved and therefore on a par with an input data set half the size. This makes algorithms like binary search extremely efficient when dealing with large data sets).
 
 #### Explain the process of calculating the average value in a linked list of numbers!
 
-Make a SUM variable. Because linked lists don’t have indices, we have to make a counter. We go trough the list in a while loop and add it’s value to SUM, till the current element is NULL. Then we divide the SUM with the counter.
+Make a SUM variable. Because linked lists don't have indices, we have to make a counter. We go trough the list in a while loop and add it’s value to SUM, till the current element is NULL. Then we divide the SUM with the counter.
 
 ### Procedural
 
 #### How the CASE condition works in SQL?
 
-The PostgreSQL CASE expression is the same as IF/ELSE statement in other programming languages.
-In this general form, each condition is an expression that returns a boolean value, either true or false.
-If the condition evaluates to true, the CASE expression returns the result corresponding to the condition and all other CASE branches do not process at all.
-If all conditions evaluate to false, the CASE expression will return the result in the ELSE part. If you omit the ELSE clause, the CASE expression will return null.
+The PostgreSQL `CASE` expression is the same as if/else statement in other programming languages.
+
+In this general form, each condition is an expression that returns a _boolean_ value, either true or false.
+If the condition evaluates to true, the `CASE` expression returns the result corresponding to the condition and all other `CASE` branches do not process at all.
+If all conditions evaluate to false, the `CASE` expression will return the result in the `ELSE` part. If you omit the `ELSE` clause, the `CASE` expression will return `NULL`.
 
 ```sql
-CASE
-    WHEN    THEN
-    WHEN-THEN...
-    ELSE
-END
+SELECT title,
+       rating,
+       CASE rating
+           WHEN 'G' THEN 'General Audiences'
+           WHEN 'PG' THEN 'Parental Guidance Suggested'
+           WHEN 'PG-13' THEN 'Parents Strongly Cautioned'
+           WHEN 'R' THEN 'Restricted'
+           WHEN 'NC-17' THEN 'Adults Only'
+       END rating_description
+FROM film
+ORDER BY title;
 ```
 
 #### How the switch-case condition works in JavaScript?
 
-A switch statement can replace multiple if checks.
+A switch statement can replace multiple `if` checks.
 It gives a more descriptive way to compare a value with multiple variants.
 
 ```javascript
@@ -297,51 +303,60 @@ if-elif-else blocks
 
 #### Explain variable scoping in Python!
 
-Not all variables are accessible from all parts of our program, and not all variables exist for the same amount of time. Where a variable is accessible and how long it exists depend on how it is defined. We call the part of a program where a variable is accessible its scope, and the duration for which the variable exists its lifetime.
+Not all variables are accessible from all parts of our program, and not all variables exist for the same amount of time. Where a variable is accessible and how long it exists depend on how it is defined.
+We call the part of a program _where_ a variable is accessible its _scope_, and the _duration_ for which the variable exists its _lifetime_.
 
-A variable which is defined in the main body of a file is called a global variable. It will be visible throughout the file, and also inside any file which imports that file. Global variables can have unintended consequences because of their wide-ranging effects – that is why we should almost never use them. Only objects which are intended to be used globally, like functions and classes, should be put in the global namespace.
+A variable which is defined in the _main body_ of a file is called a _global variable_. It will be visible throughout the file, and also inside any file which imports that file. Global variables can have unintended consequences because of their wide-ranging effects – that is why we should almost never use them. Only objects which are intended to be used globally, like functions and classes, should be put in the global namespace.
 
-A variable which is defined inside a function is local to that function. It is accessible from the point at which it is defined until the end of the function, and exists for as long as the function is executing. The parameter names in the function definition behave like local variables, but they contain the values that we pass into the function when we call it. When we use the assignment operator (=) inside a function, its default behaviour is to create a new local variable – unless a variable with the same name is already defined in the local scope.
+A variable which is defined _inside_ a function is _local_ to that function. It is accessible from the point at which it is defined until the end of the function, and exists for as long as the function is executing. The parameter names in the function definition behave like local variables, but they contain the values that we pass into the function when we call it. When we use the assignment operator (`=`) inside a function, its default behaviour is to create a new local variable – unless a variable with the same name is already defined in the local scope.
 
 #### What’s the difference between const and var in JavaScript?
 
-var:
-function scoped
-undefined when accessing a variable before it's declared
-let:
-block scoped
-ReferenceError when accessing a variable before it's declared
-const:
-block scoped
-ReferenceError when accessing a variable before it's declared
-can't be reassigned
+`var`:
+
+- function scoped
+- undefined when accessing a variable before it's declared
+
+`let`:
+
+- block scoped
+- `ReferenceError` when accessing a variable before it's declared
+
+`const`:
+
+- block scoped
+- `ReferenceError` when accessing a variable before it's declared
+- can't be reassigned (although data structures can be modified in-place)
+
+Use `const` whenever you can. If the value will change, use `let` instead.
 
 #### How the list comprehension looks like in Python?
 
-double_of_x = [x * 2 for x in elements]
+`doubles_of_x = [x * 2 for x in elements]`
 
 #### How the “ternary expression” looks like in Python?
 
-a if a < b else b
+`a if a < b else b`
 
 #### How the ternary expression looks like in JavaScript?
 
-a < b ? a : b
+`a < b ? a : b`
 
 #### How to import a function from another module in Python?
 
-from module import function (as ...)
+`from module import function (as ...)`
 
 #### How to import a function from another module in JavaScript?
 
-export function
-import { function } from "./filename";
+`export function`
+
+`import { function } from "./filename";`
 
 ### Functional
 
 #### What is recursion?
 
-A recursive function is a function defined in terms of itself via self-referential expressions. This means that the function will continue to call itself and repeat its behavior until some condition is met to return a result.
+A recursive function is a function defined in terms of itself via _self-referential expressions_. This means that the function will continue to call itself and repeat its behavior until some condition is met to return a result.
 
 #### Write a recursive function which calculates the Fibonacci numbers!
 
@@ -355,17 +370,19 @@ const fibonacci = function(x, y) {
 
 #### How to store a function in a variable in Python?
 
-x = function()
-y = function_name
+`x = function_name`
 
 #### List the ways of defining a callable logical unit in JavaScript!
 
-const myFunc = function () {};
-function myFunc () {}
+`function myFunc () {}`
+
+`const myFunc = function () {};`
+
+`const myFunc = () => {};`
 
 #### What is an event listener? How to attach one?
 
-The EventListener interface represents an object that can handle an event dispatched by an EventTarget object.
+The `EventListener` interface represents an object that can handle an event dispatched by an `EventTarget` object.
 
 ```javascript
 buttonElement.addEventListener('click', function (event) {
@@ -376,19 +393,21 @@ buttonElement.addEventListener('click', function (event) {
 #### How to trigger an event in JavaScript?
 
 Using standard DOM actions (e.g. click on the selected element)
-In JS code: element.dispatchEvent(event)
+In JS code: `element.dispatchEvent(event);`
 
 #### What is a callback function? Tell some examples of its usage.
 
-A callback function is any executable code that is passed as an argument to other code that is expected to call back (execute) the argument at a given time.
-This execution may be immediate as in a synchronous callback, or it might happen at a later time as in an asynchronous callback:
-setTimeout()
-setInterval()
-API callbacks
+A callback function is any executable code that is passed as an **argument** to other code that is expected to _call back_ (execute) the argument at a given time.
+
+This execution may be _immediate_ as in a _synchronous_ callback, or it might happen at a _later_ time as in an _asynchronous_ callback:
+
+- `setTimeout()`
+- `setInterval()`
+- API callbacks
 
 #### What is a Python decorator? How does it work? Tell some examples of its usage.
 
-Decorators add functionality to an existing code. This is also called metaprogramming as a part of the program tries to modify another part of the program at compile time.
+Decorators add functionality to an existing code. This is also called _metaprogramming_ as a part of the program tries to modify another part of the program at _compile time_.
 
 A decorator is a callable that returns a callable.
 Basically, a decorator takes in a function, adds some functionality and returns it.
@@ -404,6 +423,7 @@ def make_pretty(func):
 #### What is the difference between synchronous and asynchronous execution?
 
 When you execute something synchronously, you wait for it to finish before moving on to another task.
+
 When you execute something asynchronously, you can move on to another task, and get the results when ready.
 
 ## Programming languages
@@ -413,94 +433,109 @@ When you execute something asynchronously, you can move on to another task, and 
 #### How can you connect your application to a database server? What are the possible ways?
 
 We need a database server, a connection/driver layer and a data connection from the Python side.
-We connect to the server with a username-password, a hostname, and a DB name, in the form that the drive/connection layer expects. It usually also includes a port. This will give us an option to use a cursor in python that we can use to execute commands on the DB server.
+We connect to the server with a username-password, a hostname, and a DB name, in the form that the connection/driver layer expects. It usually also includes a port. This will give us an option to use a _cursor_ in python that we can use to execute _commands_ on the DB server.
 
 #### When do you use the DISTINCT keyword in SQL?
 
-The SELECT DISTINCT statement is used to return values that are distinct / unique.
+The `SELECT DISTINCT` statement is used to return values that are distinct / unique.
 
 #### What are aggregate functions in SQL? Give 3 examples.
 
-COUNT()
-SUM()
-AVG()
+`COUNT()`
+
+`SUM()`
+
+`AVG()`
 
 #### What kind of JOIN types do you know in SQL? Could you give examples?
 
-(INNER) JOIN:
+`(INNER) JOIN`:
 Returns records that have matching values in both tables
-LEFT (OUTER) JOIN:
+
+`LEFT (OUTER) JOIN`:
 Returns all records from the left table, and the matched records from the right table
-RIGHT (OUTER) JOIN:
-Returns all records from the right table, and the matched records from the left table
-FULL (OUTER) JOIN:
-Returns all records when there is a match in either left or right table
+
+`RIGHT (OUTER) JOIN`:
+Opposite of the left outer join -- rarely used
+
+`FULL (OUTER) JOIN`:
+Returns all records when there is a match in either left or right table (cartesian product)
 
 #### What are the constraints in sql?
 
 SQL constraints are used to specify rules for data in a table.
+
 Constraints are used to limit the type of data that can go into a table. This ensures the accuracy and reliability of the data in the table. If there is any violation between the constraint and the data action, the action is aborted.
+
 Constraints can be column level or table level. Column level constraints apply to a column, and table level constraints apply to the whole table.
 
 The following constraints are commonly used in SQL:
-NOT NULL:
-Ensures that a column cannot have a NULL value
-UNIQUE:
-Ensures that all values in a column are different
-PRIMARY KEY:
-A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
-FOREIGN KEY:
-Uniquely identifies a row/record in another table
-CHECK:
-Ensures that all values in a column satisfies a specific condition
-DEFAULT:
-Sets a default value for a column when no value is specified
-INDEX:
-Used to create and retrieve data from the database very quickly
+
+- `NOT NULL`:
+  Ensures that a column cannot have a NULL value
+- `UNIQUE`:
+  Ensures that all values in a column are different
+- `PRIMARY KEY`:
+  A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+- `FOREIGN KEY`:
+  Uniquely identifies a row/record in another table
+- `CHECK`:
+  Ensures that all values in a column satisfies a specific condition
+- `DEFAULT`:
+  Sets a default value for a column when no value is specified
+- `INDEX`:
+  Used to create and retrieve data from the database very quickly
 
 #### What is a cursor in SQL? Why would you use one?
 
-A database cursor can be thought of as a pointer to a specific row within a query result. The pointer can be moved from one row to the next.
+A database cursor can be thought of as a _pointer_ to a specific row within a query result. The pointer can be moved from one row to the next.
 Cursors let you perform actions on individual rows.
 
 #### What are database indexes? When to use?
 
 A database index allows a query to efficiently retrieve data from a database. Indexes are related to specific tables and consist of one or more keys.
-The keys are based on the tables’ columns. By comparing keys to the index it is possible to find one or more database records with the same value.
+
+The keys are based on the tables' columns. By comparing keys to the index it is possible to find one or more database records with the same value.
 
 #### What are database transactions? When to use?
 
-A transaction is a unit of work that you want to treat as "a whole." It has to either happen in full or not at all.
+A transaction is a unit of work that you want to treat as "a whole". It has to either happen in full or not at all.
 
 A classical example is transferring money from one bank account to another. To do that you have first to withdraw the amount from the source account, and then deposit it to the destination account. The operation has to succeed in full. If you stop halfway, the money will be lost.
 
 In modern databases transactions also do some other things - like ensure that you can't access data that another person has written halfway. But the basic idea is the same - transactions are there to ensure, that no matter what happens, the data you work with will be in a sensible state.
 
----
+A transaction, in the context of a database, is a logical unit that is independently executed for data retrieval or updates. In relational databases, database transactions must be atomic, consistent, isolated and durable--summarized as the **ACID** acronym.
 
-A transaction, in the context of a database, is a logical unit that is independently executed for data retrieval or updates. In relational databases, database transactions must be atomic, consistent, isolated and durable--summarized as the ACID acronym.
-Atomicity:
-A transaction must be fully complete, saved (committed) or completely undone (rolled back). A sale in a retail store database illustrates a scenario which explains atomicity, e.g., the sale consists of an inventory reduction and a record of incoming cash. Both either happen together or do not happen - it's all or nothing.
-Consistency:
-The transaction must be fully compliant with the state of the database as it was prior to the transaction. In other words, the transaction cannot break the database’s constraints. For example, if a database table’s Phone Number column can only contain numerals, then consistency dictates that any transaction attempting to enter an alphabetical letter may not commit.
-Isolation:
-Transaction data must not be available to other transactions until the original transaction is committed or rolled back.
-Durability:
-Transaction data changes must be available, even in the event of database failure.
+- Atomicity:
+  A transaction must be fully complete, saved (committed) or completely undone (rolled back). A sale in a retail store database illustrates a scenario which explains atomicity, e.g., the sale consists of an inventory reduction and a record of incoming cash. Both either happen together or do not happen - it's all or nothing.
+- Consistency:
+  The transaction must be fully compliant with the state of the database as it was prior to the transaction. In other words, the transaction cannot break the database’s constraints. For example, if a database table’s Phone Number column can only contain numerals, then consistency dictates that any transaction attempting to enter an alphabetical letter may not commit.
+- Isolation:
+  Transaction data must not be available to other transactions until the original transaction is committed or rolled back.
+- Durability:
+  Transaction data changes must be available, even in the event of database failure.
 
 #### What kind of database relations do you know? How to define them?
 
 One-to-One:
-A row in table "A" can have only one matching row in table "B", and vice versa.
+
+- A row in table "A" can have only one matching row in table "B", and vice versa.
+
 One-to-Many (or Many-to-One):
-This is the most common relationship type.
-A row in table "A" can have many matching rows in table "B", but a row in table "B" can have only one matching row in table "A".
+
+- This is the most common relationship type.
+- A row in table "A" can have many matching rows in table "B", but a row in table "B" can have only one matching row in table "A".
+
 Many-to-Many:
-In a many-to-many relationship, a row in table "A" can have many matching rows in table "B", and vice versa.
+
+- In a many-to-many relationship, a row in table "A" can have many matching rows in table "B", and vice versa.
 
 #### You have a table with an “address” field which contains data like “3525, Miskolc, Régiposta 9.” (postcode, city, street name and address). How would you query all records related to Miskolc?
 
-SELECT \* FROM table WHERE address LIKE '%, Miskolc, %';
+`SELECT * FROM table WHERE city = 'Miskolc';`
+
+`SELECT * FROM table WHERE address LIKE '%, Miskolc, %';`
 
 #### How would you keep track of what kind of data has changed after an UPDATE or DELETE operation in a table?
 
@@ -510,17 +545,24 @@ In general, if your application is structured into layers, have the data access 
 
 #### What’s the difference between XML, XHTML and HTML?
 
-XML (Extensible Markup Language) and HTML (HyperText Markup Language) were designed with different goals:
-XML:
-was designed to carry data - with focus on what data is. XML tags are not predefined like HTML tags are
-HTML:
-was designed to display data - with focus on how data looks. SGML based
+XML and HTML were designed with different goals.
+
+XML (Extensible Markup Language):
+
+- Designed to _carry_ data - with focus on what data is.
+- XML tags are not predefined like HTML tags are.
+
+HTML (HyperText Markup Language):
+
+- Designed to _display_ data - with focus on how data looks.
+
 XHTML:
-is a family of XML markup languages that mirror or extend versions
+
+- Is a family of XML markup languages that mirror or extend versions.
 
 #### How to include a JavaScript file in a webpage?
 
-Use the script tag that wraps around JavaScript code directly
+Use the `<script>` tag that wraps around JavaScript code directly
 
 Use an external JavaScript file by adding a link to it in the head or lower body section of the HTML document.
 
@@ -530,42 +572,48 @@ Use an external style sheet by adding a link to it in the head section of the HT
 
 #### How to select an element using its id in CSS?
 
-#id
+`#id`
 
 #### How to select elements using their class in CSS?
 
-.class
+`.class`
 
 #### How to select elements which have the ‘alpha’ and ‘beta’ classes in CSS?
 
-.alpha.beta
+`.alpha.beta`
 
 #### How to select all list items in all ordered lists on the page in CSS?
 
-ol li
+`ol li`
 
 #### How to select elements using their attributes in CSS?
 
-The [attribute] selector is used to select elements with a specified attribute.
+The `[attribute]` selector is used to select elements with a specified attribute.
 
-The following example selects all <a> elements with a target attribute:
+The following example selects all `<a>` elements with a target attribute:
+
+```css
 a[target] {
-background-color: yellow;
+  background-color: yellow;
 }
+```
 
 #### What are UX and UI?
 
 UX (User Experience):
 Essentially, UX applies to anything that can be experienced — be it a website, a coffee machine, or a visit to the supermarket. The “user experience” part refers to the interaction between the user and a product or service.
+
 UI (User Interface):
 User interface (UI) is anything a user may interact with to use a digital product or service.
 
 #### Please list some points that an application should fulfill to have good UX.
 
 Visual Design:
-From hypertext point of view, visual design is described as visual treatment of the text, graphic page elements and navigational components.
+From hypertext point of view, visual design is described as _visual_ treatment of the text, _graphic_ page elements and navigational components.
+
 Information Design:
-Here (web applications), the information design is the process of designing the presentation of information to facilitate understanding. From Hypertext System point of view, it can be described as Navigation Design (design of interface elements to facilitate the user’s movement through the information architecture).
+Here (web applications), the information design is the process of designing the _presentation of information_ to facilitate understanding. From Hypertext System point of view, it can be described as Navigation Design (design of interface elements to facilitate the user’s movement through the information architecture).
+
 Information Architecture (IA):
 In a nutshell, this is the structural design of the information space to facilitate intuitive access to content.
 
