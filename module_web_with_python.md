@@ -6,31 +6,33 @@
 
 #### Point out 5 suggestions, how to format an SQL query!
 
-Capitalize SQL keywords.
-Organize it not just horizontally, but also vertically:
-break up your code logically into new lines, and
-use indentation to improve readability
-Use a syntax that prevents SQL injection attacks (wildcards etc).
+1. Capitalize SQL keywords.
+2. Organize it not just horizontally, but also vertically:
+   - break up your code logically into new lines, and
+   - use indentation to improve readability
+3. Use a syntax that prevents SQL injection attacks (wildcards etc).
 
 #### What layers can you name in a simple web application?
 
-View layer:
-The outermost layer that deals with the presentation of the content and interaction with the user.
-Communicates with the Business Logic layer
-Mainly involved technologies are:
-markup (HTML etc.)
-style (CSS)
-client-side scripts (Javascript, Flash)
+**View layer**:
 
-Business Logic layer:
-The central layer that deals with the logic of the program.
-Receives and transforms data from the other layers.
-Determinant part of the application logic:
-performing all required calculations and validations
-managing workflow
-managing all data access for the View layer
+- The outermost layer that deals with the presentation of the content and interaction with the user.
+- Communicates with the Business Logic layer
+- Mainly involved technologies are:
+  - markup (HTML etc.)
+  - style (CSS)
+  - client-side scripts (Javascript, Flash)
 
-Data layer:
+**Business Logic layer**:
+
+- The central layer that deals with the logic of the program.
+- Receives and transforms data from the other layers.
+- Determinant part of the application logic:
+  - performing all required calculations and validations
+  - managing workflow
+  - managing all data access for the View layer
+
+**Data layer**:
 Deepest level in the layered architecture, the data layer deals with data retrieval (databases, csv files).
 Provides retrieved data for the Business Logic layer.
 
@@ -38,47 +40,60 @@ Provides retrieved data for the Business Logic layer.
 
 #### What error can occur, when an array does not have an element on the requested index?
 
-The script terminates - list index out of range (Python)
-undefined (Javascript)
+Python:
+
+- the script terminates
+- results in `IndexError`: list index out of range
+
+JavaScript:
+
+- the script doesn't terminate
+- results in `undefined`
 
 #### What is the “finally” block, and how would you use it?
 
-Code in a finally block gets executed regardless of the outcome of the try-except block before it.
+Code in a `finally` block gets executed regardless of the outcome of the try-except block before it.
 
 #### Why should we catch special exception types?
 
-To prevent the program from crashing.
-To easily identify errors and fix / communicate them.
+- To easily identify errors and fix / communicate them.
+- To prevent the program from crashing (if we expect the error).
 
 ### Security
 
 #### What is SQL injection? How to protect an application against it?
 
 A computer attack in which malicious code is embedded in a poorly-designed application and then passed to the backend database.
+
 Steps to take:
-Input validation:
-Sanitize the input
-Escape/Quotesafe the input
-Parameterized queries
-Limit database permissions and segregate users
-Use stored procedures for database access
-Isolate the webserver
-Configure error reporting
+
+- Input validation:
+  - Sanitize the input
+  - Escape/Quotesafe the input
+- Parameterized queries
+- Limit database permissions and segregate users
+- Use stored procedures for database access
+- Isolate the webserver
+- Configure error reporting
 
 #### What is XSS? How to protect an application against it?
 
-Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign and trusted websites.
-XSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user.
-The malicious script can then access any cookies, session tokens, or other sensitive information retained by the browser and used with that site. These scripts can even rewrite the content of the HTML page.
+Cross-Site Scripting (XSS) attacks are a type of _injection_, in which malicious scripts are injected into otherwise benign and trusted websites.
+
+XSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a **browser side script**, to a different end user.
+
+The malicious script can then access any _cookies_, _session tokens_, or other sensitive information retained by the _browser_ and used with that site. These scripts can even rewrite the content of the HTML page.
+
 Steps to take:
-Never insert untrusted data:
-Directly in a script
-Inside an HTML comment
-In an attribute name
-In a tag name
-Directly in CSS
-HTML escape before inserting untrusted data (framework methods, HTML entity encoding)
-Don’t use innerHTML where you need user input, textContent way better, this way the whole query will be a string and won’t be executed as an HTML tag
+
+- Never insert untrusted data:
+  - directly in a script
+  - inside an HTML comment
+  - in an attribute name
+  - in a tag name
+  - directly in CSS
+- HTML escape before inserting untrusted data (framework methods, HTML entity encoding)
+- Don’t use _innerHTML_ where you need user input, _textContent_ way better, this way the whole query will be a string and won’t be executed as an HTML tag
 
 #### How to properly store passwords?
 
@@ -86,51 +101,74 @@ We store hashed passwords in a database.
 
 #### What is HTTPS?
 
-Hypertext transfer protocol secure (HTTPS) is the secure version of HTTP, which is the primary protocol used to send data between a web browser and a website.
-HTTPS is encrypted in order to increase security of data transfer.
+Hypertext Transfer Protocol Secure (HTTPS) is the secure version of HTTP, which is the primary protocol used to send data between a web browser and a website.
+
+HTTPS is **encrypted** in order to increase security of data transfer.
 Any website, especially those that require login credentials, should use HTTPS. In modern web browsers such as Chrome, websites that do not use HTTPS are marked differently than those that are.
-Technically speaking, HTTPS is not a separate protocol from HTTP. It is simply using TLS/SSL encryption over the HTTP protocol. HTTPS occurs based upon the transmission of TLS/SSL certificates, which verify that a particular provider is who they say they are.
+
+Technically speaking, HTTPS is not a separate protocol from HTTP. It is simply using _**TLS/SSL** encryption_ over the HTTP protocol. HTTPS occurs based upon the transmission of TLS/SSL certificates, which verify that a particular provider is who they say they are.
 
 #### What is encryption and decryption?
 
-Encryption is a way of scrambling data so that only authorized parties can understand the information. In technical terms, it is the process of converting plaintext to ciphertext. In simpler terms, encryption takes readable data and alters it so that it appears random. Encryption requires the use of an encryption key: a set of mathematical values that both the sender and the recipient of an encrypted message know.
+Encryption is a way of **scrambling** data so that only authorized parties can understand the information. In technical terms, it is the process of _converting plaintext to ciphertext_. In simpler terms, encryption takes readable data and alters it so that it _appears random_.
 
-Although encrypted data appears random, encryption proceeds in a logical, predictable way, so that a party receiving the encrypted data and in possession of the key used to encrypt the data can decrypt the data, turning it back into plaintext.
+Encryption requires the use of an **encryption key**: a set of mathematical values that both the sender and the recipient of an encrypted message know.
+
+Although encrypted data appears random, encryption proceeds in a logical, predictable way, so that a party receiving the encrypted data and in possession of the key used to encrypt the data can _decrypt_ the data, turning it back into plaintext.
 
 #### What is hashing?
 
-Hash algorithms are one way functions. They turn any amount of data into a fixed-length "fingerprint" that cannot be reversed. They also have the property that if the input changes by even a tiny bit, the resulting hash is completely different.
+Hash algorithms are **one way** functions. They turn any amount of data into a _fixed-length_ "fingerprint" that **cannot be reversed**. They also have the property that if the _input changes_ by even a tiny bit, the resulting hash is _completely different_.
 
 #### What is the difference between encryption and hashing? When would you use which?
 
-Encryption: A technique used to maintain the confidentiality of data by converting the data into an undecipherable format.
-Hashing: A string of numbers generated to confirm the integrity of data through hashing algorithms.
+Encryption:
+
+- A technique used to maintain the _confidentiality_ of data by converting the data into an undecipherable format.
+- At its core, encryption is all about asserting identity and protecting data integrity.
+- The origin of encrypted messages can be _traced_, thus facilitating _authentication_ of the message source.
+- In case the data gets leaked, it’s easy to trace the source. In other words, it’s easy to trace who did it and when, thus making auditing for accountability easy. It helps in resolving security breaches efficiently.
+- Only intended parties with the right private key can read the data.
+- Use encryption whenever you **need** to get the input data back out. If you're storing credit card numbers, you need to get them back out at some point, but don't want to store them plain text. So instead, store the encrypted version and keep the _key_ as safe as possible.
+
+Hashing:
+
+- A string of numbers generated to confirm the _integrity_ of data through hashing algorithms.
+- Unlike encryption, hashing serves as a checksum to ensure that a particular piece of data or a file hasn’t been altered.
+- Hashing is the most suitable way to securely store **passwords**.
+- Hashing is helpful in comparing a value with a stored value, hence avoiding _duplication_. This can be done by storing the hash with a _salt_, and then with any future login attempts, hash the passwords that the users enter and compare it with the stored hash.
+- Hashing is used in a variety of digital certificates, including _SSL certificates_.
+- Hashing helps you find specific data in a huge **database**.
 
 #### What encryption methods do you know?
 
 Symmetric Encryption:
-Symmetric-key encryption is an algorithm for cryptography that use the same key for both encryption of plain-text and decryption of cipher-text.
 
-    A public key is used on the sender’s side when the data is encrypted, which happens for example when you are sending a message to somebody else, the server then decrypts the message according to the public key and encrypts it again with the receiver’s public key, so then he will be able to decrypt it with his own public key and get the information.
-
-    The problem here is that the server / "man in the middle" (ISPs for example) will know both the sender and the receiver’s public key and will be able to decrypt the private message.
+- Symmetric-key encryption is an algorithm for cryptography that use the **same key** for both encryption of plain-text and decryption of cipher-text.
+- A public key is used on the sender’s side when the data is encrypted, which happens for example when you are sending a message to somebody else, the server then decrypts the message according to the public key and encrypts it again with the receiver’s public key, so then he will be able to decrypt it with his own public key and get the information.
+- The problem here is that the server / "man in the middle" (ISPs for example) will know both the sender and the receiver’s public key and will be able to decrypt the private message.
 
 Asymmetric Encryption:
-Instead of just one public key, you have a key pair: a public key and a private key.
-The algorithm, that is used to generate the two keys, will make sure that the key pair is mathematically linked to each other.
-The public key is public, you put it at the end of all e-mails, posts etc. The private key is absolutely secret.
-E.g. Bitcoin
+
+- Instead of just one public key, you have a **key pair**: a _public key_ and a _private key_.
+- The algorithm, that is used to generate the two keys, will make sure that the key pair is mathematically _linked_ to each other.
+- The public key is public, you put it at the end of all e-mails, posts etc. The private key is absolutely secret.
+- E.g. Bitcoin
 
 #### What hashing methods do you know?
 
 Salt:
 Salts are a random set of characters that are appended to the user’s password before(!) they are hashed. Salts are stored in plain text along with the hashed output, so the website knows what salt to use when it comes to verify the password. Brute Force attacks will still be an issue, but Rainbow tables and Dictionary attacks won’t work because it's computationally infeasible to generate rainbow tables for every possible salt.
+
 Pepper:
 A very short random string of characters appended to the end of the password. Peppers are random and different in each password. The pepper is not stored.
+
 Bcrypt:
 Uses salts built into the generated hashes to prevent rainbow table and dictionary attacks.
+
 MD5:
 128 bit/32 characters long - very poor security - fastest computation
+
 SHA:
 SHA: 160 bit/40 characters long - moderate security - second fastest
 
@@ -145,17 +183,20 @@ Storing secrets in the OS environment.
 #### What is the difference between Stack and Queue data structure?
 
 Stack:
-A linear data structure in which elements can be inserted and deleted only from one side of the list, called the top.
-Based on the LIFO principle
-Insert operation is called push operation
-Delete operation is called pop operation
-We maintain only 1 pointer (-> top)
+
+- A linear data structure in which elements can be inserted and deleted only from one side of the list, called the top.
+- Based on the _LIFO_ principle
+- Insert operation is called push operation
+- Delete operation is called pop operation
+- We maintain only _1 pointer_ (-> top)
+
 Queue:
-A linear data structure in which elements can be inserted only from one side of the list called rear, and the elements can be deleted only from the other side called the front.
-Based on the FIFO principle
-Insert operation is called enqueue operation
-Delete operation is called dequeue operation
-We maintain 2 pointers (-> front, -> rear)
+
+- A linear data structure in which elements can be inserted only from one side of the list called rear, and the elements can be deleted only from the other side called the front.
+- Based on the _FIFO_ principle
+- Insert operation is called enqueue operation
+- Delete operation is called dequeue operation
+- We maintain _2 pointers_ (-> front, -> rear)
 
 #### What is BubbleSort? Describe the main logic of this sorting algorithm.
 
