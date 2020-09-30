@@ -315,7 +315,7 @@ A variable which is defined _inside_ a function is _local_ to that function. It 
 `var`:
 
 - function scoped
-- undefined when accessing a variable before it's declared
+- `undefined` when accessing a variable before it's declared
 
 `let`:
 
@@ -392,8 +392,9 @@ buttonElement.addEventListener('click', function (event) {
 
 #### How to trigger an event in JavaScript?
 
-Using standard DOM actions (e.g. click on the selected element)
-In JS code: `element.dispatchEvent(event);`
+Using standard DOM actions (e.g. click on the selected element).
+
+In JS code: `element.dispatchEvent(event);`.
 
 #### What is a callback function? Tell some examples of its usage.
 
@@ -410,7 +411,8 @@ This execution may be _immediate_ as in a _synchronous_ callback, or it might ha
 Decorators add functionality to an existing code. This is also called _metaprogramming_ as a part of the program tries to modify another part of the program at _compile time_.
 
 A decorator is a callable that returns a callable.
-Basically, a decorator takes in a function, adds some functionality and returns it.
+
+Basically, a decorator is a function that can run logic before and after the function it "decorates". It takes in the function, adds some functionality to it, and returns it.
 
 ```python
 def make_pretty(func):
@@ -419,6 +421,8 @@ def make_pretty(func):
         func()
     return inner
 ```
+
+In Flask's case, the framework can add request receiving logic before running your code, and figure out how to send it back to the user, after your logic.
 
 #### What is the difference between synchronous and asynchronous execution?
 
@@ -746,11 +750,11 @@ It solves a very specific problem: it allows multiple Python projects that have 
 
 #### What kind of HTTP status codes do you know?
 
-1xx: Informational - Communicates transfer protocol-level information.
-2xx: Success - Indicates that the client's request was accepted successfully.
-3xx: Redirection - Indicates that the client must take some additional action in order to complete their request.
-4xx: Client Error - This category of error status codes points the finger at clients.
-5xx: Server Error - The server takes responsibility for these error status codes.
+1. 1xx: Informational - Communicates transfer protocol-level information.
+2. 2xx: Success - Indicates that the client's request was accepted successfully.
+3. 3xx: Redirection - Indicates that the client must take some additional action in order to complete their request. ("You got redirected").
+4. 4xx: Client Error - This category of error status codes points the finger at clients.
+5. 5xx: Server Error - The server takes responsibility for these error status codes.
 
 #### What is a API?
 
@@ -880,7 +884,7 @@ On the hardware side, a web server is a computer that stores web server software
 To publish a website, you need either a static or a dynamic web server:
 A static web server, or stack, consists of a computer (hardware) with an HTTP server (software). We call it "static" because the server sends its hosted files "as-is" to your browser.
 
-    A dynamic web server consists of a static web server plus extra software, most commonly an application server and a database. We call it "dynamic" because the application server updates the hosted files before sending them to your browser via the HTTP server.
+    A dynamic web server consists of a static web server plus extra software, most commonly an **application server** and a database. We call it "dynamic" because the application server updates the hosted files before sending them to your browser via the HTTP server.
 
 #### Explain the client-server architecture.
 
