@@ -50,7 +50,7 @@ JavaScript:
 - the script doesn't terminate
 - results in `undefined`
 
-#### What is the “finally” block, and how would you use it?
+#### What is the "finally" block, and how would you use it?
 
 Code in a `finally` block gets executed regardless of the outcome of the try-except block before it.
 
@@ -93,7 +93,7 @@ Steps to take:
   - in a tag name
   - directly in CSS
 - HTML escape before inserting untrusted data (framework methods, HTML entity encoding)
-- Don’t use _innerHTML_ where you need user input, _textContent_ way better, this way the whole query will be a string and won’t be executed as an HTML tag
+- Don't use _innerHTML_ where you need user input, _textContent_ way better, this way the whole query will be a string and won't be executed as an HTML tag
 
 #### How to properly store passwords?
 
@@ -127,14 +127,14 @@ Encryption:
 - A technique used to maintain the _confidentiality_ of data by converting the data into an undecipherable format.
 - At its core, encryption is all about asserting identity and protecting data integrity.
 - The origin of encrypted messages can be _traced_, thus facilitating _authentication_ of the message source.
-- In case the data gets leaked, it’s easy to trace the source. In other words, it’s easy to trace who did it and when, thus making auditing for accountability easy. It helps in resolving security breaches efficiently.
+- In case the data gets leaked, it's easy to trace the source. In other words, it's easy to trace who did it and when, thus making auditing for accountability easy. It helps in resolving security breaches efficiently.
 - Only intended parties with the right private key can read the data.
 - Use encryption whenever you **need** to get the input data back out. If you're storing credit card numbers, you need to get them back out at some point, but don't want to store them plain text. So instead, store the encrypted version and keep the _key_ as safe as possible.
 
 Hashing:
 
 - A string of numbers generated to confirm the _integrity_ of data through hashing algorithms.
-- Unlike encryption, hashing serves as a checksum to ensure that a particular piece of data or a file hasn’t been altered.
+- Unlike encryption, hashing serves as a checksum to ensure that a particular piece of data or a file hasn't been altered.
 - Hashing is the most suitable way to securely store **passwords**.
 - Hashing is helpful in comparing a value with a stored value, hence avoiding _duplication_. This can be done by storing the hash with a _salt_, and then with any future login attempts, hash the passwords that the users enter and compare it with the stored hash.
 - Hashing is used in a variety of digital certificates, including _SSL certificates_.
@@ -145,8 +145,8 @@ Hashing:
 Symmetric Encryption:
 
 - Symmetric-key encryption is an algorithm for cryptography that use the **same key** for both encryption of plain-text and decryption of cipher-text.
-- A public key is used on the sender’s side when the data is encrypted, which happens for example when you are sending a message to somebody else, the server then decrypts the message according to the public key and encrypts it again with the receiver’s public key, so then he will be able to decrypt it with his own public key and get the information.
-- The problem here is that the server / "man in the middle" (ISPs for example) will know both the sender and the receiver’s public key and will be able to decrypt the private message.
+- A public key is used on the sender's side when the data is encrypted, which happens for example when you are sending a message to somebody else, the server then decrypts the message according to the public key and encrypts it again with the receiver's public key, so then he will be able to decrypt it with his own public key and get the information.
+- The problem here is that the server / "man in the middle" (ISPs for example) will know both the sender and the receiver's public key and will be able to decrypt the private message.
 
 Asymmetric Encryption:
 
@@ -158,7 +158,7 @@ Asymmetric Encryption:
 #### What hashing methods do you know?
 
 Salt:
-Salts are a random set of characters that are appended to the user’s password before(!) they are hashed. Salts are stored in plain text along with the hashed output, so the website knows what salt to use when it comes to verify the password. Brute Force attacks will still be an issue, but Rainbow tables and Dictionary attacks won’t work because it's computationally infeasible to generate rainbow tables for every possible salt.
+Salts are a random set of characters that are appended to the user's password before(!) they are hashed. Salts are stored in plain text along with the hashed output, so the website knows what salt to use when it comes to verify the password. Brute Force attacks will still be an issue, but Rainbow tables and Dictionary attacks won't work because it's computationally infeasible to generate rainbow tables for every possible salt.
 
 Pepper:
 A very short random string of characters appended to the end of the password. Peppers are random and different in each password. The pepper is not stored.
@@ -248,7 +248,7 @@ for (let element of elements) {
 
 #### Explain the process of calculating the average value in a linked list of numbers!
 
-Make a SUM variable. Because linked lists don't have indices, we have to make a counter. We go trough the list in a while loop and add it’s value to SUM, till the current element is NULL. Then we divide the SUM with the counter.
+Make a SUM variable. Because linked lists don't have indices, we have to make a counter. We go trough the list in a while loop and add it's value to SUM, till the current element is NULL. Then we divide the SUM with the counter.
 
 ### Procedural
 
@@ -334,7 +334,7 @@ Use `const` whenever you can. If the value will change, use `let` instead.
 
 `doubles_of_x = [x * 2 for x in elements]`
 
-#### How the “ternary expression” looks like in Python?
+#### How the "ternary expression" looks like in Python?
 
 `a if a < b else b`
 
@@ -510,7 +510,7 @@ A transaction, in the context of a database, is a logical unit that is independe
 - Atomicity:
   A transaction must be fully complete, saved (committed) or completely undone (rolled back). A sale in a retail store database illustrates a scenario which explains atomicity, e.g., the sale consists of an inventory reduction and a record of incoming cash. Both either happen together or do not happen - it's all or nothing.
 - Consistency:
-  The transaction must be fully compliant with the state of the database as it was prior to the transaction. In other words, the transaction cannot break the database’s constraints. For example, if a database table’s Phone Number column can only contain numerals, then consistency dictates that any transaction attempting to enter an alphabetical letter may not commit.
+  The transaction must be fully compliant with the state of the database as it was prior to the transaction. In other words, the transaction cannot break the database's constraints. For example, if a database table's Phone Number column can only contain numerals, then consistency dictates that any transaction attempting to enter an alphabetical letter may not commit.
 - Isolation:
   Transaction data must not be available to other transactions until the original transaction is committed or rolled back.
 - Durability:
@@ -531,7 +531,7 @@ Many-to-Many:
 
 - In a many-to-many relationship, a row in table "A" can have many matching rows in table "B", and vice versa.
 
-#### You have a table with an “address” field which contains data like “3525, Miskolc, Régiposta 9.” (postcode, city, street name and address). How would you query all records related to Miskolc?
+#### You have a table with an "address" field which contains data like "3525, Miskolc, Régiposta 9." (postcode, city, street name and address). How would you query all records related to Miskolc?
 
 `SELECT * FROM table WHERE city = 'Miskolc';`
 
@@ -601,7 +601,7 @@ a[target] {
 #### What are UX and UI?
 
 UX (User Experience):
-Essentially, UX applies to anything that can be experienced — be it a website, a coffee machine, or a visit to the supermarket. The “user experience” part refers to the interaction between the user and a product or service.
+Essentially, UX applies to anything that can be experienced — be it a website, a coffee machine, or a visit to the supermarket. The "user experience" part refers to the interaction between the user and a product or service.
 
 UI (User Interface):
 User interface (UI) is anything a user may interact with to use a digital product or service.
@@ -612,7 +612,7 @@ Visual Design:
 From hypertext point of view, visual design is described as _visual_ treatment of the text, _graphic_ page elements and navigational components.
 
 Information Design:
-Here (web applications), the information design is the process of designing the _presentation of information_ to facilitate understanding. From Hypertext System point of view, it can be described as Navigation Design (design of interface elements to facilitate the user’s movement through the information architecture).
+Here (web applications), the information design is the process of designing the _presentation of information_ to facilitate understanding. From Hypertext System point of view, it can be described as Navigation Design (design of interface elements to facilitate the user's movement through the information architecture).
 
 Information Architecture (IA):
 In a nutshell, this is the structural design of the information space to facilitate intuitive access to content.
@@ -635,53 +635,59 @@ JavaScript is a scripting or programming language that allows you to implement c
 
 #### When to use AJAX? Bring examples of its usage.
 
-AJAX stands for Asynchronous JavaScript And XML, and it describes a set of development techniques used for building websites and web applications.
-A user’s web browser doesn’t need to reload an entire web page when only a small portion of content on the page needs to change.
-An example of asynchronous updating is Google’s “Google Suggest” feature. When you enter a search query into Google’s search bar and the Google website automatically begins offering auto-complete options while you type.
+**AJAX** stands for **Asynchronous JavaScript And XML** (Asynchronous JavaScript And JSON), and it describes a set of development techniques used for building websites and web applications.
+A user's web browser doesn't need to reload an entire web page when only a small portion of content on the page needs to change.
+An example of asynchronous updating is Google's "Google Suggest" feature. When you enter a search query into Google's search bar and the Google website automatically begins offering auto-complete options while you type.
 
 #### What is DOM and how to manipulate it from Javascript?
 
-Stands for the Document Object Model.
-The DOM is the way Javascript sees its containing pages' data. It is an object that includes how the HTML/XHTML/XML is formatted, as well as the browser state.
+Stands for the **Document Object Model**.
+The **DOM** is the way Javascript sees its containing pages' data. It is an object that includes how the HTML/XHTML/XML is formatted, as well as the browser state.
+
 A DOM element is something like a DIV, HTML, BODY element on a page. You can add classes to all of these using CSS, or interact with them using JS.
 
 We can select a DOM element and manipulate it form Javascript:
-Change content of an element
-Manage attributes of an element
-Add a new element
-Remove an element
+
+- change content of an element
+- manage attributes of an element
+- add a new element
+- remove an element
 
 #### What are events and how/why to use them in Javascript?
 
 Events are actions or occurrences that happen in the system you are programming, which the system tells you about so you can respond to them in some way if desired. For example, if the user clicks a button on a webpage, you might want to respond to that action by displaying an information box.
 
 HTML events are "things" that happen to HTML elements. When JavaScript is used in HTML pages, JavaScript can "react" on these events.
+
 An HTML event can be something the browser does, or something a user does.
+
 Examples of HTML events:
-An HTML web page has finished loading
-An HTML input field was changed
-An HTML button was clicked
+
+- an HTML web page has finished _loading_
+- an HTML input field was _changed_
+- an HTML button was _clicked_
 
 #### What is event bubbling/capturing? How would you use it?
 
-When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors. The process is called “bubbling”, because events “bubble” from the inner element up through parents like a bubble in the water.
+When an event happens on an element, it first runs the handlers (event handlers) on it, then on its parent, then all the way up on other ancestors. The process is called "bubbling", because events "bubble" from the inner element up through parents like a bubble in the water.
 
 A handler on a parent element can always get the details about where it actually happened.
-The most deeply nested element that caused the event is called a target element, accessible as event.target.
+The most deeply nested element that caused the event is called a target element, accessible as `event.target`.
 
-Note the differences from this (=event.currentTarget):
-event.target – is the “target” element that initiated the event, it doesn’t change through the bubbling process.
-this – is the “current” element, the one that has a currently running handler on it.
+Note the differences from `this`:
+
+- `event.target` – is the "target" element that initiated the event, it doesn't change through the bubbling process.
+- `this` / `event.currentTarget` – is the "current" element, the one that has a currently running handler on it.
 
 #### What is JSON and how do we use it?
 
-JSON stands for JavaScript Object Notation.
-JSON is a lightweight format for storing and transporting data.
-JSON is often used when data is sent from a server to a web page.
-JSON is "self-describing" and easy to understand.
+- **JSON** stands for **JavaScript Object Notation**.
+- JSON is a lightweight format for storing and transporting data.
+- JSON is often used when data is sent from a server to a web page.
+- JSON is "self-describing" and easy to understand.
 
 A common use of JSON is to read data from a web server, and display the data in a web page.
-string containing JSON syntax -> JSON.parse(string) -> use the new Javascript object
+string containing JSON syntax -> `JSON.parse(myString)` -> use the new Javascript object
 
 ## Software engineering
 
@@ -689,14 +695,16 @@ string containing JSON syntax -> JSON.parse(string) -> use the new Javascript ob
 
 #### What type of branching strategy would you use?
 
-The Gitflow workflow.
+The **Gitflow** workflow.
 
-It relies on two long-lived branches and some short-lived ones. The permanent ones are the “master” and the “development.” The state of “master” should always be pristine; it reflects the last “good”, stable version that’s in production.
-The other long-lived branch is the ”develop” branch.
+It relies on two long-lived branches and some short-lived ones. The permanent ones are the "master" and the "development." The state of "master" should always be pristine; it reflects the last "good", stable version that's in production.
+The other long-lived branch is the "develop" or "development" branch.
+
 Short lived branches can include:
-”feature” branches
-”release” branch
-”hotfix” branch
+
+- "feature" branches
+- "release" branch
+- "hotfix" branch
 
 #### What would you do if you find a bug on the production code (master branch)?
 
@@ -712,7 +720,7 @@ Code review is crucial, and shipping high-quality code is everyone's responsibil
 
 #### What is your favorite git command? Why?
 
-Git push origin master - it feels good to finalize a contribution to the project.
+`git push origin master` - it feels good to finalize a contribution to the project.
 
 #### What does remote/local mean in Git?
 
@@ -724,13 +732,14 @@ Git local repository is the one on which we will make local changes, typically t
 
 #### Why is it good to use a package manager software?
 
-A package manager or package-management system is a collection of software tools that automates the process of installing, upgrading, configuring, and removing computer programs for a computer's operating system in a consistent manner.
+A _package manager_ or _package-management system_ is a collection of software tools that _automates_ the process of installing, upgrading, configuring, and removing computer programs for a computer's operating system in a consistent manner.
 
 A package manager deals with packages, distributions of software and data in archive files. Packages contain metadata, such as the software's name, description of its purpose, version number, vendor, checksum, and a list of dependencies necessary for the software to run properly. Upon installation, metadata is stored in a local package database. Package managers typically maintain a database of software dependencies and version information to prevent software mismatches and missing prerequisites.
 
 #### Why is it good to use a virtual environment for a project?
 
-Venv is a tool for creating isolated Python environments.
+Venv (`venv` module) is a tool for creating isolated Python environments.
+
 It solves a very specific problem: it allows multiple Python projects that have different (and often conflicting ) requirements, to coexist on the same computer.
 
 ### Networks
@@ -738,29 +747,30 @@ It solves a very specific problem: it allows multiple Python projects that have 
 #### What kind of HTTP status codes do you know?
 
 1xx: Informational - Communicates transfer protocol-level information.
-2xx: Success - Indicates that the client’s request was accepted successfully.
+2xx: Success - Indicates that the client's request was accepted successfully.
 3xx: Redirection - Indicates that the client must take some additional action in order to complete their request.
 4xx: Client Error - This category of error status codes points the finger at clients.
 5xx: Server Error - The server takes responsibility for these error status codes.
 
 #### What is a API?
 
-Stands for Application Programming Interface
-An API is a gate (interface) in a software, that allows connectivity for the outside word. Usually one API endpoint lets you interact with one certain part of the given software.
+An **API** (**Application Programming Interface**) is a gate (interface) in a software, that allows connectivity for the outside word. Usually one API endpoint lets you interact with one certain part of the given software.
 
 #### What is REST API?
 
-Stands for REpresentational State Transfer.
-REST or RESTful is an architectural style used for web development. A set of principles that define how Web standards, such as HTTP and URIs, are supposed to be used.
+**REST** (**REpresentational State Transfer**) or RESTful is an architectural style used for web development. A set of principles that define how Web standards, such as HTTP and URIs, are supposed to be used.
 
-REST is all about a client-server relationship, where server-side data are made available through representations of data in simple formats, often JSON and XML. These representations for resources, or collections of resources, which are then potentially modifiable, with actions and relationships being made discoverable via a method known as hypermedia. Hypermedia is fundamental to REST, and is essentially just the concept of providing links to other resources.
+REST is all about a client-server relationship, where server-side data are made available through representations of data in simple formats, often JSON and XML.
+
+These are representations for resources, which are then potentially modifiable, with actions and relationships being made discoverable via a method known as **hypermedia**. Hypermedia is fundamental to REST, and is essentially just the concept of providing **links** to other resources.
 
 The 5 key principles are:
-Give every “thing” an ID
-Link things together
-Use standard methods
-Resources with multiple representations
-Communicate statelessly
+
+1. Give every "thing" an ID
+2. Link things together
+3. Use standard methods
+4. Resources with multiple representations
+5. Communicate statelessly
 
 In short, if you make a RESTful API, you ensure other developers can understand the structure easily compared to creating endpoints without a standard.
 
@@ -770,20 +780,39 @@ See above
 
 #### What is TCP/IP? What layers does it define, what are they responsible for?
 
-TCP/IP, or the Transmission Control Protocol/Internet Protocol, is a suite of communication protocols used to interconnect network devices on the internet. TCP/IP can also be used as a communications protocol in a private network (an intranet or an extranet).
+**TCP/IP**, or the **Transmission Control Protocol/Internet Protocol**, is a suite of communication protocols used to interconnect network devices on the internet. TCP/IP can also be used as a communications protocol in a private network (an intranet or an extranet).
 
 Application layer:
-Provides applications with standardized data exchange. Its protocols include the Hypertext Transfer Protocol (HTTP), File Transfer Protocol (FTP), Post Office Protocol 3 (POP3), Simple Mail Transfer Protocol (SMTP) and Simple Network Management Protocol (SNMP).
+
+- Provides applications with standardized data exchange. Its protocols include:
+  - **HTTP** (**Hypertext Transfer Protocol**)
+  - **FTP** (**File Transfer Protocol**)
+  - **POP3** (**Post Office Protocol 3**)
+  - SMTP (Simple Mail Transfer Protocol)
+  - SNMP (Simple Network Management Protocol)
+
 Transport layer:
-Responsible for maintaining end-to-end communications across the network. TCP handles communications between hosts and provides flow control, multiplexing and reliability. The transport protocols include TCP and User Datagram Protocol (UDP), which is sometimes used instead of TCP for special purposes.
+
+- Responsible for maintaining end-to-end communications across the network. TCP handles communications between hosts and provides flow control, multiplexing and reliability. The transport protocols include TCP and User Datagram Protocol (UDP), which is sometimes used instead of TCP for special purposes.
+
 Network layer:
-Also called the internet layer, deals with packets and connects independent networks to transport the packets across network boundaries. The network layer protocols are the IP and the Internet Control Message Protocol (ICMP), which is used for error reporting.
+
+- Also called the _internet layer_, deals with packets and connects independent networks to transport the packets across network boundaries.
+- The network layer protocols are:
+  - **IP** (**Internet Protocol**)
+  - ICMP (Internet Control Message Protocol), which is used for error reporting
+
 Physical layer:
-Consists of protocols that operate only on a link -- the network component that interconnects nodes or hosts in the network. The protocols in this layer include Ethernet for local area networks (LANs) and the Address Resolution Protocol (ARP).
+
+- Consists of protocols that operate only on a link -- the network component that interconnects nodes or hosts in the network.
+- The protocols in this layer include:
+  - **Ethernet** for local area networks (LANs)
+  - ARP (Address Resolution Protocol)
 
 #### What’s the difference between TCP and UDP?
 
 TCP is a connection-oriented protocol and UDP is a connection-less protocol.
+
 TCP establishes a connection between a sender and receiver before data can be sent. UDP does not establish a connection before sending data.
 
 #### How does an HTTP Request look like? What are the most relevant HTTP header fields?
@@ -839,7 +868,7 @@ Multiple-resource bodies, consisting of a multipart body, each containing a diff
 
 #### What is DNS? How does it work?
 
-The Domain Name System (DNS) is the phonebook of the Internet. When users type domain names such as ‘google.com’ or ‘nytimes.com’ into web browsers, DNS is responsible for finding the correct IP address for those sites. Browsers then use those addresses to communicate with origin servers or CDN edge servers to access website information. This all happens thanks to DNS servers: machines dedicated to answering DNS queries.
+The Domain Name System (DNS) is the phonebook of the Internet. When users type domain names such as 'google.com' or 'nytimes.com' into web browsers, DNS is responsible for finding the correct IP address for those sites. Browsers then use those addresses to communicate with origin servers or CDN edge servers to access website information. This all happens thanks to DNS servers: machines dedicated to answering DNS queries.
 
 #### What is a web server?
 
@@ -891,7 +920,7 @@ instead of trying to deliver it all at once near the end.
 
 Scrum Master: - The team's coach, and helps Scrum practitioners achieve their highest level of performance. - In the Scrum process, a Scrum Master differs from a traditional project manager in many ways, including that this role does not provide day-to-day direction to the team and does not assign tasks to individuals. - A good ScrumMaster shelters the team from outside distractions, allowing team members to focus maniacally during the sprint on the goal they have selected. - While the Scrum Master focuses on helping the team be the best that it can be, the product owner works to direct the team to the right goal. The product owner does this by creating a compelling vision of the product, and then conveying that vision to the team through the product backlog.
 
-Product Owner: - Responsible for prioritizing the backlog during Scrum development, to ensure it’s up to par as more is learned about the system being built, its users, the team and so on.
+Product Owner: - Responsible for prioritizing the backlog during Scrum development, to ensure it's up to par as more is learned about the system being built, its users, the team and so on.
 
 Scrum Team: - Although individuals may join the team with various job titles, in Scrum, those titles are insignificant. Scrum methodology states that each person contributes in whatever way they can to complete the work of each sprint. - This does not mean that a tester will be expected to re-architect the system; individuals will spend most (and sometimes all) of their time working in whatever discipline they worked before adopting the agile Scrum model. But with Scrum, individuals are expected to work beyond their preferred disciplines whenever doing so would be for the good of the team.
 
@@ -901,17 +930,17 @@ Sprint Planning:
 This is where the team meets and decides what they need to complete in the coming sprint.
 
 Daily Scrum:
-This is a standup meeting, or a very short – 15-minute mini-meeting – for the team to make sure they’re all on the same page.
+This is a standup meeting, or a very short – 15-minute mini-meeting – for the team to make sure they're all on the same page.
 
 Sprint Review:
 This is another type of meeting, but one in which the team demos what they shipped in the sprint.
 
 Sprint Retrospective:
-This is when the team reviews their work, identifying what they did well and what didn’t go as planned, so they can make the next sprint better.
+This is when the team reviews their work, identifying what they did well and what didn't go as planned, so they can make the next sprint better.
 
 #### What are the SCRUM artifacts?
 
-Scrum’s artifacts represent work or value to provide transparency and opportunities for inspection and adaptation. Artifacts defined by Scrum are specifically designed to maximize transparency of key information so that everybody has the same understanding of the artifact.
+Scrum's artifacts represent work or value to provide transparency and opportunities for inspection and adaptation. Artifacts defined by Scrum are specifically designed to maximize transparency of key information so that everybody has the same understanding of the artifact.
 
 The Scrum Artifacts are:
 Product Backlog: - An ordered list of everything that is known to be needed in the product. It is the single source of requirements for any changes to be made to the product. The Product Owner is responsible for the Product Backlog, including its content, availability, and ordering.
@@ -927,7 +956,7 @@ Product Backlog: - An ordered list of everything that is known to be needed in t
 
 #### What is the main goal of a retrospective meeting?
 
-The goal of the retrospective is for the team members to discuss among themselves about how the work went during the last sprint so that better ways can be found to meet the project’s goals. This means the team should talk about its internal processes as well.
+The goal of the retrospective is for the team members to discuss among themselves about how the work went during the last sprint so that better ways can be found to meet the project's goals. This means the team should talk about its internal processes as well.
 
 #### Explain, when would you recommend to use the waterfall methodology?
 
