@@ -770,7 +770,7 @@ These are representations for resources, which are then potentially modifiable, 
 
 The 5 key principles are:
 
-1. Give every "thing" an ID
+1. Give every "thing" an ID (meaning every resource should have a URI)
 2. Link things together
 3. Use standard methods
 4. Resources with multiple representations
