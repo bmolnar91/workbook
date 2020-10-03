@@ -778,6 +778,30 @@ The 5 key principles are:
 
 In short, if you make a RESTful API, you ensure other developers can understand the structure easily compared to creating endpoints without a standard.
 
+//RESTful APIs are stateless backends.//
+
+//The emphasis is on that we don't have to get back a new page (HTML document) after every request -- only data (JSON etc).//
+
+//Many of these API endpoints are not going to get targeted directly by the browser. The user won't enter any of these URLs.//
+
+RESTful constraints:
+
+- Client-Server Architecture:
+  - Separation of Concerns: RESTful API should not care about the UI
+- Stateless:
+  - No Client-Context (e.g. Session) is stored on the Server
+- Cacheability:
+  - Responses must define themselves as cacheable or non-cacheable
+- Layered System:
+  - Intermediate Servers may be used without the Client knowing about it
+- Uniform Interface:
+  - Resources are identified in Requests, transferred data is decoupled from DB schema
+  - Self descriptive Messages
+  - Links to further Resources
+- Code on Demand (optional):
+  - Executable Code could be transferred
+  - Meaning it doesn't have to be just Data, it could be Code that the Client can execute
+
 #### What is JSON? When to use?
 
 See above
