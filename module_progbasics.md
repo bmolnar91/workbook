@@ -438,9 +438,13 @@ When the commit messages are meaningful, concise and easy to read.
 
 #### What’s the difference between git and GitHub?
 
-Git is a version control system used for tracking changes in source code during software development.
+Git (global information tracker):
 
-Github is a website used for hosting git repositories in the cloud.
+- A version control system used for tracking changes in source code during software development.
+- Emphasis on speed, data integrity and support for distributed, non-linear workflows.
+- Every change, or **commit**, has a unique ID (or **hash**) linked to its parent. Furthermore, you can create **branches**, which have a different history than your master branch, with their own commits; these can then be merged back into the master.
+
+Github is a website used for hosting git repositories in the cloud (via the git protocol).
 
 ## Software design
 
@@ -534,8 +538,8 @@ Personal files are in the Home directory.
 
 You can download and install it from the Ubuntu Software Center (or equivalent), or download it using the terminal.
 
-- `sudo apt-get install application_name` (Ubuntu)
-- `brew install application_name` (macOS)
+- `sudo apt-get install <application name>` (Ubuntu)
+- `brew install <application name>` (macOS)
 
 #### What is package management in Linux, what are repositories?
 
@@ -559,8 +563,8 @@ The repository is storage location where new softwares get installed and existin
 
 #### How can you look up what does a command do in Linux if you have no internet connection?
 
-- `man command_name`
-- `command_name --help`
+- `man <command name>`
+- `<command name> --help`
 
 #### What does the following commands do: head, tail, more, less?
 
@@ -571,4 +575,4 @@ The repository is storage location where new softwares get installed and existin
 
 #### How do you download a file from internet using the terminal?
 
-`wget URL`
+`wget <URL>`
