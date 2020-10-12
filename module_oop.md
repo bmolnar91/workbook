@@ -833,7 +833,7 @@ Annotations have a number of uses, among them:
 
 WIP
 
-A product of compilation of code written in high-level .NET languages. Once you compile your code written in one of these languages, you will get a binary that is made out of IL. It is important to note that the IL is independent from any specific language that runs on top of the runtime.
+A product of compilation of code written in high-level .NET languages. Once you compile your code written in one of these languages, you will get a binary that is made out of **IL (Intermediate Language)**. It is important to note that the IL is independent from any specific language that runs on top of the runtime.
 
 When we run the executable, the _Just-In-Time (JIT)_ compiler of CLR compiles the intermediate language in native machine code which is specific to the underlying architecture.
 
@@ -850,14 +850,14 @@ Managed code is written in one of the high-level languages that can be run on to
 
 //IL = CIL = MSIL//
 
-//Managed code is executed by the managed runtime environment (CLR), whereas unmanaged code is executed directly by the operating system.
+//**Managed code** is executed by the **managed runtime environment (CLR)**, whereas **unmanaged code** is executed directly by the **operating system**.
 Applications written in these languages (Java, C#, VB.Net, etc.) are always aimed at runtime environment services to manage the execution and the code written in these types of languages are known as managed code.//
 
 #### What is an assembly?
 
 WIP
 
-Source code written in C# is compiled into an intermediate language (IL) that conforms to the CLI (command-line interface) specification. The IL code and resources, such as bitmaps and strings, are stored on disk in an executable file called an **assembly**, typically with an extension of .exe or .dll. An assembly contains a manifest that provides information about the assembly's types, version, culture, and security requirements.
+Source code written in C# is compiled into an intermediate language (IL) that conforms to the CLI (command-line interface) specification. The IL code and resources (such as bitmaps and strings) are stored on disk in an executable file called an **assembly**, typically with an extension of **.exe** or **.dll**. An assembly contains a manifest that provides information about the assembly's types, version, culture, and security requirements.
 
 Once you produce IL from your high-level code, you will most likely want to run it. This is where the CLR takes over and starts the process of _Just-In-Time compiling_, or _JIT-ing_ your code from IL to machine code that can actually be run on a CPU. In this way, the CLR knows exactly what your code is doing and can effectively manage it.
 
@@ -893,7 +893,7 @@ Basic rules for strong-typing:
 - There is strict enforcement of typing rules (a String can't be used where an Integer would be expected).
 - All exceptions to typing rules results in a compile time error.
 
-For robust applications, strong-typing is much preferred, whereas small scripts / programs can benefit from weak-typing.
+For robust applications, strong-typing is much preferred, whereas small scripts / programs benefit from weak-typing.
 
 #### What is a namespace?
 
@@ -942,8 +942,11 @@ WIP
 Struct definition:
 C# supports the `struct` keyword, another item that originates in C but is not available in Java.
 You can think of a struct as a lightweight class.
-Although structs can contain constructors, constants, fields, methods, properties, indexers, operators, and nested types, they are mostly used simply to _encapsulate groups of related fields_.
+
+Although structs can contain constructors, constants, fields, methods, properties, indexers, operators, and nested types, they are mostly used simply to **encapsulate groups of related fields**.
+
 Because structs are value types, they can be allocated slightly more efficiently than classes.
+
 Structs differ from classes in that they cannot be abstract and do not support implementation inheritance.
 
 #### Can DateTimes be null?
@@ -958,21 +961,21 @@ No.
 
 WIP
 
-The comparison is made between Array and List<T> since ArrayList is more or less deprecated.
+The comparison is made between `Array` and `List<T>` since `ArrayList` is more or less deprecated.
 
 Namespace:
 
-- Arrays belong to System.Array
-- Lists belong to System.Collections.Generic.List
-- (ArrayLists belong to System.Collections)
+- Arrays belong to `System.Array`
+- Lists belong to `System.Collections.Generic.List`
+- (`ArrayLists` belong to `System.Collections`)
 
 Memory:
 
 - Arrays have fixed size
 - Lists can increase or decrease size dynamically
 
-If you know the data is fixed length, and you want to micro-optimise for some very specific reason (after benchmarking), then an array may be useful.
-Otherwise use a List<T> in almost all other cases.
+If you know the data is fixed length, and you want to micro-optimise for some very specific reason (after benchmarking), then an `Array` may be useful.
+Otherwise use a `List<T>` in almost all other cases.
 
 #### How is the using() pattern useful? What is IDisposable? How does it support deterministic finalization?
 
@@ -993,7 +996,7 @@ Instantiating the object in the `using` statement is usually the best way to go.
 WIP
 
 Both Java and C# provide the ability to declare a variable whose value is specified at compile time and cannot be changed at runtime.
-Java uses the _final_ field modifier to declare such a variable, while C# uses the `const` keyword.
+Java uses the _`final`_ field modifier to declare such a variable, while C# uses the `const` keyword.
 
 #### What is the difference between “const” and “readonly” variables in C#?
 
@@ -1003,7 +1006,7 @@ In addition to const, C# provides the `readonly` keyword to declare variables th
 
 One scenario in which readonly variables are useful is when modules that have been compiled separately need to share data such as a version number. If module A is updated and recompiled with a new version number, module B can be initialized with that new constant value without having to be recompiled.
 
-To define a constant in C#, use the `const` or `readonly` modifier in place of Java's _final_ keyword. Const items are dealt with at _compile-time_, while the values of readonly fields are specified at _run time_.
+To define a constant in C#, use the `const` or `readonly` modifier in place of Java's _`final`_ keyword. Const items are dealt with at _compile-time_, while the values of readonly fields are specified at _run time_.
 
 //If a readonly modifier is applied to a static field, it should be initialized in the static constructor of the class.//
 
@@ -1021,7 +1024,9 @@ If a property only has a get accessor, it is a _read-only_ property. If it only 
 
 WIP
 
-In C#, to pass a value type by reference, you need to specify one of the keywords `ref` or `out`. The difference between these two keywords is in the parameter initialization. A ref parameter must be initialized before use, while an out parameter does not have to be explicitly initialized before being passed and any previous value is ignored.
+In C#, to pass a value type by reference, you need to specify one of the keywords `ref` or `out`.
+
+The difference between these two keywords is in the parameter initialization. A _ref_ parameter must be initialized before use, while an _out_ parameter does not have to be explicitly initialized before being passed and any previous value is ignored.
 
 #### Can we override private virtual method in C#?
 
@@ -1041,13 +1046,13 @@ WIP
 
 C# modifiers are quite similar to those in Java, with several small differences. Each member of a class, or the class itself, can be declared with an access modifier to define the scope of permitted access. Classes that are not declared inside other classes can only specify the public or internal modifiers. Nested classes, like other class members, can specify any of the following five access modifiers:
 
-- private: Visible only within the given class.
-- protected: Visible only within the given class and from derived classes.
-- internal: Visible only within the same assembly.
-- protected internal: Visible only to the current assembly or types derived from the containing class.
-- public: Visible to all.
+- `private`: Visible only within the given class.
+- `protected`: Visible only within the given class and from derived classes.
+- `internal`: Visible only within the same assembly.
+- `protected internal`: Visible only to the current assembly or types derived from the containing class.
+- `public`: Visible to all.
 
-//In C#, the default access modifier for members is private, while in Java, access defaults to anywhere from within the containing package!//
+//In C#, the default access modifier for members is `private`, while in Java, access defaults to anywhere from within the containing package!//
 
 #### What’s the difference between using `override` and `new` keywords when defining method in child class?
 
@@ -1092,7 +1097,7 @@ Use the null-coalescing (`??`) operator to assign a nullable type to a non-nulla
 You always can use the following read-only properties to examine and get a value of a nullable value type variable:
 
 - `Nullable<T>.HasValue` indicates whether an instance of a nullable value type has a value of its underlying type.
-- `Nullable<T>.Valu`e gets the value of an underlying type if `HasValue` is `true`. If `HasValue` is `false`, the `Value` property throws an `InvalidOperationException`.
+- `Nullable<T>.Value` gets the value of an underlying type if `HasValue` is `true`. If `HasValue` is `false`, the `Value` property throws an `InvalidOperationException`.
 
 //Nullable types in C# are similar to Optionals in Java.//
 
@@ -1149,7 +1154,7 @@ C# has delegates for that purpose. They are heavily used with events, as an even
 
 WIP
 
-Enumerations, or enums, are used to group named constants. In C#, enums are value types, and enum constants must be integral numeric values. The ToString method can be used to print out string representations of the named constants.
+Enumerations, or enums, are used to group named constants. In C#, enums are value types, and enum constants must be integral numeric values. The `ToString` method can be used to print out string representations of the named constants.
 
 ```csharp
 public enum Color
@@ -1182,7 +1187,7 @@ The _null-coalescing assignment operator_ `??=` assigns the value of its right-h
 
 WIP
 
-Serialization is the process of converting an object into a stream of bytes to store the object or transmit it to memory, a database, or a file. Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization.
+Serialization is the process of **converting an object into a stream of bytes** to store the object or transmit it to memory, a database, or a file. Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization.
 
 JSON serialization:
 
@@ -1213,7 +1218,7 @@ Dispose:
 
 Finalize:
 
-- `Finalize()`, also called the destructor, cannot be called explicitly in the code. Only the GC can call it when object becomes inaccessible.
+- `Finalize()`, also called the _destructor_, cannot be called explicitly in the code. Only the GC can call it when object becomes inaccessible.
 - It cannot be implemented directly, only via declaring a destructor. `~MyClass() { this.Dispose(); }`
 - When to implement? There may be any unmanaged resource for example file stream declared at class level. We may not be knowing what stage or which step is appropriate to close the file. This object is being used at many places in the application. So in this scenario Finalize can be appropriate location where unmanaged resource can be released.
 - It's a bit expensive to use.
@@ -1243,17 +1248,16 @@ Is:
 - The `is` operator is a _type-testing keyword_ that checks if the result of an expression is compatible with a given type, or tests an expression against a pattern.
 - Simple type testing: `dog is Animal`
 - Pattern matching (Type pattern):
-
-* When using the type pattern to perform pattern matching, `is` tests whether an expression can be converted to a specified type and, if it can be, casts it to a variable of that type.
-* It's a straightforward extension of the `is` statement that enables concise type evaluation and conversion. The general form of the is type pattern is: `expr is type varname`
-* `if (o is Employee e) return e.ToString();`
+  - When using the type pattern to perform pattern matching, `is` tests whether an expression can be converted to a specified type and, if it can be, casts it to a variable of that type.
+  - It's a straightforward extension of the `is` statement that enables concise type evaluation and conversion. The general form of the is type pattern is: `expr is type varname`
+  - `if (o is Employee e) return e.ToString();`
 
 As:
 
 - to explicitly convert an expression to a given type if its runtime type is compatible with that type
 - The `as` operator explicitly converts the result of an expression to a given reference or nullable value type.
 - If the conversion is not possible, the as operator returns `null`.
-- Unlike a cast expression, the as operator never throws an exception.
+- Unlike a cast expression, the `as` operator never throws an exception.
 
 #### What are indexers in C# .NET?
 
