@@ -35,6 +35,7 @@ The `ConfigureServices` method is:
 - Called by the host before the `Configure` method to configure the app's services.
 - Where configuration options are set by convention.
 
+Initially, the `IServiceCollection` provided to `ConfigureServices` has services defined by the framework depending on how the host was configured.
 For features that require substantial setup, there are `Add{Service}` extension methods on `IServiceCollection`. For example, `AddDbContext`, `AddDefaultIdentity`, `AddEntityFrameworkStores`, and `AddRazorPages`.
 
 Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via dependency injection or from ApplicationServices.
