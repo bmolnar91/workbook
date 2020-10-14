@@ -43,7 +43,7 @@ Adding services to the service container makes them available within the app and
 #### What Configure() method does in Startup.cs?
 
 **Configure**:
-The `Configure` method is used to specify how the app responds to HTTP requests. The **HTTP request pipeline** is configured by adding **middleware** components to an `IApplicationBuilder` instance.
+The `Configure` method is used to specify how the app responds to HTTP requests. The **request pipeline** is configured by adding **middleware** components to an `IApplicationBuilder` instance.
 
 Hosting creates an `IApplicationBuilder` and passes it directly to `Configure`. `IApplicationBuilder` is available to the `Configure` method (as parameter), but it isn't registered in the service container.
 
