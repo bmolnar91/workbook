@@ -40,7 +40,7 @@ For features that require substantial setup, there are `Add{Service}` extension 
 
 Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via dependency injection or from ApplicationServices.
 
-This method is also where dependencies are _registered_ with the Dependency Injection Container.
+This method is also where dependencies are _registered_ with the Dependency Injection Container. This container provides the service to controllers.
 
 #### What Configure() method does in Startup.cs?
 
