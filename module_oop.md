@@ -15,7 +15,7 @@ Fail-fast makes bugs and failures appear sooner, thus:
   - earlier to detect,
   - easier to reproduce and
   - faster to fix.
-- It’s faster to stabilize softwares.
+- It's faster to stabilize softwares.
 - Fewer bugs and defects will go into production, thus leading to higher-quality and more production-ready software.
 - The cost of failures and bugs are reduced.
 

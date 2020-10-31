@@ -133,10 +133,12 @@ def fibonacci_recursive_memoization(n, memo=dict()):
 
 ```python
 def get_max(numbers):
-    max = 0
+    max = None
 
     for number in numbers:
-        if (number > max):
+        if max == None:
+            max = number
+        elif (number > max):
             max = number
 
     return max
@@ -305,7 +307,7 @@ The `+` operator concatenates two strings.
 
 #### Explain f strings in Python?
 
-`f("{variable}")`
+`f"{variable}"`
 
 Also called _formatted string literals_, the **f-string** is a new and improved way to format strings in Python. It is a string literal that has an f at the beginning and curly braces containing expressions that will be replaced with their values. The expressions are evaluated at runtime and then formatted using the _format_ protocol.
 
@@ -511,9 +513,9 @@ Linux is free (open source), but UNIX is licensed. Unix-like systems are very si
 
 #### What do we call the shell in Linux?
 
-A shell provides a command line user interface for Unix-like operating systems. The shell is both an _interactive command language_ and a _scripting language_, and is used by the operating system to control the execution of the system using shell scripts.
-
 The shell is a program that takes operations from the user and gives it to the OS.
+
+A shell provides a command line user interface for Unix-like operating systems. The shell is both an _interactive command language_ and a _scripting language_, and is used by the operating system to control the execution of the system using shell scripts.
 
 _GNU BASH / Bash (Bourne Again Shell)_. It's not part of the kernel, but it uses it to run itself. It is also called simply the _terminal_.
 
