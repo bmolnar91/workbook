@@ -6,14 +6,14 @@
 
 #### What does 'fail fast' mean in terms of exception handling? Why is it a good practice?
 
-The _fail-fast_ principle encourages us to fail fast and early: If an error occurs, fail immediately and visibily.
+The _fail-fast_ principle encourages us to fail fast and early: If an error occurs, fail immediately and visibly.
 If something unusually or unexpectedly occurs, let the software fail immediately instead of postponing the failure or working around the failure. The longer it takes for a bug to appear on the surface, the longer it takes to fix and the greater it costs.
 
 Fail-fast makes bugs and failures appear sooner, thus:
 
 - Bugs are
   - earlier to detect,
-  - easier to reproduce and
+  - easier to reproduce, and
   - faster to fix.
 - It's faster to stabilize softwares.
 - Fewer bugs and defects will go into production, thus leading to higher-quality and more production-ready software.
@@ -34,7 +34,7 @@ Complexity: O(n)
 
 #### What is a linked list? How to find if a linked list has a loop?
 
-`LinkedList` is a data structure consisting of a group of nodes which together represent a sequence. Each node is composed of data and a link to the next node in the sequence.
+`LinkedList` is a data structure consisting of a _group of nodes_ which together represent a sequence. Each node is composed of data and a link to the next node in the sequence.
 
 The most notable difference between the `LinkedList` and the `ArrayList` is in the way they store objects.
 The `ArrayList` is better for _storing_ and _accessing_ data, as it is very similar to a normal array.
@@ -90,7 +90,7 @@ _Arrays_ and _Lists_ store elements as ordered collections, with each element gi
 `HashMap` is used for storing data collections as key and value pairs. One object is used as a _key_ (index) to another object, the _value_.
 The `put()`, `remove()`, and `get()` methods are used to _add_, _delete_, and _access_ values in the `HashMap`.
 
-A HashMap cannot contain duplicate keys. Adding a new item with a key that already exists overwrites the old element.
+A `HashMap` cannot contain duplicate keys. Adding a new item with a key that already exists overwrites the old element.
 The HashMap class provides `containsKey()` and `containsValue()` methods that determine the presence of a specified key or value.
 If you try to get a value that is not present in your map, it returns the value of `null`.
 
@@ -98,8 +98,8 @@ If you try to get a value that is not present in your map, it returns the value 
 
 #### Why is it important for keys in a map to have an immutable type? (Consider String for example.)
 
-If immutable, the object's _hashcode_ won't change and it allows caching the hashcode of different keys which makes the overall retrieval process very fast.
-Also for mutable objects, the hashCode might be dependent on fields that could change, if this happens you won't be able to find the key (and its value) in the HashMap since `hashCode()` returns different value.
+If immutable, the object's **hashcode** won't change and it allows caching the hashcode of different keys which makes the overall retrieval process very fast.
+Also for mutable objects, the hashcode might be dependent on fields that could change, if this happens you won't be able to find the key (and its value) in the HashMap since `hashCode()` returns different value.
 
 ### Other
 
@@ -111,7 +111,8 @@ Also for mutable objects, the hashCode might be dependent on fields that could c
 
 #### What is casting? What is the difference between up vs downcasting?
 
-Assigning a value of one type to a variable of another type is known as _Type Casting_.
+Assigning a value of one type to a variable of another type is known as _type casting_.
+
 To cast a value to a specific type, place the type in parentheses and position it in front of the value:
 `int a = (int) 3.14;`
 
@@ -160,13 +161,14 @@ A constructor can be used to provide initial values for object attributes.
 
 The constructor is called when you create an object using the `new` keyword.
 
-//You can think of constructors as methods that will set up your class by default, so you don’t need to repeat the same code every time.//
+//You can think of constructors as methods that will set up your class by default, so you don't need to repeat the same code every time.//
 
 //Java automatically provides a default constructor, so all classes have a constructor, whether one is specifically defined or not.//
 
 #### Do we require parameter for constructors?
 
 Parameters are not required for constructors.
+
 A single class can have multiple constructors with different numbers of parameters.
 
 #### What is an interface?
@@ -185,7 +187,7 @@ Interfaces have the following properties:
 
 - An interface is implicitly abstract. You do not need to use the `abstract` keyword while declaring an interface.
 - Each method in an interface is also implicitly abstract, so the `abstract` keyword is not needed.
-- Methods in an interface are implicitly public.
+- Methods in an interface are implicitly `public`.
 
 Use the `implements` keyword to use an interface with your class.
 When you implement an interface, you need to override all of its methods.
@@ -201,7 +203,7 @@ You mark a method in an interface as a default method using the `default` keywor
 
 //In some cases it can make sense to define constants in an interface, otherwise it's better to avoid variables/fields altogether.//
 
-//Static methods in interfaces can be useful when you have some utility methods you would like to make available, which fit naturally into an interface related to the same responsibility. For instance, a Vehicle interface could have a printVehicle(Vehicle v) static method.//
+//Static methods in interfaces can be useful when you have some utility methods you would like to make available, which fit naturally into an interface related to the same responsibility. For instance, a `Vehicle` interface could have a `printVehicle(Vehicle v)` static method.//
 
 #### What are access modifiers?
 
@@ -217,7 +219,7 @@ To achieve encapsulation in Java, declare the class' variables as `private` and 
 
 #### Can a static method use non-static members?
 
-No. One of the basic rules of working with static methods is that you can’t access a nonstatic method or field from a static method because the static method doesn’t have an _instance_ of the class to use to reference instance methods or fields.
+No. One of the basic rules of working with static methods is that you can't access a nonstatic method or field from a static method because the static method doesn't have an _instance_ of the class to use to reference instance methods or fields.
 
 #### What is the difference between hiding a static method and overriding an instance method?
 
@@ -252,7 +254,7 @@ Only one.
 
 Our code may become too specific/rigid, which makes it hard to extend/maintain it.
 
-//The question you have to ask before typing _static_ is the following: "If there were more instances of this class, would they _share_ this state/behaviour?" Don't use static unless the answer is 'yes'.//
+//The question you have to ask before typing _static_ is the following: "If there were more instances of this class, would they _share_ this state/behaviour?" Don't use static unless the answer is "yes".//
 
 //We cannot and should not think ahead of all the possible upgrades and specification changes. We have to find some golden mean when designing our classes between the too specific/rigid and the overgeneralized extremes. Try to write as flexible code as you can without putting in significant extra work for that! Use YAGNI!//
 
@@ -291,17 +293,17 @@ The purpose of inheritance is twofold:
 #### Difference between overloading and overriding?
 
 Static Binding or Early Binding:
-The binding which can be resolved at _compile time_ by compiler is known as static or early binding. The binding of _static_, _private_ and _final_ methods is compile-time. The reason is that the these method cannot be overridden and the type of the class is determined at the compile time. **Overloading** is also determined compile time.
+The binding that can be resolved at **compile time** is known as _static_ or _early binding_. The binding of _static_, _private_ and _final_ methods happens at compile-time. The reason is that the these method cannot be overridden and the type of the class is determined at the compile time. Method **overloading** is determined compile time.
 
 Dynamic Binding or Late Binding:
-When compiler is not able to resolve the call/binding at compile time, such binding is known as Dynamic or Late Binding. \*Method **overriding\*** is a perfect example of dynamic binding as in overriding both parent and child classes have same method and in this case the type of the object determines which method is to be executed.
+The binding that can only be resolved at **run time** is known as _dynamic_ or _late binding_. Method **overriding** is a perfect example of dynamic binding as in overriding both parent and child classes have same method and in this case the type of the object determines which method is to be executed.
 
 Differences:
 
 - Static binding happens at _compile-time_ while dynamic binding happens at _runtime_.
 - Binding of _private_, _static_ and _final_ methods always happen at compile time since these methods cannot be overridden.
-  When the method overriding is actually happening and the reference of parent type is assigned to the object of child class type then such binding is resolved during runtime.
-- The binding of **overloaded** methods is _static_ and the binding of **overridden** methods is _dynamic_.
+- overriding => static binding
+- overloading => dynamic binding
 
 #### What are the Object Oriented Principles? Explain the concepts with realistic examples!
 
@@ -311,23 +313,24 @@ Differences:
   - Control of the way data is accessed or modified
   - More flexible and easily changed code
   - Ability to change one part of the code without affecting other parts
-    //When a variable is hidden by `private` modifier and can be accessed only through getter and setter, it is encapsulated.//
+    //When a variable is hidden by the `private` modifier and can be accessed only through a getter and/or setter, it is encapsulated.//
 
 - Inheritance:
-  Inheritance is the process that enables one class to acquire the properties (methods and variables) of another. With inheritance, the information is placed in a more manageable, hierarchical order.
+
+  - Inheritance is the process that enables one class to acquire the properties (methods and variables) of another. With inheritance, the information is placed in a more manageable, hierarchical order.
 
 - Polymorphism:
-  Polymorphism, which refers to the idea of "having many forms", occurs when there is a hierarchy of classes related to each other through inheritance.
-  A call to a member method will cause a different implementation to be executed, depending on the type of the object invoking the method.
+
+  - Polymorphism, which refers to the idea of "having many forms", occurs when there is a hierarchy of classes related to each other through inheritance.
+  - A call to a member method will cause a different implementation to be executed, depending on the type of the object invoking the method.
 
 - Abstraction:
-  Data abstraction provides the outside world with only essential information, in a process of representing essential features without including implementation details.
-  A good real-world example is a book. When you hear the term book, you don't know the exact specifics, such as the page count, the color, or the size, but you understand the idea, or abstraction, of a book.
-  The concept of abstraction is that we focus on essential qualities, rather than the specific characteristics of one particular example.
 
-  In Java, abstraction is achieved using _abstract classes_ and _interfaces_.
-  An abstract class is defined using the `abstract` keyword.
-
+  - Data abstraction provides the outside world with only essential information, in a process of representing essential features without including implementation details.
+  - A good real-world example is a book. When you hear the term book, you don't know the exact specifics, such as the page count, the color, or the size, but you understand the idea, or _abstraction_, of a book.
+  - The concept of abstraction is that we focus on essential qualities, rather than the specific characteristics of one particular example.
+  - In Java, abstraction is achieved using **abstract classes** and **interfaces**.
+  - An abstract class is defined using the `abstract` keyword.
   - If a class is declared abstract it cannot be instantiated (you cannot create objects of that type).
   - To use an abstract class, you have to inherit it from another class.
   - Any class that contains an _abstract method_ should be defined as abstract.
@@ -343,13 +346,13 @@ Differences:
 #### What is method overloading?
 
 Happens at compile time. A _subclass_ can define a behavior that's specific to the subclass type, meaning that a subclass can implement a superclass method based on its requirement.
-When methods have the _same name_, but _different parameters_, this feature is known as \*method **overloading\***, also known as _compile-time polymorphism_.
+When methods have the _same name_, but _different parameters_, this feature is known as _method **overloading**_, also known as **compile-time polymorphism**.
 
 In order to overload a method, the argument lists of the methods must differ in either of these:
 
 - number of parameters
 - data type of parameters
-- sequence of Data type of parameters
+- sequence of data type of parameters
 
 If two methods have same name, same parameters and have different _return type_, then this is NOT a valid method overloading example - this will throw compilation error.
 
@@ -358,12 +361,12 @@ If two methods have same name, same parameters and have different _return type_,
 #### What is method overriding?
 
 Happens at runtime. A _subclass_ can define a behavior that's specific to the subclass type, meaning that a subclass can implement a superclass method based on its requirement.
-When methods have the same _signature_ (name + parameters) and _return type_ This feature is known as \*method **overriding\***, also known as _runtime polymorphism_, or _dynamic method dispatch_.
+When methods have the same _signature_ (name + parameters) and _return type_ This feature is known as _method **overriding**_, also known as **runtime polymorphism**, or _dynamic method dispatch_.
 
 Rules for Method Overriding:
 
 - Should have the same return type and arguments.
-- The _overriding_ method's access level cannot be more restrictive than the _overridden_ method's access level.
+- The _overriding method's_ access level cannot be more restrictive than the _overridden method's_ access level.
 - A method declared `private`, `static` or `final` cannot be overridden. (However static methods can be re-declared in the subclass, in this case the subclass method would act differently and will have nothing to do with the same static method of superclass).
 - If a method cannot be inherited, it cannot be overridden.
 - Constructors cannot be overridden.
@@ -389,13 +392,13 @@ One of the basic ways of garbage collection involves three steps:
 
 #### Explain the “Single Responsibility” principle!
 
-This principle states that a class should only have _one responsibility_. Furthermore, it should only have _one reason to change_.
+This principle states that a class should only have **one responsibility**. Furthermore, it should only have **one reason to change**.
 
 Some of its benefits:
 
-- Lower coupling – Less functionality in a single class will have fewer dependencies.
-- Testing – A class with one responsibility will have far fewer test cases.
-- Organization – Smaller, well-organized classes are easier to search than monolithic ones.
+- Lower coupling -- Less functionality in a single class will have fewer dependencies.
+- Testing -- A class with one responsibility will have far fewer test cases.
+- Organization -- Smaller, well-organized classes are easier to search than monolithic ones.
 
 //Stands for 'S' in _SOLID_.//
 
@@ -408,15 +411,17 @@ An object is a real-world problem or idea that you want to model in your program
 
 #### How do you make a class immutable? What do you need to watch out for?
 
+WIP
+
 To create an immutable class in Java, you have to do the following steps:
 
-1. Declare the class as `final` so it can’t be extended.
+1. Declare the class as `final` so it can't be extended.
 2. Make all fields `private` so that direct access is not allowed.
-3. Don’t provide setter methods for variables.
+3. Don't provide setter methods for variables.
 4. Make all mutable fields `final` so that their value can be assigned only once.
    ...
 
-//Immutable objects are instances whose state doesn’t change after it has been initialized. For example, String is an immutable class and once instantiated its value never changes.//
+//Immutable objects are instances whose state doesn't change after it has been initialized. For example, `String` is an immutable class and once instantiated its value never changes.//
 
 #### How many instances can be created for an abstract class?
 
@@ -453,14 +458,15 @@ for (int i = 0; i < 50; i++)
 
 #### If you have a variable, that shall store a positive whole number between 0 and 200, what primitive type would you use to store it?
 
-The `short` type. 0-200 is well within the bounds of the 16 bits it uses.
+- Java: The `short` type. 0-200 is well within the bounds of the 16 bits it uses.
+- C#: The `byte` type. It represents an _unsigned_ byte in C#, which can store a whole number between 0-255.
 
 #### What is the "golden rule" of variable scoping in Java? What is the lifetime of variables?
 
-General convention for a variable’s scope is, it is accessible only within the block in which it is declared.
+General convention for a variable's scope is, it is accessible only within the block in which it is declared.
 
 1. Class variables:
-   A variable which is declared inside a class, outside all the blocks and is marked _static_ is known as a class variable.The lifetime of a class variable is until the end of the program or as long as the class is loaded in memory.
+   A variable which is declared inside a class, outside all the blocks and is marked _static_ is known as a class variable. The lifetime of a class variable is until the end of the program or as long as the class is loaded in memory.
 
 2. Instance variables:
    A variable which is declared inside a class and outside all the methods and blocks is an instance variable. Lifetime of an instance variable is until the object stays in memory.
@@ -473,7 +479,7 @@ General convention for a variable’s scope is, it is accessible only within the
 Each object has a predefined `equals()` method that is used for semantical equality testing.
 
 To make it work for our classes, we need to override it and check the conditions we need.
-There is a simple and fast way of generating the `equals()` method from within the IDE (other than writing it manually).
+There is a simple and fast way of generating the `equals()` method from within the IDE (so we don't have to write it manually).
 
 #### What is the difference between '==' and 'equals()'?
 
@@ -491,7 +497,7 @@ When you declare a variable or a method as _static_, it belongs to the _class_, 
 
 #### Why is the main() method declared as static? Explain.
 
-One of the basic rules of working with static methods is that you can’t access a non-static method or field from a static method because the static method doesn't have an _instance_ of the class to use to reference instance methods or fields.
+One of the basic rules of working with static methods is that you can't access a non-static method or field from a static method because the static method doesn't have an _instance_ of the class to use to reference instance methods or fields.
 
 The best-known static method is **main**, which is called by the Java runtime to start an application. The main method must be _static_, which means that applications run in a static context by default.
 
@@ -524,15 +530,14 @@ JRE:
 - Stands for _Java Runtime Environment_.
 - The JRE provides the minimum requirements for executing a Java application.
   It consists of
-  - the _Java Virtual Machine_ (JVM),
-  - core classes, and
-  - supporting files.
+  - the _Java Virtual Machine_ (JVM), and
+  - core classes and supporting files.
 
 JDK:
 
 - Stands for _Java Development Kit_.
 - The JDK is a software development environment used for developing Java applications and applets.
-  It includes the
+- It includes the
   - Java Runtime Environment (JRE),
   - an interpreter/loader (java),
   - a compiler (javac),
@@ -545,7 +550,7 @@ JDK = JRE + Development Tools
 
 #### What is the difference between long and Long?
 
-long: (primitive)
+`long`: (primitive)
 
 - The `long` data type is a 64-bit signed Java primitive data type.
 - It is used when the result of calculations on whole numbers may exceed the range of the int data type.
@@ -553,7 +558,7 @@ long: (primitive)
 - All whole numbers in the range of long are called integer literals of long type.
 - An integer literal of type long always ends with 'L' (or lowercase 'l').
 
-Long: (class)
+`Long`: (class)
 
 - The `Long` Wrapper Class defines two constants to represent maximum and minimum values of long data type, `Long.MAX_VALUE` and `Long.MIN_VALUE`.
 
@@ -565,30 +570,28 @@ No.
 
 Contains the collections framework, legacy collection classes, event model, date and time facilities, internationalization, and miscellaneous utility classes (a string tokenizer, a random-number generator, and a bit array).
 
-//
 Packages are used to avoid name conflicts and to control access to classes.
-A _package_ can be defined as a group made up of similar types of classes, along with sub-packages.
+A package can be defined as a group made up of similar types of classes, along with sub-packages.
 
-Two major results occur when a class is placed in a package.
+Two major results occur when a class is placed in a package:
 
 - First, the name of the package becomes a part of the name of the class.
 - Second, the name of the package must match the directory structure where the corresponding class file resides.
-  //
 
 #### What are the access modifiers in Java? Which one could we use for class?
 
 Top level (classes):
 
 - default (no modifier): The class is accessible only by classes in the same package. Also known as _package-private_.
-- public: The class is accessible by any other class.
+- `public`: The class is accessible by any other class.
 
 Member level (attributes and methods):
 
-- private: Accessible only within the declared class itself.
+- `private`: Accessible only within the declared class itself.
 - default (no modifier): A variable or method declared with no access control modifier is available to any other class in the same package.
-- protected: Provides the same access as the _default_ access modifier, with the addition that subclasses can access _protected_ methods and variables of the superclass.
+- `protected`: Provides the same access as the _default_ access modifier, with the addition that subclasses can access _protected_ methods and variables of the superclass.
   //Makes the members visible (or "public") only to the subclasses//
-- public: Accessible from any other class.
+- `public`: Accessible from any other class.
 
 //It's a best practice to keep the variables within a class private. The variables are accessible and modified using getters and setters.//
 
@@ -600,24 +603,27 @@ An `Enum` is a special type used to define collections of constants.
 Basically, Enums define variables that represent members of a fixed set.
 
 You should always use Enums when a variable (especially a method parameter) can only take one out of a small set of possible values.
+
 If you use Enums instead of integers (or String codes), you increase compile-time checking and avoid errors from passing in invalid constants, and you document which values are legal to use.
 
-//Some sample Enum uses include month names, days of the week, deck of cards, etc.//
+//Month names, days of the week, deck of cards, etc.//
 
 #### When would you use a private/protected/public attribute? What is the difference?
 
-Private:
+`private`:
 When I want to achieve _encapsulation_/_data hiding_. Use `private` for your fields unless you have a good reason not to.
 
-Protected:
+`protected`:
 When I want to give access to subclasses outside the package.
 
-Public:
+`public`:
 When I want to give access to all classes. It's safe to use `public` for your methods most of the time.
 
 #### How do you prevent developers from subclassing a class?
 
-To prevent a class from being extended, it has to be declared with the `final` keyword.
+Java: To prevent a class from being extended, it has to be declared with the `final` keyword.
+
+C#: Declare the class with the `sealed` keyword.
 
 #### How do you prevent developers from overriding a method in a subclass?
 
@@ -634,9 +640,11 @@ If you make any variable `final`, you cannot change its value. It will be a cons
 Java has `Currency` class that represents the ISO 4217 currency codes. `BigDecimal` is the best type for representing currency decimal values.
 
 The disadvantage of `BigDecimal` is that it's slower, and it's a bit more difficult to program algorithms that way (due to basic arithmetic operations not being overloaded).
-If you are dealing with money, or precision is a must, use `BigDecimal`. Otherwise `Doubles` tend to be good enough.
+If you are dealing with money, or precision is a must, use `BigDecimal`. Otherwise `Double` tends to be good enough.
 
 //Note: Never store money in a floating point format as they have imprecisions in their representation.//
+
+//In C#, only `BigInteger` is supported, although the (128-bit) `Decimal` value type is appropriate for financial calculations that require large numbers of significant integral and fractional digits and no round-off errors.//
 
 #### What happens if you try to call something, that you have no access to, because of data hiding?
 
@@ -652,12 +660,15 @@ A `ConcurrentModificationException` occurs. You need an `Iterator` to do that.
 
 #### What happens if you try to add an item to the end of an array, while you are iterating over it?
 
-It is not possible, because arrays have a fixed size. It you want to add an element to the end of an array, you have to create a new array with length `.length + 1`, copy the original list elements to the new one, and add your element to the end of the new array.
+It is not possible, because arrays have a fixed size. If you want to add an element to the end of an array, you have to create a new array with length `myArray.length + 1`, copy the original list elements to the new one, and add your element to the end of the new array.
 
 #### If you need to access the iterator variable after a for loop, how would you do it?
 
-An `Iterator` is an object that enables to cycle through a collection, obtain or remove elements.
-Before you can access a collection through an iterator, you must obtain one. Each of the collection classes provides an `iterator()` method that returns an iterator to the start of the collection. By using this iterator object, you can access each element in the collection, one element at a time.
+WIP
+
+...
+
+//An `Iterator` is an object that enables to cycle through a collection, obtain or remove elements. Before you can access a collection through an iterator, you must obtain one. Each of the collection classes provides an `iterator()` method that returns an iterator to the start of the collection. By using this iterator object, you can access each element in the collection, one element at a time.//
 
 #### Which interfaces extend the Collection interface in Java. Which classes?
 
@@ -694,17 +705,17 @@ To retrieve the value, `HashMap` calculates the bucket in the same way – using
 
 #### What is the difference between checked exceptions and unchecked exceptions? Could you bring example for each?
 
-An `Exception` is an object that’s created when an error occurs in a Java program, and Java can’t automatically fix the error. The exception object contains information about the type of error that occurred.
+An `Exception` is an object that's created when an error occurs in a Java program, and Java can't automatically fix the error. The exception object contains information about the type of error that occurred.
 
-The most important information — the cause of the error — is indicated by the name of the exception class used to create the exception. You usually don’t have to do anything with an exception object other than figure out which one you have.
+The most important information — the cause of the error — is indicated by the name of the exception class used to create the exception. You usually don't have to do anything with an exception object other than figure out which one you have.
 
-A _checked exception_ is an exception that the compiler requires you to provide for it one way or another. If you don’t, your program doesn’t compile. //Checked when compiled//
+A **checked exception** is an exception that the compiler requires you to provide for it one way or another. If you don't, your program doesn't compile -- _checked when compiled_.
 
-An _unchecked exception_ is an exception that you can provide for, but you don’t have to. //Checked at runtime//
+An **unchecked exception** is an exception that you can provide for, but you don't have to -- _checked at runtime_.
 
 //ALL exceptions other than _runtime exceptions_ are known as _checked exceptions_.//
 
-//`Object` <- `Throwable` <- `Exception` <- `RuntimeException`\*; `IOException`, etc.//
+//`Object` <- `Throwable` <- `Exception` <- `RuntimeException` <- `IOException`, etc.//
 
 #### What is Error in Java and how does it relate to Exception?
 
@@ -728,6 +739,7 @@ The circumstances that prevent execution of the code in a finally block are:
   It always runs otherwise (even despite a `return` statement).
 
 It's a good practice to use `close()` inside finally block. You can be sure that all input and output streams are closed properly regardless of whether the exception occurs or not.
+
 It is the right place to close files, recover resources, and otherwise clean up after the code enclosed in the try block.
 
 //It's a good practice to use a _try-with-resources_ statement for this instead.//
@@ -736,9 +748,7 @@ It is the right place to close files, recover resources, and otherwise clean up 
 
 `java.math.BigInteger`
 
-(`Integer.MAX_VALUE` is approx. 2^31, which exceeds the 32-bit memory.)
-
-`BigInteger` can grow as large as your RAM.
+In theory, `BigInteger` can grow as large as your RAM.
 
 #### When you use method overriding, can you change the access level of the method, from protected to public? Why? When you use method overriding, can you change the access level of the method, from public to protected? Why?
 
@@ -777,7 +787,7 @@ _Methods_ and _classes_ can also be marked final.
 
 #### What is the super keyword?
 
-You can access the _superclass_ from the _subclass_ using the `super` keyword.
+You can access the _superclass_ from the subclass using the `super` keyword.
 For example, `super.var` accesses the `var` member of the superclass.
 
 The `super` keyword is similar to `this` keyword. It is mainly used to:
@@ -794,8 +804,8 @@ Abstract types declared between angle brackets (`<>`) (a.k.a. _diamond operator_
 Code that uses generics has many benefits over non-generic code:
 
 - Stronger type checks at compile time.
-  A Java compiler applies strong type checking to generic code and issues errors if the code violates _type safety_. Fixing compile-time errors is easier than fixing runtime errors.
-- Elimination of casts.
+  A Java compiler applies strong type checking to generic code and issues errors if the code violates **type safety**. Fixing compile-time errors is easier than fixing runtime errors.
+- Elimination of casts, which results cleaner code and better performance.
 - Enabling programmers to implement generic algorithms.
   By using generics, programmers can implement generic algorithms that work on collections of different types, can be customized, and are type safe and easier to read.
 
@@ -816,7 +826,7 @@ If data is String: most simple: System.out/System.in + ProcessBuilder; For low n
 
 #### What is an annotation? What can be annotated and how? Show examples.
 
-Annotations, a form of _metadata_, provide data about a program that is not part of the program itself. Annotations have no direct effect on the operation of the code they annotate.
+Annotations, a form of **metadata**, provide data about a program that is not part of the program itself. Annotations have no direct effect on the operation of the code they annotate.
 
 Annotations have a number of uses, among them:
 
@@ -828,6 +838,22 @@ Annotations have a number of uses, among them:
   We can define annotations to be available at runtime which we can access using java reflection and can be used to give instructions to the program at runtime.
 
 ### C&#35;
+
+Java - C#
+JDK - .NET SDKs
+JRE - .NET
+JVM - CLR
+bytecode - IL / MSIL
+Project - Solution
+Package - Namespace
+Annotation - Attribute
+POJO - POCO
+Maven - NuGet and dotnet CLI
+Tomcat / Jetty - IIS
+Spring Framework - ASP.NET
+Stream API - LINQ
+JUnit - NUnit
+Mockito - Moq / (NSubstitute)
 
 #### Explain the purpose of IL and how does it relate to CLR?
 
@@ -842,9 +868,10 @@ When we run the executable, the _Just-In-Time (JIT)_ compiler of CLR compiles th
 WIP
 
 When the C# program is executed, the _assembly_ is loaded into the CLR, which might take various actions based on the information in the manifest. Then, if the security requirements are met, the CLR performs just in time (JIT) compilation to convert the IL code to native machine instructions.
-Code that is executed by the CLR is sometimes referred to as "_managed code_", in contrast to "unmanaged code" which is compiled into native machine language that targets a specific system.
 
-//To put it very simply, managed code is just that: code whose execution is managed by a runtime. In this case, the runtime in question is called the Common Language Runtime or CLR, regardless of the implementation. CLR is in charge of taking the managed code, compiling it into machine code and then executing it. On top of that, runtime provides several important services such as automatic memory management, security boundaries, type safety etc.//
+Code that is executed by the **CLR** is sometimes referred to as **managed code**, in contrast to "unmanaged code" which is compiled into native machine language that targets a specific system.
+
+//To put it very simply, managed code is just that: code whose execution is managed by a runtime. In this case, the runtime in question is called the Common Language Runtime or CLR, regardless of the implementation. CLR is in charge of taking the managed code, compiling it into machine code and then executing it. On top of that, runtime provides several important services such as automatic memory management (garbage collectior), security boundaries, type safety etc.//
 
 Managed code is written in one of the high-level languages that can be run on top of .NET, such as C#, Visual Basic, F# and others. When you compile code written in those languages with their respective compiler, you don't get machine code. You get **Intermediate Language** (IL) code which the runtime then compiles and executes. (C++ is the one exception to this rule, as it can also produce native, unmanaged binaries that run on Windows).
 
@@ -879,6 +906,7 @@ DLL (Dynamic-Link Library):
 - A DLL can't be run by itself as it doesn't contain an entry point.
 
 A dynamic-link library (DLL) is a module that contains functions and data that can be used by another module (application or DLL).
+
 DLLs provide a way to modularize applications so that their functionality can be updated and reused more easily. DLLs also help reduce memory overhead when several applications use the same functionality at the same time.
 
 #### What is strong-typing versus weak-typing? Which is preferred? Why?
@@ -933,7 +961,9 @@ WIP
 
 Normally, structs are stored on the **stack**.
 
-A struct in C# is referred to as a _value type_. Variables of this type are not pointers, but the objects themselves. If you create a struct as a function-local variable, its memory will be allocated on the stack. If the struct instance is a class member, its memory will be allocated contiguously as part of the class instance’s memory on the heap.
+A struct in C# is referred to as a **value type**. Variables of this type are not pointers, but the objects themselves. If you create a struct as a function-local variable, its memory will be allocated on the stack.
+
+//If the struct instance is a class member, its memory will be allocated contiguously as part of the class instance's memory on the heap.//
 
 #### Can a struct have methods?
 
@@ -956,6 +986,8 @@ WIP
 No.
 
 `DateTime` is a value type, which, just like int and double, has no meaningful `null` value.
+
+`default(DateTime)` defaults to `DateTime.MinValue` (0001-01-01 00:00:00 -- depending on culture)
 
 #### List out the differences between Array and ArrayList in C#?
 
@@ -996,6 +1028,7 @@ Instantiating the object in the `using` statement is usually the best way to go.
 WIP
 
 Both Java and C# provide the ability to declare a variable whose value is specified at compile time and cannot be changed at runtime.
+
 Java uses the _`final`_ field modifier to declare such a variable, while C# uses the `const` keyword.
 
 #### What is the difference between “const” and “readonly” variables in C#?
@@ -1006,7 +1039,8 @@ In addition to const, C# provides the `readonly` keyword to declare variables th
 
 One scenario in which readonly variables are useful is when modules that have been compiled separately need to share data such as a version number. If module A is updated and recompiled with a new version number, module B can be initialized with that new constant value without having to be recompiled.
 
-To define a constant in C#, use the `const` or `readonly` modifier in place of Java's _`final`_ keyword. Const items are dealt with at _compile-time_, while the values of readonly fields are specified at _run time_.
+- `const`: compile-time
+- `readonly`: run time
 
 //If a readonly modifier is applied to a static field, it should be initialized in the static constructor of the class.//
 
@@ -1020,6 +1054,10 @@ If a property only has a get accessor, it is a _read-only_ property. If it only 
 
 #### List out two different types of errors in C#?
 
+WIP
+
+...
+
 #### What is the difference between “out” and “ref” parameters in C#?
 
 WIP
@@ -1028,17 +1066,23 @@ In C#, to pass a value type by reference, you need to specify one of the keyword
 
 The difference between these two keywords is in the parameter initialization. A _ref_ parameter must be initialized before use, while an _out_ parameter does not have to be explicitly initialized before being passed and any previous value is ignored.
 
+Any method using an `out` parameter MUST set its value when called.
+
+Stick with `out` unless you need `ref`.
+
+//Also, `ref` and `out` are not just for value types. They also let you reset the object that a reference type is referencing from within a method.//
+
 #### Can we override private virtual method in C#?
 
 WIP
 
-No. The CLR doesn't allow to write private virtual method.
+No. The CLR doesn't allow to declare a private virtual method.
 
 #### What's the difference between IEquatable and just overriding Object.Equals()?
 
 WIP
 
-`IEquatable<T>` lets a structure implement a strongly typed `Equals()` method so _no boxing_ is required. Thus much better performance when using _value types_ with generic collections.
+`IEquatable<T>` lets a structure implement a strongly typed `Equals()` method so **no boxing** is required. Thus much better performance when using _value types_ with generic collections.
 
 #### Explain the differences between public, protected, private and internal. Explain access modifier – “protected internal” in C#!
 
@@ -1046,13 +1090,31 @@ WIP
 
 C# modifiers are quite similar to those in Java, with several small differences. Each member of a class, or the class itself, can be declared with an access modifier to define the scope of permitted access. Classes that are not declared inside other classes can only specify the public or internal modifiers. Nested classes, like other class members, can specify any of the following five access modifiers:
 
-- `private`: Visible only within the given class.
-- `protected`: Visible only within the given class and from derived classes.
-- `internal`: Visible only within the same assembly.
-- `protected internal`: Visible only to the current assembly or types derived from the containing class.
-- `public`: Visible to all.
+1. `private`:
 
-//In C#, the default access modifier for members is `private`, while in Java, access defaults to anywhere from within the containing package!//
+   - Visible only within the given class.
+   - Default for class and struct members, and _nested_ classes, structs and delegates.
+
+2. `protected`:
+
+   - Visible only within the given class and from derived classes.
+   - No defaults.
+
+3. `internal`:
+
+   - Visible only within the same assembly.
+   - Default for _top-level_ classes, structs, interfaces, enums, and delegates.
+
+4. `protected internal`:
+
+   - Visible only to the current assembly or types derived from the containing class.
+   - No defaults.
+
+5. `public`:
+   - Visible to all.
+   - Default for interface _members_, enum _members_, and property accessor / mutator _methods_.
+
+//In C#, the default access modifier for class members is `private`, while in Java, access defaults to anywhere from within the containing package!//
 
 #### What’s the difference between using `override` and `new` keywords when defining method in child class?
 
@@ -1094,6 +1156,7 @@ Any nullable value type is an instance of the generic `System.Nullable<T>` struc
 You typically use a nullable value type when you need to represent the undefined value of an underlying value type. For example, a Boolean, or `bool`, variable can only be either `true` or `false`. However, in some applications a variable value can be undefined or missing. For example, a database field may contain `true` or `false`, or it may contain no value at all, that is, `NULL`. You can use the `bool?` type in that scenario.
 
 Use the null-coalescing (`??`) operator to assign a nullable type to a non-nullable type.
+
 You always can use the following read-only properties to examine and get a value of a nullable value type variable:
 
 - `Nullable<T>.HasValue` indicates whether an instance of a nullable value type has a value of its underlying type.
@@ -1114,23 +1177,26 @@ WIP
 
 Delegate:
 
-- Delegates are used to pass methods as arguments to other methods.
+- Delegates are used to pass **methods as arguments** to other methods.
 - A delegate is a type that represents references to methods with a particular parameter list and return type. When you instantiate a delegate, you can associate its instance with any method with a compatible signature and return type. You can invoke (or call) the method through the delegate instance.
 - Both anonymous methods and lambda expressions (in certain contexts) are compiled to delegate types.
 - There are 3 types of delegates:
+
   1. Single delegate:
      Used to invoke a single method.
   2. Multicast delegate:
      Used to invoke multiple methods. The delegate instance can do multicasting (adding a new method on existing delegate instance). `+` and `–` operators can be used to add or remove a method from a delegate instance. All methods will invoke in sequence as they are assigned.
   3. Generic delegate:
      Not require to define the delegate instance in order to invoke the methods.
+
      There are 3 types of generic delegates:
-  - **Func**:
-    `Func<T, TResult>` etc. encapsulates a method that has _0 or more parameters_ (1 in this case) and _returns a value of `TResult`_
-  - **Action**:
-    `Action<T>` etc. encapsulates a method that has _0 or more parameters_ (1 in this case) and _does not return a value_.
-  - **Predicate**:
-    `Predicate<T>` represents the method that defines a set of criteria and determines whether the specified object meets those criteria. `T` is the type of the object to compare. _It returns a Boolean_.
+
+     - **Func**:
+       `Func<T, TResult>` etc. encapsulates a method that has _0 or more parameters_ (1 in this case) and _returns a value of `TResult`_
+     - **Action**:
+       `Action<T>` etc. encapsulates a method that has _0 or more parameters_ (1 in this case) and _does not return a value_.
+     - **Predicate**:
+       `Predicate<T>` represents the method that defines a set of criteria and determines whether the specified object meets those criteria. `T` is the type of the object to compare. _It returns a Boolean_.
 
 Event:
 Events enable a class or object to notify other classes or objects when something of interest occurs. The class that sends (or raises) the event is called the _publisher_ and the classes that receive (or handle) the event are called _subscribers_.
@@ -1189,15 +1255,15 @@ WIP
 
 Serialization is the process of **converting an object into a stream of bytes** to store the object or transmit it to memory, a database, or a file. Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization.
 
-JSON serialization:
-
-- Serializes the public properties of an object into a string, byte array, or stream (that conforms to the RFC 8259 JSON specification).
-- Using the `JsonSerializer` (`System.Text.Json.JsonSerializer`) class.
-
 Binary serialization:
 
 - Uses binary encoding to produce compact serialization for uses such as storage or socket-based network streams. In binary serialization, all members, even members that are read-only, are serialized, and performance is enhanced.
 - Using the `BinaryFormatter` (`System.Runtime.Serialization.Formatters.Binary.BinaryFormatter`) class.
+
+JSON serialization:
+
+- Serializes the public properties of an object into a string, byte array, or stream (that conforms to the RFC 8259 JSON specification).
+- Using the `JsonSerializer` (`System.Text.Json.JsonSerializer`) class.
 
 XML serialization:
 
@@ -1214,13 +1280,13 @@ The GC is responsible for releasing the memory (objects) that is not being used 
 
 Dispose:
 
-- The `Dispose()` method is exposed to classes that implement the `IDisposable` interface. For many classes, `Dispose()` just calls the built-in `Close()` method. (One exception are database connections, where these two methods work slightly differently).
+- The `Dispose()` method is exposed to classes that implement the `IDisposable` interface. For many classes, `Dispose()` just calls the built-in `Close()` method. (An exception are database connections, where these two methods work slightly differently).
 
 Finalize:
 
-- `Finalize()`, also called the _destructor_, cannot be called explicitly in the code. Only the GC can call it when object becomes inaccessible.
+- `Finalize()`, also called the **destructor**, cannot be called explicitly in the code. Only the GC can call it when object becomes inaccessible.
 - It cannot be implemented directly, only via declaring a destructor. `~MyClass() { this.Dispose(); }`
-- When to implement? There may be any unmanaged resource for example file stream declared at class level. We may not be knowing what stage or which step is appropriate to close the file. This object is being used at many places in the application. So in this scenario Finalize can be appropriate location where unmanaged resource can be released.
+- When to implement? There may be any unmanaged resource for example file stream declared at class level. We may not know what stage or which step is appropriate to close the file. This object is being used at many places in the application. So in this scenario Finalize can be appropriate location where unmanaged resource can be released.
 - It's a bit expensive to use.
 
 Some types encapsulate disposable resources in a manner where it is easy to use and dispose of them in a single action. The general usage is often like this: open, read or write, close (Dispose). It fits very well with the `using` construct.
@@ -1239,6 +1305,7 @@ The base class should always be leftmost in the class declaration.
 Like Java, C# does not support multiple inheritance, meaning that classes cannot inherit from more than one class. You can, however, use interfaces for that purpose in the same way as in Java.
 
 You can access base class members in a subclass even when those base members are overridden in the superclass using the `base` keyword. For instance, you can create a derived class which contains a method with the same signature as in the base class.
+
 If you prefaced that method with the `new` keyword, you indicate that this is an all-new method belonging to the derived class. You could still provide a method for accessing the original method in the base class with the `base` keyword.
 
 #### What is difference between “is” and “as” operators in C#?
@@ -1254,7 +1321,7 @@ Is:
 
 As:
 
-- to explicitly convert an expression to a given type if its runtime type is compatible with that type
+- Used to explicitly convert an expression to a given type if its runtime type is compatible with that type.
 - The `as` operator explicitly converts the result of an expression to a given reference or nullable value type.
 - If the conversion is not possible, the as operator returns `null`.
 - Unlike a cast expression, the `as` operator never throws an exception.
@@ -1403,7 +1470,7 @@ GAC is more suitable for frameworks where there is expectation for library to be
 
 WIP
 
-The `BigInteger` type is an immutable type that represents an arbitrarily large integer whose value in theory has no upper or lower bounds.
+The `BigInteger` type is an immutable type that represents an arbitrarily large integer whose value in theory has no upper or lower bounds. (You can go as far as your RAM lets you).
 
 ### Database
 
