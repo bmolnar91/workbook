@@ -93,7 +93,7 @@ Steps to take:
   - in a tag name
   - directly in CSS
 - HTML escape before inserting untrusted data (framework methods, HTML entity encoding)
-- Don't use _innerHTML_ where you need user input, _textContent_ way better, this way the whole query will be a string and won't be executed as an HTML tag
+- Don't use `innerHTML` where you need user input, `textContent` is way better, this way the whole query will be a string and won't be executed as an HTML tag
 
 #### How to properly store passwords?
 
@@ -118,7 +118,7 @@ Although encrypted data appears random, encryption proceeds in a logical, predic
 
 #### What is hashing?
 
-Hash algorithms are **one way** functions. They turn any amount of data into a _fixed-length_ "fingerprint" that **cannot be reversed**. They also have the property that if the _input changes_ by even a tiny bit, the resulting hash is _completely different_.
+Hash algorithms are **one way** functions. They turn any amount of data into a **fixed-length** "fingerprint" that **cannot be reversed**. They also have the property that if the _input changes_ by even a tiny bit, the resulting hash is _completely different_.
 
 #### What is the difference between encryption and hashing? When would you use which?
 
@@ -227,8 +227,6 @@ Big O specifically describes the worst-case scenario, and can be used to describ
 for (let element of elements) {
   if (element === value) {
     return true;
-  } else {
-    return false;
   }
 }
 ```
@@ -248,7 +246,7 @@ for (let element of elements) {
 
 #### Explain the process of calculating the average value in a linked list of numbers!
 
-Make a SUM variable. Because linked lists don't have indices, we have to make a counter. We go trough the list in a while loop and add it's value to SUM, till the current element is NULL. Then we divide the SUM with the counter.
+Make a SUM variable. Because linked lists don't have indices, we have to make a counter. We go trough the list in a while loop and add its value to SUM, till the current element is NULL. Then we divide the SUM with the counter.
 
 ### Procedural
 
@@ -304,7 +302,7 @@ if-elif-else blocks
 #### Explain variable scoping in Python!
 
 Not all variables are accessible from all parts of our program, and not all variables exist for the same amount of time. Where a variable is accessible and how long it exists depend on how it is defined.
-We call the part of a program _where_ a variable is accessible its _scope_, and the _duration_ for which the variable exists its _lifetime_.
+We call the part of a program _where_ a variable is accessible its **scope**, and the _duration_ for which the variable exists its **lifetime**.
 
 A variable which is defined in the _main body_ of a file is called a _global variable_. It will be visible throughout the file, and also inside any file which imports that file. Global variables can have unintended consequences because of their wide-ranging effects – that is why we should almost never use them. Only objects which are intended to be used globally, like functions and classes, should be put in the global namespace.
 
@@ -361,10 +359,12 @@ A recursive function is a function defined in terms of itself via _self-referent
 #### Write a recursive function which calculates the Fibonacci numbers!
 
 ```javascript
-const fibonacci = function(x, y) {
-  let z = x + y;
-  console.log(z);
-  fibonacci(y, z);
+fibonacciNaiveRecursive = n => {
+  if (n <= 1) return n;
+
+  fib = fibonacciNaiveRecursive(n - 1) + fibonacciNaiveRecursive(n - 2);
+
+  return fib;
 };
 ```
 
@@ -613,13 +613,10 @@ User interface (UI) is anything a user may interact with to use a digital produc
 #### Please list some points that an application should fulfill to have good UX.
 
 Visual Design:
-From hypertext point of view, visual design is described as _visual_ treatment of the text, _graphic_ page elements and navigational components.
+From hypertext point of view, visual design is described as _visual_ treatment of the text, graphic page elements and navigational components.
 
 Information Design:
 Here (web applications), the information design is the process of designing the _presentation of information_ to facilitate understanding. From Hypertext System point of view, it can be described as Navigation Design (design of interface elements to facilitate the user's movement through the information architecture).
-
-Information Architecture (IA):
-In a nutshell, this is the structural design of the information space to facilitate intuitive access to content.
 
 #### What is XML, XSLT, DTD?
 
@@ -635,7 +632,9 @@ See above
 
 #### What is javascript?
 
-JavaScript is a scripting or programming language that allows you to implement complex features on web pages — every time a web page does more than just sit there and display static information for you to look at — displaying timely content updates, interactive maps, animated 2D/3D graphics, scrolling video jukeboxes, etc. — you can bet that JavaScript is probably involved. It is the third layer of the layer cake of standard web technologies (HTML - CSS - JS).
+JavaScript is a scripting or programming language that allows you to implement complex features on web pages — every time a web page does more than just sit there and display static information for you to look at — displaying timely content updates, interactive maps, animated 2D/3D graphics, scrolling video jukeboxes, etc. — you can bet that JavaScript is probably involved.
+
+It is the third layer of the layer cake of standard web technologies (HTML - CSS - JS).
 
 #### When to use AJAX? Bring examples of its usage.
 
@@ -691,7 +690,7 @@ Note the differences from `this`:
 - JSON is "self-describing" and easy to understand.
 
 A common use of JSON is to read data from a web server, and display the data in a web page.
-string containing JSON syntax -> `JSON.parse(myString)` -> use the new Javascript object
+String containing JSON syntax -> `JSON.parse(myString)` -> use the new Javascript object
 
 ## Software engineering
 
@@ -845,70 +844,82 @@ TCP establishes a connection between a sender and receiver before data can be se
 
 #### How does an HTTP Request look like? What are the most relevant HTTP header fields?
 
+**HTTP MESSAGES** IN GENERAL
+
 HTTP messages are how data is exchanged between a server and a client. There are two types of messages: requests sent by the client to trigger an action on the server, and responses, the answer from the server.
 
 HTTP requests, and responses, share similar structure and are composed of:
-A start-line:
-describing the requests to be implemented, or its status of whether successful or a failure. This start-line is always a single line.
-An optional set of HTTP headers:
-specifying the request, or describing the body included in the message.
-A blank line:
-indicating all meta-information for the request has been sent.
-An optional body:
-containing data associated with the request (like content of an HTML form), or the document associated with a response. The presence of the body and its size is specified by the start-line and HTTP headers.
 
-HTTP requests are messages sent by the client to initiate an action on the server. Their start-line contain three elements:
-Start line:
-An HTTP method, a verb (like GET, PUT or POST) or a noun (like HEAD or OPTIONS), that describes the action to be performed.
-The request target, usually a URL.
-The HTTP version, which defines the structure of the remaining message.
+1. A **start-line** describing the requests to be implemented, or its status of whether successful or a failure. This start-line is always a single line.
+2. An _optional_ set of **HTTP headers** specifying the request, or describing the body included in the message.
+3. A **blank line** indicating all meta-information for the request has been sent.
+4. An _optional_ **body**: containing data associated with the request (like content of an HTML form), or the document associated with a response. (The presence of the body and its size is specified by the start-line and HTTP headers).
 
-    Headers:
-        General headers, like Via, apply to the message as a whole.
-        Request headers, like User-Agent, Accept-Type, modify the request by specifying it further (like Accept-Language), by giving context (like Referer), or by conditionally restricting it (like If-None).
-        Entity headers, like Content-Length which apply to the body of the request. Obviously, there is no such header transmitted if there is no body in the request.
+The _start-line_ and _HTTP headers_ of the HTTP message are collectively known as the **head** of the requests, whereas its _payload_ is known as the **body**.
 
-    Body:
-        The final part of the request is its body. Not all requests have one: requests fetching resources, like GET, HEAD, DELETE, or OPTIONS, usually don't need one. Some requests send data to the server in order to update it: as often the case with POST requests (containing HTML form data).
-        Bodies can be broadly divided into two categories:
-            Single-resource bodies, consisting of one single file, defined by the two headers: Content-Type and Content-Length.
-            Multiple-resource bodies, consisting of a multipart body, each containing a different bit of information. This is typically associated with HTML Forms.
+**HTTP REQUESTS**
+
+HTTP requests are messages sent by the client to initiate an action on the server.
+
+Start-line:
+
+1. An **HTTP method**, a verb (like `GET`, `PUT` or `POST`) or a noun (like `HEAD` or `OPTIONS`), that describes the action to be performed. For example, `GET` indicates that a resource should be fetched or `POST` means that data is pushed to the server.
+2. The request **target**, usually a URL.
+3. The **HTTP version**, which defines the structure of the remaining message.
+   An example start-line: `GET http://developer.mozilla.org/en-US/docs/Web/HTTP/Messages HTTP/1.1`
+
+Headers:
+
+- **General headers**, like Via, apply to the message as a whole.
+- **Request headers**, like User-Agent, Accept-Type, modify the request by specifying it further (like Accept-Language), by giving context (like Referer), or by conditionally restricting it (like If-None).
+- **Entity headers**, like Content-Length which apply to the body of the request. There is no such header transmitted if there is no body in the request.
+
+Body:
+
+- The final part of the request is its body. Not all requests have one: requests fetching resources, like `GET`, `HEAD`, `DELETE`, or `OPTIONS`, usually don't need one. Some requests send data to the server in order to update it: as often the case with **POST requests** (containing HTML form data).
+- Bodies can be broadly divided into two categories:
+  - Single-resource bodies, consisting of one single file, defined by the two headers: `Content-Type` and `Content-Length`.
+  - Multiple-resource bodies, consisting of a multipart body, each containing a different bit of information. This is typically associated with HTML Forms.
 
 #### How does an HTTP Response look like? What are the most relevant HTTP header fields?
 
-Status line:
-The start line of an HTTP response:
-The protocol version, usually HTTP/1.1.
-A status code, indicating success or failure of the request. Common status codes are 200, 404, or 302
-A status text. A brief, purely informational, textual description of the status code to help a human understand the HTTP message.
-A typical status line looks like: HTTP/1.1 404 Not Found.
+Status line (the start line of an HTTP response):
+
+- The protocol version, usually `HTTP/1.1`.
+- A status code, indicating success or failure of the request. Common status codes are `200`, `404`, or `302`
+- A status text. A brief, purely informational, textual description of the status code to help a human understand the HTTP message.
+- A typical status line looks like: `HTTP/1.1 404 Not Found`.
 
 Headers:
-General headers, like Via, apply to the whole message.
-Response headers, like Vary and Accept-Ranges, give additional information about the server which doesn't fit in the status line.
-Entity headers, like Content-Length, apply to the body of the response. Typically, no such headers are transmitted when there is no body in the response.
+
+- **General headers**, like `Via`, apply to the whole message.
+- **Response headers**, like Vary and `Accept-Ranges`, give additional information about the server which doesn't fit in the status line.
+- **Entity headers**, like `Content-Length`, apply to the body of the response. Typically, no such headers are transmitted when there is no body in the response.
 
 Body:
-The last part of a response is the body. Not all responses have one: responses with a status code, like 201 or 204, usually don't.
-Single-resource bodies, consisting of a single file of known length, defined by the two headers: Content-Type and Content-Length.
-Single-resource bodies, consisting of a single file of unknown length, encoded by chunks with Transfer-Encoding set to chunked.
-Multiple-resource bodies, consisting of a multipart body, each containing a different section of information. These are relatively rare.
+
+- The last part of a response is the body. Not all responses have one: responses with a status code, like `201 Created` or `204 No Content`, usually don't.
+- Single-resource bodies, consisting of a single file of known length, defined by the two headers: `Content-Type` and `Content-Length`.
+- Single-resource bodies, consisting of a single file of unknown length, encoded by chunks with `Transfer-Encoding` set to `chunked`.
+- Multiple-resource bodies, consisting of a multipart body, each containing a different section of information. These are relatively rare.
 
 #### What is DNS? How does it work?
 
-The Domain Name System (DNS) is the phonebook of the Internet. When users type domain names such as 'google.com' or 'nytimes.com' into web browsers, DNS is responsible for finding the correct IP address for those sites. Browsers then use those addresses to communicate with origin servers or CDN edge servers to access website information. This all happens thanks to DNS servers: machines dedicated to answering DNS queries.
+The **Domain Name System (DNS)** is the phonebook of the Internet. When users type domain names such as 'google.com' or 'nytimes.com' into web browsers, DNS is responsible for finding the correct IP address for those sites. Browsers then use those addresses to communicate with origin servers or CDN edge servers to access website information. This all happens thanks to DNS servers: machines dedicated to answering DNS queries.
 
 #### What is a web server?
 
-"Web server" can refer to hardware or software, or both of them working together.:
-On the hardware side, a web server is a computer that stores web server software and a website's component files (e.g. HTML documents, images, CSS stylesheets, and JavaScript files). It is connected to the Internet and supports physical data interchange with other devices connected to the web.
+"Web server" can refer to hardware or software, or both of them working together:
 
-    On the software side, a web server includes several parts that control how web users access hosted files, at minimum an HTTP server. An HTTP server is a piece of software that understands URLs (web addresses) and HTTP (the protocol your browser uses to view webpages). It can be accessed through the domain names (like mozilla.org) of websites it stores, and delivers their content to the end-user's device.
+- On the **hardware** side, a web server is a computer that stores web server software and a website's component files (e.g. HTML documents, images, CSS stylesheets, and JavaScript files). It is connected to the Internet and supports physical data interchange with other devices connected to the web.
+- On the **software** side, a web server includes several parts that control how web users access hosted files, at minimum an HTTP server.
+
+An **HTTP server** is a piece of software that understands URLs and HTTP. It can be accessed through the domain names (like mozilla.org) of websites it stores, and delivers their content to the end-user's device.
 
 To publish a website, you need either a static or a dynamic web server:
-A static web server, or stack, consists of a computer (hardware) with an HTTP server (software). We call it "static" because the server sends its hosted files "as-is" to your browser.
 
-    A dynamic web server consists of a static web server plus extra software, most commonly an **application server** and a database. We call it "dynamic" because the application server updates the hosted files before sending them to your browser via the HTTP server.
+- A **static web server**, or stack, consists of a computer (hardware) with an HTTP server (software). We call it "static" because the server sends its hosted files "as-is" to your browser.
+- A **dynamic web server** consists of a static web server plus extra software, most commonly an **application server** and a **database**. We call it "dynamic" because the application server updates the hosted files before sending them to your browser via the HTTP server.
 
 #### Explain the client-server architecture.
 
@@ -918,19 +929,19 @@ Client/server architecture is a computing model in which the server hosts, deliv
 
 Because HTTP is stateless, in order to associate a request to any other request, you need a way to store user data between HTTP requests.
 
-Cookies or URL parameters (like http://example.com/myPage?asd=lol&boo=no) are both suitable ways to transport data between 2 or more request. However they are not good in case you don't want that data to be readable/editable on the client side.
+Cookies or URL parameters (like http://example.com/myPage?asd=yes&boo=2) are both suitable ways to transport data between 2 or more request. However they are not good in case you don't want that data to be readable/editable on the client side.
 
 The solution is to store that data server side, give it an "id", and let the client only know (and pass back at every http request) that id. There you go, sessions implemented. Or you can use the client as a convenient remote storage, but you would encrypt the data and keep the secret server-side.
 
 #### What would you use a cookie for?
 
-Using the Set-Cookie header field, an HTTP server can pass name/value pairs and associated metadata (called cookies) to a user agent. When the user agent makes subsequent requests to the server, the user agent uses the metadata and other information to determine whether to return the name/value pairs in the Cookie header.
+Using the **Set-Cookie** header field, an HTTP server can pass **name/value pairs and associated metadata** (called cookies) to a **user agent**. When the user agent makes subsequent requests to the server, the user agent uses the metadata and other information to determine whether to return the name/value pairs in the Cookie header.
 
 ## Software Development Methodologies
 
 #### What kind of software development methodologies do you know? What are the main features of these?
 
-In original waterfall model, the following phases are followed in order:
+In original **waterfall model**, the following phases are followed in order:
 
 - System and software requirements: captured in a product requirements document
 - Analysis: resulting in models, schema, and business rules
@@ -940,47 +951,62 @@ In original waterfall model, the following phases are followed in order:
 - Operations: the installation, migration, support, and maintenance of complete systems
 - Thus the waterfall model maintains that one should move to a phase only when its preceding phase is reviewed and verified.
 
-Agile project management:
-Agile is a time boxed, iterative approach to software delivery that builds software incrementally from the start of the project,
-instead of trying to deliver it all at once near the end.
+**Agile** project management:
+
+- Agile is a time boxed, iterative approach to software delivery that builds software incrementally from the start of the project, instead of trying to deliver it all at once near the end.
 
 #### What are the SCRUM roles?
 
-Scrum Master: - The team's coach, and helps Scrum practitioners achieve their highest level of performance. - In the Scrum process, a Scrum Master differs from a traditional project manager in many ways, including that this role does not provide day-to-day direction to the team and does not assign tasks to individuals. - A good ScrumMaster shelters the team from outside distractions, allowing team members to focus maniacally during the sprint on the goal they have selected. - While the Scrum Master focuses on helping the team be the best that it can be, the product owner works to direct the team to the right goal. The product owner does this by creating a compelling vision of the product, and then conveying that vision to the team through the product backlog.
+Scrum Master:
 
-Product Owner: - Responsible for prioritizing the backlog during Scrum development, to ensure it's up to par as more is learned about the system being built, its users, the team and so on.
+- The team's coach, and helps Scrum practitioners achieve their highest level of performance.
+- In the Scrum process, a Scrum Master differs from a traditional project manager in many ways, including that this role does not provide day-to-day direction to the team and does not assign tasks to individuals.
+- A good Scrum Master shelters the team from outside distractions, allowing team members to focus maniacally during the sprint on the goal they have selected.
 
-Scrum Team: - Although individuals may join the team with various job titles, in Scrum, those titles are insignificant. Scrum methodology states that each person contributes in whatever way they can to complete the work of each sprint. - This does not mean that a tester will be expected to re-architect the system; individuals will spend most (and sometimes all) of their time working in whatever discipline they worked before adopting the agile Scrum model. But with Scrum, individuals are expected to work beyond their preferred disciplines whenever doing so would be for the good of the team.
+Product Owner:
+
+- While the Scrum Master focuses on helping the team be the best that it can be, the product owner works to direct the team to the right goal. The product owner does this by creating a compelling vision of the product, and then conveying that vision to the team through the product backlog.
+- Responsible for prioritizing the backlog during Scrum development, to ensure it's up to par as more is learned about the system being built, its users, the team and so on.
+
+Scrum Team:
+
+- Although individuals may join the team with various job titles, in Scrum, those titles are insignificant. Scrum methodology states that each person contributes in whatever way they can to complete the work of each sprint.
+- This does not mean that a tester will be expected to re-architect the system; individuals will spend most (and sometimes all) of their time working in whatever discipline they worked before adopting the agile Scrum model. But with Scrum, individuals are expected to work beyond their preferred disciplines whenever doing so would be for the good of the team.
 
 #### What are the SCRUM ceremonies?
 
-Sprint Planning:
-This is where the team meets and decides what they need to complete in the coming sprint.
+1. Sprint Planning:
+   This is where the team meets and decides what they need to complete in the coming sprint.
 
-Daily Scrum:
-This is a standup meeting, or a very short – 15-minute mini-meeting – for the team to make sure they're all on the same page.
+2. Daily Scrum / Daily Standup:
+   This is a standup meeting, or a very short – 15-minute mini-meeting – for the team to make sure they're all on the same page.
 
-Sprint Review:
-This is another type of meeting, but one in which the team demos what they shipped in the sprint.
+3. Sprint Review:
+   This is another type of meeting, but one in which the team demos what they shipped in the sprint.
 
-Sprint Retrospective:
-This is when the team reviews their work, identifying what they did well and what didn't go as planned, so they can make the next sprint better.
+4. Sprint Retrospective:
+   This is when the team reviews their work, identifying what they did well and what didn't go as planned, so they can make the next sprint better.
 
 #### What are the SCRUM artifacts?
 
 Scrum's artifacts represent work or value to provide transparency and opportunities for inspection and adaptation. Artifacts defined by Scrum are specifically designed to maximize transparency of key information so that everybody has the same understanding of the artifact.
 
 The Scrum Artifacts are:
-Product Backlog: - An ordered list of everything that is known to be needed in the product. It is the single source of requirements for any changes to be made to the product. The Product Owner is responsible for the Product Backlog, including its content, availability, and ordering.
 
-    Sprint Backlog:
-        - The set of Product Backlog items selected for the Sprint, plus a plan for delivering the product Increment and realizing the Sprint Goal.
-        - A forecast by the Development Team about what functionality will be in the next Increment and the work needed to deliver that functionality into a "Done" Increment.
+1.  Product Backlog:
 
-    Increment:
-        - The sum of all the Product Backlog items completed during a Sprint and the value of the increments of all previous Sprints.
-          At the end of a Sprint, the new Increment must be "Done", which means it must be in useable condition and meet the Scrum Team's definition of "Done".
-        - When a Product Backlog item or an Increment is described as "Done", everyone must understand what "Done" means. Although this may vary significantly per Scrum Team, members must have a shared understanding of what it means for work to be complete, to ensure transparency. This is the definition of "Done" for the Scrum Team and is used to assess when work is complete on the product Increment.
+- An ordered list of everything that is known to be needed in the product. It is the single source of requirements for any changes to be made to the product. The Product Owner is responsible for the Product Backlog, including its content, availability, and ordering.
+
+2.  Sprint Backlog:
+
+- The set of Product Backlog items selected for the Sprint, plus a plan for delivering the product Increment and realizing the Sprint Goal.
+- A forecast by the Development Team about what functionality will be in the next Increment and the work needed to deliver that functionality into a "Done" Increment.
+
+3. Increment:
+
+- The sum of all the Product Backlog items completed during a Sprint and the value of the increments of all previous Sprints.
+- At the end of a Sprint, the new Increment must be "Done", which means it must be in useable condition and meet the Scrum Team's definition of "Done".
+- Although this may vary significantly per Scrum Team, members must have a shared understanding of what it means for work to be complete, to ensure transparency. This is the definition of "Done" for the Scrum Team and is used to assess when work is complete on the product Increment.
 
 #### What is the main goal of a retrospective meeting?
 
