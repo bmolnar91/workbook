@@ -644,7 +644,11 @@ An example of asynchronous updating is Google's "Google Suggest" feature. When y
 
 #### What is DOM and how to manipulate it from Javascript?
 
-Stands for the **Document Object Model**.
+The **Document Object Model (DOM)** is a programming interface for HTML and XML documents. It represents the page so that programs can change the document structure, style, and content. The DOM represents the document as nodes and objects. That way, programming languages can connect to the page.
+
+A Web page is a document. This document can be either displayed in the browser window or as the HTML source. But it is the same document in both cases. The Document Object Model (DOM) represents that same document so it can be manipulated.
+The DOM is an object-oriented representation of the web page, which can be modified with a scripting language such as JavaScript.
+
 The **DOM** is the way Javascript sees its containing pages' data. It is an object that includes how the HTML/XHTML/XML is formatted, as well as the browser state.
 
 A DOM element is something like a DIV, HTML, BODY element on a page. You can add classes to all of these using CSS, or interact with them using JS.
