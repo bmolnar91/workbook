@@ -160,11 +160,32 @@ Whenever we request a URL the only thing happens is, an instance of a **Controll
 
 WIP
 
-Razor View engine is a markup syntax which helps us to write HTML and server-side code in web pages using C# (or VB.NET).
+Razor View engine is a **templating engine** that uses a markup syntax that allows us to write **HTML** and server-side code in web pages using **C#** (or VB.NET).
+
+Some of Razor Syntax Rules for C#:
+
+- .cshtml extension
+- Blocks must be always enclosed in `@{ ... }`
+- Inline expressions (variables and functions) start with `@`
+- Variables are declared with `var` keyword
 
 #### What you mean by Routing in MVC?
 
 #### What is Layout in MVC?
+
+Repetitive sections, such as header, footer, menu bar, etc. can be defined _once_ in a Layout View. Maintaining the same look and feel across all Views becomes much easier, as we have only 1 layout file to modify.
+
+Conventionally shared in a 'Shared' folder. Can be added from a template in VS (Razor View Layout Page). Starts with an underscore. The default name is `_Layout.cshtml`. An application can have multiple Layout Views.
+
+The View Layout page renders view specific content in the body with `@RenderBody()` method.
+
+Individual Views need to import the Layout View like so:
+
+```csharp
+@{
+    Layout = `~/Views/Shared/_Layout.cshtml`
+}
+```
 
 #### What ConfigureServices() method does in Startup.cs?
 
