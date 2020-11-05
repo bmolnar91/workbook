@@ -90,23 +90,45 @@ At the very least, a DI Container allows Auto-Wiring, which is the ability to au
 
 #### What is the DAO pattern? When and how to implement?
 
+WIP
+
+**Data access object (DAO)** is a pattern that provides an abstract interface to some type of database or other persistence mechanism.
+
+By mapping application calls to the persistence layer, the DAO provides some specific data operations without exposing details of the database. This isolation supports the single responsibility principle.
+
+It separates what data access the application needs from how these needs can be satisfied with a specific DBMS, database schema, etc.
+
 #### What is SOA? When to use?
 
 ### Testing
 
 #### What are unit test, integration test, system test, regression test, acceptance test? What is the major difference between these?
 
+WIP
+
 #### What is code coverage? Why is it used? How you can measure?
+
+WIP
 
 #### What does mocking mean? How would you do it 'manually' (i. e. without using any fancy framework)?
 
+WIP
+
 #### What is a test case? What is an assertion? Give examples!
+
+WIP
 
 #### What is TDD? What are the benefits?
 
+WIP
+
 #### What are the unit testing best practices? (Eg. how many assertion should a test case contain?)
 
+WIP
+
 #### What is arrange/act/assert pattern?
+
+WIP
 
 ### DevOps
 
@@ -126,13 +148,23 @@ At the very least, a DI Container allows Auto-Wiring, which is the ability to au
 
 #### What kind of software-lifecycle models do you know?
 
+WIP
+
 #### What is a UML diagram? What kind of diagram types do you know?
+
+WIP
 
 #### What is a UML class diagram? What are the typical elements?
 
+WIP
+
 #### What kind of design patterns do you know? Bring at least 3 examples.
 
+WIP
+
 #### What is the purpose of the Iterator Pattern?
+
+WIP
 
 #### What do you know about the SOLID principles?
 
@@ -199,6 +231,8 @@ The following 5 concepts make up our SOLID principles:
 ### Algorithms
 
 #### What is QuickSort? Describe the main logic of this sorting algorithm.
+
+WIP
 
 ## Software design
 
