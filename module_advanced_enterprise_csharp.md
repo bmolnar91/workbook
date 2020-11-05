@@ -171,6 +171,29 @@ Some of Razor Syntax Rules for C#:
 
 #### What you mean by Routing in MVC?
 
+There are 2 routing techniques:
+
+- Conventional Routing
+- Attribute Routing
+
+The Controller handles the requests and responses. The incoming request URL is mapped to a Controller action method. This mapping is done by the Routing rules.
+
+Conventional routing configures routing / URL mapping in the `Configure()` method in Startup.cs.
+
+Attribute routing does URL mapping via attributes. They can be placed above the Controller class as well as the action methods:
+
+- `[Route("api/[controller]")]`
+- `[Route("Home/[action]/{id}")]`
+- `[Route("Home/Details/{id?}")]`
+- `[HttpPost("{city}")]`
+- etc.
+
+`http://localhost:1234/Home/Details/7` -> `HomeController` Controller class -> `Details(7)` Action Method with parameter
+
+Attribute routes offer a bit more flexibility than conventional routes.
+
+**Conventional routes** are used for Controllers that serve **HTML pages**, and **Attribute routes** for Controllers that serve **REST APIs**. However, there's nothing stopping us from mixing the two methods.
+
 #### What is Layout in MVC?
 
 Repetitive sections, such as header, footer, menu bar, etc. can be defined _once_ in a Layout View. Maintaining the same look and feel across all Views becomes much easier, as we have only 1 layout file to modify.
