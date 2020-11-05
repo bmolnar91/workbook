@@ -4,13 +4,163 @@
 
 #### What Is the difference between .NET Core and .NET Standard? How do them relate to “classic” .NET?
 
+WIP
+
+**.NET Core**:
+
+The .NET Framework is used for building desktop applications and ASP.NET applications running on Internet Information Server (IIS). It was the first managed framework released.
+
+Xamarin is a managed framework used for building iOS, Android, and macOS desktop applications.
+
+**.NET Core** is a free, cross-platform, open source implementation of the managed framework. It supports 4 types of applications:
+
+- console
+- ASP.NET Core
+- cloud
+- Universal Windows Platform (UWP)
+- Windows Forms and Windows Presentation Foundation (WPF) are not part of .NET Core
+
+(Technically, .NET Core only supports console applications. ASP.NET Core and UWP are application models built on top of .NET Core).
+
+Unlike the .NET Framework, .NET Core is not considered a Windows component. Therefore, updates come as **NuGet packages**, not through Windows Update. Updated through the package manager, applications can be associated with a particular .NET Core version and be **updated individually**.
+
+**.NET Standard**:
+
+Each implementation of the managed framework has its own set of Base Class Libraries. The **Base Class Library (BCL)** contains classes such as exception handling, strings, XML, I/O, networking, and collections.
+
+**.NET Standard** is a specification for implementing the BCL. Since a .NET implementation is required to follow this standard, application developers will not have to worry about different versions of the BCL for each managed framework implementation.
+
+**Framework Class Libraries (FCL)** such as WPF, WCF, and ASP.NET are _not_ part of the BCL, and therefore are _not_ included in .NET Standard.
+
+Conclusion:
+
+.NET Standard is an **API specification** that defines, for a given version, what **Base Class Libraries** must be implemented.
+
+.NET Core is a **managed framework** that is optimized for building console, cloud, ASP.NET Core, and UWP (Universal Windows Platform) applications. It provides **an implementation of .NET Standard** for the Base Class Libraries.
+
+//ASP stands for Active Server Pages.//
+
+_**More .NET Core**_:
+
+The .NET Core platform is made up of several components, including the managed compilers, the runtime, the base class libraries, and numerous application models, such as ASP.NET Core.
+
+The main characteristics of .NET Core:
+
+- **Cross-Platform**:
+  You can write apps and libraries that run unmodified across supported operating systems (Windows, Linux, macOS)
+- **Open source**:
+  .NET Core is one of the many projects under the stewardship of the .NET Foundation and is available on GitHub. As an open-source project, .NET Core promotes a more transparent development process and an active and engaged community.
+- **Flexible deployment**:
+  There are 2 main ways to deploy your app:
+  - Framework-dependent deployment:
+    Only your app and third-party dependencies are installed and your app depends on a system-wide version of .NET Core to be present.
+  - Self-contained deployment:
+    The .NET Core version used to build your application is also deployed along with your app and third-party dependencies and can run side by side with other versions.
+- **Modular**:
+  Rather than one large assembly that contains most of the core functionality, .NET Core is made available as smaller, feature-centric packages (**NuGet assembly packages**). This modularity enables a more agile development model for us and allows you to optimize your app to include just the NuGet packages you need.
+  The benefits of a smaller app surface area include:
+  - tighter security
+  - reduced servicing
+  - improved performance
+  - decreased costs in a pay-for-what-you-use model
+
+Benefits and features:
+
+- Cross Platform
+- Open-Source
+- One programming model for MCV and Web API
+- Dependency Injection
+- Modularity:
+  - ASP.NET provides modularity with **middleware components**
+  - both the request and response pipelines are composed using middleware components
+
 #### What is ASP.NET MVC?
+
+WIP
+
+**ASP.NET Core**:
+
+ASP.NET Core is a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework. With ASP.NET Core, you can:
+
+- Build web apps and services, IoT apps, and mobile backends
+- Use your favorite development tools on Windows, macOS, and Linux
+- Deploy to the cloud or on-premises
+- Run on .NET Core or .NET Framework
+
+Some of its benefits:
+
+- Architected for testability.
+- Razor Pages makes coding page-focused scenarios easier and more productive.
+- Blazor lets you use C# in the browser alongside JavaScript. Share server-side and client-side app logic all written with .NET.
+- Ability to develop and run on Windows, macOS, and Linux.
+- Open-source and community-focused.
+- Integration of modern, client-side frameworks and development workflows (React, Angular).
+- Built-in **dependency injection** (IoC container).
+- A lightweight, high-performance, and modular **HTTP request pipeline**.
+- Ability to host on IIS as well as:
+  - Kestrel
+  - Apache
+  - Docker
+  - etc.
+
+**ASP.NET Core MVC**:
+
+ASP.NET Core MVC provides features to build web APIs and web apps:
+
+- The **Model-View-Controller (MVC)** pattern helps make your web APIs and web apps testable.
+- **Razor** markup provides a productive syntax for Razor Pages and MVC views.
+- **Tag Helpers** enable server-side code to participate in creating and rendering HTML elements in Razor files.
+- (Built-in support for multiple data formats and content negotiation lets your web APIs reach a broad range of clients, including browsers and mobile devices.)
+- **Model binding** automatically maps data from HTTP requests to action method parameters.
+- Model validation automatically performs client-side and server-side validation.
+
+Both the MCV Controller and the ASP.NET Web API Controller class inherit from the same `Controller` base class and returns `IActionResult`.
+
+- MVC: `ViewResult`
+- API: `JsonResult`
 
 #### Can you explain Model, Controller and View in MVC?
 
+WIP
+
+Application layers:
+
+- User Interface Layer
+- Business Logic Layer (Domain Layer)
+- Data Access Layer
+
+MVC is used for implementing the **UI Layer** of the application.
+
+MVC is an architectural design pattern that consists of 3 fundamental parts:
+
+- **Model**:
+  - Set of classes that represent data + the logic to manage that data
+- **View**:
+  - Only contains logic to present the Model data (provided to the View by the Controller)
+  - Like an HTML template
+  - If it gets too complicated, you can use a _ViewModel_
+- **Controller**:
+  - Handles HTTP requests and responses
+  - Routing rules map URLs to Controller **action methods**
+  - Builds the Model when a corresponding request comes in
+
 #### Explain the page lifecycle of MVC.
 
+WIP
+
+Whenever we request a URL the only thing happens is, an instance of a **Controller** is crated and some **action method** is called of it which results in rendering the View as HTML as response in the browser.
+
+1. Routing
+2. URL Routing Module intercepts the Request
+3. MVC Handler executes
+4. Controller executes
+5. Render View method call
+
 #### What is Razor View Engine?
+
+WIP
+
+Razor View engine is a markup syntax which helps us to write HTML and server-side code in web pages using C# (or VB.NET).
 
 #### What you mean by Routing in MVC?
 
