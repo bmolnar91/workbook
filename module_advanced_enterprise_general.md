@@ -71,6 +71,23 @@ Cons:
 
 #### What is Dependency Injection?
 
+Classes have "dependencies" they call methods on. Most people call them "variables" or more precisely "instance variables".
+
+You could set the dependency (variable) via a setter method or even via reflection, you should choose your way. But using constructors is the most popular one.
+
+You can have the dependency be an interface or an abstract class and then polymorphically pass in some implementation.
+
+Also DI facilitates a very important principle, **Separation of Concerns**, because:
+
+- Many times is not a given class' responsibility to instantiate the things inside it.
+- Your code will be more modular, as the outside world can decide what exactly it should be (to make it super modular you could make it an interface).
+
+Dependency Injection can also refer to a **software library** that provides DI functionality and allows automating many of the tasks involved in Object Composition, Interception, and Lifetime Management. DI Containers are also known as Inversion of Control (IoC) Containers. (E.g. Spring Boot, ASP.NET Core).
+
+At the very least, a DI Container allows Auto-Wiring, which is the ability to automatically compose an object graph from maps between **Abstractions** and concrete types by making use of the types' **metadata** (reflection?) supplied by the compiler and its runtime environment.
+
+**This typically means that a DI Container will analyze a type's constructor and will inject dependencies into it, without the need of having to specify each constructor argument manually.**
+
 #### What is the DAO pattern? When and how to implement?
 
 #### What is SOA? When to use?
@@ -118,6 +135,46 @@ Cons:
 #### What is the purpose of the Iterator Pattern?
 
 #### What do you know about the SOLID principles?
+
+The SOLID principles were first conceptualized by Robert C. Martin. These design principles encourage us to create more **maintainable**, **understandable**, and **flexible** software. Consequently, as our applications **grow in size**, we can **reduce their complexity** and save ourselves a lot of headaches further down the road.
+
+The following 5 concepts make up our SOLID principles:
+
+1. Single Responsibility:
+
+- A class should only have **one responsibility**. Furthermore, it should only have **one reason to change**.
+- Benefits:
+  - Testing: A class with one responsibility will have far fewer test cases
+  - Lower coupling: Less functionality in a single class will have fewer dependencies
+  - Organization: Smaller, well-organized classes are easier to search than monolithic ones
+- Book / BookPrinter example
+
+2. Open/Closed:
+
+- Open for _extension_, Closed for _modification_
+- In doing so, we stop ourselves from modifying existing code and causing potential new bugs
+- Guitar example
+
+3. Liskov Substitution:
+
+- If class _A_ is a subtype of class _B_, then we should be able to replace _B_ with A without disrupting the behavior of our program
+- Electric car / Motorcar example
+
+4. Interface Segregation:
+
+- Larger interfaces should be split into smaller ones.
+- By doing so, we can ensure that implementing classes only need to be concerned about the methods that are of interest to them.
+- Zookeeper / BearPetter example
+
+5. Dependency Inversion:
+
+- The DIP is neither dependency injection (DI) nor inversion of control (IoC). Even so, they all work great together.
+- Simply put, DI is about making software components to explicitly declare their dependencies (or collaborators) through their APIs, instead of acquiring them by themselves.
+- The principle of Dependency Inversion refers to the **decoupling** of software modules.
+- This way, instead of high-level modules depending on low-level modules, both will depend on **abstractions**.
+- With DI, the responsibility of providing the component dependencies and wiring object graphs is transferred from the components to the underlying _injection framework_.
+
+//In traditional software development, high-level components depend on low-level ones. Thus, it's hard to reuse the high-level components. The DIP is about inverting the classic dependency between high-level and low-level components by abstracting away the interaction between them.//
 
 #### How would you separate data storage code and business logic code (which uses stored data) in an application?
 
