@@ -8,7 +8,7 @@
 
 WIP
 
-In software engineering, multi-tier architecture (often referred to as n-tier architecture) is a client-server architecture in which, the presentation, the application processing and the data management are logically separate processes. For example, an application that uses middleware to service data requests between a user and a database employs multi-tier architecture. The most widespread use of "multi-tier architecture" refers to three-tier architecture.
+In software engineering, **multi-tier architecture** (often referred to as **n-tier architecture**) is a client-server architecture in which, the presentation, the application processing and the data management are logically separate processes. For example, an application that uses middleware to service data requests between a user and a database employs multi-tier architecture. The most widespread use of "multi-tier architecture" refers to three-tier architecture.
 
 N-tier architecture is also called multi-tier architecture because the software is engineered to have the processing, data management, and presentation functions **physically and logically separated**. That means that these different functions are **hosted on several machines or clusters**, ensuring that services are provided without resources being shared and, as such, these services are delivered at top capacity.
 
@@ -29,7 +29,7 @@ This is not to say that you can only use either the MVC framework or the n-tier 
 
 Benefits: secure, easy to manage, scalable (between tiers), flexible (inside tiers), reusable code.
 
-//And there are n-tier architecture models that have more than three tiers. E.g.: Services + Business domain + Presentation tier + Client tier//
+> There are n-tier architecture models that have more than three tiers. E.g.: Services + Business domain + Presentation tier + Client tier.
 
 #### What are microservices? Advantages and disadvantages?
 

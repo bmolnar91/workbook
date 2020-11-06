@@ -1115,11 +1115,20 @@ C# modifiers are quite similar to those in Java, with several small differences.
    - No defaults.
 
 5. `public`:
+
    - Visible to all.
    - Equivalent to Java's _public_
    - Default for interface _members_, enum _members_, and property accessor / mutator _methods_.
 
-//In C#, the default access modifier for class members is `private`, while in Java, access defaults to anywhere from within the containing package!//
+   |                      | Containing Classes | Derived Classes | Containing Assembly | Anywhere outside | Java equivalent |
+   | -------------------- | :----------------: | :-------------: | :-----------------: | :--------------: | :-------------: |
+   | `private`            |        Yes         |       No        |         No          |        No        |    _private_    |
+   | `protected`          |        Yes         |       Yes       |         No          |        No        |        -        |
+   | `internal`           |        Yes         |       No        |         Yes         |        No        |     default     |
+   | `protected internal` |        Yes         |       Yes       |         Yes         |        No        |   _protected_   |
+   | `public`             |        Yes         |       Yes       |         Yes         |       Yes        |    _public_     |
+
+> In C#, the default access modifier for class members is `private`, while in Java, access defaults to anywhere from within the containing package!
 
 #### What’s the difference between using `override` and `new` keywords when defining method in child class?
 
