@@ -150,6 +150,9 @@ WIP
 
 WIP
 
+- Agile development
+- Waterfall model
+
 #### What is a UML diagram? What kind of diagram types do you know?
 
 WIP
@@ -162,9 +165,49 @@ WIP
 
 WIP
 
+In software engineering, a design pattern is **a general reusable solution** to a commonly occurring problem in software design. It is not a finished design that can be transformed directly into code. It is **a description or template** for how to solve a problem that can be used in many different situations. Design patterns are **formalized best practices** that the programmer can use to solve common problems when designing an application or system.
+
+Object-oriented design patterns are traditionally classified under three categories:
+
+- **Creational**: designing how objects can be created. This often involves isolating the details of object creation so your code isn't dependent on what types of objects there are, and thus doesn't have to be changed when you add a new type of object. E.g. Factory pattern.
+- **Structural**: designing objects to satisfy particular project constraints. These work with the way objects are connected with other objects to ensure that changes in the system don't require changes to those connections. E.g. Decorator patter.
+- **Behavioral**: designing objects that handle particular types of actions within a program. These encapsulate processes that you want to perform, such as interpreting a language, fulfilling a request, moving through a sequence (as in an iterator), or implementing an algorithm. E.g. Iterator pattern.
+
+1. Factory pattern (creational):
+   - 2 types: static factory methods + factory patterns, like Abstract factory
+   - Delegate object creation to the factory class to hide creation logic
+   - Static factory methods returning the same type as the containing class are substitutes for constructors, with several advantages:
+     - Unlike constructors, they have **names**. In some cases this makes our code **more readable**. More importantly, it is possible to have **two different factory methods with the same signature**.
+     - Unlike constructors, they are **not required to create a new object** each time they're invoked. We can add features like pooling, caching, lazy loading, or other extras and limitations. Singleton's `getInstance()` is a good example for this.
+     - Unlike constructors, they can **return an object of any subtype** of their return type.
+2. Singleton pattern (creational):
+   - The singleton pattern is used to limit creation of a class to only one object. This is beneficial when one (and only one) object is needed to coordinate actions across the system.
+   - There are several examples of where only a single instance of a class should exist, including caches, loggers, etc.
+3. Iterator pattern (behavioral):
+   - The iterator pattern is a design pattern in which an iterator is used to traverse a container and access the container's elements. The iterator pattern decouples algorithms from containers in most cases.
+   - For example, the hypothetical algorithm _SearchForElement_ can be implemented generally using a specified type of iterator rather than implementing it as a container-specific algorithm. This allows _SearchForElement_ to be used on any container that supports the required type of iterator.
+
 #### What is the purpose of the Iterator Pattern?
 
 WIP
+
+The purpose of the iterator pattern is to abstract away the underlying structure in which the data are kept. Data-structure can be an array, a tree, a list, etc.
+
+Its important methods in C#:
+
+- `Current` (property)
+- `MoveNext()`
+- `Reset()`
+- (`Dispose()`)
+
+Uses the `yield return` keyword.
+
+You can enumerate objects that import the `IEnumerable` interface with the `foreach` statement. It calls the `GetEnumerator()` method of the class. This `IEnumerator` then iterates through the data structure, yielding items one by one until there's no Next.
+
+Where To Apply Iterator Pattern:
+
+- When you want to access a collection of objects without exposing its internal representation.
+- When there are multiple traversals of objects need to be supported in the collection.
 
 #### What do you know about the SOLID principles?
 
