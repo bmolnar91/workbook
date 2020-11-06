@@ -16,11 +16,11 @@ Not only does your software gain from being able to get services at the best pos
 
 Three tiers:
 
-1. Presentation tier:
+1. **Presentation tier**:
    The top-most level of the application is the **User Interface**. The main function of the interface is to translate tasks and result to something the user can understand.
-2. Logic tier:
+2. **Logic tier**:
    This layer coordinates the application, processes commands, makes logical decisions and evaluations, and performs calculations. It also moves and processes data between two surrounding layers.
-3. Data tier:
+3. **Data tier**:
    Here information is stored and retrieved from a database or file system. The information is then passed back to the logic tier for processing, and then eventually back to the user.
 
 **The separate physical location of these tiers is what differentiates n-tier architecture from the _model-view-controller_ framework that only separates presentation, logic, and data tiers _in concept_.** N-tier architecture also differs from MVC framework in that the former has a middle layer or a logic tier, which facilitates all communications between the different tiers. When you use the MVC framework, the interaction that happens is triangular; instead of going through the logic tier, it is the control layer that accesses the model and view layers, while the model layer accesses the view layer.
@@ -37,11 +37,11 @@ Benefits: secure, easy to manage, scalable (between tiers), flexible (inside tie
 
 WIP
 
-The separation of concerns (SoC) is one of the most fundamental principles in software development.
+The **separation of concerns (SoC)** is one of the most fundamental principles in software development.
 
-It is so crucial that 2 out of 5 SOLID principles (Single Responsibility and Interface Segregation) are direct derivations from this concept.
+It is so crucial that 2 out of 5 SOLID principles (**Single Responsibility** and **Interface Segregation**) are direct derivations from this concept.
 
-The principle is simple: don't write your program as one solid block, instead, break up the code into chunks that are finalized tiny pieces of the system each able to complete a simple distinct job.
+The principle is simple: don't write your program as one solid block, instead, **break up the code into chunks** that are finalized tiny pieces of the system each able to complete a simple distinct job.
 
 #### What is a layered design and why is it important in enterprise applications?
 
@@ -53,10 +53,10 @@ Layered architecture patterns are **n-tiered patterns** where the components are
 
 There are 4 layers in this architecture. From top to bottom:
 
-1. Presentation layer: It contains all categories related to the presentation layer.
-2. Business layer: It contains business logic.
-3. Persistence layer: Used for handling functions like object-relational mapping.
-4. Database layer: This is where all the data is stored.
+1. **Presentation layer**: It contains all categories related to the presentation layer.
+2. **Business layer**: It contains business logic.
+3. **Persistence layer**: Used for handling functions like object-relational mapping.
+4. **Database layer**: This is where all the data is stored.
 
 Pros:
 
@@ -191,10 +191,10 @@ Each attribute has a _type_. Each operation has a _signature_.
 
 **Class visibility**:
 
-- - private
+- \- private
 - ~ package
 - \# protected
-- - public
+- \+ public
 
 **Relationships**:
 
@@ -252,17 +252,17 @@ Object-oriented design patterns are traditionally classified under three categor
 - **Structural**: designing objects to satisfy particular project constraints. These work with the way objects are connected with other objects to ensure that changes in the system don't require changes to those connections. E.g. Decorator patter.
 - **Behavioral**: designing objects that handle particular types of actions within a program. These encapsulate processes that you want to perform, such as interpreting a language, fulfilling a request, moving through a sequence (as in an iterator), or implementing an algorithm. E.g. Iterator pattern.
 
-1. Factory Method pattern (creational):
+1. **Factory Method pattern** (creational):
    - A normal factory produces goods; a software factory produces objects. And not just that — it does so without specifying the exact class of the object to be created. To accomplish this, objects are created by calling a factory method instead of calling a constructor.
    - There's nothing wrong with using `new` to create objects but it comes with the baggage of **tightly coupling** our code to the concrete implementation class, which can occasionally be problematic.
    - Static factory methods returning the same type as the containing class are substitutes for constructors, with several advantages:
      - Unlike constructors, they have **names**. In some cases this makes our code **more readable**. More importantly, it is possible to have **two different factory methods with the same signature**.
      - Unlike constructors, they are **not required to create a new object** each time they're invoked. We can add features like pooling, caching, lazy loading, or other extras and limitations. Singleton's `getInstance()` is a good example for this.
      - Unlike constructors, they can **return an object of any subtype** of their return type.
-2. Singleton pattern (creational):
+2. **Singleton pattern** (creational):
    - The singleton pattern is used to limit creation of a class to only one object. This is beneficial when one (and only one) object is needed to coordinate actions across the system.
    - There are several examples of where only a single instance of a class should exist, including caches, loggers, etc.
-3. Iterator pattern (behavioral):
+3. **Iterator pattern** (behavioral):
    - The iterator pattern is a design pattern in which an iterator is used to traverse a container and access the container's elements. The iterator pattern decouples algorithms from containers in most cases.
    - For example, the hypothetical algorithm _SearchForElement_ can be implemented generally using a specified type of iterator rather than implementing it as a container-specific algorithm. This allows _SearchForElement_ to be used on any container that supports the required type of iterator.
 
@@ -294,41 +294,32 @@ The SOLID principles were first conceptualized by Robert C. Martin. These design
 
 The following 5 concepts make up our SOLID principles:
 
-1. Single Responsibility:
+1. **Single Responsibility** principle:
+   - A class should only have **one responsibility**. Furthermore, it should only have **one reason to change**.
+   - Benefits:
+     - Testing: A class with one responsibility will have far fewer test cases
+     - Lower coupling: Less functionality in a single class will have fewer dependencies
+     - Organization: Smaller, well-organized classes are easier to search than monolithic ones
+   - Book / BookPrinter example
+2. **Open/Closed** principle:
+   - Open for _extension_, Closed for _modification_
+   - In doing so, we stop ourselves from modifying existing code and causing potential new bugs
+   - Guitar example
+3. **Liskov Substitution** principle:
+   - If class _A_ is a subtype of class _B_, then we should be able to replace _B_ with A without disrupting the behavior of our program
+   - Electric car / Motorcar example
+4. **Interface Segregation** principle:
+   - Larger interfaces should be split into smaller ones.
+   - By doing so, we can ensure that implementing classes only need to be concerned about the methods that are of interest to them.
+   - Zookeeper / BearPetter example
+5. **Dependency Inversion** principle:
+   - The DIP is neither dependency injection (DI) nor inversion of control (IoC). Even so, they all work great together.
+   - Simply put, DI is about making software components to explicitly declare their dependencies (or collaborators) through their APIs, instead of acquiring them by themselves.
+   - The principle of Dependency Inversion refers to the **decoupling** of software modules.
+   - This way, instead of high-level modules depending on low-level modules, both will depend on **abstractions**.
+   - With DI, the responsibility of providing the component dependencies and wiring object graphs is transferred from the components to the underlying _injection framework_.
 
-- A class should only have **one responsibility**. Furthermore, it should only have **one reason to change**.
-- Benefits:
-  - Testing: A class with one responsibility will have far fewer test cases
-  - Lower coupling: Less functionality in a single class will have fewer dependencies
-  - Organization: Smaller, well-organized classes are easier to search than monolithic ones
-- Book / BookPrinter example
-
-2. Open/Closed:
-
-- Open for _extension_, Closed for _modification_
-- In doing so, we stop ourselves from modifying existing code and causing potential new bugs
-- Guitar example
-
-3. Liskov Substitution:
-
-- If class _A_ is a subtype of class _B_, then we should be able to replace _B_ with A without disrupting the behavior of our program
-- Electric car / Motorcar example
-
-4. Interface Segregation:
-
-- Larger interfaces should be split into smaller ones.
-- By doing so, we can ensure that implementing classes only need to be concerned about the methods that are of interest to them.
-- Zookeeper / BearPetter example
-
-5. Dependency Inversion:
-
-- The DIP is neither dependency injection (DI) nor inversion of control (IoC). Even so, they all work great together.
-- Simply put, DI is about making software components to explicitly declare their dependencies (or collaborators) through their APIs, instead of acquiring them by themselves.
-- The principle of Dependency Inversion refers to the **decoupling** of software modules.
-- This way, instead of high-level modules depending on low-level modules, both will depend on **abstractions**.
-- With DI, the responsibility of providing the component dependencies and wiring object graphs is transferred from the components to the underlying _injection framework_.
-
-//In traditional software development, high-level components depend on low-level ones. Thus, it's hard to reuse the high-level components. The DIP is about inverting the classic dependency between high-level and low-level components by abstracting away the interaction between them.//
+> In traditional software development, high-level components depend on low-level ones. Thus, it's hard to reuse the high-level components. The DIP is about inverting the classic dependency between high-level and low-level components by abstracting away the interaction between them.
 
 #### How would you separate data storage code and business logic code (which uses stored data) in an application?
 
