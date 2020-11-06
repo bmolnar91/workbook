@@ -1070,7 +1070,7 @@ Any method using an `out` parameter MUST set its value when called.
 
 Stick with `out` unless you need `ref`.
 
-//Also, `ref` and `out` are not just for value types. They also let you reset the object that a reference type is referencing from within a method.//
+> Also, `ref` and `out` are not just for value types. They also let you reset the object that a reference type is referencing from within a method.
 
 #### Can we override private virtual method in C#?
 
@@ -1091,31 +1091,22 @@ WIP
 C# modifiers are quite similar to those in Java, with several small differences. Each member of a class, or the class itself, can be declared with an access modifier to define the scope of permitted access. Classes that are not declared inside other classes can only specify the public or internal modifiers. Nested classes, like other class members, can specify any of the following five access modifiers:
 
 1. `private`:
-
    - Visible only within the given class.
    - Equivalent to Java's _private_.
    - Default for class and struct members, and _nested_ classes, structs and delegates.
-
 2. `protected`:
-
    - Visible only within the given class and from derived classes.
    - No Java equivalents.
    - No defaults.
-
 3. `internal`:
-
    - Visible only within the same assembly.
    - Equivalent to Java's _default / no modifier / "package-private"_
    - Default for _top-level_ classes, structs, interfaces, enums, and delegates.
-
 4. `protected internal`:
-
    - Visible only to the current assembly or types derived from the containing class.
    - Equivalent to Java's _protected_
    - No defaults.
-
 5. `public`:
-
    - Visible to all.
    - Equivalent to Java's _public_
    - Default for interface _members_, enum _members_, and property accessor / mutator _methods_.
