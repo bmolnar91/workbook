@@ -157,9 +157,88 @@ WIP
 
 WIP
 
+The **Unified Modeling Language** is a standard visual modeling language intended to be used for:
+
+- Modeling business and similar processes,
+- Analysis, design, and implementation of software-based systems
+
+There are two major kinds of UML diagram, structure diagrams and behavior diagrams:
+
+- **Structure diagrams**: show the static structure of the system and its parts on different abstraction and implementation levels and how they are related to each other. The elements in a structure diagram represent the meaningful concepts of a system, and may include abstract, real world and implementation concepts.
+- **Behavior diagrams**: show the dynamic behavior of the objects in a system, which can be described as a series of changes to the system over time.
+
+I've used **Class Diagrams** extensively, and **Event Diagrams** occasionally (draw.io).
+
 #### What is a UML class diagram? What are the typical elements?
 
 WIP
+
+Before implementating a bunch of classes, you'll want to have **a conceptual understanding of the system** — that is, what classes do I need? What functionality and information will these classes have? How do they interact with one another? Who can see these classes? And so on.
+
+That's where class diagrams come in. Class diagrams are a neat way of visualizing the classes in your system before you actually start coding them up. They're **a static representation of your system structure**.
+
+Why do we need class diagrams:
+
+1. Planning and modeling ahead of time make programming much easier.
+2. Besides that, making changes to class diagrams is easy, whereas coding differnent functionality after the fact is kind of annoying.
+3. When someone wants to build a house, they don't just grab a hammer and get to work. They need to have a **blueprint** — a design plan — so they can ANALYZE & modify their system.
+4. You don't need much technical/language-specific knowledge to understand it.
+
+**UML Class Notation**:
+
+A class is represented as a box with 3 compartments. The uppermost one contains the **class name**. The middle one contains the **STATE = class attributes** and the last one contains the **BEHAVIOR = class operations** (methods).
+Each attribute has a _type_. Each operation has a _signature_.
+
+**Class visibility**:
+
+- - private
+- ~ package
+- \# protected
+- - public
+
+**Relationships**:
+
+- **Association**:
+  - Associations are relationships between classes in a UML Class Diagram. They are represented by **a solid line between classes**. Associations are typically named using a verb or verb phrase which reflects the real world problem domain.
+  - General association is simply a solid line.
+  - E.g. `Airplane -- Ticket`
+- **Inheritence**:
+  - Represents an **"is-a" relationship**.
+  - An abstract class name is shown in italics.
+  - Represented by **a solid line + an empty arrow** pointing to the extended class.
+  - E.g. `Square --|> Rectangle`
+- **Realization**:
+  - Same as Inheritence but with interfaces.
+  - Interface is shown between two diamond operators + name in italics: `<<interface>> _IMyInterface_`
+  - Represented by **a dashed line + an empty arrow** pointing to the implemented interface.
+  - E.g. `MotorCar ..|> Car`
+- **Aggregation**:
+  - A special type of association.
+  - It represents a **"has-a" relationship**.
+  - Objects of Class1 and Class2 have **separate lifetimes**.
+  - Represented by **a solid line + an empty diamond** pointing to the aggregator class.
+  - E.g. `Tortoise --o Creep`
+- **Composition**
+  - A special type of aggregation where parts are destroyed when the whole is destroyed.
+  - It represents a **"has-a" relationship**.
+  - Objects of Class1 and Class2 have the **same lifetimes**.
+  - Represented by **a solid line + a filled diamond** pointing to the composite class.
+  - E.g. `Heart --* Human`
+- Dependency:
+  - An object of one class might use an object of another class in the code of a method. If the object is **not stored in any field**, then this is modeled as a dependency relationship.
+  - A special type of association.
+  - Exists between two classes if **changes to the definition of one may cause changes to the other** (but not the other way around).
+- Cardinality:
+  - Cardinality is expressed in terms of:
+    - one to one
+    - one to many
+    - many to many
+  - E.g.:
+    - `1`: ecactly one
+    - `0..1`: zero to one
+    - `*`: zero or more
+    - `1..*`: at least one
+    - `{ordered}`: ordered
 
 #### What kind of design patterns do you know? Bring at least 3 examples.
 
@@ -173,9 +252,9 @@ Object-oriented design patterns are traditionally classified under three categor
 - **Structural**: designing objects to satisfy particular project constraints. These work with the way objects are connected with other objects to ensure that changes in the system don't require changes to those connections. E.g. Decorator patter.
 - **Behavioral**: designing objects that handle particular types of actions within a program. These encapsulate processes that you want to perform, such as interpreting a language, fulfilling a request, moving through a sequence (as in an iterator), or implementing an algorithm. E.g. Iterator pattern.
 
-1. Factory pattern (creational):
-   - 2 types: static factory methods + factory patterns, like Abstract factory
-   - Delegate object creation to the factory class to hide creation logic
+1. Factory Method pattern (creational):
+   - A normal factory produces goods; a software factory produces objects. And not just that — it does so without specifying the exact class of the object to be created. To accomplish this, objects are created by calling a factory method instead of calling a constructor.
+   - There's nothing wrong with using `new` to create objects but it comes with the baggage of **tightly coupling** our code to the concrete implementation class, which can occasionally be problematic.
    - Static factory methods returning the same type as the containing class are substitutes for constructors, with several advantages:
      - Unlike constructors, they have **names**. In some cases this makes our code **more readable**. More importantly, it is possible to have **two different factory methods with the same signature**.
      - Unlike constructors, they are **not required to create a new object** each time they're invoked. We can add features like pooling, caching, lazy loading, or other extras and limitations. Singleton's `getInstance()` is a good example for this.
