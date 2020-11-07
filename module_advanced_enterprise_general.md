@@ -108,15 +108,22 @@ WIP
 
 **Testing methods**:
 
-- **Black-box testing**: Testing the functionality of the software without knowing its internal code structure. No programming knowledge is required.
+- **Black-box testing**: Testing the functionality of the software without knowing its internal code structure.
 - **White-box testing**: Testing the software itself with the knowledge of its internal structure. Basically you know the code and write the tests to test the code.
 
 **Levels of testing**:
 
-- **Unit test** -- Test individual component: Specify and test one point of the contract of **a single method** of a class. This should have a very narrow and well defined scope. Complex dependencies and interactions to the outside world are **stubbed** or **mocked**.
-- **Integration test** -- Test component groups: Test the correct inter-operation of multiple subsystems. There is whole spectrum there, from testing integration between two classes, to testing integration with the production environment.
-- **System test** -- Test the integrated System: Tests a system as a **black box**. Dependencies on other systems are often **mocked** or **stubbed** during the test (otherwise it would be more of an integration test).
-- **Acceptance test** -- Test the final System: Test that a feature or use case is correctly implemented. It is similar to an integration test, but with a **focus on the use case** to provide rather than on the components involved.
+1. **Unit test** -- Test individual component (**low-level**): Specify and test one point of the contract of **a single method** of a class. This should have a very narrow and well defined scope. Complex dependencies and interactions to the outside world are **stubbed** or **mocked**. Some characteristics:
+   - examine a single class,
+   - require **just the source code** of the application, instead of a running instance,
+   - are **fast**,
+   - are not affected by external systems, e.g. web services or databases, and
+   - perform little or no I/O, e.g. no real database connections -- **no side-effects**.
+   - **Positive Testing**: testing the system by giving the **valid data**.
+   - **Negative Testing**: testing the system by giving the **invalid data**.
+2. **Integration test** -- Test component groups: Test the correct inter-operation of multiple subsystems. There is whole spectrum there, from testing integration between two classes, to testing integration with the production environment.
+3. **System test** -- Test the integrated System: Tests a system as a **black box**. Dependencies on other systems are often **mocked** or **stubbed** during the test (otherwise it would be more of an integration test).
+4. **Acceptance test** -- Test the final System: Test that a feature or use case is correctly implemented. It is similar to an integration test, but with a **focus on the use case** to provide rather than on the components involved.
 
 **Types of testing**:
 
@@ -127,32 +134,113 @@ WIP
 - **Non-functional testing**:
   - Done against the **non functional requirements**. Most of the criteria are not consider in functional testing so it is used to check the readiness of a system.
   - Performance testing
-  - Security testing
   - Stress testing
+  - Security testing
+  - etc.
 
 #### What is code coverage? Why is it used? How you can measure?
 
 WIP
 
+Code Coverage is a measurement of how many lines/blocks/arcs of your code are executed while the automated tests are running.
+
+While code coverage is a good metric of how much testing you are doing, it is not necessarily a good metric of how well you are testing your product. There are other metrics you should use along with code coverage to ensure the quality.
+
 #### What does mocking mean? How would you do it 'manually' (i. e. without using any fancy framework)?
 
 WIP
+
+Unit testing means testing units _independently_, so in some cases we need to isolate the component under test using what Fowler calls **test doubles** (dummies, **stubs**, fakes, **mocks**).
+
+In short, mocking is creating units (class instances) that **simulate the behaviour** of real units.
+
+Mocking is the act of **removing external dependencies** from a unit test in order to **create a controlled environment** around it. Typically, we mock all other classes that interact with the class that we want to test. Common targets for mocking are:
+
+- Database connections,
+- Web services,
+- Classes that are slow,
+- Classes with side effects, and
+- Classes with non-deterministic behavior.
+
+Mocks and stubs are fake Java classes that replace these external dependencies. Most of the time, we're fine using only stubs.
+
+**Stub**: A stub is a fake class that comes with preprogrammed return values. It's injected into the class (component) under test to give you absolute control over what's being tested as input. A typical stub is a **database connection** that allows you to mimic any scenario without having a real database.
+
+**Mock**: A mock can be examined after the test is finished for its interactions with the class (component) under test. For example, you can ask it whether a method was called or how many times it was called. Typical mocks are **classes with side effects** that need to be examined, e.g. a class that sends emails or sends data to another external service.
+
+We usually use libraries (Mockito, _NSubstitute_, Moq) that make mocking of objects easy. To make mocking possible you should use the **Dependency Injection** design pattern in your code!
+
+Without a library, the easiest way would be to create an **inner class** that implements the interface, implement the methods to return the data that you want, then **use it in the test case**.
 
 #### What is a test case? What is an assertion? Give examples!
 
 WIP
 
+A test case is represented by a single test method. An assertion asserts that the _expected_ outcome is the same as the _actual_ outcome.
+
+Example:
+
+```csharp
+[Test]
+public void ReadLines_Given1And1_ShouldReturnFirstLine()
+{
+    // Arrange
+    int fromLine = 1;
+    int toLine = 1;
+    _filePartReader.Setup(SHORT_FILE_PATH, fromLine, toLine);
+    // Act
+    string expected = TestUtils.NormalizeLineEnds("this is a sentence\n");
+    string actual = TestUtils.NormalizeLineEnds(_filePartReader.ReadLines());
+    // Assert
+    Assert.AreEqual(expected, actual);
+}
+```
+
 #### What is TDD? What are the benefits?
 
 WIP
+
+**Test-driven development (TDD)** is a software development process that relies on the repetition of a very short development cycle:
+
+1. requirements are turned into very specific test cases
+2. then the code is created / improved so that the tests pass
+
+Benefits:
+
+- You get immediate feedback on if your code is working, so you can **find bugs faster**
+- By seeing the test go from red to green, you know that you have both a working **regression test**, and working code
+- You gain **confidence to refactor existing code**, which means you can clean up code without worrying what it might break
+- At the end you have a suite of regression tests that can be run during automated builds to give you greater confidence that your codebase is solid
+
+Other benefits:
+
+- Better understanding of what you're going to write: When you write the test cases first, you think more critically about the corner cases. It's then easier to address them when you write the code and ensure that they're accurate.
+- Enforces the policy of writing tests a little better
+- Speeds up development in many cases
 
 #### What are the unit testing best practices? (Eg. how many assertion should a test case contain?)
 
 WIP
 
+- Never push a failing test to the repository.
+- Use separate folder for tests as you might not want to deliver (ie. give to the user) your test along with the production code.
+- Give descriptive names to test methods so that you can see what fails easier
+- Write tests for the error cases and corner cases.
+- Check only a single thing in one test method (practically: use 1 assert per test method)
+- Use assert (or expected exception) in all of the test methods.
+- Use the expected result as the first argument of an assert method: `Assert.AreEqual(expected, actual);`
+
 #### What is arrange/act/assert pattern?
 
 WIP
+
+A **Unit Test** tests a single **"Act"** in a program, typically a single method call on an object instance. **Arrange, Act, Assert (AAA)** organizes a unit test into three parts: _before, during and after the Act_.
+
+**Arrange**: Everything up to, but not including, the method call of interest. We set up the **state** that we want the world (the object that we're calling the method on, other objects that it interacts with, etc.) to be in when we call the method.
+
+**Act**: The call of the method we're testing.
+
+**Assert**: The rest of the test, where we Assert that the Act had the effects on the world that we expect.
 
 ### DevOps
 

@@ -396,9 +396,9 @@ This principle states that a class should only have **one responsibility**. Furt
 
 Some of its benefits:
 
-- Lower coupling -- Less functionality in a single class will have fewer dependencies.
-- Testing -- A class with one responsibility will have far fewer test cases.
-- Organization -- Smaller, well-organized classes are easier to search than monolithic ones.
+- **Lower coupling**: Less functionality in a single class will have fewer dependencies.
+- **Testing**: A class with one responsibility will have far fewer test cases.
+- **Organization**: Smaller, well-organized classes are easier to search than monolithic ones.
 
 //Stands for 'S' in _SOLID_.//
 
@@ -1452,7 +1452,7 @@ Marshaling is needed because the types in the managed and unmanaged code are dif
 
 WIP
 
-NUnit uses attributes to control how tests are executed.
+NUnit uses **attributes** to control how tests are executed.
 
 #### What is the GAC? What problem does it solve?
 
