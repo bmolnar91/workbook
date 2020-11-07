@@ -150,7 +150,7 @@ While code coverage is a good metric of how much testing you are doing, it is no
 
 WIP
 
-Unit testing means testing units _independently_, so in some cases we need to isolate the component under test using what Fowler calls **test doubles** (dummies, **stubs**, fakes, **mocks**).
+Unit testing means testing units _independently_, so in some cases we need to isolate the component under test using what Martin **Fowler** calls **test doubles** (dummies, stubs, fakes, mocks).
 
 In short, mocking is creating units (class instances) that **simulate the behaviour** of real units.
 
@@ -306,8 +306,8 @@ Each attribute has a _type_. Each operation has a _signature_.
 **Class visibility**:
 
 - \- private
-- ~ package
 - \# protected
+- ~ package
 - \+ public
 
 **Relationships**:
@@ -316,15 +316,15 @@ Each attribute has a _type_. Each operation has a _signature_.
   - Associations are relationships between classes in a UML Class Diagram. They are represented by **a solid line between classes**. Associations are typically named using a verb or verb phrase which reflects the real world problem domain.
   - General association is simply a solid line.
   - E.g. `Airplane -- Ticket`
-- **Inheritence**:
+- **Generalization (inheritance)**:
   - Represents an **"is-a" relationship**.
   - An abstract class name is shown in italics.
-  - Represented by **a solid line + an empty arrow** pointing to the extended class.
+  - Represented by **a solid line + an empty arrow** pointing to the **extended** class.
   - E.g. `Square --|> Rectangle`
 - **Realization**:
   - Same as Inheritence but with interfaces.
   - Interface is shown between two diamond operators + name in italics: `<<interface>> _IMyInterface_`
-  - Represented by **a dashed line + an empty arrow** pointing to the implemented interface.
+  - Represented by **a dashed line + an empty arrow** pointing to the **implemented** interface.
   - E.g. `MotorCar ..|> Car`
 - **Aggregation**:
   - A special type of association.
@@ -363,7 +363,7 @@ In software engineering, a design pattern is **a general reusable solution** to 
 Object-oriented design patterns are traditionally classified under three categories:
 
 - **Creational**: designing how objects can be created. This often involves isolating the details of object creation so your code isn't dependent on what types of objects there are, and thus doesn't have to be changed when you add a new type of object. E.g. Factory pattern.
-- **Structural**: designing objects to satisfy particular project constraints. These work with the way objects are connected with other objects to ensure that changes in the system don't require changes to those connections. E.g. Decorator patter.
+- **Structural**: designing objects to satisfy particular project constraints. These work with the way objects are connected with other objects to ensure that changes in the system don't require changes to those connections. E.g. **Decorator pattern**.
 - **Behavioral**: designing objects that handle particular types of actions within a program. These encapsulate processes that you want to perform, such as interpreting a language, fulfilling a request, moving through a sequence (as in an iterator), or implementing an algorithm. E.g. Iterator pattern.
 
 1. **Factory Method pattern** (creational):
@@ -416,7 +416,7 @@ The following 5 concepts make up our SOLID principles:
      - Organization: Smaller, well-organized classes are easier to search than monolithic ones
    - Book / BookPrinter example
 2. **Open/Closed** principle:
-   - Open for _extension_, Closed for _modification_
+   - _Open_ for **extension**, _Closed_ for **modification**
    - In doing so, we stop ourselves from modifying existing code and causing potential new bugs
    - Guitar example
 3. **Liskov Substitution** principle:
