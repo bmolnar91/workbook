@@ -106,6 +106,30 @@ It separates what data access the application needs from how these needs can be 
 
 WIP
 
+**Testing methods**:
+
+- **Black-box testing**: Testing the functionality of the software without knowing its internal code structure. No programming knowledge is required.
+- **White-box testing**: Testing the software itself with the knowledge of its internal structure. Basically you know the code and write the tests to test the code.
+
+**Levels of testing**:
+
+- **Unit test** -- Test individual component: Specify and test one point of the contract of **a single method** of a class. This should have a very narrow and well defined scope. Complex dependencies and interactions to the outside world are **stubbed** or **mocked**.
+- **Integration test** -- Test component groups: Test the correct inter-operation of multiple subsystems. There is whole spectrum there, from testing integration between two classes, to testing integration with the production environment.
+- **System test** -- Test the integrated System: Tests a system as a **black box**. Dependencies on other systems are often **mocked** or **stubbed** during the test (otherwise it would be more of an integration test).
+- **Acceptance test** -- Test the final System: Test that a feature or use case is correctly implemented. It is similar to an integration test, but with a **focus on the use case** to provide rather than on the components involved.
+
+**Types of testing**:
+
+- **Functional testing**:
+  - Functional Testing is the type of testing done against the **business requirements** of application. It is a **black box type** of testing (mostly).
+  - **Smoke test** (aka **sanity check**): A simple integration test where we just check that when the _system under test (SUT)_ is invoked it returns normally and does not blow up. Smoke testing is **an analogy with plumbing**, where a system of pipes is literally filled by smoke and then checked visually. If anything smokes, the system is leaky.
+  - **Regression test**: A test that was written **when a bug was fixed**. It ensures that this specific bug will not occur again. The full name is "non-regression test". It can also be a test made **prior to changing an application** to make sure the application provides the same outcome.
+- **Non-functional testing**:
+  - Done against the **non functional requirements**. Most of the criteria are not consider in functional testing so it is used to check the readiness of a system.
+  - Performance testing
+  - Security testing
+  - Stress testing
+
 #### What is code coverage? Why is it used? How you can measure?
 
 WIP
