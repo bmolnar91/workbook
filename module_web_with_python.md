@@ -148,7 +148,7 @@ Symmetric Encryption:
 - A public key is used on the sender's side when the data is encrypted, which happens for example when you are sending a message to somebody else, the server then decrypts the message according to the public key and encrypts it again with the receiver's public key, so then he will be able to decrypt it with his own public key and get the information.
 - The problem here is that the server / "man in the middle" (ISPs for example) will know both the sender and the receiver's public key and will be able to decrypt the private message.
 
-Asymmetric Encryption:
+**Asymmetric Encryption**:
 
 - Instead of just one public key, you have a **key pair**: a _public key_ and a _private key_.
 - The algorithm, that is used to generate the two keys, will make sure that the key pair is mathematically _linked_ to each other.
@@ -558,7 +558,7 @@ XML (Extensible Markup Language):
 
 HTML (HyperText Markup Language):
 
-- Designed to _display_ data - with focus on how data looks.
+- Designed to _display_ (present) data - with focus on how data looks.
 
 XHTML:
 
@@ -644,10 +644,9 @@ An example of asynchronous updating is Google's "Google Suggest" feature. When y
 
 #### What is DOM and how to manipulate it from Javascript?
 
-The **Document Object Model (DOM)** is a programming interface for HTML and XML documents. It represents the page so that programs can change the document structure, style, and content. The DOM represents the document as nodes and objects. That way, programming languages can connect to the page.
+The DOM is **an object-oriented representation of the web page**, which can be modified with a scripting language such as JavaScript.
 
-A Web page is a document. This document can be either displayed in the browser window or as the HTML source. But it is the same document in both cases. The Document Object Model (DOM) represents that same document so it can be manipulated.
-The DOM is an object-oriented representation of the web page, which can be modified with a scripting language such as JavaScript.
+A Web page is a document. This document can be either displayed in the browser window or as the HTML source. But it is the same document in both cases. The **Document Object Model (DOM)** -- a programming interface for HTML and XML documents -- represents that same document so it can be manipulated (structure, style, content). The DOM **represents the document as nodes and objects**. That way, programming languages can connect to the page.
 
 The **DOM** is the way Javascript sees its containing pages' data. It is an object that includes how the HTML/XHTML/XML is formatted, as well as the browser state.
 
@@ -761,7 +760,7 @@ It solves a very specific problem: it allows multiple Python projects that have 
 
 #### What is a API?
 
-An **API** (**Application Programming Interface**) is a gate (interface) in a software, that allows connectivity for the outside word. Usually one API endpoint lets you interact with one certain part of the given software.
+An **API (Application Programming Interface)** is a gate (interface) in a software, that allows connectivity for the outside word. Usually one API endpoint lets you interact with one certain part of the given software.
 
 #### What is REST API?
 
@@ -781,11 +780,11 @@ The 5 key principles are:
 
 In short, if you make a RESTful API, you ensure other developers can understand the structure easily compared to creating endpoints without a standard.
 
-//RESTful APIs are stateless backends.//
+> RESTful APIs are stateless backends.
 
-//The emphasis is on that we don't have to get back a new page (HTML document) after every request -- only data (JSON etc).//
+> The emphasis is on that we don't have to get back a new page (HTML document) after every request -- only data (JSON etc).
 
-//Many of these API endpoints are not going to get targeted directly by the browser. The user won't enter any of these URLs.//
+> Many of these API endpoints are not going to get targeted directly by the browser. The user won't enter any of these URLs.
 
 RESTful constraints:
 
@@ -813,36 +812,45 @@ See above
 
 **TCP/IP**, or the **Transmission Control Protocol/Internet Protocol**, is a suite of communication protocols used to interconnect network devices on the internet. TCP/IP can also be used as a communications protocol in a private network (an intranet or an extranet).
 
-Application layer:
+**Physical layer**:
 
-- Provides applications with standardized data exchange. Its protocols include:
-  - **HTTP** (**Hypertext Transfer Protocol**)
-  - **FTP** (**File Transfer Protocol**)
-  - **POP3** (**Post Office Protocol 3**)
-  - SMTP (Simple Mail Transfer Protocol)
-  - SNMP (Simple Network Management Protocol)
-
-Transport layer:
-
-- Responsible for maintaining end-to-end communications across the network. TCP handles communications between hosts and provides flow control, multiplexing and reliability. The transport protocols include TCP and User Datagram Protocol (UDP), which is sometimes used instead of TCP for special purposes.
-
-Network layer:
-
-- Also called the _internet layer_, deals with packets and connects independent networks to transport the packets across network boundaries.
-- The network layer protocols are:
-  - **IP** (**Internet Protocol**)
-  - ICMP (Internet Control Message Protocol), which is used for error reporting
-
-Physical layer:
-
-- Consists of protocols that operate only on a link -- the network component that interconnects nodes or hosts in the network.
+- Consists of protocols that operate only on a **link** -- the network component that interconnects nodes or hosts in the network.
 - The protocols in this layer include:
   - **Ethernet** for local area networks (LANs)
+  - Wi-Fi
   - ARP (Address Resolution Protocol)
+
+**Network layer**:
+
+- Also called the _internet layer_, deals with **packets** and connects independent networks to transport the packets across network boundaries.
+- The network layer protocols are:
+- **IP (Internet Protocol)** -- IPv4, IPv6
+- ICMP (Internet Control Message Protocol), which is used for error reporting
+
+**Transport layer**:
+
+- Responsible for maintaining end-to-end communications across the network. TCP handles communications between hosts and provides flow control, multiplexing and reliability.
+- The transport protocols include:
+  - **TCP (Transmission Control Protocol)**
+  - **UDP (User Datagram Protocol)**
+  - etc
+
+**Application layer**:
+
+- Provides applications with standardized data exchange. Its protocols include:
+- **DNS (Domain Name System)**
+- **HTTP** (**Hypertext Transfer Protocol**) / HTTPS (Hypertext Transfer Protocol Secure)
+- **_TLS_/SSL (_Transport Layer Security_ / Secure Sockets Layer)** = ENCRYPTION PROTOCOL
+- **FTP** (**File Transfer Protocol**)
+- **POP3** (**Post Office Protocol 3**)
+- IMAP (Internet Message Access Protocol)
+- SMTP (Simple Mail Transfer Protocol)
+- Telnet
+- etc.
 
 #### What’s the difference between TCP and UDP?
 
-TCP is a connection-oriented protocol and UDP is a connection-less protocol.
+TCP is a connection-based protocol and UDP is a connection-less protocol.
 
 TCP establishes a connection between a sender and receiver before data can be sent. UDP does not establish a connection before sending data.
 
@@ -909,7 +917,7 @@ Body:
 
 #### What is DNS? How does it work?
 
-The **Domain Name System (DNS)** is the phonebook of the Internet. When users type domain names such as 'google.com' or 'nytimes.com' into web browsers, DNS is responsible for finding the correct IP address for those sites. Browsers then use those addresses to communicate with origin servers or CDN edge servers to access website information. This all happens thanks to DNS servers: machines dedicated to answering DNS queries.
+The **Domain Name System (DNS)** is the **phonebook of the Internet**. When users type domain names such as 'google.com' or 'nytimes.com' into web browsers, DNS is responsible for finding the correct IP address for those sites. Browsers then use those addresses to communicate with origin servers or CDN edge servers to access website information. This all happens thanks to **DNS servers**: machines dedicated to answering **DNS queries**.
 
 #### What is a web server?
 
@@ -947,13 +955,14 @@ Using the **Set-Cookie** header field, an HTTP server can pass **name/value pair
 
 In original **waterfall model**, the following phases are followed in order:
 
-- System and software requirements: captured in a product requirements document
-- Analysis: resulting in models, schema, and business rules
-- Design: resulting in the software architecture
-- Coding: the development, proving, and integration of software
-- Testing: the systematic discovery and debugging of defects
-- Operations: the installation, migration, support, and maintenance of complete systems
-- Thus the waterfall model maintains that one should move to a phase only when its preceding phase is reviewed and verified.
+1. System and software **requirements**: captured in a product requirements document
+2. **Analysis**: resulting in models, schema, and business rules
+3. **Design**: resulting in the software architecture
+4. **Coding**: the development, proving, and integration of software
+5. **Testing**: the systematic discovery and debugging of defects
+6. **Operations**: the installation, migration, support, and maintenance of complete systems
+
+Thus the waterfall model maintains that one should move to a phase only when its preceding phase is reviewed and verified.
 
 **Agile** project management:
 
@@ -1019,3 +1028,51 @@ The goal of the retrospective is for the team members to discuss among themselve
 #### Explain, when would you recommend to use the waterfall methodology?
 
 The waterfall development model originates in the manufacturing and construction industries: highly structured physical environments in which after-the-fact changes are prohibitively costly, if not impossible.
+
+## Bonus
+
+### General
+
+#### What happens when you type a URL in the browser and press enter?
+
+1. You type maps.google.com into the address bar of your browser and **press ENTER**.
+2. The **browser checks the cache for a DNS record** to find the corresponding IP address of maps.google.com.
+   - To find the DNS record, the browser checks 4 caches:
+     1. First, it checks the **browser cache**. The browser maintains a repository of DNS records for a fixed duration for websites you have previously visited. So, it is the first place to run a DNS query.
+     2. Second, the browser checks the **OS cache**. If it is not in the browser cache, the browser will make a system call (i.e., gethostname on Windows) to your underlying computer OS to fetch the record since the OS also maintains a cache of DNS records.
+     3. Third, it checks the **router cache**. If it's not on your computer, the browser will communicate with the router that maintains its own cache of DNS records.
+     4. Fourth, it checks the **ISP cache**. If all steps fail, the browser will move on to the ISP. Your ISP maintains its own DNS server, which includes a cache of DNS records, which the browser would check with the last hope of finding your requested URL.
+3. If the requested URL is not in the cache, **ISP's DNS server initiates a DNS query** to find the IP address of the server that hosts maps.google.com.
+   - The purpose of a DNS query is to search multiple DNS servers on the internet until it finds the correct IP address for the website. This type of search is called a **recursive search** since the search will repeatedly continue from a DNS server to a DNS server until it either finds the IP address we need or returns an error response saying it was unable to find it.
+   - If all goes well, the browser gets back the correct **IP address**.
+4. The browser initiates a **TCP connection** with the server.
+   - Once the browser receives the correct IP address, it will build a connection with the server that matches the IP address to transfer information -- using TCP in this case (and most other cases).
+   - To transfer _data packets_ between your computer (client) and the server, a TCP connection is established using a process called the **TCP/IP three-way handshake**. This is a three-step process where the client and the server **exchange SYN (synchronize) and ACK (acknowledge) messages** to establish a connection:
+     1. The client machine sends a **SYN packet** to the server over the internet, asking if it is open for new connections. _client_ --SYN--> _server_
+     2. If the server has open ports that can accept and initiate new connections, it'll respond with an ACKnowledgment of the SYN packet using a **SYN/ACK packet**. _client_ <--SYN/ACK-- _server_
+     3. The client will receive the SYN/ACK packet from the server and will acknowledge it by sending an **ACK packet**. _client_ --ACK--> _server_
+   - Then a TCP connection is established for data transmission!
+5. The browser sends an **HTTP request** to the webserver.
+   - Once the TCP connection is established, it is time to start transferring data!
+   - The browser will send a **GET request** asking for maps.google.com web page.
+   - This request will also contain additional information such as:
+     - _browser identification_ (**User-Agent** header)
+     - _types of requests that it will accept_ (**Accept** header)
+     - _connection headers_ (**Connection** header, like _Connection: Keep-Alive_) asking it to keep the TCP connection alive _for additional requests_
+   - It will also pass information taken from **cookies** the browser has in store for this domain.
+6. The server **handles the request**.
+   - The server contains a **webserver** (i.e., Apache, IIS) that receives the request from the browser and passes it to a _request handler_ to read and generate a response.
+   - The **request handler** is a program (written in ASP.NET, PHP, Ruby, etc.) that reads the request, its headers, and cookies to check what is being requested and also update the information on the server if needed. Then it will **assemble a response in a particular format** (JSON, XML, HTML).
+7. The server sends out an **HTTP response**.
+   - The server response contains the **web page you requested** as well as the **status code**, compression type (Content-Encoding), how to cache the page (Cache-Control), **any cookies to set**, privacy information, etc.
+   - Status codes:
+     - **1xx** indicates an informational message only
+     - **2xx** indicates success of some kind
+     - **3xx** redirects the client to another URL
+     - **4xx** indicates an error on the client's part
+     - **5xx** indicates an error on the server's part
+8. The browser **displays the HTML content** (for HTML responses, which is the most common).
+   - The browser displays the HTML content in phases.
+   - First, it will **render the bare bone HTML skeleton**.
+   - Then it will check the HTML tags and **send out GET requests for additional elements** on the web page, such as images, CSS stylesheets, JavaScript files, etc. These static files are **cached by the browser**, so it doesn't have to fetch them again the next time you visit the page.
+   - In the end, you'll see maps.google.com appearing on your browser.
