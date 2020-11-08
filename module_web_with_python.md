@@ -812,20 +812,23 @@ See above
 
 **TCP/IP**, or the **Transmission Control Protocol/Internet Protocol**, is a suite of communication protocols used to interconnect network devices on the internet. TCP/IP can also be used as a communications protocol in a private network (an intranet or an extranet).
 
-**Physical layer**:
+The first layer is the application layer on the behalf of the sender and Link layer on the behalf of the receiver.
 
-- Consists of protocols that operate only on a **link** -- the network component that interconnects nodes or hosts in the network.
+**Link layer (Network Access layer, Physical layer)**:
+
+- Looks out for **hardware addressing**, and the protocols present in this layer allows for the **physical transmission of data**.
 - The protocols in this layer include:
   - **Ethernet** for local area networks (LANs)
   - Wi-Fi
+  - DSL
   - ARP (Address Resolution Protocol)
 
-**Network layer**:
+**Internet layer (Network layer)**:
 
-- Also called the _internet layer_, deals with **packets** and connects independent networks to transport the packets across network boundaries.
+- Deals with **packets** and connects independent networks to transport the packets across network boundaries.
 - The network layer protocols are:
-- **IP (Internet Protocol)** -- IPv4, IPv6
-- ICMP (Internet Control Message Protocol), which is used for error reporting
+  - **IP (Internet Protocol)** -- IPv4, IPv6
+  - ICMP (Internet Control Message Protocol), which is used for error reporting
 
 **Transport layer**:
 
@@ -837,7 +840,8 @@ See above
 
 **Application layer**:
 
-- Provides applications with standardized data exchange. Its protocols include:
+Provides applications with **standardized data exchange**. Its protocols include:
+
 - **DNS (Domain Name System)**
 - **HTTP** (**Hypertext Transfer Protocol**) / HTTPS (Hypertext Transfer Protocol Secure)
 - **_TLS_/SSL (_Transport Layer Security_ / Secure Sockets Layer)** = ENCRYPTION PROTOCOL
@@ -1053,12 +1057,11 @@ The waterfall development model originates in the manufacturing and construction
      3. The client will receive the SYN/ACK packet from the server and will acknowledge it by sending an **ACK packet**. _client_ --ACK--> _server_
    - Then a TCP connection is established for data transmission!
 5. The browser sends an **HTTP request** to the webserver.
-   - Once the TCP connection is established, it is time to start transferring data!
    - The browser will send a **GET request** asking for maps.google.com web page.
    - This request will also contain additional information such as:
-     - _browser identification_ (**User-Agent** header)
-     - _types of requests that it will accept_ (**Accept** header)
-     - _connection headers_ (**Connection** header, like _Connection: Keep-Alive_) asking it to keep the TCP connection alive _for additional requests_
+     - browser identification (**User-Agent** header)
+     - types of requests that it will accept (**Accept** header)
+     - connection headers (**Connection** header, like _Connection: Keep-Alive_) asking it to keep the TCP connection alive for additional requests
    - It will also pass information taken from **cookies** the browser has in store for this domain.
 6. The server **handles the request**.
    - The server contains a **webserver** (i.e., Apache, IIS) that receives the request from the browser and passes it to a _request handler_ to read and generate a response.
