@@ -832,7 +832,7 @@ The first layer is the application layer on the behalf of the sender and Link la
 
 **Transport layer**:
 
-- Responsible for maintaining end-to-end communications across the network. TCP handles communications between hosts and provides flow control, multiplexing and reliability.
+- Responsible for **maintaining end-to-end communications** across the network. TCP handles communications between hosts and provides flow control, multiplexing and reliability.
 - The transport protocols include:
   - **TCP (Transmission Control Protocol)**
   - **UDP (User Datagram Protocol)**
@@ -854,9 +854,19 @@ Provides applications with **standardized data exchange**. Its protocols include
 
 #### What’s the difference between TCP and UDP?
 
-TCP is a connection-based protocol and UDP is a connection-less protocol.
+**TCP (Transmission Control Protocol)**:
+TCP is a **connection-based** protocol that provides a reliable flow of data between two computers. When two applications want to communicate to each other reliably, they establish a connection and send data back and forth over that connection. TCP guarantees that data sent from one end of the connection actually gets to the other end and in the **same order it** was sent. Otherwise, an error is reported.
 
-TCP establishes a connection between a sender and receiver before data can be sent. UDP does not establish a connection before sending data.
+The Hypertext Transfer Protocol (HTTP), File Transfer Protocol (FTP), and Telnet are all examples of applications that require a reliable communication channel. The order in which the data is sent and received over the network is critical to the success of these applications. When HTTP is used to read from a URL, the data must be received in the order in which it was sent. Otherwise, you end up with a jumbled HTML file, a corrupt zip file, or some other invalid information.
+
+**UDP (User Datagram Protocol)**:
+UDP is a protocol that sends **independent packets of data**, called **datagrams**, from one computer to another with **no guarantees about arrival**. UDP is not connection-based like TCP.
+
+For many applications, the guarantee of reliability is critical to the success of the transfer of information from one end of the connection to the other. However, other **forms of communication don't require such strict standards**. In fact, they **may be slowed down** by the extra overhead or the reliable connection may invalidate the service altogether.
+
+An example: ping. The purpose of the **ping command** is to test the communication between two programs over the network. In fact, ping needs to know about dropped or out-of-order packets to determine how good or bad the connection is. A reliable channel would invalidate this service altogether.
+
+> TCP is a connection-based protocol and UDP is a connection-less protocol, meaning: TCP establishes a connection between a sender and receiver before data can be sent. UDP does not establish a connection before sending data.
 
 #### How does an HTTP Request look like? What are the most relevant HTTP header fields?
 
