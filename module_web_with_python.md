@@ -893,7 +893,7 @@ The _start-line_ and _HTTP headers_ of the HTTP message are collectively known a
 
 HTTP requests are messages sent by the client to initiate an action on the server.
 
-**Start-line**:
+**Request line (Start-line)**:
 
 1. An **HTTP method**, a verb (like `GET`, `PUT` or `POST`) or a noun (like `HEAD` or `OPTIONS`), that describes the action to be performed. For example, `GET` indicates that a resource should be fetched or `POST` means that data is pushed to the server.
 2. The request **target**, usually a URL.
@@ -906,20 +906,19 @@ A typical start-line looks like this: `GET http://developer.mozilla.org/en-US/do
 - **General headers** apply to both requests and responses, but with no relation to the data transmitted in the body. The most common ones:
   - `Date`: Contains the date and time at which the message was originated. E.g. `Date: Wed, 21 Oct 2015 07:28:00 GMT`.
   - `Cache-Control`: Holds directives (instructions) for caching in both requests and responses. A given directive in a request does not mean the same directive should be in the response.
-  - `Connection`: Controls whether or not the network connection stays open after the current transaction finishes. If the value sent is keep-alive, the connection is persistent and not closed, allowing for subsequent requests to the same server to be done. E.g. `Connection: keep-alive`, `Connection: close`.
-- **Request headers** contain more information about the resource to be fetched, or about the client requesting the resource. The most important ones:
+  - `Connection`: Controls whether or not the network connection stays open after the current transaction finishes. If the value sent is keep-alive, the connection is persistent and not closed, allowing for subsequent requests to the same server to be done. (E.g. _Connection: keep-alive_, _Connection: close_).
+- **Request headers** allow a client to provide information about itself to a server, and provide more _details about a request_, and _control over how it is carried out_. The most important ones:
   - `Host`: Specifies the domain of the server it is communicating with. **Mandatory in HTTP/1.1 requests**, and if it is omitted then a `400` response will be triggered.
-  - `Referer`: Tells the server where the requested URL came from. It will almost always be another URL, or else empty for a direct request (for example, the requester typed the URL into a browser address bar). E.g. `Referer: https://www.quora.com/profile/Lee-Dowthwaite`. Fun fact: "referer" will persist forever in this misspelled state.
-  - `User-Agent`: Identifies the **requesting system**. It is a string composed of a sequence of so-called _product tokens_ with optional comments. E.g. `User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36`. Fun fact: All UA headers start with Mozilla 5.0 because of historical reasons (IE had to fake being Mozilla, and so others followed).
-  - `Accept`: The Accept header is how a **client** (browser or application) tells the server **what kind of content it can accept** in the HTTP response. The content types are comma-separated, and take the form **type/subtype** (MIME types?) such as text/html, application/json or audio/mpeg. Asterisks can be used as wildcards in place of either type or subtype. E.g. `Accept: application/graphql, application/json; q=0.8, application/xml; q=0.7`.
+  - `Referer`: Tells the server where the requested URL came from. It will almost always be another URL, or else empty for a direct request (for example, the requester typed the URL into a browser address bar). (E.g. _Referer: https://www.quora.com/profile/Lee-Dowthwaite_). Fun fact: "referer" will persist forever in this misspelled state.
+  - `User-Agent`: Identifies the **requesting system**. It is a string composed of a sequence of so-called _product tokens_ with optional comments. (E.g. _User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36_). Fun fact: All UA headers start with Mozilla 5.0 because of historical reasons (IE had to fake being Mozilla, and so others followed).
+  - `Accept`: The Accept header is how a **client** (browser or application) tells the server **what kind of content it can accept** in the HTTP response. The content types are comma-separated, and take the form **type/subtype** (MIME types) such as text/html, application/json or audio/mpeg. Asterisks can be used as wildcards in place of either type or subtype. (E.g. _Accept: application/graphql, application/json; q=0.8, application/xml; q=0.7_).
   - `Authorization`: Extremely important for any website or application that requires **authorization of the user** before allowing access to resources (Basic, Bearer, Digest).
-  - `Cookie`: Contains stored HTTP cookies previously sent by the server with the `Set-Cookie` header. E.g. `Cookie: PHPSESSID=298zf09hf012fh2; csrftoken=u32t4o3tb3gg43; _gat=1`.
+  - `Cookie`: Contains stored HTTP cookies previously sent by the server with the `Set-Cookie` header. (E.g. _Cookie: PHPSESSID=298zf09hf012fh2; csrftoken=u32t4o3tb3gg43; \_gat=1_).
 - **Entity headers** contain information about the **body** of the resource. Key concept: HTTP entity headers appear in either request or response messages that carry an entity in the message body. They describe the nature of the entity, including its type, language and encoding, to facilitate the proper processing and presentation of the entity by the device receiving it.
-  - `Content-Type`: Indicates the media type (~ MIME) of the resource. E.g. `Content-Type: text/html; charset=UTF-8`, `Content-Type: multipart/form-data; boundary=something`.
+  - `Content-Type`: Indicates the media type (MIME type) of the resource. (E.g. _Content-Type: text/html; charset=UTF-8`,`Content-Type: multipart/form-data; boundary=something_).
   - `Content-Length`: Indicates the **size** of the entity-body, in bytes, sent to the recipient.
-  - `Content-Language`: Describes the **language(s) intended for the audience**, so that it allows a user to differentiate according to the users' own preferred language. E.g. `Content-Language: en-US`.
-  - `Content-Encoding`: Used to compress the media-type. E.g. `Content-Encoding: gzip`.
-  - apply to the **body** of the request. There is no such header transmitted if there is no body in the request.
+  - `Content-Language`: Describes the **language(s) intended for the audience**, so that it allows a user to differentiate according to the users' own preferred language. (E.g. _Content-Language: en-US_).
+  - `Content-Encoding`: Used to compress the media-type. (E.g. _Content-Encoding: gzip_).
 
 **Body**:
 
@@ -930,7 +929,7 @@ A typical start-line looks like this: `GET http://developer.mozilla.org/en-US/do
 
 #### How does an HTTP Response look like? What are the most relevant HTTP header fields?
 
-**Status line** (the start line of an HTTP response):
+**Status line (Start-line)** (the start line of an HTTP response):
 
 1. The **HTTP version**, usually `HTTP/1.1`.
 2. A **status code**, indicating success or failure of the request. Common status codes are `200`, `404`, or `302`
