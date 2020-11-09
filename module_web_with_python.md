@@ -889,11 +889,36 @@ HTTP requests, and responses, share similar structure and are composed of:
 
 The _start-line_ and _HTTP headers_ of the HTTP message are collectively known as the **head** of the requests, whereas its _payload_ is known as the **body**.
 
+**Headers**:
+
+- **General headers** apply to both requests and responses, but with no relation to the data transmitted in the body. The most common ones:
+  - `Date`: Contains the date and time at which the message was originated. E.g. `Date: Wed, 21 Oct 2015 07:28:00 GMT`.
+  - `Cache-Control`: Holds directives (instructions) for caching in both requests and responses. A given directive in a request does not mean the same directive should be in the response.
+  - `Connection`: Controls whether or not the network connection stays open after the current transaction finishes. If the value sent is keep-alive, the connection is persistent and not closed, allowing for subsequent requests to the same server to be done. (E.g. _Connection: keep-alive_, _Connection: close_).
+  - `Via`: Included by intermediary devices to indicate to the recipient what gateways, proxies and/or tunnels were used in conveying a request or response. This header allows easy tracing of the path a message took over a potentially complex chain of devices between a client and server.
+- **Request headers** allow a client to provide information about itself to a server, and provide more _details about a request_, and _control over how it is carried out_. The most important ones:
+  - `Host`: Specifies the domain of the server it is communicating with. **Mandatory in HTTP/1.1 requests**, and if it is omitted then a `400` response will be triggered.
+  - `Referer`: Tells the server where the requested URL came from. It will almost always be another URL, or else empty for a direct request (for example, the requester typed the URL into a browser address bar). (E.g. _Referer: https://www.quora.com/profile/Lee-Dowthwaite_). Fun fact: "referer" will persist forever in this misspelled state.
+  - `User-Agent`: Identifies the **requesting system**. It is a string composed of a sequence of so-called _product tokens_ with optional comments. (E.g. _User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36_). Fun fact: All UA headers start with Mozilla 5.0 because of historical reasons (IE had to fake being Mozilla, and so others followed).
+  - `Accept`: The Accept header is how a **client** (browser or application) tells the server **what kind of content it can accept** in the HTTP response. The content types are comma-separated, and take the form **type/subtype** (MIME types) such as text/html, application/json or audio/mpeg. Asterisks can be used as wildcards in place of either type or subtype. (E.g. _Accept: application/graphql, application/json; q=0.8, application/xml; q=0.7_).
+  - `Authorization`: Extremely important for any website or application that requires **authorization of the user** before allowing access to resources (Basic, Bearer, Digest).
+  - `Cookie`: Contains stored HTTP cookies previously sent by the server with the `Set-Cookie` header. (E.g. _Cookie: PHPSESSID=298zf09hf012fh2; csrftoken=u32t4o3tb3gg43; \_gat=1_).
+- **Response headers** give additional information about the server which doesn't fit in the status line. Some important ones:
+  - `Server`: This is the server's version of the `User-Agent` request header; it identifies the type and version of the server software generating the response. (E.g. _Server: Apache/2.4.1 (Unix)_).
+  - `Location`: Indicates the URL to redirect a page to. It only provides a meaning when served with a 3xx (redirection) or 201 (created) status response.
+  - `Vary`: Determines how to match future request headers to **decide whether a cached response can be used** rather than requesting a fresh one from the origin server. Example: when using the _Vary: User-Agent_ header, caching servers should consider the user agent when deciding whether to serve the page from cache. For example, if you are serving different content to mobile users, it can help you to avoid that a cache may mistakenly serve a desktop version of your site to your mobile users.
+  - `Set-Cookie`: Used to **send a cookie from the server to the user agent**, so the user agent can send it back to the server later. To send multiple cookies, multiple Set-Cookie headers should be sent in the same response. (E.g. _Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT_).
+- **Entity headers** contain information about the **body** of the resource. Key concept: HTTP entity headers appear in either request or response messages that carry an entity in the message body. They describe the nature of the entity, including its type, language and encoding, to facilitate the proper processing and presentation of the entity by the device receiving it.
+  - `Content-Type`: Indicates the media type (MIME type) of the resource. (E.g. _Content-Type: text/html; charset=UTF-8`,`Content-Type: multipart/form-data; boundary=something_).
+  - `Content-Length`: Indicates the **size** of the entity-body, in bytes, sent to the recipient.
+  - `Content-Language`: Describes the **language(s) intended for the audience**, so that it allows a user to differentiate according to the users' own preferred language. (E.g. _Content-Language: en-US_).
+  - `Content-Encoding`: Used to compress the media-type. (E.g. _Content-Encoding: gzip_).
+
 **HTTP REQUESTS**
 
 HTTP requests are messages sent by the client to initiate an action on the server.
 
-**Request line (Start-line)**:
+**Start-line**:
 
 1. An **HTTP method**, a verb (like `GET`, `PUT` or `POST`) or a noun (like `HEAD` or `OPTIONS`), that describes the action to be performed. For example, `GET` indicates that a resource should be fetched or `POST` means that data is pushed to the server.
 2. The request **target**, usually a URL.
@@ -903,33 +928,20 @@ A typical start-line looks like this: `GET http://developer.mozilla.org/en-US/do
 
 **Headers**:
 
-- **General headers** apply to both requests and responses, but with no relation to the data transmitted in the body. The most common ones:
-  - `Date`: Contains the date and time at which the message was originated. E.g. `Date: Wed, 21 Oct 2015 07:28:00 GMT`.
-  - `Cache-Control`: Holds directives (instructions) for caching in both requests and responses. A given directive in a request does not mean the same directive should be in the response.
-  - `Connection`: Controls whether or not the network connection stays open after the current transaction finishes. If the value sent is keep-alive, the connection is persistent and not closed, allowing for subsequent requests to the same server to be done. (E.g. _Connection: keep-alive_, _Connection: close_).
-- **Request headers** allow a client to provide information about itself to a server, and provide more _details about a request_, and _control over how it is carried out_. The most important ones:
-  - `Host`: Specifies the domain of the server it is communicating with. **Mandatory in HTTP/1.1 requests**, and if it is omitted then a `400` response will be triggered.
-  - `Referer`: Tells the server where the requested URL came from. It will almost always be another URL, or else empty for a direct request (for example, the requester typed the URL into a browser address bar). (E.g. _Referer: https://www.quora.com/profile/Lee-Dowthwaite_). Fun fact: "referer" will persist forever in this misspelled state.
-  - `User-Agent`: Identifies the **requesting system**. It is a string composed of a sequence of so-called _product tokens_ with optional comments. (E.g. _User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36_). Fun fact: All UA headers start with Mozilla 5.0 because of historical reasons (IE had to fake being Mozilla, and so others followed).
-  - `Accept`: The Accept header is how a **client** (browser or application) tells the server **what kind of content it can accept** in the HTTP response. The content types are comma-separated, and take the form **type/subtype** (MIME types) such as text/html, application/json or audio/mpeg. Asterisks can be used as wildcards in place of either type or subtype. (E.g. _Accept: application/graphql, application/json; q=0.8, application/xml; q=0.7_).
-  - `Authorization`: Extremely important for any website or application that requires **authorization of the user** before allowing access to resources (Basic, Bearer, Digest).
-  - `Cookie`: Contains stored HTTP cookies previously sent by the server with the `Set-Cookie` header. (E.g. _Cookie: PHPSESSID=298zf09hf012fh2; csrftoken=u32t4o3tb3gg43; \_gat=1_).
-- **Entity headers** contain information about the **body** of the resource. Key concept: HTTP entity headers appear in either request or response messages that carry an entity in the message body. They describe the nature of the entity, including its type, language and encoding, to facilitate the proper processing and presentation of the entity by the device receiving it.
-  - `Content-Type`: Indicates the media type (MIME type) of the resource. (E.g. _Content-Type: text/html; charset=UTF-8`,`Content-Type: multipart/form-data; boundary=something_).
-  - `Content-Length`: Indicates the **size** of the entity-body, in bytes, sent to the recipient.
-  - `Content-Language`: Describes the **language(s) intended for the audience**, so that it allows a user to differentiate according to the users' own preferred language. (E.g. _Content-Language: en-US_).
-  - `Content-Encoding`: Used to compress the media-type. (E.g. _Content-Encoding: gzip_).
+- **General headers**, such as `Date`, `Cache-Control`, `Connection`, `Via`.
+- **Request headers** such as `Host`, `Referer`, `User-Agent`, `Accept`, `Authorization`, `Cookie`.
+- **Entity headers**, such as `Content-Type`, `Content-Length`, `Transfer-Encoding`, `Content-Language`, `Content-Encoding`.
 
 **Body**:
 
 - The final part of the request is its body. Not all requests have one: requests fetching resources, like `GET` or `DELETE`, usually don't need one. Some requests send data to the server in order to update it: as often the case with **`POST` requests** (containing HTML form data).
 - Bodies can be broadly divided into two categories:
-  - **Single-resource bodies**, consisting of **one single file**, defined by the two headers: `Content-Type` and `Content-Length`.
+  - **Single-resource bodies**, consisting of **one single file**, defined by the 2 headers: `Content-Type` and `Content-Length`.
   - **Multiple-resource bodies**, consisting of a multipart body, each containing a different bit of information. This is typically associated with **HTML Forms**.
 
 #### How does an HTTP Response look like? What are the most relevant HTTP header fields?
 
-**Status line (Start-line)** (the start line of an HTTP response):
+**Status line** (the start line of an HTTP response):
 
 1. The **HTTP version**, usually `HTTP/1.1`.
 2. A **status code**, indicating success or failure of the request. Common status codes are `200`, `404`, or `302`
@@ -939,15 +951,15 @@ A typical status line looks like: `HTTP/1.1 404 Not Found`.
 
 **Headers**:
 
-- **General headers**, like `Via`, apply to the whole message.
-- **Response headers**, like `Vary` and `Accept-Ranges`, give additional information about the server which doesn't fit in the status line.
-- **Entity headers**, like `Content-Length`, `Content-Language`,`Content-Encoding` apply to the **body** of the request. There is no such header transmitted if there is no body in the request.
+- **General headers**, such as `Date`, `Cache-Control`, `Connection`, `Via`.
+- **Response headers**, such as `Server`, `Location`, `Vary`, `Set-Cookie`.
+- **Entity headers**, such as `Content-Type`, `Content-Length`, `Transfer-Encoding`, `Content-Language`, `Content-Encoding`.
 
 **Body**:
 
-- The last part of a response is the body. Not all responses have one: responses with a status code, like `201 Created` or `204 No Content`, usually don't.
-- Single-resource bodies, consisting of a single file of known length, defined by the two headers: `Content-Type` and `Content-Length`.
-- Single-resource bodies, consisting of a single file of unknown length, encoded by chunks with `Transfer-Encoding` set to `chunked`.
+- The last part of a response is the body. Not all responses have one: responses with a status response, like `201 Created` or `204 No Content`, usually don't.
+- **Single-resource bodies**, consisting of a **single file of _known_ length**, defined by the two headers: `Content-Type` and `Content-Length`.
+- Single-resource bodies, consisting of a **single file of _unknown_ length**, encoded by chunks with `Transfer-Encoding` set to `chunked`. For example, a **YouTube video** or any other **stream**.
 - Multiple-resource bodies, consisting of a multipart body, each containing a different section of information. These are relatively rare.
 
 #### What is DNS? How does it work?
@@ -983,6 +995,28 @@ The solution is to store that data server side, give it an "id", and let the cli
 #### What would you use a cookie for?
 
 Using the **Set-Cookie** header field, an HTTP server can pass **name/value pairs and associated metadata** (called cookies) to a **user agent**. When the user agent makes subsequent requests to the server, the user agent uses the metadata and other information to determine whether to return the name/value pairs in the Cookie header.
+
+An HTTP cookie (web cookie, browser cookie) is a small piece of data that a server sends to the user's web browser. The browser may store it and send it back with later requests to the same server. Typically, it's used to tell if two requests came from the same browser — keeping a user logged-in, for example. It **remembers stateful information** for the stateless HTTP protocol.
+
+Cookies are mainly used for 3 purposes:
+
+- **Session management**: Logins, shopping carts, game scores, or anything else the server should remember.
+- **Personalization**: User preferences, themes, and other settings.
+- **Tracking**: Recording and analyzing user behavior. This is how ads follow you.
+
+Contains a name/value pair plus optional metadata (key/value pairs):
+
+- expiration date: `expires=` or `max-age=`
+- domain: `domain=`
+- path: `path=`
+- https security: `Secure`
+- http only: `HttpOnly`
+
+Cookie alternatives: There is a technology that recently got popular, called **JSON Web Tokens (JWT)**, which is a **Token-based Authentication**.
+
+> Cookies are essentially used to store a session id.
+
+> Cookies can only store 4KB of data.
 
 ## Software Development Methodologies
 
