@@ -854,19 +854,23 @@ Provides applications with **standardized data exchange**. Its protocols include
 
 #### What’s the difference between TCP and UDP?
 
+TCP and UDP are the most commonly used protocols in the _TCP/IP model's_ Transportation layer. TCP is a _connection-based_ protocol and UDP is a _connection-less_ protocol, meaning: TCP establishes a connection between a sender and receiver before data can be sent. UDP does not establish a connection before sending data.
+
 **TCP (Transmission Control Protocol)**:
 TCP is a **connection-based** protocol that provides a reliable flow of data between two computers. When two applications want to communicate to each other reliably, they **establish a connection** (TCP/IP three-way handshake) and send data back and forth over that connection. TCP guarantees that data sent from one end of the connection actually gets to the other end and in the **same order it** was sent. Otherwise, an error is reported.
 
 The Hypertext Transfer Protocol (HTTP), File Transfer Protocol (FTP), and Telnet are all examples of applications that require a reliable communication channel. The order in which the data is sent and received over the network is critical to the success of these applications. When HTTP is used to read from a URL, the data must be received in the order in which it was sent. Otherwise, you end up with a jumbled HTML file, a corrupt zip file, or some other invalid information.
+
+> A TCP connection is analogous to **making a telephone call**. If you want to speak to Aunt Beatrice in Kentucky, a connection is established when you dial her phone number and she answers. You send data back and forth over the connection by speaking to one another over the phone lines.
 
 **UDP (User Datagram Protocol)**:
 UDP is a **connection-less** protocol that sends **independent packets of data**, called **datagrams**, from one computer to another with **no guarantees about arrival**.
 
 For many applications, the guarantee of reliability is critical to the success of the transfer of information from one end of the connection to the other. However, other **forms of communication don't require such strict standards**. In fact, they **may be slowed down** by the extra overhead or the reliable connection may invalidate the service altogether.
 
-An example: ping. The purpose of the **ping command** is to test the communication between two programs over the network. In fact, ping needs to know about dropped or out-of-order packets to determine how good or bad the connection is. A reliable channel would invalidate this service altogether.
+> Sending datagrams is much like **sending a letter through the mail service**: The order of delivery is not important and is not guaranteed, and each message is independent of any others.
 
-> TCP is a connection-based protocol and UDP is a connection-less protocol, meaning: TCP establishes a connection between a sender and receiver before data can be sent. UDP does not establish a connection before sending data.
+An example: ping. The purpose of the **ping command** is to test the communication between two programs over the network. In fact, ping needs to know about dropped or out-of-order packets to determine how good or bad the connection is. A reliable channel would invalidate this service altogether.
 
 > Ping is a computer network administration software utility used to test the reachability of a host on an Internet Protocol (IP) network. Ping time is the network latency between a player's client and the game server as measured with the ping utility or equivalent.
 
@@ -889,42 +893,54 @@ The _start-line_ and _HTTP headers_ of the HTTP message are collectively known a
 
 HTTP requests are messages sent by the client to initiate an action on the server.
 
-Start-line:
+**Start-line**:
 
 1. An **HTTP method**, a verb (like `GET`, `PUT` or `POST`) or a noun (like `HEAD` or `OPTIONS`), that describes the action to be performed. For example, `GET` indicates that a resource should be fetched or `POST` means that data is pushed to the server.
 2. The request **target**, usually a URL.
 3. The **HTTP version**, which defines the structure of the remaining message.
-   An example start-line: `GET http://developer.mozilla.org/en-US/docs/Web/HTTP/Messages HTTP/1.1`
 
-Headers:
+A typical start-line looks like this: `GET http://developer.mozilla.org/en-US/docs/Web/HTTP/Messages HTTP/1.1`
 
-- **General headers**, like Via, apply to the message as a whole.
-- **Request headers**, like User-Agent, Accept-Type, modify the request by specifying it further (like Accept-Language), by giving context (like Referer), or by conditionally restricting it (like If-None).
-- **Entity headers**, like Content-Length which apply to the body of the request. There is no such header transmitted if there is no body in the request.
+**Headers**:
 
-Body:
+- **General headers** apply to both requests and responses, but with no relation to the data transmitted in the body. The most common ones:
+  - `Date`: Contains the date and time at which the message was originated. E.g. `Date: Wed, 21 Oct 2015 07:28:00 GMT`.
+  - `Cache-Control`: Holds directives (instructions) for caching in both requests and responses. A given directive in a request does not mean the same directive should be in the response.
+  - `Connection`: Controls whether or not the network connection stays open after the current transaction finishes. If the value sent is keep-alive, the connection is persistent and not closed, allowing for subsequent requests to the same server to be done. E.g. `Connection: keep-alive`, `Connection: close`.
+- **Request headers** contain more information about the resource to be fetched, or about the client requesting the resource. The most important ones:
+  - `Host`: Specifies the domain of the server it is communicating with. **Mandatory in HTTP/1.1 requests**, and if it is omitted then a `400` response will be triggered.
+  - `Referer`: Tells the server where the requested URL came from. It will almost always be another URL, or else empty for a direct request (for example, the requester typed the URL into a browser address bar). E.g. `Referer: https://www.quora.com/profile/Lee-Dowthwaite`. Fun fact: "referer" will persist forever in this misspelled state.
+  - `User-Agent`: Identifies the **requesting system**. It is a string composed of a sequence of so-called _product tokens_ with optional comments. E.g. `User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36`. Fun fact: All UA headers start with Mozilla 5.0 because of historical reasons (IE had to fake being Mozilla, and so others followed).
+  - `Accept`: The Accept header is how a **client** (browser or application) tells the server **what kind of content it can accept** in the HTTP response. The content types are comma-separated, and take the form **type/subtype** (MIME types?) such as text/html, application/json or audio/mpeg. Asterisks can be used as wildcards in place of either type or subtype. E.g. `Accept: application/graphql, application/json; q=0.8, application/xml; q=0.7`.
+  - `Authorization`: Extremely important for any website or application that requires **authorization of the user** before allowing access to resources (Basic, Bearer, Digest).
+- **Entity headers** contain information about the body of the resource, like its content length or MIME type.
 
-- The final part of the request is its body. Not all requests have one: requests fetching resources, like `GET`, `HEAD`, `DELETE`, or `OPTIONS`, usually don't need one. Some requests send data to the server in order to update it: as often the case with **POST requests** (containing HTML form data).
+  Like `Content-Length`, `Content-Language`,`Content-Encoding` apply to the **body** of the request. There is no such header transmitted if there is no body in the request.
+
+**Body**:
+
+- The final part of the request is its body. Not all requests have one: requests fetching resources, like `GET` or `DELETE`, usually don't need one. Some requests send data to the server in order to update it: as often the case with **`POST` requests** (containing HTML form data).
 - Bodies can be broadly divided into two categories:
-  - Single-resource bodies, consisting of one single file, defined by the two headers: `Content-Type` and `Content-Length`.
-  - Multiple-resource bodies, consisting of a multipart body, each containing a different bit of information. This is typically associated with HTML Forms.
+  - **Single-resource bodies**, consisting of **one single file**, defined by the two headers: `Content-Type` and `Content-Length`.
+  - **Multiple-resource bodies**, consisting of a multipart body, each containing a different bit of information. This is typically associated with **HTML Forms**.
 
 #### How does an HTTP Response look like? What are the most relevant HTTP header fields?
 
-Status line (the start line of an HTTP response):
+**Status line** (the start line of an HTTP response):
 
-- The protocol version, usually `HTTP/1.1`.
-- A status code, indicating success or failure of the request. Common status codes are `200`, `404`, or `302`
-- A status text. A brief, purely informational, textual description of the status code to help a human understand the HTTP message.
-- A typical status line looks like: `HTTP/1.1 404 Not Found`.
+1. The **HTTP version**, usually `HTTP/1.1`.
+2. A **status code**, indicating success or failure of the request. Common status codes are `200`, `404`, or `302`
+3. A **status text**. A brief, purely informational, textual description of the status code to help a human understand the HTTP message.
 
-Headers:
+A typical status line looks like: `HTTP/1.1 404 Not Found`.
+
+**Headers**:
 
 - **General headers**, like `Via`, apply to the whole message.
-- **Response headers**, like Vary and `Accept-Ranges`, give additional information about the server which doesn't fit in the status line.
-- **Entity headers**, like `Content-Length`, apply to the body of the response. Typically, no such headers are transmitted when there is no body in the response.
+- **Response headers**, like `Vary` and `Accept-Ranges`, give additional information about the server which doesn't fit in the status line.
+- **Entity headers**, like `Content-Length`, `Content-Language`,`Content-Encoding` apply to the **body** of the request. There is no such header transmitted if there is no body in the request.
 
-Body:
+**Body**:
 
 - The last part of a response is the body. Not all responses have one: responses with a status code, like `201 Created` or `204 No Content`, usually don't.
 - Single-resource bodies, consisting of a single file of known length, defined by the two headers: `Content-Type` and `Content-Length`.
