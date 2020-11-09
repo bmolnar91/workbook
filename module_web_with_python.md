@@ -867,6 +867,7 @@ For many applications, the guarantee of reliability is critical to the success o
 An example: ping. The purpose of the **ping command** is to test the communication between two programs over the network. In fact, ping needs to know about dropped or out-of-order packets to determine how good or bad the connection is. A reliable channel would invalidate this service altogether.
 
 > TCP is a connection-based protocol and UDP is a connection-less protocol, meaning: TCP establishes a connection between a sender and receiver before data can be sent. UDP does not establish a connection before sending data.
+> Ping is a computer network administration software utility used to test the reachability of a host on an Internet Protocol (IP) network. Ping time is the network latency between a player's client and the game server as measured with the ping utility or equivalent.
 
 #### How does an HTTP Request look like? What are the most relevant HTTP header fields?
 
