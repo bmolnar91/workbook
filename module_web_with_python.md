@@ -844,7 +844,7 @@ Provides applications with **standardized data exchange**. Its protocols include
 
 - **DNS (Domain Name System)**
 - **HTTP** (**Hypertext Transfer Protocol**) / HTTPS (Hypertext Transfer Protocol Secure)
-- **_TLS_/SSL (_Transport Layer Security_ / Secure Sockets Layer)** = ENCRYPTION PROTOCOL
+- **TLS**/SSL (**Transport Layer Security** / Secure Sockets Layer) = ENCRYPTION PROTOCOL
 - **FTP** (**File Transfer Protocol**)
 - **POP3** (**Post Office Protocol 3**)
 - IMAP (Internet Message Access Protocol)
@@ -913,9 +913,13 @@ A typical start-line looks like this: `GET http://developer.mozilla.org/en-US/do
   - `User-Agent`: Identifies the **requesting system**. It is a string composed of a sequence of so-called _product tokens_ with optional comments. E.g. `User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36`. Fun fact: All UA headers start with Mozilla 5.0 because of historical reasons (IE had to fake being Mozilla, and so others followed).
   - `Accept`: The Accept header is how a **client** (browser or application) tells the server **what kind of content it can accept** in the HTTP response. The content types are comma-separated, and take the form **type/subtype** (MIME types?) such as text/html, application/json or audio/mpeg. Asterisks can be used as wildcards in place of either type or subtype. E.g. `Accept: application/graphql, application/json; q=0.8, application/xml; q=0.7`.
   - `Authorization`: Extremely important for any website or application that requires **authorization of the user** before allowing access to resources (Basic, Bearer, Digest).
-- **Entity headers** contain information about the body of the resource, like its content length or MIME type.
-
-  Like `Content-Length`, `Content-Language`,`Content-Encoding` apply to the **body** of the request. There is no such header transmitted if there is no body in the request.
+  - `Cookie`: Contains stored HTTP cookies previously sent by the server with the `Set-Cookie` header. E.g. `Cookie: PHPSESSID=298zf09hf012fh2; csrftoken=u32t4o3tb3gg43; _gat=1`.
+- **Entity headers** contain information about the **body** of the resource. Key concept: HTTP entity headers appear in either request or response messages that carry an entity in the message body. They describe the nature of the entity, including its type, language and encoding, to facilitate the proper processing and presentation of the entity by the device receiving it.
+  - `Content-Type`: Indicates the media type (~ MIME) of the resource. E.g. `Content-Type: text/html; charset=UTF-8`, `Content-Type: multipart/form-data; boundary=something`.
+  - `Content-Length`: Indicates the **size** of the entity-body, in bytes, sent to the recipient.
+  - `Content-Language`: Describes the **language(s) intended for the audience**, so that it allows a user to differentiate according to the users' own preferred language. E.g. `Content-Language: en-US`.
+  - `Content-Encoding`: Used to compress the media-type. E.g. `Content-Encoding: gzip`.
+  - apply to the **body** of the request. There is no such header transmitted if there is no body in the request.
 
 **Body**:
 
@@ -1079,10 +1083,13 @@ The waterfall development model originates in the manufacturing and construction
    - If all goes well, the browser gets back the correct **IP address**.
 4. The browser initiates a **TCP connection** with the server.
    - Once the browser receives the correct IP address, it will build a connection with the server that matches the IP address to transfer information -- using TCP in this case (and most other cases).
-   - To transfer _data packets_ between your computer (client) and the server, a TCP connection is established using a process called the **TCP/IP three-way handshake**. This is a three-step process where the client and the server **exchange SYN (synchronize) and ACK (acknowledge) messages** to establish a connection:
-     1. The client machine sends a **SYN packet** to the server over the internet, asking if it is open for new connections. _client_ --SYN--> _server_
-     2. If the server has open ports that can accept and initiate new connections, it'll respond with an ACKnowledgment of the SYN packet using a **SYN/ACK packet**. _client_ <--SYN/ACK-- _server_
-     3. The client will receive the SYN/ACK packet from the server and will acknowledge it by sending an **ACK packet**. _client_ --ACK--> _server_
+   - To transfer **data packets** between your computer (client) and the server, a TCP connection is established using a process called the **TCP/IP three-way handshake**. This is a three-step process where the client and the server **exchange SYN (synchronize) and ACK (acknowledge) messages** to establish a connection:
+     1. The client machine sends a **SYN packet** to the server over the internet, asking if it is open for new connections.
+        _client_ --SYN--> _server_
+     2. If the server has open ports that can accept and initiate new connections, it'll respond with an ACKnowledgment of the SYN packet using a **SYN/ACK packet**.
+        _client_ <--SYN/ACK-- _server_
+     3. The client will receive the SYN/ACK packet from the server and will acknowledge it by sending an **ACK packet**.
+        _client_ --ACK--> _server_
    - Then a TCP connection is established for data transmission!
 5. The browser sends an **HTTP request** to the webserver.
    - The browser will send a **GET request** asking for maps.google.com web page.
