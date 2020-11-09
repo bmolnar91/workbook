@@ -892,7 +892,7 @@ The _start-line_ and _HTTP headers_ of the HTTP message are collectively known a
 **Headers**:
 
 - **General headers** apply to both requests and responses, but with no relation to the data transmitted in the body. The most common ones:
-  - `Date`: Contains the date and time at which the message was originated. E.g. `Date: Wed, 21 Oct 2015 07:28:00 GMT`.
+  - `Date`: Contains the date and time at which the message was originated. (E.g. _Date: Wed, 21 Oct 2015 07:28:00 GMT_).
   - `Cache-Control`: Holds directives (instructions) for caching in both requests and responses. A given directive in a request does not mean the same directive should be in the response.
   - `Connection`: Controls whether or not the network connection stays open after the current transaction finishes. If the value sent is keep-alive, the connection is persistent and not closed, allowing for subsequent requests to the same server to be done. (E.g. _Connection: keep-alive_, _Connection: close_).
   - `Via`: Included by intermediary devices to indicate to the recipient what gateways, proxies and/or tunnels were used in conveying a request or response. This header allows easy tracing of the path a message took over a potentially complex chain of devices between a client and server.
@@ -909,8 +909,9 @@ The _start-line_ and _HTTP headers_ of the HTTP message are collectively known a
   - `Vary`: Determines how to match future request headers to **decide whether a cached response can be used** rather than requesting a fresh one from the origin server. Example: when using the _Vary: User-Agent_ header, caching servers should consider the user agent when deciding whether to serve the page from cache. For example, if you are serving different content to mobile users, it can help you to avoid that a cache may mistakenly serve a desktop version of your site to your mobile users.
   - `Set-Cookie`: Used to **send a cookie from the server to the user agent**, so the user agent can send it back to the server later. To send multiple cookies, multiple Set-Cookie headers should be sent in the same response. (E.g. _Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT_).
 - **Entity headers** contain information about the **body** of the resource. Key concept: HTTP entity headers appear in either request or response messages that carry an entity in the message body. They describe the nature of the entity, including its type, language and encoding, to facilitate the proper processing and presentation of the entity by the device receiving it.
-  - `Content-Type`: Indicates the media type (MIME type) of the resource. (E.g. _Content-Type: text/html; charset=UTF-8`,`Content-Type: multipart/form-data; boundary=something_).
+  - `Content-Type`: Indicates the media type (MIME type) of the resource. (E.g. _Content-Type: text/html; charset=UTF-8_, _Content-Type: multipart/form-data; boundary=something_).
   - `Content-Length`: Indicates the **size** of the entity-body, in bytes, sent to the recipient.
+  - `Transfer-Encoding`: ...
   - `Content-Language`: Describes the **language(s) intended for the audience**, so that it allows a user to differentiate according to the users' own preferred language. (E.g. _Content-Language: en-US_).
   - `Content-Encoding`: Used to compress the media-type. (E.g. _Content-Encoding: gzip_).
 
@@ -929,7 +930,7 @@ A typical start-line looks like this: `GET http://developer.mozilla.org/en-US/do
 **Headers**:
 
 - **General headers**, such as `Date`, `Cache-Control`, `Connection`, `Via`.
-- **Request headers** such as `Host`, `Referer`, `User-Agent`, `Accept`, `Authorization`, `Cookie`.
+- **_Request_ headers** such as `Host`, `Referer`, `User-Agent`, `Accept`, `Authorization`, `Cookie`.
 - **Entity headers**, such as `Content-Type`, `Content-Length`, `Transfer-Encoding`, `Content-Language`, `Content-Encoding`.
 
 **Body**:
@@ -952,7 +953,7 @@ A typical status line looks like: `HTTP/1.1 404 Not Found`.
 **Headers**:
 
 - **General headers**, such as `Date`, `Cache-Control`, `Connection`, `Via`.
-- **Response headers**, such as `Server`, `Location`, `Vary`, `Set-Cookie`.
+- **_Response_ headers**, such as `Server`, `Location`, `Vary`, `Set-Cookie`.
 - **Entity headers**, such as `Content-Type`, `Content-Length`, `Transfer-Encoding`, `Content-Language`, `Content-Encoding`.
 
 **Body**:
