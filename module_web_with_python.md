@@ -69,7 +69,9 @@ Steps to take:
 
 - Input validation (check if the input meets a set of criteria (such as a string contains no standalone single quotation marks)
   - Sanitize the input (modify the input to ensure that it is valid (such as doubling single quotes)
-  - Escape/Quotesafe the input
+  - Escaping the input:
+    - Make sure that every part of a string is interpreted as a **string primitive**, not as a **control character or code**.
+    - E.g. `<script>alert('testing')</script>` -> `&lt;script&gt;alert('testing')&lt;/script&gt;`
 - Use **parameterized queries**
 - _OR_ use **stored procedures** for database access (you probably won't need both)
 - (Limit database permissions and segregate users)
@@ -87,11 +89,20 @@ Stored procedures are better than parameterized queries for several reasons:
 
 #### What is XSS? How to protect an application against it?
 
-Cross-Site Scripting (XSS) attacks are a type of _injection_, in which malicious scripts are injected into otherwise benign and trusted websites.
+**Cross-Site Scripting (XSS)** attacks are a type of **injection**, in which malicious scripts are injected into otherwise benign and trusted websites.
 
 XSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a **browser side script**, to a different end user.
 
-The malicious script can then access any _cookies_, _session tokens_, or other sensitive information retained by the _browser_ and used with that site. These scripts can even rewrite the content of the HTML page.
+(Cross-site scripting (XSS) is a security bug that can affect websites. If present in your website, this bug can allow an attacker to add their own **malicious JavaScript code** onto the HTML pages displayed to your users. Once executed by the victim's browser, this code could then perform actions such as completely changing the behavior or appearance of the website, stealing private data, or performing actions on behalf of the user).
+
+An XSS payload can be delivered in different ways:
+
+- a parameter of a **POST request**
+- part of the **URL**
+- within the web browser **cookie**
+- basically, anywhere a user can supply input to the website
+
+The malicious script can then **access any cookies**, **session tokens**, or other **sensitive information** **retained by the _browser_** and used with that site. These scripts can even rewrite the content of the HTML page. E.g. `<img src=x onerror="alert(document.cookie);"` -- onerror is key here.
 
 Steps to take:
 
@@ -101,8 +112,11 @@ Steps to take:
   - in an attribute name
   - in a tag name
   - directly in CSS
-- HTML escape before inserting untrusted data (framework methods, HTML entity encoding)
-- Don't use `innerHTML` where you need user input, `textContent` is way better, this way the whole query will be a string and won't be executed as an HTML tag
+- Realistically, this can happen importing compromised 3rd party libraries / packages. So be aware, and don't use too many libraries that aren't necessary!
+- **HTML escape** before inserting untrusted data (**framework methods**, HTML entity encoding). Use for example `sanitize`, an input sanitizing library for node.js. Frameworks like React do this automatically for you.
+- Don't use `innerHTML` where you need user input, **`textContent`** is way better, this way the whole query will be a string and won't be executed as an HTML tag
+
+> Use templating system or web development framework that provides context-aware **auto-escaping**!
 
 #### How to properly store passwords?
 
