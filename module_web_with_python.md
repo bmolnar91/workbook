@@ -611,28 +611,31 @@ In general, if your application is structured into layers, have the data access 
 
 XML and HTML were designed with different goals.
 
-XML (Extensible Markup Language):
+**XML (Extensible Markup Language)**:
 
-- Designed to _carry_ data - with focus on what data is.
+- Designed to **carry** data - with focus on _what data is_.
 - XML tags are not predefined like HTML tags are.
 
 HTML (HyperText Markup Language):
 
-- Designed to _display_ (present) data - with focus on how data looks.
+- Designed to **display** (present) data - with focus on _how data looks_.
 
 XHTML:
 
-- Is a family of XML markup languages that mirror or extend versions.
+- XHTML was developed to make HTML more **extensible** and **flexible** to work with other data formats (such as XML).
+- In addition, browsers ignore errors in HTML pages, and try to display the website even if it has some errors in the markup. So XHTML comes with a **much stricter error handling**.
 
 #### How to include a JavaScript file in a webpage?
 
 Use the `<script>` tag that wraps around JavaScript code directly
 
-Use an external JavaScript file by adding a link to it in the head or lower body section of the HTML document.
+Use an external JavaScript file by adding a link to it in the head (inside `<meta>` tags, using the `defer` attribute) or lower body section of the HTML document.
 
 #### How to include a CSS file in a webpage?
 
 Use an external style sheet by adding a link to it in the head section of the HTML document.
+
+> **CSS** stands for **Cascading Style Sheets**.
 
 #### How to select an element using its id in CSS?
 
@@ -664,25 +667,37 @@ a[target] {
 
 #### What are UX and UI?
 
-UX (User Experience):
+**UX (User Experience)**:
+
 Essentially, UX applies to anything that can be experienced — be it a website, a coffee machine, or a visit to the supermarket. The "user experience" part refers to the interaction between the user and a product or service.
 
-UI (User Interface):
+**UI (User Interface)**:
+
 User interface (UI) is anything a user may interact with to use a digital product or service.
 
 #### Please list some points that an application should fulfill to have good UX.
 
-Visual Design:
+**Visual Design**:
+
 From hypertext point of view, visual design is described as _visual_ treatment of the text, graphic page elements and navigational components.
 
-Information Design:
+**Information Design**:
+
 Here (web applications), the information design is the process of designing the _presentation of information_ to facilitate understanding. From Hypertext System point of view, it can be described as Navigation Design (design of interface elements to facilitate the user's movement through the information architecture).
 
 #### What is XML, XSLT, DTD?
 
-With XSLT you can transform an XML document into HTML.
+**XSLT** (Extensible Stylesheet Language):
 
-A DTD (Document Type Definition) defines the structure and the legal elements and attributes of an XML document.
+In case of HTML document, tags are predefined (such as table, div, and span), and the browser knows how to add style to them and display those using **CSS styles**. But in case of **XML** documents, **tags are not predefined**. In order to understand and style an XML document, XSL was developed which can act as **XML based Stylesheet Language**. A new document may be serialized (output) by the processor in standard XML syntax or in another format, such as **HTML** or **plain text**.
+
+> An XSL document specifies how a browser should render an XML document.
+
+**DTD** (Document Type Definition):
+
+- A DTD defines the **structure** and the **legal elements** and **attributes** of an XML document.
+- With a DTD, independent groups of **people can agree on a standard DTD** for interchanging data.
+- An application can use a DTD to **verify that XML data is valid**.
 
 #### What is the difference between HTML and XML?
 
@@ -699,14 +714,16 @@ It is the third layer of the layer cake of standard web technologies (HTML - CSS
 #### When to use AJAX? Bring examples of its usage.
 
 **AJAX** stands for **Asynchronous JavaScript And XML** (Asynchronous JavaScript And JSON), and it describes a set of development techniques used for building websites and web applications.
+
 A user's web browser doesn't need to reload an entire web page when only a small portion of content on the page needs to change.
+
 An example of asynchronous updating is Google's "Google Suggest" feature. When you enter a search query into Google's search bar and the Google website automatically begins offering auto-complete options while you type.
 
 #### What is DOM and how to manipulate it from Javascript?
 
 The DOM is **an object-oriented representation of the web page**, which can be modified with a scripting language such as JavaScript.
 
-A Web page is a document. This document can be either displayed in the browser window or as the HTML source. But it is the same document in both cases. The **Document Object Model (DOM)** -- a programming interface for HTML and XML documents -- represents that same document so it can be manipulated (structure, style, content). The DOM **represents the document as nodes and objects**. That way, programming languages can connect to the page.
+A Web page is a document. This document can be either displayed in the browser window or as the HTML source. But it is the same document in both cases. The **Document Object Model (DOM)** -- a **programming interface** for HTML and XML documents -- represents that same document so it can be manipulated (structure, style, content). The DOM **represents the document as nodes and objects**. That way, programming languages can connect to the page.
 
 The **DOM** is the way Javascript sees its containing pages' data. It is an object that includes how the HTML/XHTML/XML is formatted, as well as the browser state.
 
@@ -721,28 +738,28 @@ We can select a DOM element and manipulate it form Javascript:
 
 #### What are events and how/why to use them in Javascript?
 
-Events are actions or occurrences that happen in the system you are programming, which the system tells you about so you can respond to them in some way if desired. For example, if the user clicks a button on a webpage, you might want to respond to that action by displaying an information box.
-
 HTML events are "things" that happen to HTML elements. When JavaScript is used in HTML pages, JavaScript can "react" on these events.
+
+Events are **actions** or occurrences that happen in the system you are programming, which the system tells you about so you can respond to them in some way if desired. For example, if the user clicks a button on a webpage, you might want to respond to that action by displaying an information box.
 
 An HTML event can be something the browser does, or something a user does.
 
 Examples of HTML events:
 
-- an HTML web page has finished _loading_
-- an HTML input field was _changed_
-- an HTML button was _clicked_
+- an HTML web page has finished **loading**
+- an HTML input field was **changed**
+- an HTML button was **clicked**
 
 #### What is event bubbling/capturing? How would you use it?
 
-When an event happens on an element, it first runs the handlers (event handlers) on it, then on its parent, then all the way up on other ancestors. The process is called "bubbling", because events "bubble" from the inner element up through parents like a bubble in the water.
+When an event happens on an element, it first runs the **handler**(s) (event handler) on it, then on its parent, then all the way up on other ancestors. The process is called "bubbling", because events "bubble" from the inner element up through parents like a bubble in the water.
 
 A handler on a parent element can always get the details about where it actually happened.
-The most deeply nested element that caused the event is called a target element, accessible as `event.target`.
+The most deeply nested element that caused the event is called a **target element**, accessible as `event.target`.
 
 Note the differences from `this`:
 
-- `event.target` – is the "target" element that initiated the event, it doesn't change through the bubbling process.
+- `event.target` – is the "target" element that initiated the event, it **doesn't change** through the bubbling process.
 - `this` / `event.currentTarget` – is the "current" element, the one that has a currently running handler on it.
 
 #### What is JSON and how do we use it?
@@ -753,7 +770,8 @@ Note the differences from `this`:
 - JSON is "self-describing" and easy to understand.
 
 A common use of JSON is to read data from a web server, and display the data in a web page.
-String containing JSON syntax -> `JSON.parse(myString)` -> use the new Javascript object
+
+> String containing JSON syntax -> `JSON.parse(myString)` -> use the new Javascript object...
 
 ## Software engineering
 
@@ -782,7 +800,7 @@ Merge or rebase.
 
 #### How does a VCS help with code reviews?
 
-Code review is crucial, and shipping high-quality code is everyone's responsibility. A Pull Request review on GitHub lets you combine multiple inline comments and an overarching summary into a single package that gives readers a clear and consolidated view of your thoughts and recommendations.
+Code review is crucial, and shipping high-quality code is everyone's responsibility. A **Pull Request** (or rather Merge Request) review on GitHub lets you combine multiple inline comments and an overarching summary into a single package that gives readers a clear and consolidated view of your thoughts and recommendations.
 
 > Git is a _directed acyclic graph_, btw.
 
@@ -800,9 +818,9 @@ Git local repository is the one on which we will make local changes, typically t
 
 #### Why is it good to use a package manager software?
 
-A _package manager_ or _package-management system_ is a collection of software tools that _automates_ the process of installing, upgrading, configuring, and removing computer programs for a computer's operating system in a consistent manner.
+A **package manager** or package-management system is a collection of software tools that **automates** the process of installing, upgrading, configuring, and removing computer programs for a computer's operating system in a **consistent** manner.
 
-A package manager deals with packages, distributions of software and data in archive files. Packages contain metadata, such as the software's name, description of its purpose, version number, vendor, checksum, and a list of dependencies necessary for the software to run properly. Upon installation, metadata is stored in a local package database. Package managers typically maintain a database of software dependencies and version information to prevent software mismatches and missing prerequisites.
+A package manager deals with packages, distributions of software and data in archive files. Packages contain metadata, such as the software's name, description of its purpose, version number, vendor, checksum, and a list of dependencies necessary for the software to run properly. Upon installation, metadata is stored in a local package database. Package managers typically maintain a **database of software dependencies** and version information to prevent software mismatches and missing prerequisites.
 
 #### Why is it good to use a virtual environment for a project?
 
@@ -828,17 +846,25 @@ An **API (Application Programming Interface)** is a gate (interface) in a softwa
 
 **REST** (**REpresentational State Transfer**) or RESTful is an architectural style used for web development. A set of principles that define how Web standards, such as HTTP and URIs, are supposed to be used.
 
-REST is all about a client-server relationship, where server-side data are made available through representations of data in simple formats, often JSON and XML.
+REST is all about a **client-server relationship**, where server-side data are made available through representations of data in simple formats, often **JSON** and XML.
 
 These are representations for resources, which are then potentially modifiable, with actions and relationships being made discoverable via a method known as **hypermedia**. Hypermedia is fundamental to REST, and is essentially just the concept of providing **links** to other resources.
 
 The 5 key principles are:
 
-1. Give every "thing" an ID (meaning every resource should have a URI)
-2. Link things together
-3. Use standard methods
+1. Give every "thing" an **ID** (meaning every resource should have a **URI**)
+2. **Link** things together
+3. Use **standard methods** (GET, POST, PUT, DELETE)
 4. Resources with multiple representations
 5. Communicate statelessly
+
+> WIP
+
+    1. Contract first approach / Uniform Resource identifiers
+    2. Statelessness
+    3. Client-Server model
+    4. Caching
+    5. Layered architecture
 
 In short, if you make a RESTful API, you ensure other developers can understand the structure easily compared to creating endpoints without a standard.
 
@@ -850,18 +876,18 @@ In short, if you make a RESTful API, you ensure other developers can understand 
 
 RESTful constraints:
 
-- Client-Server Architecture:
-  - Separation of Concerns: RESTful API should not care about the UI
-- Stateless:
+- **Client-Server Architecture**:
+  - **Separation of Concerns (SoC)**: RESTful API should not care about the UI
+- **Statelessness**:
   - No Client-Context (e.g. Session) is stored on the Server
-- Cacheability:
+- **Cacheability**:
   - Responses must define themselves as cacheable or non-cacheable
-- Layered System:
+- **Layered System**:
   - Intermediate Servers may be used without the Client knowing about it
-- Uniform Interface:
-  - Resources are identified in Requests, transferred data is decoupled from DB schema
+- **Uniform Interface**:
+  - Resources are identified in Requests, transferred data is **decoupled from DB schema**
   - Self descriptive Messages
-  - Links to further Resources
+  - **Links** to further Resources
 - Code on Demand (optional):
   - Executable Code could be transferred
   - Meaning it doesn't have to be just Data, it could be Code that the Client can execute
@@ -872,7 +898,7 @@ See above
 
 #### What is TCP/IP? What layers does it define, what are they responsible for?
 
-**TCP/IP**, or the **Transmission Control Protocol/Internet Protocol**, is a suite of communication protocols used to interconnect network devices on the internet. TCP/IP can also be used as a communications protocol in a private network (an intranet or an extranet).
+**TCP/IP**, or the **Transmission Control Protocol/Internet Protocol**, is a **suite of communication protocols** used to interconnect network devices on the internet. TCP/IP can also be used as a communications protocol in a private network (an intranet or an extranet).
 
 The first layer is the application layer on the behalf of the sender and Link layer on the behalf of the receiver.
 
@@ -905,7 +931,7 @@ The first layer is the application layer on the behalf of the sender and Link la
 Provides applications with **standardized data exchange**. Its protocols include:
 
 - **DNS (Domain Name System)**
-- **HTTP** (**Hypertext Transfer Protocol**) / HTTPS (Hypertext Transfer Protocol Secure)
+- **HTTP (Hypertext Transfer Protocol)** / HTTPS (Hypertext Transfer Protocol Secure)
 - **TLS**/SSL (**Transport Layer Security** / Secure Sockets Layer) = ENCRYPTION PROTOCOL or CRYPTOGRAPHIC PROTOCOL
 - **FTP** (**File Transfer Protocol**)
 - **POP3** (**Post Office Protocol 3**)
@@ -916,23 +942,25 @@ Provides applications with **standardized data exchange**. Its protocols include
 
 #### What’s the difference between TCP and UDP?
 
-TCP and UDP are the most commonly used protocols in the _TCP/IP model's_ Transportation layer. TCP is a _connection-based_ protocol and UDP is a _connection-less_ protocol, meaning: TCP establishes a connection between a sender and receiver before data can be sent. UDP does not establish a connection before sending data.
+TCP and UDP are the most commonly used protocols in the _TCP/IP model's_ **Transportation layer**. TCP is a _connection-based_ protocol and UDP is a _connection-less_ protocol, meaning: TCP establishes a connection between a sender and receiver before data can be sent. UDP does not establish a connection before sending data.
 
 **TCP (Transmission Control Protocol)**:
-TCP is a **connection-based** protocol that provides a reliable flow of data between two computers. When two applications want to communicate to each other reliably, they **establish a connection** (TCP/IP three-way handshake) and send data back and forth over that connection. TCP guarantees that data sent from one end of the connection actually gets to the other end and in the **same order it** was sent. Otherwise, an error is reported.
 
-The Hypertext Transfer Protocol (HTTP), File Transfer Protocol (FTP), and Telnet are all examples of applications that require a reliable communication channel. The order in which the data is sent and received over the network is critical to the success of these applications. When HTTP is used to read from a URL, the data must be received in the order in which it was sent. Otherwise, you end up with a jumbled HTML file, a corrupt zip file, or some other invalid information.
+TCP is a **connection-based** protocol that provides a reliable flow of data between two computers. When two applications want to communicate to each other reliably, they **establish a connection** (**TCP/IP three-way handshake**) and send data back and forth over that connection. TCP guarantees that data sent from one end of the connection actually gets to the other end and in the **same order it** was sent. Otherwise, an error is reported.
+
+HTTP, FTP, and Telnet are all examples of applications that require a reliable communication channel. The order in which the data is sent and received over the network is critical to the success of these applications. When HTTP is used to read from a URL, the data must be received in the order in which it was sent. Otherwise, you end up with a jumbled HTML file, a corrupt zip file, or some other invalid information.
 
 > A TCP connection is analogous to **making a telephone call**. If you want to speak to Aunt Beatrice in Kentucky, a connection is established when you dial her phone number and she answers. You send data back and forth over the connection by speaking to one another over the phone lines.
 
 **UDP (User Datagram Protocol)**:
+
 UDP is a **connection-less** protocol that sends **independent packets of data**, called **datagrams**, from one computer to another with **no guarantees about arrival**.
 
 For many applications, the guarantee of reliability is critical to the success of the transfer of information from one end of the connection to the other. However, other **forms of communication don't require such strict standards**. In fact, they **may be slowed down** by the extra overhead or the reliable connection may invalidate the service altogether.
 
 > Sending datagrams is much like **sending a letter through the mail service**: The order of delivery is not important and is not guaranteed, and each message is independent of any others.
 
-An example: ping. The purpose of the **ping command** is to test the communication between two programs over the network. In fact, ping needs to know about dropped or out-of-order packets to determine how good or bad the connection is. A reliable channel would invalidate this service altogether.
+An example: ping. The purpose of the **ping command** is to test the communication between two programs over the network. In fact, ping needs to know about **dropped or out-of-order packets** to determine how good or bad the connection is. A reliable channel would invalidate this service altogether.
 
 > Ping is a computer network administration software utility used to test the reachability of a host on an Internet Protocol (IP) network. Ping time is the network latency between a player's client and the game server as measured with the ping utility or equivalent.
 
@@ -940,11 +968,11 @@ An example: ping. The purpose of the **ping command** is to test the communicati
 
 **HTTP MESSAGES** IN GENERAL
 
-HTTP messages are how data is exchanged between a server and a client. There are two types of messages: requests sent by the client to trigger an action on the server, and responses, the answer from the server.
+HTTP messages are how data is exchanged between a **server** and a **client**. There are two types of messages: **requests** sent by the _client_ to trigger an action on the server, and **responses**, the answer from the _server_.
 
 HTTP requests, and responses, share similar structure and are composed of:
 
-1. A **start-line** describing the requests to be implemented, or its status of whether successful or a failure. This start-line is always a single line.
+1. A **start-line** describing the requests to be implemented, or its status of whether successful or a failure. This start-line is always a **single line**.
 2. An _optional_ set of **HTTP headers** specifying the request, or describing the body included in the message.
 3. A **blank line** indicating all meta-information for the request has been sent.
 4. An _optional_ **body**: containing data associated with the request (like content of an HTML form), or the document associated with a response. (The presence of the body and its size is specified by the start-line and HTTP headers).
@@ -971,11 +999,11 @@ The _start-line_ and _HTTP headers_ of the HTTP message are collectively known a
   - `Vary`: Determines how to match future request headers to **decide whether a cached response can be used** rather than requesting a fresh one from the origin server. Example: when using the _Vary: User-Agent_ header, caching servers should consider the user agent when deciding whether to serve the page from cache. For example, if you are serving different content to mobile users, it can help you to avoid that a cache may mistakenly serve a desktop version of your site to your mobile users.
   - `Set-Cookie`: Used to **send a cookie from the server to the user agent**, so the user agent can send it back to the server later. To send multiple cookies, multiple Set-Cookie headers should be sent in the same response. (E.g. _Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT_).
 - **Entity headers** contain information about the **body** of the resource. Key concept: HTTP entity headers appear in either request or response messages that carry an entity in the message body. They describe the nature of the entity, including its type, language and encoding, to facilitate the proper processing and presentation of the entity by the device receiving it.
-  - `Content-Type`: Indicates the media type (MIME type) of the resource. (E.g. _Content-Type: text/html; charset=UTF-8_, _Content-Type: multipart/form-data; boundary=something_).
+  - `Content-Type`: Indicates the media type (**MIME type**) of the resource. (E.g. _Content-Type: text/html; charset=UTF-8_, _Content-Type: multipart/form-data; boundary=something_).
   - `Content-Length`: Indicates the **size** of the entity-body, in bytes, sent to the recipient.
-  - `Transfer-Encoding`: ...
+  - `Transfer-Encoding`: chunked ...
   - `Content-Language`: Describes the **language(s) intended for the audience**, so that it allows a user to differentiate according to the users' own preferred language. (E.g. _Content-Language: en-US_).
-  - `Content-Encoding`: Used to compress the media-type. (E.g. _Content-Encoding: gzip_).
+  - `Content-Encoding`: Used to **compress** the media-type. (E.g. _Content-Encoding: gzip_).
 
 **HTTP REQUESTS**
 
@@ -1033,33 +1061,33 @@ The **Domain Name System (DNS)** is the **phonebook of the Internet**. When user
 
 "Web server" can refer to hardware or software, or both of them working together:
 
-- On the **hardware** side, a web server is a computer that stores web server software and a website's component files (e.g. HTML documents, images, CSS stylesheets, and JavaScript files). It is connected to the Internet and supports physical data interchange with other devices connected to the web.
+- On the **hardware** side, a web server is a computer that **stores web server software** and a **website's component files** (e.g. HTML documents, images, CSS stylesheets, and JavaScript files). It is connected to the Internet and supports** physical data interchange** with other devices connected to the web.
 - On the **software** side, a web server includes several parts that control how web users access hosted files, at minimum an HTTP server.
 
 An **HTTP server** is a piece of software that understands URLs and HTTP. It can be accessed through the domain names (like mozilla.org) of websites it stores, and delivers their content to the end-user's device.
 
 To publish a website, you need either a static or a dynamic web server:
 
-- A **static web server**, or stack, consists of a computer (hardware) with an HTTP server (software). We call it "static" because the server sends its hosted files "as-is" to your browser.
+- A _static web server_, or stack, consists of a computer (hardware) with an HTTP server (software). We call it "static" because the server sends its hosted files "as-is" to your browser.
 - A **dynamic web server** consists of a static web server plus extra software, most commonly an **application server** and a **database**. We call it "dynamic" because the application server updates the hosted files before sending them to your browser via the HTTP server.
 
 #### Explain the client-server architecture.
 
-Client/server architecture is a computing model in which the server hosts, delivers and manages most of the resources and services to be consumed by the client. This type of architecture has one or more client computers connected to a central server over a network or internet connection. This system shares computing resources.
+Client/server architecture is a computing model in which the server hosts, delivers and manages most of the resources and services to be consumed by the client. This type of architecture has **one or more client computers connected to a central server** over a network or internet connection. This system shares computing resources.
 
 #### What would you use a session for?
 
-Because HTTP is stateless, in order to associate a request to any other request, you need a way to store user data between HTTP requests.
+Because **HTTP is stateless**, in order to associate a request to any other request, you need a way to store user data between HTTP requests.
 
-Cookies or URL parameters (like http://example.com/myPage?asd=yes&boo=2) are both suitable ways to transport data between 2 or more request. However they are not good in case you don't want that data to be readable/editable on the client side.
+**Cookies** or **URL parameters** (like http://example.com/myPage?asd=yes&boo=2) are both suitable ways to transport data between 2 or more request. However they are not good in case you don't want that data to be **readable/editable on the client side**.
 
-The solution is to store that data server side, give it an "id", and let the client only know (and pass back at every http request) that id. There you go, sessions implemented. Or you can use the client as a convenient remote storage, but you would encrypt the data and keep the secret server-side.
+The solution is to **store that data server side**, give it an "id", and let the client only know (and pass back at every http request) that id. There you go, sessions implemented. Or you can use the client as a convenient remote storage, but you would encrypt the data and keep the secret server-side.
 
 #### What would you use a cookie for?
 
 Using the **Set-Cookie** header field, an HTTP server can pass **name/value pairs and associated metadata** (called cookies) to a **user agent**. When the user agent makes subsequent requests to the server, the user agent uses the metadata and other information to determine whether to return the name/value pairs in the Cookie header.
 
-An HTTP cookie (web cookie, browser cookie) is a small piece of data that a server sends to the user's web browser. The browser may store it and send it back with later requests to the same server. Typically, it's used to tell if two requests came from the same browser — keeping a user logged-in, for example. It **remembers stateful information** for the stateless HTTP protocol.
+An HTTP **cookie** (web cookie, browser cookie) is a **small piece of data** (< 4KB) that a **server sends to the user**'s web browser. The browser may store it and send it back with later requests to the same server. Typically, it's used to **tell if two requests came from the same browser** — keeping a user logged-in, for example. It **remembers _stateful_ information** for the stateless HTTP protocol.
 
 Cookies are mainly used for 3 purposes:
 
@@ -1087,7 +1115,7 @@ Cookie alternatives: There is a technology that recently got popular, called **J
 
 In original **waterfall model**, the following phases are followed in order:
 
-1. System and software **requirements**: captured in a product requirements document
+1. System and software **requirements**: captured in a product requirements **document**
 2. **Analysis**: resulting in models, schema, and business rules
 3. **Design**: resulting in the software architecture
 4. **Coding**: the development, proving, and integration of software
@@ -1098,38 +1126,38 @@ Thus the waterfall model maintains that one should move to a phase only when its
 
 **Agile** project management:
 
-- Agile is a time boxed, iterative approach to software delivery that builds software incrementally from the start of the project, instead of trying to deliver it all at once near the end.
+- Agile is a time boxed, **iterative** approach to software delivery that builds software **incrementally** from the start of the project, instead of trying to deliver it all at once near the end.
 
 #### What are the SCRUM roles?
 
-Scrum Master:
+**Scrum Master**:
 
 - The team's coach, and helps Scrum practitioners achieve their highest level of performance.
 - In the Scrum process, a Scrum Master differs from a traditional project manager in many ways, including that this role does not provide day-to-day direction to the team and does not assign tasks to individuals.
 - A good Scrum Master shelters the team from outside distractions, allowing team members to focus maniacally during the sprint on the goal they have selected.
 
-Product Owner:
+**Product Owner**:
 
-- While the Scrum Master focuses on helping the team be the best that it can be, the product owner works to direct the team to the right goal. The product owner does this by creating a compelling vision of the product, and then conveying that vision to the team through the product backlog.
-- Responsible for prioritizing the backlog during Scrum development, to ensure it's up to par as more is learned about the system being built, its users, the team and so on.
+- While the Scrum Master focuses on helping the team be the best that it can be, the product owner works to direct the team to the right goal. The product owner does this by **creating a compelling vision of the product**, and then conveying that vision to the team through the product backlog.
+- Responsible for prioritizing the **backlog** during Scrum development, to ensure it's up to par as more is learned about the system being built, its users, the team and so on.
 
-Scrum Team:
+**Scrum Team**:
 
-- Although individuals may join the team with various job titles, in Scrum, those titles are insignificant. Scrum methodology states that each person contributes in whatever way they can to complete the work of each sprint.
-- This does not mean that a tester will be expected to re-architect the system; individuals will spend most (and sometimes all) of their time working in whatever discipline they worked before adopting the agile Scrum model. But with Scrum, individuals are expected to work beyond their preferred disciplines whenever doing so would be for the good of the team.
+- Although individuals may join the team with various job titles, in Scrum, those titles are insignificant. Scrum methodology states that **each person contributes in whatever way they can** to complete the work of each sprint.
+- This does not mean that a tester will be expected to re-architect the system; individuals will spend most (and sometimes all) of their time working in whatever discipline they worked before adopting the agile Scrum model. But with Scrum, individuals are **expected to work beyond their preferred disciplines** whenever doing so would be for the good of the team.
 
 #### What are the SCRUM ceremonies?
 
-1. Sprint Planning:
+1. **Sprint Planning**:
    This is where the team meets and decides what they need to complete in the coming sprint.
 
-2. Daily Scrum / Daily Standup:
+2. **Daily Standup**:
    This is a standup meeting, or a very short – 15-minute mini-meeting – for the team to make sure they're all on the same page.
 
-3. Sprint Review:
-   This is another type of meeting, but one in which the team demos what they shipped in the sprint.
+3. **Sprint Review**:
+   This is another type of meeting, but one in which the team **demos** what they shipped in the sprint.
 
-4. Sprint Retrospective:
+4. **Sprint Retrospective**:
    This is when the team reviews their work, identifying what they did well and what didn't go as planned, so they can make the next sprint better.
 
 #### What are the SCRUM artifacts?
@@ -1138,20 +1166,20 @@ Scrum's artifacts represent work or value to provide transparency and opportunit
 
 The Scrum Artifacts are:
 
-1.  Product Backlog:
+1.  **Product Backlog**:
 
-- An ordered list of everything that is known to be needed in the product. It is the single source of requirements for any changes to be made to the product. The Product Owner is responsible for the Product Backlog, including its content, availability, and ordering.
+- An ordered list of everything that is known to be needed in the product. It is **the single source of requirements** for any changes to be made to the product. The **Product Owner** is responsible for the Product Backlog, including its content, availability, and ordering.
 
-2.  Sprint Backlog:
+2.  **Sprint Backlog**:
 
-- The set of Product Backlog items selected for the Sprint, plus a plan for delivering the product Increment and realizing the Sprint Goal.
+- The set of Product Backlog items **selected for the Sprint**, plus a plan for delivering the product Increment and realizing the Sprint Goal.
 - A forecast by the Development Team about what functionality will be in the next Increment and the work needed to deliver that functionality into a "Done" Increment.
 
-3. Increment:
+3. **Increment**:
 
 - The sum of all the Product Backlog items completed during a Sprint and the value of the increments of all previous Sprints.
 - At the end of a Sprint, the new Increment must be "Done", which means it must be in useable condition and meet the Scrum Team's definition of "Done".
-- Although this may vary significantly per Scrum Team, members must have a shared understanding of what it means for work to be complete, to ensure transparency. This is the definition of "Done" for the Scrum Team and is used to assess when work is complete on the product Increment.
+- Although this may vary significantly per Scrum Team, members must have a shared understanding of what it means for work to be complete, to ensure transparency. This is the **definition of "Done"** for the Scrum Team and is used to assess when work is complete on the product Increment.
 
 #### What is the main goal of a retrospective meeting?
 
