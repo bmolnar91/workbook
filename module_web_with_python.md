@@ -67,14 +67,23 @@ A computer attack in which malicious code is embedded in a poorly-designed appli
 
 Steps to take:
 
-- Input validation:
-  - Sanitize the input
+- Input validation (check if the input meets a set of criteria (such as a string contains no standalone single quotation marks)
+  - Sanitize the input (modify the input to ensure that it is valid (such as doubling single quotes)
   - Escape/Quotesafe the input
-- Parameterized queries
-- Limit database permissions and segregate users
-- Use stored procedures for database access
-- Isolate the webserver
-- Configure error reporting
+- Use **parameterized queries**
+- _OR_ use **stored procedures** for database access (you probably won't need both)
+- (Limit database permissions and segregate users)
+- (Isolate the webserver)
+- (Configure error reporting)
+
+Stored procedures are better than parameterized queries for several reasons:
+
+- They can avoid SQL injection (just like parameterized queries)
+- They can **reduce network traffic** between the web server and the DB server
+- They can be **reused**
+- Better **performance**: stored procedures can have _execution plans_ cached
+
+> Building SQL statements **dynamically** by **concatenating strings** is what causes an SQL injection to happen.
 
 #### What is XSS? How to protect an application against it?
 
@@ -108,9 +117,9 @@ Any website, especially those that require login credentials, should use HTTPS. 
 
 Technically speaking, HTTPS is not a separate protocol from HTTP. It is simply using **TLS/SSL encryption** over the HTTP protocol. HTTPS occurs based upon the transmission of **TLS/SSL certificates**, which verify that a particular provider is who they say they are.
 
-Does HTTPS use Asymmetric or Symmetric encryption? In short:
+Does HTTPS use Asymmetric or Symmetric encryption? The answer is:
 
-The best answer is that it does both. TLS uses **asymmetric encryption to first establish identity** of one or both parties. Secondly, it uses **asymmetric encryption to exchange a key to a _symmetric_ cipher**. So asymmetric is **only used during the initial setup of communication (TLS-SSL handshake)**.
+It does both. TLS uses **asymmetric encryption to first establish identity** of one or both parties. Secondly, it uses **asymmetric encryption to exchange a key to a _symmetric_ cipher**. So asymmetric is **only used during the initial setup of communication (TLS-SSL handshake)**.
 
 **Symmetric encryption** which is **used through the rest** is faster and more efficient with large amounts of data transfer. The keys are smaller which is generally why it's faster, but it's algorithm is also easier to process.
 
@@ -126,29 +135,27 @@ Although encrypted data appears random, encryption proceeds in a logical, predic
 
 Hash algorithms are **one way** functions. They turn any amount of data into a **fixed-length** "fingerprint" or "signature" that **cannot be reversed**. They also have the property that if the **input changes** by even a tiny bit, the resulting hash is _completely different_.
 
-Hashing is a digital signature. It was originally designed to check if data was modified.
-
 #### What is the difference between encryption and hashing? When would you use which?
 
 Encryption is a method for encoding information to keep it secret. Hashing is a signature for a file or password.
 
-Encryption:
+**Encryption**:
 
-- A technique used to maintain the _confidentiality_ of data by converting the data into an undecipherable format.
-- At its core, encryption is all about asserting identity and protecting data integrity.
-- The origin of encrypted messages can be _traced_, thus facilitating _authentication_ of the message source.
+- A technique used to maintain the **confidentiality** of data by converting the data into an undecipherable format.
+- At its core, encryption is all about **asserting identity** and **protecting data integrity**.
+- The origin of encrypted messages can be **traced**, thus facilitating **authentication** of the message source.
 - In case the data gets leaked, it's easy to trace the source. In other words, it's easy to trace who did it and when, thus making auditing for accountability easy. It helps in resolving security breaches efficiently.
 - Only intended parties with the right private key can read the data.
 - Use encryption whenever you **need** to get the input data back out. If you're storing credit card numbers, you need to get them back out at some point, but don't want to store them plain text. So instead, store the encrypted version and keep the _key_ as safe as possible.
 - Unlike hashing, encryption always produces a **unique file**.
 
-Hashing:
+**Hashing**:
 
-- A string of numbers generated to confirm the _integrity_ of data through hashing algorithms.
+- A string of numbers generated to confirm the **integrity** of data through hashing algorithms.
 - Unlike encryption, hashing serves as a checksum to ensure that a particular piece of data or a file hasn't been altered.
 - Hashing is the most suitable way to securely store **passwords**.
-- Hashing is helpful in comparing a value with a stored value, hence avoiding _duplication_. This can be done by storing the hash with a _salt_, and then with any future login attempts, hash the passwords that the users enter and compare it with the stored hash.
-- Hashing is used in a variety of digital certificates, including _SSL certificates_.
+- Hashing is helpful in comparing a value with a stored value, hence **avoiding duplication**. This can be done by storing the hash with a _salt_, and then with any future login attempts, hash the passwords that the users enter and compare it with the stored hash.
+- Hashing is used in a variety of digital certificates, including _TLS/SSL certificates_.
 - Hashing helps you find specific data in a huge **database**.
 - Unlike with encryption, hashing may produce **hash collisions**.
 
@@ -164,35 +171,35 @@ Hashing:
 **Asymmetric Encryption**:
 
 - Instead of just one public key, you have a **key pair**: a _public key_ and a _private key_.
-- The algorithm, that is used to generate the two keys, will make sure that the key pair is mathematically _linked_ to each other.
+- The algorithm, that is used to generate the two keys, will make sure that the **key pair is mathematically linked** to each other.
 - The public key is public, you put it at the end of all e-mails, posts etc. The private key is absolutely secret.
 - E.g. RSA algorithm
-
-1. **Cryptography (encryption/decryption)**: Any message _encrypted_ with Bob's **public key** can only be **_decrypted_** with Bob's **private key**.
-2. **Signature (authentication)**: Anyone with access to Alice's **public key** can **_verify_** that a message (signature) could only have been created by someone with access to Alice's **private key**.
+- Basic rules:
+  1. **Cryptography (encryption/decryption)**: Any message _encrypted_ with Bob's **public key** can only be **_decrypted_** with Bob's **private key**.
+  2. **Signature (authentication)**: Anyone with access to Alice's **public key** can **_verify_** that a message (signature) could only have been created by someone with access to Alice's **private key**.
 
 > CA = Certificate Authority
 
 > In cryptography a **key** is a piece of information **used in combination with an algorithm** (a _cipher_) to transform plaintext into ciphertext (encryption) and vice versa (decryption).
 
-> A cipher can be **reciprocal** if it is used for both encryption and decryption, or **non-reciprocal** if a transformation to the key is required when using it in reverse.
+> A cipher can be **reciprocal** (symmetric) if it is used for both encryption and decryption, or **non-reciprocal** (asymmetric) if a transformation to the key is required when using it in reverse.
 
 #### What hashing methods do you know?
+
+**MD (Message Digest)** family:
+**MD5**: 128 bit/32 characters long - very poor security - fastest computation
+
+**SHA (Secure Hash Algorithm)** family:
+The **SHA-2** family is more secure. SHA-256 is the default hashing algorithm of the PowerShell cmdlet `Get-FileHash` -- 256 bits, 64 hex characters long.
+
+**Bcrypt**:
+Uses salts built into the generated hashes to prevent rainbow table and dictionary attacks. Considered one of the more secure ways to hash a password.
 
 Salt:
 Salts are a random set of characters that are appended to the user's password before(!) they are hashed. Salts are stored in plain text along with the hashed output, so the website knows what salt to use when it comes to verify the password. Brute Force attacks will still be an issue, but Rainbow tables and Dictionary attacks won't work because it's computationally infeasible to generate rainbow tables for every possible salt.
 
 Pepper:
 A very short random string of characters appended to the end of the password. Peppers are random and different in each password. The pepper is not stored.
-
-Bcrypt:
-Uses salts built into the generated hashes to prevent rainbow table and dictionary attacks.
-
-MD5:
-128 bit/32 characters long - very poor security - fastest computation
-
-SHA:
-SHA: 160 bit/40 characters long - moderate security - second fastest
 
 #### How/where would you store sensitive data (like db password, API key, ...) of your application?
 
@@ -204,21 +211,23 @@ Storing secrets in the OS environment.
 
 #### What is the difference between Stack and Queue data structure?
 
-Stack:
+**Stack**:
 
 - A linear data structure in which elements can be inserted and deleted only from one side of the list, called the top.
 - Based on the _LIFO_ principle
 - Insert operation is called push operation
 - Delete operation is called pop operation
 - We maintain only _1 pointer_ (-> top)
+- Implemented as a dynamic array.
 
-Queue:
+**Queue**:
 
 - A linear data structure in which elements can be inserted only from one side of the list called rear, and the elements can be deleted only from the other side called the front.
 - Based on the _FIFO_ principle
 - Insert operation is called enqueue operation
 - Delete operation is called dequeue operation
 - We maintain _2 pointers_ (-> front, -> rear)
+- Implemented as a linked list.
 
 #### What is BubbleSort? Describe the main logic of this sorting algorithm.
 
@@ -234,15 +243,15 @@ Iterate through the array and return the sum of the numbers divided by the lengt
 
 #### What is Big O complexity? Explain time and space complexity!
 
-In computer science, big O notation is used to classify algorithms according to how their run time or space requirements grow as the input size grows.
+In computer science, big O notation is used to classify algorithms according to how their run **time** or **space** requirements grow **as the input size grows**.
 
 Big O specifically describes the worst-case scenario, and can be used to describe the execution time required or the space used (e.g. in memory or on disk) by an algorithm.
 
-- O(1) -- constant:
+- **O(1)** -- constant:
   Describes an algorithm that will always execute in the same time (or space) regardless of the size of the input data set.
   `return elements[0] === null;`
 
-- O(N) -- linear:
+- **O(N)** -- linear:
   Describes an algorithm whose performance will grow linearly and in direct proportion to the size of the input data set.
 
 ```javascript
@@ -253,14 +262,14 @@ for (let element of elements) {
 }
 ```
 
-- O(N^2) -- quadratic:
-  Represents an algorithm whose performance is directly proportional to the square of the size of the input data set. This is common with algorithms that involve **nested iterations** over the data set. Deeper nested iterations will result in O(N^3), O(N^4) etc.
+- **O(N^2)** -- quadratic:
+  Represents an algorithm whose performance is directly proportional to the square of the size of the input data set. This is common with algorithms that involve **nested iterations** over the data set. Deeper nested iterations will result in **O(N^3)**, **O(N^4)** etc.
 
-- O(2^N):
+- **O(2^N)** -- exponential:
   Denotes an algorithm whose growth doubles with each additon to the input data set. The growth curve of an O(2N) function is exponential - starting off very shallow, then rising meteorically.
   E.g. recursive calculation of **Fibonacci numbers**
 
-- O(log N) -- logarithmic:
+- **O(log N)** -- logarithmic:
   E.g. **Binary Search**:
   Binary search is a technique used to search sorted data sets. It works by selecting the middle element of the data set, essentially the median, and compares it against a target value. If the values match it will return success. If the target value is higher than the value of the probe element it will take the upper half of the data set and perform the same operation against it. Likewise, if the target value is lower than the value of the probe element it will perform the operation against the lower half. It will continue to halve the data set with each iteration until the value has been found or until it can no longer split the data set.
 
@@ -274,7 +283,7 @@ Make a SUM variable. Because linked lists don't have indices, we have to make a 
 
 #### How the CASE condition works in SQL?
 
-The PostgreSQL `CASE` expression is the same as if/else statement in other programming languages.
+The PostgreSQL `CASE` expression is the same as **if/else statement** in other programming languages.
 
 In this general form, each condition is an expression that returns a _boolean_ value, either true or false.
 If the condition evaluates to true, the `CASE` expression returns the result corresponding to the condition and all other `CASE` branches do not process at all.
@@ -330,6 +339,8 @@ A variable which is defined in the _main body_ of a file is called a _global var
 
 A variable which is defined _inside_ a function is _local_ to that function. It is accessible from the point at which it is defined until the end of the function, and exists for as long as the function is executing. The parameter names in the function definition behave like local variables, but they contain the values that we pass into the function when we call it. When we use the assignment operator (`=`) inside a function, its default behaviour is to create a new local variable – unless a variable with the same name is already defined in the local scope.
 
+LEGB rule...
+
 #### What’s the difference between const and var in JavaScript?
 
 `var`:
@@ -376,7 +387,7 @@ Use `const` whenever you can. If the value will change, use `let` instead.
 
 #### What is recursion?
 
-A recursive function is a function defined in terms of itself via _self-referential expressions_. This means that the function will continue to call itself and repeat its behavior until some condition is met to return a result.
+A recursive function is a function defined in terms of itself via **self-referential expressions**. This means that the function will continue to call itself and repeat its behavior until some condition is met to return a result.
 
 #### Write a recursive function which calculates the Fibonacci numbers!
 
@@ -422,7 +433,7 @@ In JS code: `element.dispatchEvent(event);`.
 
 A callback function is any executable code that is passed as an **argument** to other code that is expected to _call back_ (execute) the argument at a given time.
 
-This execution may be _immediate_ as in a _synchronous_ callback, or it might happen at a _later_ time as in an _asynchronous_ callback:
+This execution may be _immediate_ as in a **synchronous callback**, or it might happen at a _later_ time as in an **asynchronous callback**:
 
 - `setTimeout()`
 - `setInterval()`
@@ -430,7 +441,7 @@ This execution may be _immediate_ as in a _synchronous_ callback, or it might ha
 
 #### What is a Python decorator? How does it work? Tell some examples of its usage.
 
-Decorators add functionality to an existing code. This is also called _metaprogramming_ as a part of the program tries to modify another part of the program at _compile time_.
+Decorators add functionality to an existing code. This is also called _metaprogramming_ as a part of the program tries to modify another part of the program at **compile time**.
 
 A decorator is a callable that returns a callable.
 
@@ -448,9 +459,9 @@ In Flask's case, the framework can add request receiving logic before running yo
 
 #### What is the difference between synchronous and asynchronous execution?
 
-When you execute something synchronously, you wait for it to finish before moving on to another task.
+When you execute something synchronously, you **wait** for it to finish before moving on to another task.
 
-When you execute something asynchronously, you can move on to another task, and get the results when ready.
+When you execute something asynchronously, you can move on to another task, and** get the results when ready**.
 
 ## Programming languages
 
@@ -459,7 +470,7 @@ When you execute something asynchronously, you can move on to another task, and 
 #### How can you connect your application to a database server? What are the possible ways?
 
 We need a database server, a connection/driver layer and a data connection from the Python side.
-We connect to the server with a username-password, a hostname, and a DB name, in the form that the connection/driver layer expects. It usually also includes a port. This will give us an option to use a _cursor_ in python that we can use to execute _commands_ on the DB server.
+We connect to the server with a username-password, a hostname, and a DB name, in the form that the connection/driver layer expects. It usually also includes a port. This will give us an option to use a **cursor** in python that we can use to **execute commands** on the DB server.
 
 #### When do you use the DISTINCT keyword in SQL?
 
@@ -467,11 +478,19 @@ The `SELECT DISTINCT` statement is used to return values that are distinct / uni
 
 #### What are aggregate functions in SQL? Give 3 examples.
 
-`COUNT()`
+Aggregate functions compute a **single result** from a set of input values.
 
-`SUM()`
+Examples:
 
-`AVG()`
+- `COUNT()`
+- `SUM()`
+- `AVG()`
+- `MIN()`
+- `MAX()`
+- `ARRAY_AGG()`
+- `STRING_AGG()`
+- `BOOL_AND()`
+- `BOOL_OR()`
 
 #### What kind of JOIN types do you know in SQL? Could you give examples?
 
@@ -493,7 +512,7 @@ SQL constraints are used to specify rules for data in a table.
 
 Constraints are used to limit the type of data that can go into a table. This ensures the accuracy and reliability of the data in the table. If there is any violation between the constraint and the data action, the action is aborted.
 
-Constraints can be column level or table level. Column level constraints apply to a column, and table level constraints apply to the whole table.
+Constraints can be **column level** or **table level**. Column level constraints apply to a column, and table level constraints apply to the whole table.
 
 The following constraints are commonly used in SQL:
 
@@ -514,8 +533,13 @@ The following constraints are commonly used in SQL:
 
 #### What is a cursor in SQL? Why would you use one?
 
-A database cursor can be thought of as a _pointer_ to a specific row within a query result. The pointer can be moved from one row to the next.
-Cursors let you perform actions on individual rows.
+A database cursor can be thought of as a **pointer** to a specific row within a query result. The pointer can be moved from one row to the next.
+
+Cursors let you perform actions on **individual rows**.
+
+Think of it this way: a **SQL result is like a bag**, you get to hold a whole bunch of rows at once, but not any of them individually; whereas, a **cursor is like a pair of tweezers**. With it, you can reach into the bag and grab a row, and then move onto the next.
+
+Psycopg is the most popular PostgreSQL _database adapter_ for the Python programming language. It features cursors like `DictCursor` and `RealDictCursor`.
 
 #### What are database indexes? When to use?
 
@@ -527,33 +551,33 @@ The keys are based on the tables' columns. By comparing keys to the index it is 
 
 A transaction is a unit of work that you want to treat as "a whole". It has to either happen in full or not at all.
 
-A classical example is transferring money from one bank account to another. To do that you have first to withdraw the amount from the source account, and then deposit it to the destination account. The operation has to succeed in full. If you stop halfway, the money will be lost.
+A classical example is **transferring money** from one bank account to another. To do that you have first to withdraw the amount from the source account, and then deposit it to the destination account. The operation has to succeed in full. If you stop halfway, the money will be lost.
 
 In modern databases transactions also do some other things - like ensure that you can't access data that another person has written halfway. But the basic idea is the same - transactions are there to ensure, that no matter what happens, the data you work with will be in a sensible state.
 
-A transaction, in the context of a database, is a logical unit that is independently executed for data retrieval or updates. In relational databases, database transactions must be atomic, consistent, isolated and durable--summarized as the **ACID** acronym.
+A transaction, in the context of a database, is a logical unit that is independently executed for data retrieval or updates. In relational databases, **database transactions must be** atomic, consistent, isolated and durable--summarized as the **ACID** acronym.
 
-- Atomicity:
-  A transaction must be fully complete, saved (committed) or completely undone (rolled back). A sale in a retail store database illustrates a scenario which explains atomicity, e.g., the sale consists of an inventory reduction and a record of incoming cash. Both either happen together or do not happen - it's all or nothing.
-- Consistency:
-  The transaction must be fully compliant with the state of the database as it was prior to the transaction. In other words, the transaction cannot break the database's constraints. For example, if a database table's Phone Number column can only contain numerals, then consistency dictates that any transaction attempting to enter an alphabetical letter may not commit.
-- Isolation:
-  Transaction data must not be available to other transactions until the original transaction is committed or rolled back.
-- Durability:
-  Transaction data changes must be available, even in the event of database failure.
+- **Atomicity**:
+  A transaction must be fully complete, saved (committed) or completely undone (rolled back). A sale in a retail store database illustrates a scenario which explains atomicity, e.g., the sale consists of an inventory reduction and a record of incoming cash. Both either happen together or do not happen - it's **all or nothing**.
+- **Consistency**:
+  The transaction must be fully compliant with the state of the database as it was prior to the transaction. In other words, the **transaction cannot break the database's constraints**. For example, if a database table's Phone Number column can only contain numerals, then consistency dictates that any transaction attempting to enter an alphabetical letter may not commit.
+- **Isolation**:
+  **Transaction data must not be available to other transactions** until the original transaction is committed or rolled back.
+- **Durability**:
+  Durability guarantees that transactions that have committed will survive permanently. For example, if a flight booking reports that a seat has successfully been booked, then the seat will remain booked even if the **system crashes**. Durability can be achieved by flushing the transaction's log records to non-volatile storage (NVM) before acknowledging commitment.
 
 #### What kind of database relations do you know? How to define them?
 
-One-to-One:
+**One-to-One**:
 
 - A row in table "A" can have only one matching row in table "B", and vice versa.
 
-One-to-Many (or Many-to-One):
+**One-to-Many** (or Many-to-One):
 
 - This is the most common relationship type.
 - A row in table "A" can have many matching rows in table "B", but a row in table "B" can have only one matching row in table "A".
 
-Many-to-Many:
+**Many-to-Many**:
 
 - In a many-to-many relationship, a row in table "A" can have many matching rows in table "B", and vice versa.
 
@@ -745,6 +769,8 @@ Merge or rebase.
 #### How does a VCS help with code reviews?
 
 Code review is crucial, and shipping high-quality code is everyone's responsibility. A Pull Request review on GitHub lets you combine multiple inline comments and an overarching summary into a single package that gives readers a clear and consolidated view of your thoughts and recommendations.
+
+> Git is a _directed acyclic graph_, btw.
 
 #### What is your favorite git command? Why?
 
