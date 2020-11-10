@@ -101,16 +101,22 @@ We store hashed passwords in a database.
 
 #### What is HTTPS?
 
-Hypertext Transfer Protocol Secure (HTTPS) is the secure version of HTTP, which is the primary protocol used to send data between a web browser and a website.
+**Hypertext Transfer Protocol Secure (HTTPS)** is the secure version of HTTP, which is the primary protocol used to send data between a web browser and a website.
 
 HTTPS is **encrypted** in order to increase security of data transfer.
 Any website, especially those that require login credentials, should use HTTPS. In modern web browsers such as Chrome, websites that do not use HTTPS are marked differently than those that are.
 
-Technically speaking, HTTPS is not a separate protocol from HTTP. It is simply using _**TLS/SSL** encryption_ over the HTTP protocol. HTTPS occurs based upon the transmission of TLS/SSL certificates, which verify that a particular provider is who they say they are.
+Technically speaking, HTTPS is not a separate protocol from HTTP. It is simply using **TLS/SSL encryption** over the HTTP protocol. HTTPS occurs based upon the transmission of **TLS/SSL certificates**, which verify that a particular provider is who they say they are.
+
+Does HTTPS use Asymmetric or Symmetric encryption? In short:
+
+The best answer is that it does both. TLS uses **asymmetric encryption to first establish identity** of one or both parties. Secondly, it uses **asymmetric encryption to exchange a key to a _symmetric_ cipher**. So asymmetric is **only used during the initial setup of communication (TLS-SSL handshake)**.
+
+**Symmetric encryption** which is **used through the rest** is faster and more efficient with large amounts of data transfer. The keys are smaller which is generally why it's faster, but it's algorithm is also easier to process.
 
 #### What is encryption and decryption?
 
-Encryption is a way of **scrambling** data so that only authorized parties can understand the information. In technical terms, it is the process of _converting plaintext to ciphertext_. In simpler terms, encryption takes readable data and alters it so that it _appears random_.
+Encryption is a way of **scrambling** data so that only authorized parties can understand the information. In technical terms, it is the process of **converting plaintext to ciphertext**. In simpler terms, encryption takes readable data and alters it so that it **appears random**.
 
 Encryption requires the use of an **encryption key**: a set of mathematical values that both the sender and the recipient of an encrypted message know.
 
@@ -118,9 +124,13 @@ Although encrypted data appears random, encryption proceeds in a logical, predic
 
 #### What is hashing?
 
-Hash algorithms are **one way** functions. They turn any amount of data into a **fixed-length** "fingerprint" that **cannot be reversed**. They also have the property that if the _input changes_ by even a tiny bit, the resulting hash is _completely different_.
+Hash algorithms are **one way** functions. They turn any amount of data into a **fixed-length** "fingerprint" or "signature" that **cannot be reversed**. They also have the property that if the **input changes** by even a tiny bit, the resulting hash is _completely different_.
+
+Hashing is a digital signature. It was originally designed to check if data was modified.
 
 #### What is the difference between encryption and hashing? When would you use which?
+
+Encryption is a method for encoding information to keep it secret. Hashing is a signature for a file or password.
 
 Encryption:
 
@@ -130,6 +140,7 @@ Encryption:
 - In case the data gets leaked, it's easy to trace the source. In other words, it's easy to trace who did it and when, thus making auditing for accountability easy. It helps in resolving security breaches efficiently.
 - Only intended parties with the right private key can read the data.
 - Use encryption whenever you **need** to get the input data back out. If you're storing credit card numbers, you need to get them back out at some point, but don't want to store them plain text. So instead, store the encrypted version and keep the _key_ as safe as possible.
+- Unlike hashing, encryption always produces a **unique file**.
 
 Hashing:
 
@@ -139,21 +150,32 @@ Hashing:
 - Hashing is helpful in comparing a value with a stored value, hence avoiding _duplication_. This can be done by storing the hash with a _salt_, and then with any future login attempts, hash the passwords that the users enter and compare it with the stored hash.
 - Hashing is used in a variety of digital certificates, including _SSL certificates_.
 - Hashing helps you find specific data in a huge **database**.
+- Unlike with encryption, hashing may produce **hash collisions**.
 
 #### What encryption methods do you know?
 
-Symmetric Encryption:
+**Symmetric Encryption**:
 
 - Symmetric-key encryption is an algorithm for cryptography that use the **same key** for both encryption of plain-text and decryption of cipher-text.
 - A public key is used on the sender's side when the data is encrypted, which happens for example when you are sending a message to somebody else, the server then decrypts the message according to the public key and encrypts it again with the receiver's public key, so then he will be able to decrypt it with his own public key and get the information.
 - The problem here is that the server / "man in the middle" (ISPs for example) will know both the sender and the receiver's public key and will be able to decrypt the private message.
+- E.g. ROT13 cipher
 
 **Asymmetric Encryption**:
 
 - Instead of just one public key, you have a **key pair**: a _public key_ and a _private key_.
 - The algorithm, that is used to generate the two keys, will make sure that the key pair is mathematically _linked_ to each other.
 - The public key is public, you put it at the end of all e-mails, posts etc. The private key is absolutely secret.
-- E.g. Bitcoin
+- E.g. RSA algorithm
+
+1. **Cryptography (encryption/decryption)**: Any message _encrypted_ with Bob's **public key** can only be **_decrypted_** with Bob's **private key**.
+2. **Signature (authentication)**: Anyone with access to Alice's **public key** can **_verify_** that a message (signature) could only have been created by someone with access to Alice's **private key**.
+
+> CA = Certificate Authority
+
+> In cryptography a **key** is a piece of information **used in combination with an algorithm** (a _cipher_) to transform plaintext into ciphertext (encryption) and vice versa (decryption).
+
+> A cipher can be **reciprocal** if it is used for both encryption and decryption, or **non-reciprocal** if a transformation to the key is required when using it in reverse.
 
 #### What hashing methods do you know?
 
@@ -844,7 +866,7 @@ Provides applications with **standardized data exchange**. Its protocols include
 
 - **DNS (Domain Name System)**
 - **HTTP** (**Hypertext Transfer Protocol**) / HTTPS (Hypertext Transfer Protocol Secure)
-- **TLS**/SSL (**Transport Layer Security** / Secure Sockets Layer) = ENCRYPTION PROTOCOL
+- **TLS**/SSL (**Transport Layer Security** / Secure Sockets Layer) = ENCRYPTION PROTOCOL or CRYPTOGRAPHIC PROTOCOL
 - **FTP** (**File Transfer Protocol**)
 - **POP3** (**Post Office Protocol 3**)
 - IMAP (Internet Message Access Protocol)
@@ -922,7 +944,7 @@ HTTP requests are messages sent by the client to initiate an action on the serve
 **Start-line**:
 
 1. An **HTTP method**, a verb (like `GET`, `PUT` or `POST`) or a noun (like `HEAD` or `OPTIONS`), that describes the action to be performed. For example, `GET` indicates that a resource should be fetched or `POST` means that data is pushed to the server.
-2. The request **target**, usually a URL.
+2. The request **target** (URI), usually a URL.
 3. The **HTTP version**, which defines the structure of the remaining message.
 
 A typical start-line looks like this: `GET http://developer.mozilla.org/en-US/docs/Web/HTTP/Messages HTTP/1.1`
