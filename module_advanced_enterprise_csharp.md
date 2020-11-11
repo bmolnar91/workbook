@@ -28,17 +28,17 @@ Unlike the .NET Framework, .NET Core is not considered a Windows component. Ther
 
 Each implementation of the managed framework has its own set of Base Class Libraries. The **Base Class Library (BCL)** contains classes such as exception handling, strings, XML, I/O, networking, and collections.
 
-**.NET Standard** is a specification for implementing the BCL. Since a .NET implementation is required to follow this standard, application developers will not have to worry about different versions of the BCL for each managed framework implementation.
+**.NET Standard is a specification for implementing the BCL**. Since a .NET implementation is required to follow this standard, application developers will not have to worry about different versions of the BCL for each managed framework implementation.
 
-**Framework Class Libraries (FCL)** such as WPF, WCF, and ASP.NET are _not_ part of the BCL, and therefore are _not_ included in .NET Standard.
+**Framework Class Libraries (FCL)** such as WPF, WCF, and ASP.NET are **_not_ part of the BCL**, and therefore are _not_ included in .NET Standard.
 
 Conclusion:
 
 .NET Standard is an **API specification** that defines, for a given version, what **Base Class Libraries** must be implemented.
 
-.NET Core is a **managed framework** that is optimized for building console, cloud, ASP.NET Core, and UWP (Universal Windows Platform) applications. It provides **an implementation of .NET Standard** for the Base Class Libraries.
+.NET Core is a **managed framework** that is optimized for building console, cloud, ASP.NET Core, and UWP (Universal Windows Platform) applications. It provides **an implementation of .NET Standard for the _Base Class Libraries_**.
 
-//ASP stands for Active Server Pages.//
+> ASP stands for Active Server Pages.
 
 _**More .NET Core**_:
 
@@ -148,7 +148,7 @@ MVC is an architectural design pattern that consists of 3 fundamental parts:
 
 WIP
 
-Whenever we request a URL the only thing happens is, an instance of a **Controller** is crated and some **action method** is called of it which results in rendering the View as HTML as response in the browser.
+Whenever we request a URL the only thing happens is, an instance of a **Controller** is created and some **action method** of it is called which results in rendering the View as HTML as response in the browser.
 
 1. Routing
 2. URL Routing Module intercepts the Request
