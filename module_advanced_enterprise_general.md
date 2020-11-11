@@ -8,11 +8,11 @@
 
 WIP
 
-In software engineering, **multi-tier architecture** (often referred to as **n-tier architecture**) is a client-server architecture in which, the presentation, the application processing and the data management are logically separate processes. For example, an application that uses middleware to service data requests between a user and a database employs multi-tier architecture. The most widespread use of "multi-tier architecture" refers to three-tier architecture.
+In software engineering, **multi-tier architecture** (often referred to as **n-tier architecture**) is a **client-server architecture** in which, the presentation, the application processing and the data management are logically separate processes. For example, an application that uses middleware to service data requests between a user and a database employs multi-tier architecture. The most widespread use of "multi-tier architecture" refers to three-tier architecture.
 
-N-tier architecture is also called multi-tier architecture because the software is engineered to have the processing, data management, and presentation functions **physically and logically separated**. That means that these different functions are **hosted on several machines or clusters**, ensuring that services are provided without resources being shared and, as such, these services are delivered at top capacity.
+N-tier architecture is also called multi-tier architecture because the software is engineered to have the processing, data management, and presentation functions **_physically_ and logically separated**. That means that these different functions are **hosted on several machines** or clusters, ensuring that services are provided without resources being shared and, as such, these services are delivered at top capacity.
 
-Not only does your software gain from being able to get services at the best possible rate, but it’s also easier to manage. This is because when you work on one section, the changes you make will not affect the other functions. And if there is a problem, you can easily pinpoint where it originates.
+Not only does your software gain from being able to get services at the best possible rate, but it's also easier to manage. This is because when you work on one section, the changes you make will not affect the other functions. And if there is a problem, you can easily pinpoint where it originates.
 
 Three tiers:
 
@@ -47,9 +47,9 @@ The principle is simple: don't write your program as one solid block, instead, *
 
 Modern enterprise applications can be large and daunting. The sheer amount of users, data, transactions, options, business cases, components, interacting systems, and a host of other factors, make designing business applications require a great deal of expertise. There are many examples of enterprise software that grew too complex, unmanageable, and fragile due to implementation, that did not account for change. It is for this reason that an effective enterprise application should be divided into layers.
 
-The layered architecture is the simplest form of software architectural pattern. If you are going to design a rudimentary application where the user count is very low ( < 100–200 ) and you are sure that there won't be too much requirement changes after you go live, this is the best software architecture pattern to use.
+The layered architecture is the simplest form of **software architectural pattern**. If you are going to design a rudimentary application where the user count is very low ( < 100–200 ) and you are sure that there won't be too much requirement changes after you go live, this is the best software architecture pattern to use.
 
-Layered architecture patterns are **n-tiered patterns** where the components are organized in horizontal layers. All the components are interconnected but do not depend on each other.
+Layered architecture patterns are **n-tiered patterns** where the components are organized in horizontal layers. All the **components are interconnected but do not depend on each other**.
 
 There are 4 layers in this architecture. From top to bottom:
 
@@ -66,7 +66,7 @@ Pros:
 Cons:
 
 - Although changes can be done to a particular layer, it is not easy because the application is a singular unit. Also, the coupling between layers tends to make it harder. This also makes it difficult to scale.
-- It must be deployed as a singular unit thus a change to a particular layer means the whole system must be redeployed.
+- It must be deployed as a singular unit thus a **change to a particular layer means the whole system must be redeployed**.
 - The larger is it, the more resources it requires for requests to go through multiple layers and thus will cause performance issues.
 
 #### What is Dependency Injection?
@@ -80,11 +80,11 @@ You can have the dependency be an interface or an abstract class and then polymo
 Also DI facilitates a very important principle, **Separation of Concerns**, because:
 
 - Many times is not a given class' responsibility to instantiate the things inside it.
-- Your code will be more modular, as the outside world can decide what exactly it should be (to make it super modular you could make it an interface).
+- Your code will be more **modular**, as the outside world can decide what exactly it should be (to make it super modular you could make it an interface).
 
 Dependency Injection can also refer to a **software library** that provides DI functionality and allows automating many of the tasks involved in Object Composition, Interception, and Lifetime Management. DI Containers are also known as Inversion of Control (IoC) Containers. (E.g. Spring Boot, ASP.NET Core).
 
-At the very least, a DI Container allows Auto-Wiring, which is the ability to automatically compose an object graph from maps between **Abstractions** and concrete types by making use of the types' **metadata** (reflection?) supplied by the compiler and its runtime environment.
+At the very least, a DI Container allows **Auto-Wiring**, which is the ability to automatically compose an object graph from maps between **Abstractions** and concrete types by making use of the types' **metadata** (reflection?) supplied by the compiler and its runtime environment.
 
 **This typically means that a DI Container will analyze a type's constructor and will inject dependencies into it, without the need of having to specify each constructor argument manually.**
 
@@ -150,7 +150,7 @@ While code coverage is a good metric of how much testing you are doing, it is no
 
 WIP
 
-Unit testing means testing units _independently_, so in some cases we need to isolate the component under test using what Martin **Fowler** calls **test doubles** (dummies, stubs, fakes, mocks).
+Unit testing means testing units _independently_, so in some cases we need to isolate the component under test using what Martin Fowler calls **test doubles** (dummies, stubs, fakes, mocks).
 
 In short, mocking is creating units (class instances) that **simulate the behaviour** of real units.
 
@@ -162,9 +162,9 @@ Mocking is the act of **removing external dependencies** from a unit test in ord
 - Classes with side effects, and
 - Classes with non-deterministic behavior.
 
-Mocks and stubs are fake Java classes that replace these external dependencies. Most of the time, we're fine using only stubs.
+Mocks and stubs are fake classes that replace these external dependencies. Most of the time, we're fine using only stubs.
 
-**Stub**: A stub is a fake class that comes with preprogrammed return values. It's injected into the class (component) under test to give you absolute control over what's being tested as input. A typical stub is a **database connection** that allows you to mimic any scenario without having a real database.
+**Stub**: A stub is a fake class that comes with **preprogrammed return values**. It's injected into the class (component) under test to give you absolute control over what's being tested as input. A typical stub is a **database connection** that allows you to mimic any scenario without having a real database.
 
 **Mock**: A mock can be examined after the test is finished for its interactions with the class (component) under test. For example, you can ask it whether a method was called or how many times it was called. Typical mocks are **classes with side effects** that need to be examined, e.g. a class that sends emails or sends data to another external service.
 
@@ -214,7 +214,7 @@ Benefits:
 
 Other benefits:
 
-- Better understanding of what you're going to write: When you write the test cases first, you think more critically about the corner cases. It's then easier to address them when you write the code and ensure that they're accurate.
+- Better understanding of what you're going to write: When you write the test cases first, you think more critically about the _corner cases_. It's then easier to address them when you write the code and ensure that they're accurate.
 - Enforces the policy of writing tests a little better
 - Speeds up development in many cases
 
@@ -223,12 +223,13 @@ Other benefits:
 WIP
 
 - Never push a failing test to the repository.
-- Use separate folder for tests as you might not want to deliver (ie. give to the user) your test along with the production code.
-- Give descriptive names to test methods so that you can see what fails easier
+- Use **separate folder for tests** as you might not want to deliver (ie. give to the user) your test along with the production code.
+- Give **descriptive names** to test methods so that you can see what fails easier
 - Write tests for the error cases and corner cases.
-- Check only a single thing in one test method (practically: use 1 assert per test method)
+- Check only a single thing in one test method (practically: use **1 assert per test method**)
 - Use assert (or expected exception) in all of the test methods.
 - Use the expected result as the first argument of an assert method: `Assert.AreEqual(expected, actual);`
+- Use the AAA pattern
 
 #### What is arrange/act/assert pattern?
 
@@ -269,15 +270,15 @@ WIP
 
 WIP
 
-The **Unified Modeling Language** is a standard visual modeling language intended to be used for:
+The **Unified Modeling Language** is a standard **visual modeling language** intended to be used for:
 
 - Modeling business and similar processes,
 - Analysis, design, and implementation of software-based systems
 
 There are two major kinds of UML diagram, structure diagrams and behavior diagrams:
 
-- **Structure diagrams**: show the static structure of the system and its parts on different abstraction and implementation levels and how they are related to each other. The elements in a structure diagram represent the meaningful concepts of a system, and may include abstract, real world and implementation concepts.
-- **Behavior diagrams**: show the dynamic behavior of the objects in a system, which can be described as a series of changes to the system over time.
+- **Structure diagrams**: show the **static structure** of the system and its parts on different abstraction and implementation levels and how they are related to each other. The elements in a structure diagram represent the meaningful concepts of a system, and may include abstract, real world and implementation concepts.
+- **Behavior diagrams**: show the **dynamic behavior** of the objects in a system, which can be described as a series of changes to the system over time.
 
 I've used **Class Diagrams** (structure) extensively, and **Sequence Diagrams** (behavior) occasionally.
 
@@ -293,14 +294,14 @@ That's where class diagrams come in. Class diagrams are a neat way of visualizin
 
 Why do we need class diagrams:
 
-1. Planning and modeling ahead of time make programming much easier.
-2. Besides that, making changes to class diagrams is easy, whereas coding differnent functionality after the fact is kind of annoying.
+1. **Planning** and modeling ahead of time make programming much easier.
+2. Besides that, **making changes** to class diagrams is **easy**, whereas coding differnent functionality after the fact is kind of annoying.
 3. When someone wants to build a house, they don't just grab a hammer and get to work. They need to have a **blueprint** — a design plan — so they can ANALYZE & modify their system.
-4. You don't need much technical/language-specific knowledge to understand it.
+4. You don't need much technical/language-specific knowledge to **understand** it.
 
 **UML Class Notation**:
 
-A class is represented as a box with 3 compartments. The uppermost one contains the **class name**. The middle one contains the **STATE = class attributes** and the last one contains the **BEHAVIOR = class operations** (methods).
+A class is represented as a box with **3 compartments**. The uppermost one contains the **class name**. The middle one contains the **STATE = class attributes** and the last one contains the **BEHAVIOR = class operations** (methods).
 Each attribute has a _type_. Each operation has a _signature_.
 
 **Class visibility**:
@@ -323,7 +324,7 @@ Each attribute has a _type_. Each operation has a _signature_.
   - E.g. `Square --|> Rectangle`
 - **Realization**:
   - Same as Inheritence but with interfaces.
-  - Interface is shown between two diamond operators + name in italics: `<<interface>> _IMyInterface_`
+  - Interface is shown between two diamond operators + name in italics: `<<interface>> IMyInterface`
   - Represented by **a dashed line + an empty arrow** pointing to the **implemented** interface.
   - E.g. `MotorCar ..|> Car`
 - **Aggregation**:
@@ -369,16 +370,17 @@ Object-oriented design patterns are traditionally classified under three categor
 1. **Factory Method pattern** (creational):
    - A normal factory produces goods; a software factory produces objects. And not just that — it does so without specifying the exact class of the object to be created. To accomplish this, objects are created by calling a factory method instead of calling a constructor.
    - There's nothing wrong with using `new` to create objects but it comes with the baggage of **tightly coupling** our code to the concrete implementation class, which can occasionally be problematic.
-   - Static factory methods returning the same type as the containing class are substitutes for constructors, with several advantages:
+   - **Static factory methods** returning the same type as the containing class are **substitutes for constructors**, with several advantages:
      - Unlike constructors, they have **names**. In some cases this makes our code **more readable**. More importantly, it is possible to have **two different factory methods with the same signature**.
      - Unlike constructors, they are **not required to create a new object** each time they're invoked. We can add features like pooling, caching, lazy loading, or other extras and limitations. Singleton's `getInstance()` is a good example for this.
      - Unlike constructors, they can **return an object of any subtype** of their return type.
 2. **Singleton pattern** (creational):
-   - The singleton pattern is used to limit creation of a class to only one object. This is beneficial when one (and only one) object is needed to coordinate actions across the system.
-   - There are several examples of where only a single instance of a class should exist, including caches, loggers, etc.
+   - The singleton pattern is used to limit creation of a class to only **one object**. This is beneficial when one (and only one) object is needed to coordinate actions across the system.
+   - There are several examples of where only a single instance of a class should exist, including **caches**, **loggers**, etc.
 3. **Iterator pattern** (behavioral):
-   - The iterator pattern is a design pattern in which an iterator is used to traverse a container and access the container's elements. The iterator pattern decouples algorithms from containers in most cases.
+   - The iterator pattern is a design pattern in which an iterator is used to **traverse a container** and access the container's elements. The iterator pattern **decouples algorithms from containers** in most cases.
    - For example, the hypothetical algorithm _SearchForElement_ can be implemented generally using a specified type of iterator rather than implementing it as a container-specific algorithm. This allows _SearchForElement_ to be used on any container that supports the required type of iterator.
+   - `foreach`
 
 #### What is the purpose of the Iterator Pattern?
 
