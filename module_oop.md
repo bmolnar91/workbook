@@ -1225,26 +1225,27 @@ WIP
 
 **Delegate**:
 
+**A delegate is a type safe function _pointer_.**
+
 - Delegates are used to pass **methods as arguments** to other methods.
 - A **`Delegate` is a _type_** (class) that represents references to methods with a particular parameter list and return type. When you instantiate a delegate, you can associate its instance with **any method with a compatible _signature_ and _return type_**. You can invoke (call) the method through the **delegate instance**.
 - Both **anonymous methods** and **lambda expressions** (in certain contexts) are **compiled to delegate types**.
 - There are 3 types of delegates:
 
   1. **Single delegate**:
-     Used to invoke a single method.
+     - Used to invoke a single method.
   2. **Multicast delegate**:
-     Used to invoke multiple methods. The delegate instance can do multicasting (adding a new method on existing delegate instance). `+` and `–` operators can be used to add or remove a method from a delegate instance. All **methods will invoke in sequence** as they are assigned.
+     - Used to invoke multiple methods. The delegate instance can do multicasting (adding a new method on existing delegate instance). `+` and `–` operators can be used to add or remove a method from a delegate instance. All **methods will invoke in sequence** as they are assigned.
+     - Basically a delegate that has **references to more than one method**
   3. **Generic delegate**:
-     Generic delegates don't require to _define_ the delegate instance in order to invoke the methods.
-
-     There are 3 types of generic delegates:
-
-     - **Function**:
-       `Func<T, TResult>` etc. encapsulates a method that has _0 or more parameters_ (1 in this case) and _**returns** a value of `TResult`_
-     - **Action**:
-       `Action<T>` etc. encapsulates a method that has _0 or more parameters_ (1 in this case) and _does **not** return a value_.
-     - **Predicate**:
-       `Predicate<T>` represents the method that defines a set of criteria and determines whether the specified object meets those criteria. `T` is the type of the object to compare. _It **returns** a Boolean (`true` or `false`)_.
+     - Generic delegates don't require to _define_ the delegate instance in order to invoke the methods.
+     - There are 3 types of generic delegates:
+       - **Function**:
+         `Func<T, TResult>` etc. encapsulates a method that has _0 or more parameters_ (1 in this case) and _**returns** a value of `TResult`_
+       - **Action**:
+         `Action<T>` etc. encapsulates a method that has _0 or more parameters_ (1 in this case) and _does **not** return a value_.
+       - **Predicate**:
+         `Predicate<T>` represents the method that defines a set of criteria and determines whether the specified object meets those criteria. `T` is the type of the object to compare. _It **returns** a Boolean (`true` or `false`)_.
 
 **Event**:
 
