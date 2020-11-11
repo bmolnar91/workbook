@@ -126,6 +126,8 @@ We store hashed passwords in a database.
 
 **Hypertext Transfer Protocol Secure (HTTPS)** is the secure version of HTTP, which is the primary protocol used to send data between a web browser and a website.
 
+HTTPS establishes an **encrypted link** between the browser and the web server using TLS or SSL -- "HTTP over TSL/SSL".
+
 HTTPS is **encrypted** in order to increase security of data transfer.
 Any website, especially those that require login credentials, should use HTTPS. In modern web browsers such as Chrome, websites that do not use HTTPS are marked differently than those that are.
 
@@ -136,6 +138,13 @@ Does HTTPS use Asymmetric or Symmetric encryption? The answer is:
 It does both. TLS uses **asymmetric encryption to first establish identity** of one or both parties. Secondly, it uses **asymmetric encryption to exchange a key to a _symmetric_ cipher**. So asymmetric is **only used during the initial setup of communication (TLS-SSL handshake)**.
 
 **Symmetric encryption** which is **used through the rest** is faster and more efficient with large amounts of data transfer. The keys are smaller which is generally why it's faster, but it's algorithm is also easier to process.
+
+Advantages of HTTPS:
+
+- Data integrity
+- Privacy and security
+- Faster performance (due to reduced size of data)
+- SEO
 
 #### What is encryption and decryption?
 
@@ -201,19 +210,30 @@ Encryption is a method for encoding information to keep it secret. Hashing is a 
 #### What hashing methods do you know?
 
 **MD (Message Digest)** family:
+
 **MD5**: 128 bit/32 characters long - very poor security - fastest computation
 
 **SHA (Secure Hash Algorithm)** family:
+
 The **SHA-2** family is more secure. SHA-256 is the default hashing algorithm of the PowerShell cmdlet `Get-FileHash` -- 256 bits, 64 hex characters long.
 
 **Bcrypt**:
+
 Uses salts built into the generated hashes to prevent rainbow table and dictionary attacks. Considered one of the more secure ways to hash a password.
 
 Salt:
+
 Salts are a random set of characters that are appended to the user's password before(!) they are hashed. Salts are stored in plain text along with the hashed output, so the website knows what salt to use when it comes to verify the password. Brute Force attacks will still be an issue, but Rainbow tables and Dictionary attacks won't work because it's computationally infeasible to generate rainbow tables for every possible salt.
 
 Pepper:
+
 A very short random string of characters appended to the end of the password. Peppers are random and different in each password. The pepper is not stored.
+
+Ways to crack a hashed password:
+
+- Dictionary and Brute Force attacks
+- Lookup tables (and Reverse Lookup tables)
+- Rainbow tables
 
 #### How/where would you store sensitive data (like db password, API key, ...) of your application?
 
@@ -1081,7 +1101,11 @@ Because **HTTP is stateless**, in order to associate a request to any other requ
 
 **Cookies** or **URL parameters** (like http://example.com/myPage?asd=yes&boo=2) are both suitable ways to transport data between 2 or more request. However they are not good in case you don't want that data to be **readable/editable on the client side**.
 
-The solution is to **store that data server side**, give it an "id", and let the client only know (and pass back at every http request) that id. There you go, sessions implemented. Or you can use the client as a convenient remote storage, but you would encrypt the data and keep the secret server-side.
+The solution is to **store that data server side**, give it an "id", and let the client only know (and pass back at every http request) that id (in the form of a basic cookie). There you go, sessions implemented. Or you can use the client as a convenient remote storage, but you would encrypt the data and keep the secret server-side.
+
+> Cookies are a client side storage mechanism.
+
+> Sessions are implemented with cookies.
 
 #### What would you use a cookie for?
 
@@ -1196,8 +1220,8 @@ The waterfall development model originates in the manufacturing and construction
 #### What happens when you type a URL in the browser and press enter?
 
 1. You type maps.google.com into the address bar of your browser and **press ENTER**.
-2. The **browser checks the cache for a DNS record** to find the corresponding IP address of maps.google.com.
-   - To find the DNS record, the browser checks 4 caches:
+2. The **browser checks the cache for a DNS record** to find the corresponding IP address of maps.google.com:
+   - To find the DNS record, the **browser checks 4 caches**:
      1. First, it checks the **browser cache**. The browser maintains a repository of DNS records for a fixed duration for websites you have previously visited. So, it is the first place to run a DNS query.
      2. Second, the browser checks the **OS cache**. If it is not in the browser cache, the browser will make a system call (i.e., gethostname on Windows) to your underlying computer OS to fetch the record since the OS also maintains a cache of DNS records.
      3. Third, it checks the **router cache**. If it's not on your computer, the browser will communicate with the router that maintains its own cache of DNS records.
@@ -1205,7 +1229,7 @@ The waterfall development model originates in the manufacturing and construction
 3. If the requested URL is not in the cache, **ISP's DNS server initiates a DNS query** to find the IP address of the server that hosts maps.google.com.
    - The purpose of a DNS query is to search multiple DNS servers on the internet until it finds the correct IP address for the website. This type of search is called a **recursive search** since the search will repeatedly continue from a DNS server to a DNS server until it either finds the IP address we need or returns an error response saying it was unable to find it.
    - If all goes well, the browser gets back the correct **IP address**.
-4. The browser initiates a **TCP connection** with the server.
+4. The browser initiates a **TCP connection** with the server:
    - Once the browser receives the correct IP address, it will build a connection with the server that matches the IP address to transfer information -- using TCP in this case (and most other cases).
    - To transfer **data packets** between your computer (client) and the server, a TCP connection is established using a process called the **TCP/IP three-way handshake**. This is a three-step process where the client and the server **exchange SYN (synchronize) and ACK (acknowledge) messages** to establish a connection:
      1. The client machine sends a **SYN packet** to the server over the internet, asking if it is open for new connections.
@@ -1215,25 +1239,25 @@ The waterfall development model originates in the manufacturing and construction
      3. The client will receive the SYN/ACK packet from the server and will acknowledge it by sending an **ACK packet**.
         _client_ --ACK--> _server_
    - Then a TCP connection is established for data transmission!
-5. The browser sends an **HTTP request** to the webserver.
+5. The browser sends an **HTTP request** to the webserver:
    - The browser will send a **GET request** asking for maps.google.com web page.
    - This request will also contain additional information such as:
-     - browser identification (**User-Agent** header)
-     - types of requests that it will accept (**Accept** header)
-     - connection headers (**Connection** header, like _Connection: Keep-Alive_) asking it to keep the TCP connection alive for additional requests
-   - It will also pass information taken from **cookies** the browser has in store for this domain.
-6. The server **handles the request**.
+     - browser identification (`User-Agent` header)
+     - types of requests that it will accept (`Accept` header)
+     - connection headers (`Connection` header, like _Connection: Keep-Alive_) asking it to keep the TCP connection alive for additional requests
+   - It will also pass information taken from **cookies** the browser has in store for this domain (`Cookie` header).
+6. The server **handles the request**:
    - The server contains a **webserver** (i.e., Apache, IIS) that receives the request from the browser and passes it to a _request handler_ to read and generate a response.
    - The **request handler** is a program (written in ASP.NET, PHP, Ruby, etc.) that reads the request, its headers, and cookies to check what is being requested and also update the information on the server if needed. Then it will **assemble a response in a particular format** (JSON, XML, HTML).
-7. The server sends out an **HTTP response**.
-   - The server response contains the **web page you requested** as well as the **status code**, compression type (Content-Encoding), how to cache the page (Cache-Control), **any cookies to set**, privacy information, etc.
+7. The server sends out an **HTTP response**:
+   - The server response contains the **web page you requested** as well as the **status code**, compression type (`Content-Encoding`), how to cache the page (`Cache-Control`), **any cookies to set**, privacy information, etc.
    - Status codes:
      - **1xx** indicates an informational message only
      - **2xx** indicates success of some kind
      - **3xx** redirects the client to another URL
      - **4xx** indicates an error on the client's part
      - **5xx** indicates an error on the server's part
-8. The browser **displays the HTML content** (for HTML responses, which is the most common).
+8. The browser **displays the HTML content** (for HTML responses, which is the most common):
    - The browser displays the HTML content in phases.
    - First, it will **render the bare bone HTML skeleton**.
    - Then it will check the HTML tags and **send out GET requests for additional elements** on the web page, such as images, CSS stylesheets, JavaScript files, etc. These static files are **cached by the browser**, so it doesn't have to fetch them again the next time you visit the page.

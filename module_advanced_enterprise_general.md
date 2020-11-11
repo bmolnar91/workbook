@@ -279,7 +279,7 @@ There are two major kinds of UML diagram, structure diagrams and behavior diagra
 - **Structure diagrams**: show the static structure of the system and its parts on different abstraction and implementation levels and how they are related to each other. The elements in a structure diagram represent the meaningful concepts of a system, and may include abstract, real world and implementation concepts.
 - **Behavior diagrams**: show the dynamic behavior of the objects in a system, which can be described as a series of changes to the system over time.
 
-I've used **Class Diagrams** (structure) extensively, and **Event Diagrams** (behavior) occasionally.
+I've used **Class Diagrams** (structure) extensively, and **Sequence Diagrams** (behavior) occasionally.
 
 > Draw.io > PlantUML
 
