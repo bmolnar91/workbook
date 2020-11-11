@@ -901,7 +901,7 @@ RESTful constraints:
 - **Statelessness**:
   - No Client-Context (e.g. Session) is stored on the Server
 - **Cacheability**:
-  - Responses must define themselves as cacheable or non-cacheable
+  - Responses must define themselves as _cacheable_ or _non-cacheable_
 - **Layered System**:
   - Intermediate Servers may be used without the Client knowing about it
 - **Uniform Interface**:
@@ -959,6 +959,8 @@ Provides applications with **standardized data exchange**. Its protocols include
 - SMTP (Simple Mail Transfer Protocol)
 - Telnet
 - etc.
+
+> POPs (Point of Presence) and NAPs (Network Access Point)!
 
 #### What’s the difference between TCP and UDP?
 

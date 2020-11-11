@@ -854,6 +854,7 @@ Spring Framework - ASP.NET
 Stream API - LINQ
 JUnit - NUnit
 Mockito - Moq / (NSubstitute)
+Functional interfaces ~ Delegates
 
 #### Explain the purpose of IL and how does it relate to CLR?
 
@@ -861,7 +862,7 @@ WIP
 
 A product of compilation of code written in high-level .NET languages. Once you compile your code written in one of these languages, you will get a binary that is made out of **IL (Intermediate Language)**. It is important to note that the IL is independent from any specific language that runs on top of the runtime.
 
-When we run the executable, the _Just-In-Time (JIT)_ compiler of CLR compiles the intermediate language in native machine code which is specific to the underlying architecture.
+When we run the executable, the _Just-In-Time (JIT)_ compiler of CLR compiles the IL in native machine code which is specific to the underlying architecture.
 
 #### What does “managed code” mean?
 
@@ -869,40 +870,39 @@ WIP
 
 When the C# program is executed, the _assembly_ is loaded into the CLR, which might take various actions based on the information in the manifest. Then, if the security requirements are met, the CLR performs just in time (JIT) compilation to convert the IL code to native machine instructions.
 
-Code that is executed by the **CLR** is sometimes referred to as **managed code**, in contrast to "unmanaged code" which is compiled into native machine language that targets a specific system.
+Code that is executed by the **CLR (Common Language Runtime)** is sometimes referred to as **managed code**, in contrast to "unmanaged code" which is compiled into native machine language that targets a specific system.
 
-//To put it very simply, managed code is just that: code whose execution is managed by a runtime. In this case, the runtime in question is called the Common Language Runtime or CLR, regardless of the implementation. CLR is in charge of taking the managed code, compiling it into machine code and then executing it. On top of that, runtime provides several important services such as automatic memory management (garbage collectior), security boundaries, type safety etc.//
+> To put it very simply, managed code is just that: **code whose execution is managed by a _runtime_**. In this case, the runtime in question is called the CLR, regardless of the implementation. CLR is in charge of taking the managed code, compiling it into machine code and then executing it. On top of that, runtime provides several important services such as automatic memory management (**garbage collector**), security boundaries, **type safety** etc.
 
-Managed code is written in one of the high-level languages that can be run on top of .NET, such as C#, Visual Basic, F# and others. When you compile code written in those languages with their respective compiler, you don't get machine code. You get **Intermediate Language** (IL) code which the runtime then compiles and executes. (C++ is the one exception to this rule, as it can also produce native, unmanaged binaries that run on Windows).
+Managed code is written in one of the high-level languages that can be run on top of .NET, such as C#, Visual Basic, F# and others. When you compile code written in those languages with their respective compiler, you don't get machine code. You get **IL (Intermediate Language)** code which the runtime then compiles and executes. (C++ is the one exception to this rule, as it can also produce native, unmanaged binaries that run on Windows).
 
-//IL = CIL = MSIL//
+> IL = CIL = MSIL
 
-//**Managed code** is executed by the **managed runtime environment (CLR)**, whereas **unmanaged code** is executed directly by the **operating system**.
-Applications written in these languages (Java, C#, VB.Net, etc.) are always aimed at runtime environment services to manage the execution and the code written in these types of languages are known as managed code.//
+> **Managed code** is executed by the **managed runtime environment (CLR)**, whereas **unmanaged code** is executed directly by the **operating system**. Applications written in these languages (Java, C#, VB.Net, etc.) are always _aimed at runtime environment services_ to manage the execution. The code written in these types of languages are known as managed code.
 
 #### What is an assembly?
 
 WIP
 
-Source code written in C# is compiled into an intermediate language (IL) that conforms to the CLI (command-line interface) specification. The IL code and resources (such as bitmaps and strings) are stored on disk in an executable file called an **assembly**, typically with an extension of **.exe** or **.dll**. An assembly contains a manifest that provides information about the assembly's types, version, culture, and security requirements.
+Source code written in C# is compiled into an intermediate language (IL) that conforms to the CLI (command-line interface) specification. The IL code and resources (such as bitmaps and strings) are stored on disk in an **executable file** called an **assembly**, typically with an extension of **.exe** or **.dll**. An assembly contains a _manifest_ that provides information about the assembly's types, version, culture, and security requirements.
 
 Once you produce IL from your high-level code, you will most likely want to run it. This is where the CLR takes over and starts the process of _Just-In-Time compiling_, or _JIT-ing_ your code from IL to machine code that can actually be run on a CPU. In this way, the CLR knows exactly what your code is doing and can effectively manage it.
 
-//Assembly is similar to Library in Java.//
+> Assembly is similar to Library in Java.
 
 #### What is the difference between an EXE and a DLL?
 
 WIP
 
-EXE:
+**EXE**:
 
-- An _executable file_. It's an application by itself rather than a supportive file.
-- Can be run individually as it contains an _entry point_ (main function).
+- An **executable file**. It's an application by itself rather than a supportive file.
+- Can be run individually as it contains an **entry point** (main function).
 
-DLL (Dynamic-Link Library):
+**DLL (Dynamic-Link Library)**:
 
-- Used as a _supportive file_ to other applications.
-- The Library Functions are _linked_ to the application at runtime _dynamically_ (hence the name).
+- Used as a **supportive file** to other applications.
+- The Library Functions are **linked** to the application at runtime **dynamically** (hence the name).
 - A DLL can't be run by itself as it doesn't contain an entry point.
 
 A dynamic-link library (DLL) is a module that contains functions and data that can be used by another module (application or DLL).
@@ -913,7 +913,7 @@ DLLs provide a way to modularize applications so that their functionality can be
 
 WIP
 
-Strong typing means that the type check is done at compile time and weak typing means that the type check is done at run time. .NET languages incorporate strong typing.
+**Strong typing** means that the type check is done at **compile time** and **weak typing** means that the type check is done at **run time**. .NET languages incorporate strong typing.
 
 Basic rules for strong-typing:
 
@@ -933,23 +933,23 @@ C# uses the concept of _namespaces_ to group logically related classes through t
 
 WIP
 
-A class with the `sealed` modifier on its class declaration is the opposite of an abstract class: it cannot be inherited. You can mark a class as sealed to prevent other classes from overriding its functionality. Naturally, a sealed class cannot be abstract. Also note that a struct is implicitly sealed; therefore, it cannot be inherited.
+A class with the `sealed` modifier on its class declaration is the opposite of an abstract class: it **cannot be inherited**. You can mark a class as sealed to prevent other classes from overriding its functionality. Naturally, a sealed class cannot be abstract. Also note that _a struct is implicitly sealed_; therefore, it cannot be inherited.
 
-//The sealed modifier is equivalent to marking a class with the final keyword in Java.//
+> The sealed modifier is equivalent to marking a class with the final keyword in Java.
 
 #### What is explicit vs. implicit conversion? Give examples of both of them.
 
 WIP
 
-Implicit conversions:
+**Implicit conversions**:
 No special syntax is required because the conversion always succeeds and no data will be lost.
 E.g.:
 
 - smaller to larger integral types
 - derived classes to base classes
 
-Explicit conversions (casts):
-Require a cast expression. Casting is required when information might be lost in the conversion, or when the conversion might not succeed for other reasons.
+**Explicit conversions (casts)**:
+Require a **cast expression**. Casting is required _when information might be lost_ in the conversion, or when the conversion might not succeed for other reasons.
 E.g.:
 
 - numeric conversion to a type that has less precision or a smaller range
@@ -963,21 +963,19 @@ Normally, structs are stored on the **stack**.
 
 A struct in C# is referred to as a **value type**. Variables of this type are not pointers, but the objects themselves. If you create a struct as a function-local variable, its memory will be allocated on the stack.
 
-//If the struct instance is a class member, its memory will be allocated contiguously as part of the class instance's memory on the heap.//
+> If the struct instance is a class member, its memory will be allocated contiguously as part of the class instance's memory on the heap.
 
 #### Can a struct have methods?
 
 WIP
 
-Struct definition:
-C# supports the `struct` keyword, another item that originates in C but is not available in Java.
-You can think of a struct as a lightweight class.
-
 Although structs can contain constructors, constants, fields, methods, properties, indexers, operators, and nested types, they are mostly used simply to **encapsulate groups of related fields**.
 
 Because structs are value types, they can be allocated slightly more efficiently than classes.
 
-Structs differ from classes in that they cannot be abstract and do not support implementation inheritance.
+Structs differ from classes in that they cannot be abstract and do not support implementation inheritance (implicitly sealed).
+
+> You can think of a struct as a lightweight class.
 
 #### Can DateTimes be null?
 
@@ -1029,42 +1027,56 @@ WIP
 
 Both Java and C# provide the ability to declare a variable whose value is specified at compile time and cannot be changed at runtime.
 
-Java uses the _`final`_ field modifier to declare such a variable, while C# uses the `const` keyword.
+Java uses the _final_ field modifier to declare such a variable, while C# uses the `const` keyword.
 
 #### What is the difference between “const” and “readonly” variables in C#?
 
 WIP
 
-In addition to const, C# provides the `readonly` keyword to declare variables that can be assigned a value once at runtime--either in the declaration statement or else in the constructor. After initialization, the value of a readonly variable cannot change.
+In addition to `const`, C# provides the `readonly` keyword to declare variables that can be assigned a value once at runtime--either in the **declaration statement** or else in the **constructor**. After initialization, the value of a readonly variable cannot change.
 
 One scenario in which readonly variables are useful is when modules that have been compiled separately need to share data such as a version number. If module A is updated and recompiled with a new version number, module B can be initialized with that new constant value without having to be recompiled.
 
 - `const`: compile-time
 - `readonly`: run time
 
-//If a readonly modifier is applied to a static field, it should be initialized in the static constructor of the class.//
+> If a readonly modifier is applied to a static field, it should be initialized in the static constructor of the class.
 
 #### What is a property in C#?
 
 WIP
 
-In C#, a property is a named member of a _class_, _struct_, or _interface_ offering a neat way to access **private** fields through what are called the **get** and **set** accessor methods.
+In C#, a property is a named member of a _class_, _struct_, or _interface_ offering a neat way to access **private** fields through what are called the `get` and `set` accessor methods. The `value` keyword represents the value of a property.
 
 If a property only has a get accessor, it is a _read-only_ property. If it only has a set accessor, it is a _write-only_ property. If it has both, it is a _read-write_ property.
+
+> Internally, C# properties are special methods called accessors.
 
 #### List out two different types of errors in C#?
 
 WIP
 
-...
+`Exception` class is the base class of the `SystemException` and `ApplicationException` classes.
+
+The `SystemException` class is the base class for all the exceptions that can occur during the execution of the program.
+
+The `ApplicationException` class should be derive to create your own **custom exception class**.
+
+Some `SystemException` examples:
+
+- `ArgumentException`
+- `DivideByZeroException`
+- `IndexOutOfRangeException`
+- `KeyNotFoundException`
+- `StackOverflowException`
 
 #### What is the difference between “out” and “ref” parameters in C#?
 
 WIP
 
-In C#, to pass a value type by reference, you need to specify one of the keywords `ref` or `out`.
+In C#, to **pass a value type by reference**, you need to specify one of the keywords `ref` or `out`.
 
-The difference between these two keywords is in the parameter initialization. A _ref_ parameter must be initialized before use, while an _out_ parameter does not have to be explicitly initialized before being passed and any previous value is ignored.
+The **difference** between these two keywords is in the **parameter initialization**. A `ref` parameter must be initialized before use, while an `out` parameter does not have to be explicitly initialized before being passed and any previous value is ignored.
 
 Any method using an `out` parameter MUST set its value when called.
 
@@ -1082,32 +1094,32 @@ No. The CLR doesn't allow to declare a private virtual method.
 
 WIP
 
-`IEquatable<T>` lets a structure implement a strongly typed `Equals()` method so **no boxing** is required. Thus much better performance when using _value types_ with generic collections.
+`IEquatable<T>` lets a structure implement a **strongly typed** `Equals()` method so **no boxing** is required. Thus much **better performance** when using **value types** with generic collections.
 
 #### Explain the differences between public, protected, private and internal. Explain access modifier – “protected internal” in C#!
 
 WIP
 
-C# modifiers are quite similar to those in Java, with several small differences. Each member of a class, or the class itself, can be declared with an access modifier to define the scope of permitted access. Classes that are not declared inside other classes can only specify the public or internal modifiers. Nested classes, like other class members, can specify any of the following five access modifiers:
+C# modifiers are quite similar to those in Java, with several small differences. Each member of a class, or the class itself, can be declared with an access modifier to define the scope of permitted access. Classes that are not declared inside other classes can only specify the **public or internal** modifiers. Nested classes, like other **class members**, can specify any of the following five access modifiers:
 
 1. `private`:
-   - Visible only within the given class.
+   - Visible only within the **given class**.
    - Equivalent to Java's _private_.
    - Default for class and struct members, and _nested_ classes, structs and delegates.
 2. `protected`:
-   - Visible only within the given class and from derived classes.
+   - Visible from **derived classes**.
    - No Java equivalents.
    - No defaults.
 3. `internal`:
-   - Visible only within the same assembly.
+   - Visible from the **same assembly**.
    - Equivalent to Java's _default / no modifier / "package-private"_
    - Default for _top-level_ classes, structs, interfaces, enums, and delegates.
 4. `protected internal`:
-   - Visible only to the current assembly or types derived from the containing class.
+   - Visible from the **same assembly** and **derived classes**.
    - Equivalent to Java's _protected_
    - No defaults.
 5. `public`:
-   - Visible to all.
+   - Visible to **all** (even other programs).
    - Equivalent to Java's _public_
    - Default for interface _members_, enum _members_, and property accessor / mutator _methods_.
 
@@ -1125,17 +1137,25 @@ C# modifiers are quite similar to those in Java, with several small differences.
 
 WIP
 
-Override:
-The `override` modifier _extends_ the base class `virtual` method.
+**Override**:
 
-New:
-The `new` modifier _hides_ an accessible base class method.
+The `override` modifier **extends** the base class `virtual` method.
+
+**New**:
+
+The `new` modifier **hides** an accessible base class method.
 
 #### Explain StringBuilder class in C#!
 
 WIP
 
 Just like in Java, C# developers should not use the string type for concatenating strings to avoid the overhead of creating new string classes every time the string is concatenated. Instead, developers can use the `StringBuilder` class, which is functionally equivalent to the Java StringBuffer class.
+
+`StringBuilder` maintains a **mutable array** that is hoped to be larger than the final string, and stuffs new things into the array as necessary.
+
+The old version used the maintain a dynamic array. The new implementation maintains a **_linked list_ of relatively small arrays**, and appends a new array onto the end of the list when the old one gets full.
+
+> Using a `StringBuilder` is best practice: it's a lot more efficient than copying strings over and over.
 
 #### How we can sort the array elements in descending order in C#?
 
@@ -1158,7 +1178,7 @@ A nullable value type `T?` represents all values of its underlying value type `T
 
 Any nullable value type is an instance of the generic `System.Nullable<T>` structure. You can refer to a nullable value type with an underlying type `T` in any of the following interchangeable forms: `Nullable<T>` or `T?`.
 
-You typically use a nullable value type when you need to represent the undefined value of an underlying value type. For example, a Boolean, or `bool`, variable can only be either `true` or `false`. However, in some applications a variable value can be undefined or missing. For example, a database field may contain `true` or `false`, or it may contain no value at all, that is, `NULL`. You can use the `bool?` type in that scenario.
+You typically use a nullable value type when you need to represent the undefined value of an underlying value type. For example, a Boolean, or `bool`, variable can only be either `true` or `false`. However, in some applications a variable value can be undefined or missing. _**For example, a database field**_ may contain `true` or `false`, or it may contain no value at all, that is, `NULL`. You can use the `bool?` type in that scenario.
 
 Use the null-coalescing (`??`) operator to assign a nullable type to a non-nullable type.
 
@@ -1167,14 +1187,31 @@ You always can use the following read-only properties to examine and get a value
 - `Nullable<T>.HasValue` indicates whether an instance of a nullable value type has a value of its underlying type.
 - `Nullable<T>.Value` gets the value of an underlying type if `HasValue` is `true`. If `HasValue` is `false`, the `Value` property throws an `InvalidOperationException`.
 
-//Nullable types in C# are similar to Optionals in Java.//
+> Nullable types in C# are similar to Optionals in Java.
 
 #### Conceptually, what is the difference between early-binding and late-binding?
 
 WIP
 
-In late binding, the compiler does not know about what kind of object it is and what are the methods or properties it holds, here the objects are dynamic objects. The type of the object is decided on the basis of the data it holds on the right-hand side during run-time.
-Basically, late binding is achieved by using `virtual` methods. Late binding is slower than early binding because it requires lookups at run-time.
+In late binding, the compiler does not know about what kind of object it is and what are the methods or properties it holds, here the objects are dynamic objects. The type of the object is decided on the basis of the data it holds on the right-hand side during **run-time**.
+
+Basically, late binding is achieved by using `virtual` methods. **Late binding is slower than early binding** because it requires lookups at run-time.
+
+**Early Binding (Static Binding)**:
+
+The binding that can be resolved at **compile time** is known as _static_ or _early binding_. The binding of `static`, `private`, and _non-virtual_ methods happens at compile-time. The reason is that the these method cannot be overridden and the type of the class is determined at the compile time. Method **overloading** is determined compile time.
+
+**Late Binding (Dynamic Binding)**:
+
+The binding that can only be resolved at **run time** is known as _dynamic_ or _late binding_. Method **overriding** is a perfect example of dynamic binding as in overriding both parent and child classes have same method and in this case the type of the object determines which method is to be executed.
+
+**Differences**:
+
+- Static binding happens at _compile-time_ while dynamic binding happens at _runtime_.
+- Binding of _private_, _static_ and _non-virtual_ methods always happen at compile time since these methods cannot be overridden.
+
+> overriding => early binding
+> overloading => late binding
 
 #### What is delegate, event, callback, multicast delegate?
 
