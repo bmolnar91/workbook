@@ -6,7 +6,7 @@
 
 #### What does 'fail fast' mean in terms of exception handling? Why is it a good practice?
 
-The _fail-fast_ principle encourages us to fail fast and early: If an error occurs, fail immediately and visibly.
+The _fail-fast_ principle encourages us to **fail fast and early**: If an error occurs, fail immediately and visibly.
 If something unusually or unexpectedly occurs, let the software fail immediately instead of postponing the failure or working around the failure. The longer it takes for a bug to appear on the surface, the longer it takes to fix and the greater it costs.
 
 Fail-fast makes bugs and failures appear sooner, thus:
@@ -30,26 +30,28 @@ Iterate through the list using 2 pointers. When the "fast" pointer reaches the e
 #### Given an array of integers going from 1 to 100 (both inclusive) there is a duplicated entry. How to find it?
 
 Loop over the array, and insert every element into a `HashSet` while checking the return value. If add() returns false, it means that element is not allowed in the Set, and that is your duplicate.
+
 Complexity: O(n)
 
 #### What is a linked list? How to find if a linked list has a loop?
 
-`LinkedList` is a data structure consisting of a _group of nodes_ which together represent a sequence. Each node is composed of data and a link to the next node in the sequence.
+`LinkedList` is a data structure consisting of a **group of nodes** which together represent a sequence. Each node is composed of **data** and a _link_ to the **next** node in the sequence.
 
 The most notable difference between the `LinkedList` and the `ArrayList` is in the way they store objects.
-The `ArrayList` is better for _storing_ and _accessing_ data, as it is very similar to a normal array.
-The `LinkedList` is better for _manipulating_ data, such as making numerous inserts and deletes.
+
+The `ArrayList` is better for **storing** and **accessing** data, as it is very similar to a normal array.
+The `LinkedList` is better for **manipulating** data, such as making numerous _inserts_ and _deletes_.
 
 In addition to storing the object, the `LinkedList` stores the memory address (or link) of the element that follows it. It's called a linked list because each element contains a link to the neighboring element.
 
-- Use an ArrayList when you need rapid access to your data OR if you want to add/remove items at the END of your list. "Use an ArrayList normally".
-- Use a LinkedList when you need to make a large number of inserts and/or deletes.
+> Use an `ArrayList` when you need rapid access to your data OR if you want to add/remove items at the END of your list. "Use an ArrayList normally".
+> Use a `LinkedList` when you need to make a large number of inserts and/or deletes.
 
 #### What is the Big O time complexity of the common operations in an ArrayList, LinkedList, HashMap? And of a bubble sort, quicksort, finding items in a Binary Search tree?
 
 WIP
 
-ArrayList:
+**ArrayList**:
 
 - add(): O(1)
 - add(index, element): O(n)
@@ -57,28 +59,28 @@ ArrayList:
 - indexOf(): O(n)
 - contains(): O(n)
 
-LinkedList:
+**LinkedList**:
 
 - add(): O(1) at any position
 - get(): O(n)
 - remove(): O(1)
 - contains(): O(n)
 
-HashMap:
+**HashMap**:
 
 - containsKey(): O(1)
 - get(): O(1)
 - put(): O(1)
 - remove(): O(1)
 
-Bubble Sort: O(n^2)
+**Bubble Sort**: O(n^2)
 
-Quicksort:
+**Quicksort**:
 
 - Average: O(log n)
 - Worst case: O(n^2)
 
-Binary Search Tree:
+**Binary Search Tree**:
 
 - Average: O(log n)
 - Worst case: O(n)
@@ -99,6 +101,7 @@ If you try to get a value that is not present in your map, it returns the value 
 #### Why is it important for keys in a map to have an immutable type? (Consider String for example.)
 
 If immutable, the object's **hashcode** won't change and it allows caching the hashcode of different keys which makes the overall retrieval process very fast.
+
 Also for mutable objects, the hashcode might be dependent on fields that could change, if this happens you won't be able to find the key (and its value) in the HashMap since `hashCode()` returns different value.
 
 ### Other
@@ -137,11 +140,11 @@ Following the specific exceptions, you can use the `Exception` type to handle al
 
 #### What is a class?
 
-A class is a user defined blueprint or prototype from which objects are created. It represents the set of properties or methods that are common to all objects of one type.
+A class is a user defined **blueprint** or prototype from which objects are created. It represents the set of properties or methods that are common to all objects of one type.
 
 #### What is an object?
 
-It is a basic unit of Object Oriented Programming and represents the real life entities. A typical Java program creates many objects which interact by invoking methods.
+It is a basic unit of Object Oriented Programming and **represents the real life entities**. A typical Java program creates many objects which interact by invoking methods.
 
 An object consists of:
 
@@ -153,7 +156,7 @@ An object consists of:
 
 #### What is a constructor?
 
-Constructors are special methods invoked when an object is created and are used to initialize them.
+Constructors are special methods invoked when an object is created and are used to **initialize** them.
 A constructor can be used to provide initial values for object attributes.
 
 - A constructor name must be same as its class name.
@@ -173,7 +176,7 @@ A single class can have multiple constructors with different numbers of paramete
 
 #### What is an interface?
 
-An interface is a completely _abstract_ class that contains only abstract methods.
+An interface is a completely **abstract** class that contains only abstract methods.
 
 Some specifications for interfaces:
 
@@ -273,11 +276,11 @@ When to use: see above
 
 Within an instance method or a constructor, `this` is a reference to the current object — the object whose method or constructor is being called. You can refer to any member of the current object from within an instance method or a constructor by using `this`.
 
-The most common reason for using the `this` keyword is because a field is shadowed by a method or constructor parameter.
+The most common reason for using the `this` keyword is because a field is **shadowed** by a method or constructor parameter.
 
 #### What are base class, subclass and superclass?
 
-Tied with the concept of _inheritance_.
+Tied with the concept of **inheritance**.
 
 The class inheriting the properties of another is the **subclass** (also called _derived class_, or _child class_); the class whose properties are inherited is the **superclass** (_base class_, or _parent class_).
 
@@ -292,10 +295,12 @@ The purpose of inheritance is twofold:
 
 #### Difference between overloading and overriding?
 
-Static Binding or Early Binding:
+**Early Binding** Static Binding:
+
 The binding that can be resolved at **compile time** is known as _static_ or _early binding_. The binding of _static_, _private_ and _final_ methods happens at compile-time. The reason is that the these method cannot be overridden and the type of the class is determined at the compile time. Method **overloading** is determined compile time.
 
-Dynamic Binding or Late Binding:
+**Late Binding** or Dynamic Binding:
+
 The binding that can only be resolved at **run time** is known as _dynamic_ or _late binding_. Method **overriding** is a perfect example of dynamic binding as in overriding both parent and child classes have same method and in this case the type of the object determines which method is to be executed.
 
 Differences:
@@ -307,27 +312,27 @@ Differences:
 
 #### What are the Object Oriented Principles? Explain the concepts with realistic examples!
 
-- Encapsulation:
-  The packing of data and methods into a single component.
+- **Encapsulation**:
+  The packing of data and methods into a **single component**.
 
   - Control of the way data is accessed or modified
   - More flexible and easily changed code
   - Ability to change one part of the code without affecting other parts
-    //When a variable is hidden by the `private` modifier and can be accessed only through a getter and/or setter, it is encapsulated.//
+    > When a variable is hidden by the `private` modifier and can be accessed only through a getter and/or setter, it is encapsulated.
 
-- Inheritance:
+- **Inheritance**:
 
-  - Inheritance is the process that enables one class to acquire the properties (methods and variables) of another. With inheritance, the information is placed in a more manageable, hierarchical order.
+  - Inheritance is the process that enables one class to acquire the properties (methods and variables) of another. With inheritance, the information is placed in a more manageable, **hierarchical order**.
 
-- Polymorphism:
+- **Polymorphism**:
 
   - Polymorphism, which refers to the idea of "having many forms", occurs when there is a hierarchy of classes related to each other through inheritance.
-  - A call to a member method will cause a different implementation to be executed, depending on the type of the object invoking the method.
+  - A call to a member method will cause a **different implementation** to be executed, depending on the type of the object invoking the method.
 
-- Abstraction:
+- **Abstraction**:
 
-  - Data abstraction provides the outside world with only essential information, in a process of representing essential features without including implementation details.
-  - A good real-world example is a book. When you hear the term book, you don't know the exact specifics, such as the page count, the color, or the size, but you understand the idea, or _abstraction_, of a book.
+  - Data abstraction provides the outside world with only essential information, in a process of representing **essential features** without including implementation details.
+  - A good real-world example is a **book**. When you hear the term book, you don't know the exact specifics, such as the page count, the color, or the size, but you understand the idea, or _abstraction_, of a book.
   - The concept of abstraction is that we focus on essential qualities, rather than the specific characteristics of one particular example.
   - In Java, abstraction is achieved using **abstract classes** and **interfaces**.
   - An abstract class is defined using the `abstract` keyword.
@@ -345,8 +350,8 @@ Differences:
 
 #### What is method overloading?
 
-Happens at compile time. A _subclass_ can define a behavior that's specific to the subclass type, meaning that a subclass can implement a superclass method based on its requirement.
-When methods have the _same name_, but _different parameters_, this feature is known as _method **overloading**_, also known as **compile-time polymorphism**.
+Happens at **compile time**. A _subclass_ can define a behavior that's specific to the subclass type, meaning that a subclass can implement a superclass method based on its requirement.
+When methods have the **same name**, but **different parameters**, this feature is known as _method **overloading**_, also known as **compile-time polymorphism**.
 
 In order to overload a method, the argument lists of the methods must differ in either of these:
 
@@ -360,14 +365,14 @@ If two methods have same name, same parameters and have different _return type_,
 
 #### What is method overriding?
 
-Happens at runtime. A _subclass_ can define a behavior that's specific to the subclass type, meaning that a subclass can implement a superclass method based on its requirement.
-When methods have the same _signature_ (name + parameters) and _return type_ This feature is known as _method **overriding**_, also known as **runtime polymorphism**, or _dynamic method dispatch_.
+Happens at **runtime**. A _subclass_ can define a behavior that's specific to the subclass type, meaning that a subclass can implement a superclass method based on its requirement.
+When methods have the **same _signature_** (name + parameters) and **return type** This feature is known as _method **overriding**_, also known as **runtime polymorphism**, or _dynamic method dispatch_.
 
 Rules for Method Overriding:
 
 - Should have the same return type and arguments.
 - The _overriding method's_ access level cannot be more restrictive than the _overridden method's_ access level.
-- A method declared `private`, `static` or `final` cannot be overridden. (However static methods can be re-declared in the subclass, in this case the subclass method would act differently and will have nothing to do with the same static method of superclass).
+- A method declared `private`, `static` or `final` (_non-virtual_) cannot be overridden. (However static methods can be re-declared in the subclass, in this case the subclass method would act differently and will have nothing to do with the same static method of superclass).
 - If a method cannot be inherited, it cannot be overridden.
 - Constructors cannot be overridden.
 - The _overriding method_ (subclass) can throw unchecked exceptions, regardless of whether the _overridden method_ (superclass) throws any exceptions or not. However the overriding method (subclass) should not throw checked exceptions that are new or broader than the ones declared by the overridden method (superclass).
@@ -384,11 +389,11 @@ _Garbage Collector_ is the program running in the background that looks into all
 
 One of the basic ways of garbage collection involves three steps:
 
-1. Marking: This is the first step where garbage collector identifies which objects are in use and which ones are not in use.
-2. Normal Deletion: Garbage Collector removes the unused objects and reclaim the free space to be allocated to other objects.
-3. Deletion with Compacting: For better performance, after deleting unused objects, all the survived objects can be moved to be together. This will increase the performance of allocation of memory to newer objects.
+1. **Marking**: This is the first step where garbage collector identifies which objects are in use and which ones are not in use.
+2. **Normal Deletion**: Garbage Collector removes the unused objects and reclaim the free space to be allocated to other objects.
+3. **Deletion with Compacting**: For better performance, after deleting unused objects, all the survived objects can be moved to be together. This will increase the performance of allocation of memory to newer objects.
 
-//One of the best features of Java programming language is the automatic garbage collection, unlike other programming languages such as C or C++, where memory allocation and deallocation is a manual process.//
+> One of the best features of Java programming language is the automatic garbage collection, unlike other programming languages such as C or C++, where memory allocation and deallocation is a **manual process**.
 
 #### Explain the “Single Responsibility” principle!
 
@@ -400,14 +405,15 @@ Some of its benefits:
 - **Testing**: A class with one responsibility will have far fewer test cases.
 - **Organization**: Smaller, well-organized classes are easier to search than monolithic ones.
 
-//Stands for 'S' in _SOLID_.//
+> Stands for 'S' in _SOLID_.
 
 #### What is an object oriented program? Explain, show.
 
-OOP is a programming methodology based on objects, instead of just functions and procedures.
+OOP is a programming methodology based on **objects**, instead of just functions and procedures.
 
-Importance is given to data (properties of the object) rather than just writing instructions to complete a task.
-An object is a real-world problem or idea that you want to model in your program. An object can represent anything, e.g. an employee, bank account, car, tortoise, etc.
+Importance is given to **data** (properties of the object) rather than just writing instructions to complete a task.
+
+An object is a **real-world problem** or idea that you want to **model** in your program. An object can represent anything, e.g. an employee, bank account, car, tortoise, etc.
 
 #### How do you make a class immutable? What do you need to watch out for?
 
@@ -435,7 +441,7 @@ Abstract classes cannot be instantiated. The purpose of an abstract class is to 
 
 #### What is autoboxing and unboxing?
 
-**Autoboxing** is the automatic conversion that the Java compiler makes between the _primitive types_ and their corresponding _object wrapper classes_. For example, converting an `int` to an `Integer`.
+**Autoboxing** is the automatic conversion that the Java compiler makes between the **primitive type** and their corresponding **object wrapper classes**. For example, converting an `int` to an `Integer`.
 If the conversion goes the other way, this is called **unboxing**.
 
 For an autoboxing example, consider the following code:
@@ -465,13 +471,13 @@ for (int i = 0; i < 50; i++)
 
 General convention for a variable's scope is, it is accessible only within the block in which it is declared.
 
-1. Class variables:
-   A variable which is declared inside a class, outside all the blocks and is marked _static_ is known as a class variable. The lifetime of a class variable is until the end of the program or as long as the class is loaded in memory.
+1. **Class variables**:
+   A variable which is declared inside a class, outside all the blocks and is marked **static** is known as a class variable. The lifetime of a class variable is **until the end of the program** or as long as the class is loaded in memory.
 
-2. Instance variables:
-   A variable which is declared inside a class and outside all the methods and blocks is an instance variable. Lifetime of an instance variable is until the object stays in memory.
+2. **Instance variables**:
+   A variable which is declared inside a class and **outside all the methods and blocks** is an instance variable. Lifetime of an instance variable is until the object stays in memory.
 
-3. Local variables:
+3. **Local variables**:
    All other variables which are not instance and class variables are treated as local variables including the parameters in a method. The lifetime of a local variable is until the control leaves the block in which it is declared.
 
 #### What is the purpose of the ‘equals()’ method?
@@ -489,11 +495,11 @@ The `equals()` method is used for semantical equality testing.
 
 #### What does the ‘static’ keyword mean?
 
-When you declare a variable or a method as _static_, it belongs to the _class_, rather than to a specific _instance_. This means that only one _instance_ of a static member exists, even if you create multiple objects of the class, or if you don't create any. It will be shared by all objects.
+When you declare a variable or a method as _static_, it belongs to the **class**, rather than to a specific _instance_. This means that only one _instance_ of a static member exists, even if you create multiple objects of the class, or if you don't create any. It will be shared by all objects.
 
-//It's a common practice to use upper case when naming a static variable, although not mandatory.//
+Static fields are created and initialized when the class is first loaded. That happens when a static member of the class is referred to or when an instance of the class is created, whichever comes first.
 
-//Static fields are created and initialized when the class is first loaded. That happens when a static member of the class is referred to or when an instance of the class is created, whichever comes first.//
+> It's a common practice to use upper case when naming a static variable, although not mandatory.
 
 #### Why is the main() method declared as static? Explain.
 
@@ -695,7 +701,7 @@ The `Collection` interface provides the basic functionality used by all collecti
 
 #### What is the connection between equals() and hashCode()? How are they used in HashMap?
 
-When we put a value in the map, the key's `hashCode()` method is used to determine the bucket in which the value will be stored.
+When we put a value in the map, the key's `hashCode()` method is used to determine the **bucket** in which the value will be stored.
 
 To retrieve the value, `HashMap` calculates the bucket in the same way – using `hashCode()`. Then it iterates through the objects found in that bucket and use the key's `equals()` method to find the exact match.
 
@@ -803,10 +809,10 @@ Abstract types declared between angle brackets (`<>`) (a.k.a. _diamond operator_
 
 Code that uses generics has many benefits over non-generic code:
 
-- Stronger type checks at compile time.
+- **Stronger type checks at compile time**.
   A Java compiler applies strong type checking to generic code and issues errors if the code violates **type safety**. Fixing compile-time errors is easier than fixing runtime errors.
-- Elimination of casts, which results cleaner code and better performance.
-- Enabling programmers to implement generic algorithms.
+- **Elimination of casts**, which results **cleaner code** and **better performance**.
+- Enabling programmers to implement **generic algorithms**.
   By using generics, programmers can implement generic algorithms that work on collections of different types, can be customized, and are type safe and easier to read.
 
 Bounded type parameters:
