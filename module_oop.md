@@ -1217,52 +1217,60 @@ The binding that can only be resolved at **run time** is known as _dynamic_ or _
 
 WIP
 
-Delegate:
+**Delegate**:
 
 - Delegates are used to pass **methods as arguments** to other methods.
-- A delegate is a type that represents references to methods with a particular parameter list and return type. When you instantiate a delegate, you can associate its instance with any method with a compatible signature and return type. You can invoke (or call) the method through the delegate instance.
-- Both anonymous methods and lambda expressions (in certain contexts) are compiled to delegate types.
+- A **`Delegate` is a _type_** (class) that represents references to methods with a particular parameter list and return type. When you instantiate a delegate, you can associate its instance with **any method with a compatible _signature_ and _return type_**. You can invoke (call) the method through the **delegate instance**.
+- Both **anonymous methods** and **lambda expressions** (in certain contexts) are **compiled to delegate types**.
 - There are 3 types of delegates:
 
-  1. Single delegate:
+  1. **Single delegate**:
      Used to invoke a single method.
-  2. Multicast delegate:
-     Used to invoke multiple methods. The delegate instance can do multicasting (adding a new method on existing delegate instance). `+` and `–` operators can be used to add or remove a method from a delegate instance. All methods will invoke in sequence as they are assigned.
-  3. Generic delegate:
-     Not require to define the delegate instance in order to invoke the methods.
+  2. **Multicast delegate**:
+     Used to invoke multiple methods. The delegate instance can do multicasting (adding a new method on existing delegate instance). `+` and `–` operators can be used to add or remove a method from a delegate instance. All **methods will invoke in sequence** as they are assigned.
+  3. **Generic delegate**:
+     Generic delegates don't require to _define_ the delegate instance in order to invoke the methods.
 
      There are 3 types of generic delegates:
 
-     - **Func**:
-       `Func<T, TResult>` etc. encapsulates a method that has _0 or more parameters_ (1 in this case) and _returns a value of `TResult`_
+     - **Function**:
+       `Func<T, TResult>` etc. encapsulates a method that has _0 or more parameters_ (1 in this case) and _**returns** a value of `TResult`_
      - **Action**:
-       `Action<T>` etc. encapsulates a method that has _0 or more parameters_ (1 in this case) and _does not return a value_.
+       `Action<T>` etc. encapsulates a method that has _0 or more parameters_ (1 in this case) and _does **not** return a value_.
      - **Predicate**:
-       `Predicate<T>` represents the method that defines a set of criteria and determines whether the specified object meets those criteria. `T` is the type of the object to compare. _It returns a Boolean_.
+       `Predicate<T>` represents the method that defines a set of criteria and determines whether the specified object meets those criteria. `T` is the type of the object to compare. _It **returns** a Boolean (`true` or `false`)_.
 
-Event:
-Events enable a class or object to notify other classes or objects when something of interest occurs. The class that sends (or raises) the event is called the _publisher_ and the classes that receive (or handle) the event are called _subscribers_.
+**Event**:
+
+Events enable a class or object to **notify** other classes or objects **when something of interest occurs**.
+
+The class that **_raises_** (sends) the event is called the **publisher** and the classes that **_handle_** (receive) the event are called **subscribers**.
+
+> A **publisher** is like a _button element_ or a _timer object_.
+> A **subscriber** is like an _event handler_ (e.g. onclick).
 
 Events have the following properties:
 
-- The publisher determines when an event is _raised_; the subscribers determine what action is taken in _response_ to the event.
-- An event can have multiple subscribers. A subscriber can handle multiple events from multiple publishers.
+- The **publisher** determines **_when_** an event is **raised**.
+- The **subscribers** determine **_what action is taken_** in response to the event.
+- An _event_ can have **multiple subscribers**. A _subscriber_ can handle **multiple events** (from multiple publishers).
 - Events that have no subscribers are never raised.
 - Events are typically used to signal user actions such as button clicks or menu selections in graphical user interfaces.
-- When an event has multiple subscribers, the event handlers are invoked synchronously when an event is raised. (Events can also be invoked asynchronously).
+- When an event has **multiple subscribers**, the event handlers are invoked **synchronously** when an event is raised. (Events can also be invoked **asynchronously**).
 - In the .NET class library, events are based on the `EventHandler` delegate and the `EventArgs` base class.
 
-Callback:
-In computer programming, a callback is executable code that is passed as an argument to other code.
-C# has delegates for that purpose. They are heavily used with events, as an event can automatically invoke a number of attached delegates (event handlers).
+**Callback**:
 
-//Event handlers are nothing more than methods that are invoked through delegates.//
+In computer programming, a callback is executable code that is passed as an argument to other code.
+C# has **delegates** for that purpose. They are heavily **used with events**, as an event can automatically invoke a number of attached delegates (event handlers).
+
+> **Event handlers** are nothing more than methods that are **invoked through _delegates_**.
 
 #### What is enum in C#?
 
 WIP
 
-Enumerations, or enums, are used to group named constants. In C#, enums are value types, and enum constants must be integral numeric values. The `ToString` method can be used to print out string representations of the named constants.
+Enumerations, or enums, are used to **group named constants**. In C#, enums are **value types**, and enum constants must be integral numeric values. The `ToString()` method can be used to print out _string representations_ of the _named constants_.
 
 ```csharp
 public enum Color
@@ -1278,7 +1286,7 @@ public enum Color
 
 WIP
 
-A _null-conditional operator_ applies a member access, `?.`, or element access, `?[]`, operation to its operand only if that operand evaluates to non-null; otherwise, it returns `null`.
+A **null-conditional operator** applies a member access, **`?.`**, or element access, **`?[]`**, operation to its operand only if that operand evaluates to non-null; otherwise, it returns `null`.
 
 - If `a` evaluates to `null`, the result of `a?.x` or `a?[x]` is `null`.
 - If `a` evaluates to non-null, the result of `a?.x` or `a?[x]` is the same as the result of `a.x` or `a[x]`, respectively.
@@ -1287,55 +1295,86 @@ A _null-conditional operator_ applies a member access, `?.`, or element access, 
 
 WIP
 
-The _null-coalescing operator_ `??` returns the value of its left-hand operand if it isn't `null`; otherwise, it evaluates the right-hand operand and returns its result.
+The **null-coalescing operator** **`??`** returns the value of its left-hand operand if it isn't `null`; otherwise, it evaluates the right-hand operand and returns its result.
 
-The _null-coalescing assignment operator_ `??=` assigns the value of its right-hand operand to its left-hand operand only if the left-hand operand evaluates to null.
+```csharp
+int? a = null;
+int b = a ?? -1;
+
+Console.WriteLine(b);  // output: -1
+```
+
+The **null-coalescing assignment operator** **`??=`** assigns the value of its right-hand operand to its left-hand operand only if the left-hand operand evaluates to null.
+
+```csharp
+List<int> numbers = null;
+(numbers ??= new List<int>()).Add(5);
+
+Console.WriteLine(numbers[0]);  // output: 5
+```
 
 #### What is serialization?
 
 WIP
 
-Serialization is the process of **converting an object into a stream of bytes** to store the object or transmit it to memory, a database, or a file. Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization.
+Serialization is the process of **converting an object into a stream of bytes** to **store** the object or **transmit** it to _memory_, a _database_, or a _file_. Its main purpose is to **save the state of an object** in order to be able to **recreate it** when needed. The reverse process is called deserialization.
 
-Binary serialization:
+**Binary serialization**:
 
-- Uses binary encoding to produce compact serialization for uses such as storage or socket-based network streams. In binary serialization, all members, even members that are read-only, are serialized, and performance is enhanced.
-- Using the `BinaryFormatter` (`System.Runtime.Serialization.Formatters.Binary.BinaryFormatter`) class.
+- Uses **binary encoding** to produce compact serialization for uses such as storage or socket-based network streams. In binary serialization, all members, even members that are read-only, are serialized, and performance is enhanced.
+- Using the `BinaryFormatter` (`System.Runtime.Serialization.Formatters.Binary.BinaryFormatter`) class. According to Microsoft, it's not safe to use anymore.
 
-JSON serialization:
+**JSON serialization**:
 
-- Serializes the public properties of an object into a string, byte array, or stream (that conforms to the RFC 8259 JSON specification).
+- Serializes the **public properties** of an object into a string, byte array, or stream (that conforms to the RFC 8259 JSON specification).
 - Using the `JsonSerializer` (`System.Text.Json.JsonSerializer`) class.
 
-XML serialization:
+**XML serialization**:
 
-- Serializes the public fields and properties of an object, or the parameters and return values of methods, into an XML stream.
-- Results in strongly typed classes with public properties and fields that are converted to XML.
+- Serializes the **public fields and properties** of an object, or the parameters and return values of methods, into an XML stream.
+- Results in **strongly typed classes** with public properties and fields that are converted to XML.
 - Using the `XmlSerializer` (`System.Xml.Serialization.XmlSerializer`) class.
 
 #### What is the difference between Finalize() and Dispose() methods?
 
 WIP
 
-The garbage collector (GC) plays the main role in .NET for memory management.
-The GC is responsible for releasing the memory (objects) that is not being used by the application, but it can reclaim or release only memory which is used by managed resources. File handlers, window handlers, network sockets, database connections, etc. can cause problems. These resources have to be disposed of manually so that the GC can collect them eventually.
+The **garbage collector (GC)** plays the main role in .NET for **memory _management_**.
 
-Dispose:
+**Managed resources** basically means "managed memory" that is managed by the garbage collector. When you no longer have any references to a managed object (which uses managed memory), the garbage collector will (eventually) release that memory for you.
+
+**Unmanaged resources** are then everything that the _garbage collector does not know about_. For example:
+
+- Open files
+- Open network / DB connections
+- Unmanaged memory
+
+Normally you want to release those unmanaged resources before you lose all the _references_ you have to the object managing them. You do this by calling `Dispose()` on that object, or using the `using` statement which will handle calling `Dispose()` for you.
+
+If you neglect to Dispose of your unmanaged resources correctly, the GC will eventually handle it for you when the object containing that resource is garbage collected (this is "finalization"). But because the garbage collector doesn't know about the unmanaged resources, it can't tell how badly it needs to release them - so it's possible for your program to perform poorly or run out of resources entirely (**memory leak**).
+
+If you implement a class yourself that handles unmanaged resources, it is up to you to implement `Dispose()` and `Finalize()` correctly.
+
+**Dispose**:
 
 - The `Dispose()` method is exposed to classes that implement the `IDisposable` interface. For many classes, `Dispose()` just calls the built-in `Close()` method. (An exception are database connections, where these two methods work slightly differently).
 
-Finalize:
+**Finalize**:
 
-- `Finalize()`, also called the **destructor**, cannot be called explicitly in the code. Only the GC can call it when object becomes inaccessible.
-- It cannot be implemented directly, only via declaring a destructor. `~MyClass() { this.Dispose(); }`
-- When to implement? There may be any unmanaged resource for example file stream declared at class level. We may not know what stage or which step is appropriate to close the file. This object is being used at many places in the application. So in this scenario Finalize can be appropriate location where unmanaged resource can be released.
+- `Finalize()`, also called the **destructor**, cannot be called explicitly in the code. **Only the GC can call it** when object becomes inaccessible.
+- It **cannot be implemented directly**, only via declaring a destructor. `~MyClass() { this.Dispose(); }`
+- When to implement? There may be any **unmanaged resource** for example file stream **declared at class level**. We may not know what stage or which step is appropriate to close the file. This object is being used at many places in the application. So in this scenario Finalize can be appropriate location where unmanaged resource can be released.
 - It's a bit expensive to use.
 
 Some types encapsulate disposable resources in a manner where it is easy to use and dispose of them in a single action. The general usage is often like this: open, read or write, close (Dispose). It fits very well with the `using` construct.
 
-Others are a bit more difficult. `WaitEventHandle`s for instances are not used like this as they are used to signal from one thread to another. The question then becomes who should call `Dispose()` on these? As a safeguard types like these implement a `Finalize()` method, which makes sure resources are disposed when the instance is no longer referenced by the application.
+Others are a bit more difficult. `WaitEventHandle`s for instances are not used like this as they are used to signal from one **thread** to another. The question then becomes who should call `Dispose()` on these? As a safeguard types like these implement a `Finalize()` method, which makes sure resources are disposed when the instance is no longer referenced by the application.
 
 Bottom line: always use `Dispose()` to dispose of unmanaged resources as soon as possible. Implement `Finalize()` only if it's really necessary.
+
+> Finalizers (which are also called destructors) are used to perform any necessary final clean-up when a class instance is being collected by the garbage collector.
+
+> **Finalizing is ONLY for getting rid of _unmanaged_ resources**.
 
 #### How do you inherit a class from another class in C#?
 
@@ -1352,27 +1391,27 @@ If you prefaced that method with the `new` keyword, you indicate that this is an
 
 #### What is difference between “is” and “as” operators in C#?
 
-Is:
+`is`:
 
-- The `is` operator is a _type-testing keyword_ that checks if the result of an expression is compatible with a given type, or tests an expression against a pattern.
+- The `is` operator is a **type-testing _keyword_** that checks if the result of an expression is compatible with a given type, or tests an expression against a pattern.
 - Simple type testing: `dog is Animal`
 - Pattern matching (Type pattern):
   - When using the type pattern to perform pattern matching, `is` tests whether an expression can be converted to a specified type and, if it can be, casts it to a variable of that type.
   - It's a straightforward extension of the `is` statement that enables concise type evaluation and conversion. The general form of the is type pattern is: `expr is type varname`
   - `if (o is Employee e) return e.ToString();`
 
-As:
+`as`:
 
-- Used to explicitly convert an expression to a given type if its runtime type is compatible with that type.
+- Used to **explicitly convert an expression** to a given type if its runtime type is compatible with that type.
 - The `as` operator explicitly converts the result of an expression to a given reference or nullable value type.
 - If the conversion is not possible, the as operator returns `null`.
-- Unlike a cast expression, the `as` operator never throws an exception.
+- Unlike a cast expression, the `as` operator **never throws an exception**.
 
 #### What are indexers in C# .NET?
 
 WIP
 
-Indexers allow instances of a class or struct to be indexed just like arrays. The indexed value can be set or retrieved without explicitly specifying a type or instance member. Indexers resemble _properties_ except that their accessors take parameters.
+Indexers allow instances of a class or struct to be **indexed just like arrays** (or dictionaries, for that matter). The indexed value can be set or retrieved without explicitly specifying a type or instance member (generic). Indexers **resemble _properties_** except that their accessors take parameters.
 
 Overview:
 
@@ -1384,51 +1423,70 @@ Overview:
 - Indexers can be overloaded.
 - Indexers can have more than one formal parameter, for example, when accessing a two-dimensional array.
 
+```csharp
+public List<T> Container { get; set; }
+
+public T this[int i]
+        {
+            get { return Container[i]; }
+            set { Container[i] = value; }
+        }
+```
+
 #### What is the difference between returning IQueryable<T> vs. IEnumerable<T>?
 
 WIP
 
-The difference is that `IQueryable<T>` is the interface that allows LINQ-to-SQL (LINQ-to-anything really) to work. So if you further refine your query on an `IQueryable<T>`, that query will be executed in the database, if possible.
+The difference is that `IQueryable<T>` is the interface that allows **LINQ**-to-SQL (LINQ-to-anything really) to work. So if you further refine your query on an `IQueryable<T>`, that query will be executed in the database, if possible.
 
 For the `IEnumerable<T>` case, it will be LINQ-to-object, meaning that all objects matching the original query will have to be loaded into memory from the database.
 
 This is quite an important difference, and working on `IQueryable<T>` can in many cases save you from returning too many rows from the database. Another prime example is doing paging: If you use `Take` and `Skip` on `IQueryable<T>`, you will only get the number of rows requested; doing that on an `IEnumerable<T>` will cause all of your rows to be loaded in memory.
+
+> The main difference arises when you work with a DB (or any remote data source). So the difference between IQueryable and IEnumerable is about _where_ the **filter logic** is executed. In case of Enumerable it executed in the C# part, in case of IQueryable **only the requested records** return back.
 
 #### What is LINQ? Explain the idea of extension methods.
 
 WIP
 
 **Language-Integrated Query (LINQ)** is the name for a set of technologies based on the integration of query capabilities directly into the C# language.
-Traditionally, queries against data are expressed as simple strings without type checking at compile time or IntelliSense support. Furthermore, you have to learn a different query language for each type of data source: SQL databases, XML documents, various Web services, and so on.
 
-**With LINQ, a query is a first-class language construct**, just like classes, methods, events. You write queries against strongly typed collections of objects by using language keywords and familiar operators. The LINQ family of technologies provides a consistent query experience for objects (LINQ to Objects), relational databases (LINQ to SQL), and XML (LINQ to XML).
+Traditionally, queries against data are expressed as simple strings without **type checking** at compile time or **IntelliSense support**. Furthermore, you have to learn a **different query language** for each type of data source: SQL databases, XML documents, various Web services, and so on.
 
-The standard query operators are the methods that form the LINQ pattern. Most of these methods operate on sequences, where a sequence is an object whose type implements the `IEnumerable<T>` interface or the `IQueryable<T>` interface. The standard query operators provide query capabilities including filtering, projection, aggregation, sorting and more.
+**With LINQ, a query is a first-class language construct**, just like classes, methods, events. You write queries against strongly typed collections of objects by using language keywords and familiar operators. The LINQ family of technologies provides a **consistent query experience** for:
 
-Although it looks as if `IEnumerable<T>` has been redefined to include these additional methods, in fact this is not the case. The standard query operators are implemented as a new kind of method called extension methods. Extension methods "extend" an existing type; they can be called as if they were instance methods on the type. The standard query operators extend `IEnumerable<T>` and that is why you can write `numbers.Where(...)`.
+- objects **(LINQ to Objects)**,
+- relational databases **(LINQ to SQL)**,
+- and XML **(LINQ to XML)**.
 
-//To get started using LINQ, all that you really have to know about extension methods is how to bring them into scope in your application by using the correct using directives. From your application's point of view, an extension method and a regular instance method are the same.//
+The standard query operators are the methods that form the LINQ pattern. Most of these methods operate on **sequences**, where a sequence is an object whose type implements the `IEnumerable<T>` interface or the `IQueryable<T>` interface. The standard query operators provide query capabilities including **filtering**, **projection**, **aggregation**, **sorting** and more.
 
-//For readability, use Query syntax over Method syntax whenever possible.//
+Although it looks as if `IEnumerable<T>` has been redefined to include these additional methods, in fact this is not the case. The standard query operators are implemented as a new kind of method called **extension methods**.
+
+Extension methods "extend" an existing class (type); they can be **called as if they were instance methods** on the class (type). The standard query operators extend `IEnumerable<T>` and that is why you can write `numbers.Where(...)`.
+
+> To get started using LINQ, all that you really have to know about extension methods is how to bring them into scope in your application by using the correct using directives. From your application's point of view, an extension method and a regular instance method are the same.
+
+> For readability, use Query syntax over Method syntax whenever possible.
 
 #### What are the advantages and disadvantages of lazy loading?
 
 WIP
 
-Lazy loading (also called on-demand loading) is an optimization technique for the online content, be it a website or a web app.
+**Lazy loading** (also called* on-demand loading*) is an **optimization technique** for the online content, be it a website or a web app.
 
-Instead of loading the entire web page and rendering it to the user in one go as in bulk loading, the concept of lazy loading assists in loading only the required section and delays the remaining, until it is needed by the user.
+Instead of loading the entire web page and rendering it to the user in one go as in _bulk loading_, the concept of lazy loading assists in **loading only the required section** and delays the remaining, until it is needed by the user.
 
 Advantages:
 
-- On-demand loading reduces _time consumption_ and _memory usage_ thereby optimizing content delivery. Only a fraction of the web page is loaded at first, which takes considerably less time, while the loading of the rest of the section is delayed which saves storage. All of this enhances UX as the requested content is fed in no time.
+- On-demand loading **reduces time consumption** and **memory usage** thereby **optimizing content delivery**. Only a fraction of the web page is loaded at first, which takes considerably less time, while the loading of the rest of the section is delayed which saves storage. All of this enhances UX as the requested content is fed in no time.
 - Unnecessary code execution is avoided.
 - Optimal usage of time and space resources makes it a cost-effective approach from the point of view of business persons (website owners).
 
 Disadvantages:
 
-- The extra lines of code, to be added to the existing ones, to implement lazy load makes the code a bit complicated.
-- May affect the website's ranking on search engines sometimes, due to improper indexing of the unloaded content.
+- The extra lines of code, to be added to the existing ones, to implement lazy load **makes the code a bit complicated**.
+- May affect **SEO** (the website's ranking on search engines) sometimes, due to improper indexing of the unloaded content.
 
 #### How to use of “yield” keyword? Mention at least one practical scenario where it can be used?
 
@@ -1436,7 +1494,7 @@ WIP
 
 When you use the `yield` contextual keyword in a statement, you indicate that the method, operator, or get accessor in which it appears is an **iterator**.
 
-An iterator is used to perform a custom iteration over a collection. An iterator can be a _method_ or a _get accessor_. An iterator uses a `yield return` statement to return each element of the collection one at a time.
+An iterator is used to perform a custom iteration over a collection. An iterator can be a _method_ or a _get accessor_. An iterator uses a `yield return` statement to **return each element** of the collection **one at a time**.
 
 You call an iterator by using a `foreach` statement. Each iteration of the foreach loop calls the iterator. When a `yield return` statement is reached in the iterator, an expression is returned, and the current location in code is retained. Execution is restarted from that location the next time that the iterator is called.
 
@@ -1444,14 +1502,14 @@ You call an iterator by using a `foreach` statement. Each iteration of the forea
 
 WIP
 
-Attributes provide a powerful method of associating **_metadata_**, or _declarative information_, with code (assemblies, types, methods, properties, and so forth). After an attribute is associated with a program entity, the attribute can be queried at run time by using a technique called _reflection_.
+Attributes provide a powerful method of associating **_metadata_**, or _declarative information_, with code (assemblies, types, methods, properties, and so forth). After an attribute is associated with a program entity, the **attribute can be queried at run time** by using a technique called **reflection**.
 
 Attributes have the following properties:
 
-- Attributes add metadata to your program. Metadata is information about the types defined in a program. All .NET assemblies contain a specified set of metadata that describes the types and type members defined in the assembly.
-- You can apply one or more attributes to entire assemblies, modules, or smaller program elements such as classes and properties.
-- Attributes can accept arguments in the same way as methods and properties.
-- Your program can examine its own metadata or the metadata in other programs by using reflection.
+- Attributes add **metadata** to your program. Metadata is information about the types defined in a program. All .NET assemblies contain a specified set of metadata that describes the types and type members defined in the assembly.
+- You can **apply one or more attributes** to entire **assemblies**, **modules**, or smaller program elements such as **classes** and properties.
+- Attributes **can accept arguments** in the same way as methods and properties.
+- Your program can examine its own metadata or the metadata in other programs by using **reflection**.
 
 Attributes can be placed on most any declaration, though a specific attribute might restrict the types of declarations on which it is valid. In C#, you specify an attribute by placing the name of the attribute enclosed in square brackets ([]) above the declaration of the entity to which it applies.
 
@@ -1462,25 +1520,27 @@ Common uses for Attributes:
 - (Describing the _COM properties_ for classes, methods, and interfaces).
 - (Calling _unmanaged code_ using the `DllImportAttribute` class).
 - (Describing your _assembly_ in terms of title, version, description, or trademark).
-- Describing which members of a class to _serialize_ for persistence.
-- Describing how to _map_ between class members and XML nodes for _XML serialization_.
+- Describing which members of a class to **serialize** for persistence.
+- Describing how to **map** between **class members** and **XML nodes** for **_XML serialization_**.
 - (Describing the security requirements for methods).
 - (Specifying characteristics used to enforce security).
 - (Controlling optimizations by the _just-in-time (JIT) compiler_ so the code remains easy to debug).
 - Obtaining information about the caller to a method.
+- Control how **tests** are executed (NUnit for example).
 
 **Reflection**:
+
 Reflection provides objects (of type `Type`) that describe assemblies, modules, and types. You can use reflection to dynamically create an instance of a type, bind the type to an existing object, or get the type from an existing object and invoke its methods or access its fields and properties. If you are using attributes in your code, reflection enables you to access them.
 
 ```csharp
 // Using GetType to obtain type information
-Type type = i.GetType();
-Console.WriteLine(type);
+Type type = 1.GetType();
+
+Console.WriteLine(type); // The output is: System.Int32
 ```
 
-The output is: `System.Int32`
+Marshaling:
 
-**Marshaling**:
 Marshaling is the process of transforming types when they need to cross between managed and native code.
 
 Marshaling is needed because the types in the managed and unmanaged code are different. In managed code, for instance, you have a `String`, while in the unmanaged world strings can be Unicode ("wide"), non-Unicode, null-terminated, ASCII, etc.
@@ -1508,11 +1568,13 @@ Disadvantages:
 
 GAC is more suitable for frameworks where there is expectation for library to be shared among more applications. In 99% of cases, you don't need it.
 
+> Virtual environments?
+
 #### What is the largest number you can work with in C#?
 
 WIP
 
-The `BigInteger` type is an immutable type that represents an arbitrarily large integer whose value in theory has no upper or lower bounds. (You can go as far as your RAM lets you).
+The `BigInteger` type is an immutable type that represents an **arbitrarily large integer** whose value in theory has no upper or lower bounds. (You can go as far as your RAM lets you).
 
 ### Database
 
