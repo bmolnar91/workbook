@@ -463,6 +463,8 @@ The following 5 concepts make up our SOLID principles:
 
 WIP
 
+...
+
 ## Software design
 
 ### Security
