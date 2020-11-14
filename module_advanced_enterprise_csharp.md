@@ -282,7 +282,7 @@ In Razor _.cshtml_ files, tilde-slash (`~/`) points to the web root. (A path beg
 
 WIP
 
-An ORM eliminates the need for most of the data access code that developers usually need to write.
+An ORM eliminates the need for most of the data access code that developers usually need to write (generates the SQL in the background).
 
 **The _Object-Relational Impedance Mismatch_**:
 
@@ -345,6 +345,12 @@ Cons:
 **Summary**: As long as we're dealing with a rather small project – for example, a _microservice_ – and/or we're aiming for a _flexible, mutable small-scale data structure_, adopting the **Code-First approach** will almost always be a good choice.
 
 #### What is a migration script?
+
+WIP
+
+Migration keeps the DB schema and application model classes in sync.
+
+...
 
 #### What is a navigation property?
 
