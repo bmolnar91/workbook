@@ -1537,16 +1537,24 @@ Common uses for Attributes:
 
 **Reflection**:
 
-Reflection provides objects (of type `Type`) that describe assemblies, modules, and types. You can use reflection to dynamically create an instance of a type, bind the type to an existing object, or get the type from an existing object and invoke its methods or access its fields and properties. If you are using attributes in your code, reflection enables you to access them.
+Reflection is the ability of a managed code to read its own metadata for the purpose of finding assemblies, modules and type information during runtime.
+
+In other words, reflection provides objects that encapsulate assemblies, modules and types. A program reflects on itself by extracting metadata from its assembly and using that metadata either to inform the user or to modify its own behavior.
+
+The `System.Reflection` namespace contains classes and interfaces that provide a managed view of loaded types, methods, and fields, with the ability to dynamically create and invoke types.
+
+> Reflection provides objects (of type `Type`) that describe assemblies, modules, and types. You can use reflection to dynamically create an instance of a type, bind the type to an existing object, or get the type from an existing object and invoke its methods or access its fields and properties. If you are using attributes in your code, reflection enables you to access them.
 
 ```csharp
 // Using GetType to obtain type information
-Type type = 1.GetType();
+Type type = 123.GetType();
 
 Console.WriteLine(type); // The output is: System.Int32
 ```
 
-Marshaling:
+> When writing a C# code that uses reflection, the coder can use the `typeof` operator to get the object's type or use the `GetType()` method to get the type of the current instance.
+
+**Marshaling**:
 
 Marshaling is the process of transforming types when they need to cross between managed and native code.
 
