@@ -33,6 +33,34 @@ Benefits: secure, easy to manage, scalable (between tiers), flexible (inside tie
 
 #### What are microservices? Advantages and disadvantages?
 
+**Microservices** got into fashion very lately, only in the 2010s. There are two important factors in its success:
+
+- The birth of the **cloud**. Cloud services (like Amazon Web Services, Microsoft Azure, etc.) enable to create/destroy virtual servers with a click. This enabled easily creating distributed systems instead of the dominant _monolith architecture_ (a single big codebase), and promoted virtualization and new integration and deployment techniques.
+- The spread of **agile** methodologies. Agile introduced smaller, more autonomous and heterogeneous teams. These teams can develop new features faster if they have less and more clear dependencies with their environment. Such an organizational structure has its impact on software architecture as well (see Conway's law).
+
+**What are Microservices?**
+
+There is a widely-cited definition by Adrian Cockcroft, former chief cloud architect at Netflix, that **microservices architecture (MSA)** is a service oriented architecture composed of loosely coupled elements that have _bounded contexts_. This is not much of help without lengthy essays on each concepts involved, so let's put definitions away and collect some aspects of microservices:
+
+- They are **separate programs** communicating over a network (usually using basic HTTP protocol)
+- Each service has a **small and explicit problem domain** and responsibility
+- Each service has their **separate data store** (when needed)
+- Services are **independently deployable** and easily **replaceable**
+
+**What are the strenghts?**
+
+- Faster feature development: decisions are made by smaller, more autonomous teams
+- Better scalability: deployment and load balancing is based on small components
+- More robustness: services are designed with inevitable failures in mind
+- More flexibility: it is possible to use different (newer or more adequate) technologies or even languages at any point
+
+**What are the drawbacks?**
+
+- Instead of referencing other components directly, you have to deal a lot with the communication between services.
+- In a distributed system you have to deal with a lot of problems that do not occur inside a single application, e.g. network latency and failures, asynchronous communication, state inconsistencies. In addition, there are exotic types of errors coming from the distributed character of such systems (like the so-called _cascading failure_) which are very hard to predict and prevent.
+- Extra services and tools that are optional for ordinary projects (like the need for continuous delivery and deployment monitoring tools) become a must.
+- A flawed or changing service structure can be harder to redesign when teams, APIs, and codebases are already in place.
+
 #### What is Separation of Concerns?
 
 WIP
@@ -99,6 +127,32 @@ By mapping application calls to the persistence layer, the DAO provides some spe
 It separates what data access the application needs from how these needs can be satisfied with a specific DBMS, database schema, etc.
 
 #### What is SOA? When to use?
+
+**Service-oriented architecture (SOA)** is a type of software design that makes software components reusable using service interfaces that use a common communication language over a network.
+
+A **service** is a self-contained unit of software functionality, or set of functionalities, designed to complete a specific task such as retrieving specified information or executing an operation. It contains the code and data integrations necessary to carry out a complete, discrete business function and can be accessed remotely and interacted with or updated _independently_.
+
+> In other words, SOA integrates software components that have been separately deployed and maintained and allows them to communicate and work together to form an application across different systems.
+
+In service-oriented architecture, services communicate using a system of **loose coupling**. This is a way of interconnecting _components_ (also called _elements_) in a system or network so that they can pass information or coordinate a process while relying on each other as little as possible. This, in effect, creates a new app.
+
+Benefits over monolithic approach:
+
+- **Faster time to market and greater flexibility**: The reusable-services aspect of SOA makes it much easier and faster to assemble applications, instead of developers starting from scratch each time as would be the case with monolithic applications.
+- **Use legacy infrastructure in new markets**: SOA makes it easier for developers to take the functionality of one platform or environment and scale and extend it to new ones.
+- **Reduced costs from greater agility and more efficient development**
+- **Easy maintenance**: Because all services are self-contained and independent, they can be modified and updated as needed without affecting other services.
+- **Scalability**: Since SOA permits services to run across multiple services, platforms, and programming languages, scalability is greatly increased. And SOA uses a standardized communication protocol, allowing enterprises to decrease interaction between clients and services. Lowering this level of interaction allows apps to be scaled with less pressure and inconvenience.
+- **Greater reliability**: Since it's easier to debug smaller services than large code, SOA generates apps that are more reliable.
+- **Convenience of availability**: SOA facilities are available to anyone.
+
+**SOA vs. microservices**:
+
+The concept of services introduced by service-oriented architecture has become what is now a central component of modern cloud computing and virtualization in things like **middleware** and **microservices**.
+
+Because of their similarities, SOA and microservices are often confused. The main characteristic that can help differentiate between them is their **scope**: SOA is an enterprise-wide approach to _architecture_, while microservices is an _implementation strategy_ within application development teams.
+
+They also communicate to their respective components differently, with SOA using an **ESB** (enterprise service bus: performs the integration between a centralized component and backend systems and then make them available as service interfaces) while microservices can communicate with each other **statelessly, through language-agnostic APIs**. The language-agnostic aspect of APIs in microservices also allows dev teams to choose what tools they want to work with. In these ways, microservices can be more tolerant and flexible.
 
 ### Testing
 
