@@ -878,15 +878,27 @@ The 5 key principles are:
 4. Resources with multiple representations
 5. Communicate statelessly
 
-> WIP
+REST is a set of architectural principles, not a protocol or a standard. API developers can implement REST in a variety of ways.
 
-    1. Contract first approach / Uniform Resource identifiers
-    2. Statelessness
-    3. Client-Server model
-    4. Caching
-    5. Layered architecture
+When a request is made via a RESTful API, it transfers a representation of the state of the resource to the requester. This information, or representation, is delivered in one of several formats via HTTP: JSON (Javascript Object Notation), HTML, XLT, or plain text. JSON is the most generally popular because, despite its name, it’s language agnostic, as well as readable by both humans and machines.
 
-In short, if you make a RESTful API, you ensure other developers can understand the structure easily compared to creating endpoints without a standard.
+In order for an API to be considered RESTful, it has to conform to these criteria:
+
+- A **client-server architecture** made up of clients, servers, and resources, with requests managed through HTTP.
+- **Stateless** client-server communication, meaning no client information is stored between requests and each request is separate and unconnected.
+- **Cacheable** data that streamlines client-server interactions. The data within a response to a request be implicitly or explicitly labeled as _cacheable_ or _non-cacheable_. If a response is cacheable, then a client cache is given the right to reuse that response data for later, equivalent requests.
+- A **uniform interface** between components so that information is transferred in a standard form. This requires that:
+  - _resources requested are **identifiable**_ and separate from the representations sent to the client.
+  - _resources can be **manipulated**_ by the client via the representation they receive because the representation contains enough information to do so.
+  - **self-descriptive messages** returned to the client have enough information to describe how the client should process it.
+  - **hypermedia**, meaning that after accessing a resource the client should be able to use hyperlinks to find all other currently available actions they can take.
+- A **layered system** that organizes each type of server (those responsible for security, load-balancing, etc.) involved the retrieval of requested information into hierarchies, invisible to the client.
+- Code-on-demand (optional): the ability to send executable code from the server to the client when requested, extending client functions.
+
+Though the REST API has these criteria to conform to, it is still considered easier to use than a prescribed protocol like SOAP (Simple Object Access Protocol), which has specific requirements like XML messaging, and built-in security and transaction compliance that make it slower and heavier.
+In contrast, REST is a set of guidelines that can be implemented as needed, making REST APIs faster and more lightweight—perfect for Internet of Things (IoT) and mobile app development.
+
+> In short, if you make a RESTful API, you ensure other developers can understand the structure easily compared to creating endpoints without a standard.
 
 > RESTful APIs are stateless backends.
 
