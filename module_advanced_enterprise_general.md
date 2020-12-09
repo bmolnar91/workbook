@@ -33,6 +33,8 @@ Benefits: secure, easy to manage, scalable (between tiers), flexible (inside tie
 
 #### What are microservices? Advantages and disadvantages?
 
+WIP
+
 **Microservices** got into fashion very lately, only in the 2010s. There are two important factors in its success:
 
 - The birth of the **cloud**. Cloud services (like Amazon Web Services, Microsoft Azure, etc.) enable to create/destroy virtual servers with a click. This enabled easily creating distributed systems instead of the dominant _monolith architecture_ (a single big codebase), and promoted virtualization and new integration and deployment techniques.
@@ -127,6 +129,8 @@ By mapping application calls to the persistence layer, the DAO provides some spe
 It separates what data access the application needs from how these needs can be satisfied with a specific DBMS, database schema, etc.
 
 #### What is SOA? When to use?
+
+WIP
 
 **Service-oriented architecture (SOA)** is a type of software design that makes software components reusable using service interfaces that use a common communication language over a network.
 
@@ -301,11 +305,40 @@ A **Unit Test** tests a single **"Act"** in a program, typically a single method
 
 #### What is continuous integration? Why is CI important?
 
+WIP
+
+Continuous Integration (CI) is a **software development practice** where members of a team integrate (=merge to master in a Git workflow) their work frequently, usually each person integrates at least daily, leading to multiple integrations per day. Each integration is **verified by an automated build** (including test) to detect integration errors as quickly as possible.
+
+A nicely working CI process needs the following:
+
+- Good unit testing coverage.
+- Automation: tests need to run with every commit/merge automatically.
+- Ideally many kinds of tests: integration testing, UI testing, acceptance testing.
+
 #### Why are tests important in the CI workflow?
+
+WIP
+
+These tests confirm that the newest code integrates with what's currently in the master branch.
 
 #### Name some software that help the CI workflow!
 
+- Azure Pipelines: a Microsoft product free for up to five users and open-source projects.
+- Jenkins: a free, open-source, Java-based tool that gives you a lot of flexibility.
+- Cloud Build: the managed service offering from Google Cloud Platform.
+- Travis CI: a popular tool for GitHub open-source projects that offers a hosted or self-hosted solution.
+- GitLab CI: a free tool from GitLab that can also integrate with other tools via the API.
+- AWS CodePipeline
+
 #### What is Continuous Delivery?
+
+WIP
+
+**Continuous Delivery (CD)** is the ability to get changes of all types—including new features, configuration changes, bug fixes and experiments—into production, or into the hands of users, _safely_ and _quickly_ in a _sustainable_ way.
+
+The goal is to make deployments—whether of a large-scale distributed system, a complex production environment, an embedded system, or an app—predictable, routine affairs that can be performed on demand.
+
+We achieve all this by ensuring our code is always in a deployable state, even in the face of teams of thousands of developers making changes on a daily basis.
 
 #### What is Continuous Deployment?
 
