@@ -307,13 +307,33 @@ A **Unit Test** tests a single **"Act"** in a program, typically a single method
 
 WIP
 
-Continuous Integration (CI) is a **software development practice** where members of a team integrate (=merge to master in a Git workflow) their work frequently, usually each person integrates at least daily, leading to multiple integrations per day. Each integration is **verified by an automated build** (including test) to detect integration errors as quickly as possible.
+**Continuous Integration (CI)** is a **software development practice** (a fundamental DevOps best practice) where members of a team integrate (=merge to master in a Git workflow) their work frequently, usually each person integrates at least daily, leading to multiple integrations per day. Each integration is **verified by an automated build** (including test) to detect integration errors as quickly as possible.
 
 A nicely working CI process needs the following:
 
 - Good unit testing coverage.
 - Automation: tests need to run with every commit/merge automatically.
 - Ideally many kinds of tests: integration testing, UI testing, acceptance testing.
+
+Developers practicing continuous integration merge their changes back to the main branch as often as possible. The developer's changes are validated by creating a build and running automated tests against the build. By doing so, you avoid integration challenges that can happen when waiting for release day to merge changes into the release branch.
+
+Continuous integration puts a great emphasis on testing automation to check that the application is not broken whenever new commits are integrated into the main branch.
+
+**What you need (cost)**:
+
+- Your team will need to write automated tests for each new feature, improvement or bug fix.
+- You need a continuous integration server that can monitor the main repository and run the tests automatically for every new commits pushed.
+- Developers need to merge their changes as often as possible, at least once a day.
+
+> One of the traditional cost associated with continuous integration is the installation and maintenance of a _CI server_. But you can reduce significantly the cost of adopting these practices by using a **cloud service** (like Bitbucket Pipelines which adds automation to every Bitbucket repository).
+
+**What you gain**:
+
+- Less bugs get shipped to production as regressions are captured early by the automated tests.
+- Building the release is easy as all integration issues have been solved early.
+- Less context switching as developers are alerted as soon as they break the build and can work on fixing it before they move to another task.
+- Testing costs are reduced drastically – your CI server can run hundreds of tests in the matter of seconds.
+- Your QA team spend less time testing and can focus on significant improvements to the quality culture.
 
 #### Why are tests important in the CI workflow?
 
@@ -340,9 +360,70 @@ The goal is to make deployments—whether of a large-scale distributed system, a
 
 We achieve all this by ensuring our code is always in a deployable state, even in the face of teams of thousands of developers making changes on a daily basis.
 
+Continuous delivery is an extension of continuous integration since it automatically deploys all code changes to a testing and/or production environment after the build stage.
+
+This means that on top of automated testing, you have an automated release process and you can deploy your application any time by clicking a button.
+
+> Make sure that you release small batches that are easy to troubleshoot in case of a problem -- deploy to production early and often.
+
+**What you need (cost)**:
+
+- You need a strong foundation in continuous integration and your test suite needs to cover enough of your codebase.
+- Deployments need to be automated. The trigger is still manual but once a deployment is started there shouldn't be a need for human intervention.
+- Your team will most likely need to embrace feature flags so that incomplete features do not affect customers in production.
+
+**What you gain**:
+The complexity of deploying software has been taken away. Your team doesn't have to spend days preparing for a release anymore.
+You can release more often, thus accelerating the feedback loop with your customers.
+There is much less pressure on decisions for small changes, hence encouraging iterating faster.
+
 #### What is Continuous Deployment?
 
+WIP
+
+**Continuous Deployment (CD)** goes one step further than continuous delivery. With this practice, every change that passes all stages of your production pipeline is released to your customers. There's no human intervention, and only a failed test will prevent a new change to be deployed to production.
+
+Continuous deployment is an excellent way to accelerate the **feedback loop** with your customers and take pressure off the team as there isn't a _Release Day_ anymore. Developers can focus on building software, and they see their work go live minutes after they've finished working on it.
+
+> Continuous deployment is like continuous delivery, except that releases happen automatically.
+
+**What you need (cost)**:
+
+- Your testing culture needs to be at its best. The quality of your test suite will determine the quality of your releases.
+- Your documentation process will need to keep up with the pace of deployments.
+- Feature flags become an inherent part of the process of releasing significant changes to make sure you can coordinate with other departments (Support, Marketing, PR...).
+
+**What you gain**:
+
+- You can develop faster as there's no need to pause development for releases. Deployments pipelines are triggered automatically for every change.
+- Releases are less risky and easier to fix in case of problem as you deploy small batches of changes.
+- Customers see a continuous stream of improvements, and quality increases every day, instead of every month, quarter or year.
+
 #### What is DevOps?
+
+WIP
+
+**DevOps** is a set of practices that combines software development (_Dev_) and IT operations (_Ops_). It aims to **shorten the systems development life cycle** and provide **continuous delivery with high software quality**.
+
+DevOps is a new practice and job role in Software development that emerged from the birth of the **cloud** and **agile** methodologies. It can be seen as an _evolution of the **SysAdmin** role_, but requires much more knowledge. Typical tasks of a DevOps person is everything IT related except actually writing the software. In practice this means the following:
+
+- Build systems that enable **CI/CD** workflows
+- Manage the **"cloud"**, set up its infrastructure, security, install and configure apps
+- Make sure that there are **monitoring** and **alerting systems** in place in case of issues
+- **Automate** everything: deployments, releases, upgrades.
+
+Usually a good DevOps person needs the following knowledge:
+
+- In-depth knowledge of **Linux** (since most software in the cloud runs on this platform)
+- In-depth knowledge of at least one **cloud provider** (Amazon Web Services, MS Azure, Google Cloud, etc.)
+- Good knowledge of **CI/CD workflows and software** that helps it (Jenkins, Travis, Docker, Kubernetes, Ansible, Chef, and many many more. This is a really new and rapidly changing landscape)
+- Some knowledge of a **scripting language** (usually python or bash) and a little Maven/Gradle
+
+DevOps automation can be achieved by repackaging platforms, systems, and applications into reusable building blocks through the use of technologies such as **virtual machines** and **containerization**.
+
+> DevOps is often viewed as an approach to applying systems administration work to **cloud** technology.
+
+> Although in principle it is possible to practice DevOps with any architectural style, the **microservices** architectural style is becoming the standard for building continuously deployed systems.
 
 ### Software Methodologies
 
