@@ -681,6 +681,32 @@ Disadvantages:
 
 #### How can you initialize a CSRF attack?
 
+WIP
+
+**Cross-Site Request Forgery (CSRF)** is an attack where a malicious site sends a request to a vulnerable site where the user is currently logged in. It allows an attacker to partly **circumvent the same origin policy**, which is designed to prevent different websites from interfering with each other.
+
+In a successful CSRF attack, the attacker causes the victim user to carry out an action unintentionally. For example, this might be to change the email address on their account, to change their password, or to make a funds transfer. Depending on the nature of the action, the attacker might be able to gain full control over the user's account. If the compromised user has a privileged role within the application, then the attacker might be able to take full control of all the application's data and functionality.
+
+For a CSRF attack to be possible, three key conditions must be in place:
+
+1. A relevant action. There is an action within the application that the attacker has a reason to induce. This might be a privileged action (such as modifying permissions for other users) or any action on user-specific data (such as changing the user's own password).
+2. Cookie-based session handling. Performing the action involves issuing one or more HTTP requests, and the application relies solely on session cookies to identify the user who has made the requests. There is no other mechanism in place for tracking sessions or validating user requests. However, CSRF attacks are not limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. (After a user logs in with Basic or Digest authentication. the browser automatically sends the credentials until the session ends).
+3. No unpredictable request parameters. The requests that perform the action do not contain any parameters whose values the attacker cannot determine or guess. For example, when causing a user to change their password, the function is not vulnerable if an attacker needs to know the value of the existing password.
+
+Typically, the attacker will place the malicious HTML onto a web site that they control, and then induce victims to visit that web site. This might be done by feeding the user a link to the web site, via an email or social media message. Or if the attack is placed into a popular web site (for example, in a user comment), they might just wait for users to visit the web site.
+
+If a victim user visits the attacker's web page, the following will happen:
+
+- The attacker's page will trigger an HTTP request to the vulnerable web site.
+- If the user is logged in to the vulnerable web site, their browser will automatically include their session cookie in the request (assuming SameSite cookies are not being used).
+- The vulnerable web site will process the request in the normal way, treat it as having been made by the victim user, and change their email address (or something similar).
+
+The most robust way to defend against CSRF attacks is to include a **CSRF token** within relevant requests. The token should be:
+
+- Unpredictable with high entropy, as for session tokens in general.
+- Tied to the user's session.
+- Strictly validated in every case before the relevant action is executed.
+
 #### What is JWT used for? Where to store it on client side?
 
 ### Threaded programming
