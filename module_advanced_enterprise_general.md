@@ -698,8 +698,16 @@ Typically, the attacker will place the malicious HTML onto a web site that they 
 If a victim user visits the attacker's web page, the following will happen:
 
 - The attacker's page will trigger an HTTP request to the vulnerable web site.
-- If the user is logged in to the vulnerable web site, their browser will automatically include their session cookie in the request (assuming SameSite cookies are not being used).
+- If the user is logged in to the vulnerable web site, their browser will automatically include their session cookie in the request (assuming **SameSite** cookies are not being used).
 - The vulnerable web site will process the request in the normal way, treat it as having been made by the victim user, and change their email address (or something similar).
+
+A concrete example of a CSRF attack:
+
+- The attacker sends an email with a beautiful offer, and adds a CTA button at the end, "GET A 50% DISCOUNT".
+- The user is thrilled by this awesome offer and clicks the button.
+- In reality, the button submits a POST form to your web application, and more specifically to the endpoint that changes the user's password with a new one.
+- Because cookies are sent in every request, even cross-domain ones, the endpoint works as expected if the user has logged in, in an earlier step to your web application.
+- Now the user is logged out and cannot log in to your web application anymore.
 
 The most robust way to defend against CSRF attacks is to include a **CSRF token** within relevant requests. The token should be:
 
@@ -708,6 +716,39 @@ The most robust way to defend against CSRF attacks is to include a **CSRF token*
 - Strictly validated in every case before the relevant action is executed.
 
 #### What is JWT used for? Where to store it on client side?
+
+WIP
+
+A **JSON Web Token (JWT)** is an open standard that defines a compact and self-contained way for **securely transmitting information** between parties as a JSON object. This information can be verified and trusted because it is **digitally signed**. JWTs can be signed using a secret or a public/private key pair.
+
+JWTs allow backend developers to authenticate users, without making a single query to the database server or any other type of storage.
+
+Here are some scenarios where JSON Web Tokens are useful:
+
+- **Authorization**: This is the most common scenario for using JWT. Once the user is logged in, each subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token. Single Sign On is a feature that widely uses JWT nowadays, because of its small overhead and its ability to be easily used across different domains.
+- **Information Exchange**: JSON Web Tokens are a good way of securely transmitting information between parties. Because JWTs can be signed -- for example, using public/private key pairs -- you can be sure the senders are who they say they are. Additionally, as the signature is calculated using the header and the payload, you can also verify that the content hasn't been tampered with.
+
+JWTs are nothing more than a cryptographically signed, base64 representation of a JSON object. By signing the token, we make sure that its content was not altered in any way. This is achieved by verifying the received token with the exact same key that was used to sign it in the first place. In case the signature that we generate does not match the one in the token, we should consider that the token is invalid.
+
+JWT tokens have three parts, all represented as base64 strings:
+
+- A **header** that usually contains the token’s expiration date, the algorithm used for signing, and extra metadata.
+- A JSON **payload**.
+- A **signature** created by signing the header and the payload
+
+A JWT typically looks like this: `[header].[payload].[signature]`.
+
+**Store JWTs securely**:
+
+A JWT needs to be stored in a safe place inside the user's browser.
+
+If you store it inside _localStorage_, it's accessible by any script inside your page (which is as bad as it sounds, as an _XSS attack_ can let an external attacker get access to the token).
+
+**Don't store it in local storage (or session storage)**. If any of the third-party scripts you include in your page gets compromised, it can access all your users' tokens.
+
+The JWT needs to be stored inside an **httpOnly cookie**, a special kind of cookie that's only sent in HTTP requests to the server, and it's never accessible (both for reading or writing) from JavaScript running in the browser.
+
+> JWT is a great technology for API authentication and server-to-server authorization. It's not a good choice for sessions.
 
 ### Threaded programming
 
