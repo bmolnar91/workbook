@@ -650,6 +650,33 @@ WIP
 
 #### What is Basic Authentication?
 
+WIP
+
+**HTTP** provides a general framework for access control and authentication called the "Basic" schema. It can be used by a server to _challenge_ a client request, and by a client to provide authentication information.
+
+The challenge and response flow works like this:
+
+1. If a request requires authentication, the server returns `401` (Unauthorized). The response includes a `WWW-Authenticate` header, indicating the server supports Basic authentication.
+2. The client sends another request, with the client credentials in the `Authorization` header. The credentials are formatted as the string "name:password", base64-encoded. The credentials are not encrypted.
+
+Because the credentials are sent unencrypted, Basic authentication is **only secure over HTTPS**.
+
+Basic authentication is also **vulnerable to CSRF attacks**. After the user enters credentials, the browser automatically sends them on subsequent requests to the same domain, for the duration of the session. This includes AJAX requests.
+
+Advantages:
+
+- Internet standard.
+- Supported by all major browsers.
+- Relatively simple protocol.
+
+Disadvantages:
+
+- User credentials are sent in the request.
+- Credentials are sent as plaintext.
+- Credentials are sent with every request.
+- No way to log out, except by ending the browser session.
+- Vulnerable to cross-site request forgery (CSRF); requires anti-CSRF measures.
+
 #### What is CORS, why it’s needed in browsers?
 
 #### How can you initialize a CSRF attack?
