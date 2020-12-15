@@ -732,11 +732,18 @@ JWTs are nothing more than a cryptographically signed, base64 representation of 
 
 JWT tokens have three parts, all represented as base64 strings:
 
-- A **header** that usually contains the token’s expiration date, the algorithm used for signing, and extra metadata.
-- A JSON **payload**.
+- The **header** typically consists of two parts:
+  - the type of the token, which is JWT
+  - the signing algorithm being used, such as HMAC SHA256 or RSA.
+- The **payload**, which contains the _claims_. Claims are statements about an entity (typically, the user) and additional data. There are three types of claims:
+  - registered
+  - public
+  - private
 - A **signature** created by signing the header and the payload
 
 A JWT typically looks like this: `[header].[payload].[signature]`.
+
+Whenever the user wants to access a protected route or resource, the user agent should send the JWT, typically in the `Authorization` header using the **Bearer** schema.
 
 **Store JWTs securely**:
 
