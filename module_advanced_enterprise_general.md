@@ -648,6 +648,17 @@ WIP
 
 #### What is OAuth2?
 
+WIP
+
+Meant for a service to **authorize** _another service_. (Not meant for _authentication_, as the user is authenticated with both services already).
+
+OAuth access token:
+
+- Contains user-allowed permissions
+- Trustable (cannot be tampered)
+
+> An OAuth access tokens are JWTs (JSON Web Tokens).
+
 #### What is Basic Authentication?
 
 WIP
