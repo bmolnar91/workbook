@@ -772,6 +772,8 @@ The JWT needs to be stored inside an **httpOnly cookie**, a special kind of cook
 
 #### When do you need to use threads in an application?
 
+WIP
+
 #### What is a daemon thread?
 
 #### What is the difference between concurrent and parallel execution of code?
