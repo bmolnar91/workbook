@@ -657,7 +657,7 @@ OAuth access token:
 - Contains user-allowed permissions
 - Trustable (cannot be tampered)
 
-> An OAuth access tokens are JWTs (JSON Web Tokens).
+> OAuth access tokens are JWTs (JSON Web Tokens).
 
 #### What is Basic Authentication?
 
