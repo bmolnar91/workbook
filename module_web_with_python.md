@@ -33,8 +33,9 @@
   - managing all data access for the View layer
 
 **Data layer**:
-Deepest level in the layered architecture, the data layer deals with data retrieval (databases, csv files).
-Provides retrieved data for the Business Logic layer.
+
+- Deepest level in the layered architecture, the data layer deals with data retrieval (databases, csv files).
+- Provides retrieved data for the Business Logic layer.
 
 ### Error handling
 
@@ -63,12 +64,12 @@ Code in a `finally` block gets executed regardless of the outcome of the try-exc
 
 #### What is SQL injection? How to protect an application against it?
 
-A computer attack in which malicious code is embedded in a poorly-designed application and then passed to the backend database.
+A computer attack in which **malicious code** is embedded in a poorly-designed application and then **passed to the backend database**.
 
 Steps to take:
 
-- Input validation (check if the input meets a set of criteria (such as a string contains no standalone single quotation marks)
-  - Sanitize the input (modify the input to ensure that it is valid (such as doubling single quotes)
+- Input validation (check if the input meets a set of criteria, such as a string contains no standalone single quotation marks):
+  - Sanitize the input (modify the input to ensure that it is valid, such as doubling single quotes)
   - Escaping the input:
     - Make sure that every part of a string is interpreted as a **string primitive**, not as a **control character or code**.
     - E.g. `<script>alert('testing')</script>` -> `&lt;script&gt;alert('testing')&lt;/script&gt;`
@@ -93,7 +94,7 @@ Stored procedures are better than parameterized queries for several reasons:
 
 XSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a **browser side script**, to a different end user.
 
-(Cross-site scripting (XSS) is a security bug that can affect websites. If present in your website, this bug can allow an attacker to add their own **malicious JavaScript code** onto the HTML pages displayed to your users. Once executed by the victim's browser, this code could then perform actions such as completely changing the behavior or appearance of the website, stealing private data, or performing actions on behalf of the user).
+> Cross-site scripting (XSS) is a security bug that can affect websites. If present in your website, this bug can allow an attacker to add their own **malicious JavaScript code** onto the HTML pages displayed to your users. Once executed by the victim's browser, this code could then perform actions such as completely changing the behavior or appearance of the website, stealing private data, or performing actions on behalf of the user.
 
 An XSS payload can be delivered in different ways:
 
@@ -307,7 +308,7 @@ for (let element of elements) {
   E.g. **Binary Search**:
   Binary search is a technique used to search sorted data sets. It works by selecting the middle element of the data set, essentially the median, and compares it against a target value. If the values match it will return success. If the target value is higher than the value of the probe element it will take the upper half of the data set and perform the same operation against it. Likewise, if the target value is lower than the value of the probe element it will perform the operation against the lower half. It will continue to halve the data set with each iteration until the value has been found or until it can no longer split the data set.
 
-  (The iterative halving of data sets described in the binary search example produces a growth curve that peaks at the beginning and slowly flattens out as the size of the data sets increase e.g. an input data set containing 10 items takes one second to complete, a data set containing 100 items takes two seconds, and a data set containing 1000 items will take three seconds. Doubling the size of the input data set has little effect on its growth as after a single iteration of the algorithm the data set will be halved and therefore on a par with an input data set half the size. This makes algorithms like binary search extremely efficient when dealing with large data sets).
+  > The iterative halving of data sets described in the binary search example produces a growth curve that peaks at the beginning and slowly flattens out as the size of the data sets increase e.g. an input data set containing 10 items takes one second to complete, a data set containing 100 items takes two seconds, and a data set containing 1000 items will take three seconds. Doubling the size of the input data set has little effect on its growth as after a single iteration of the algorithm the data set will be halved and therefore on a par with an input data set half the size. This makes algorithms like binary search extremely efficient when dealing with large data sets.
 
 #### Explain the process of calculating the average value in a linked list of numbers!
 
@@ -393,7 +394,7 @@ LEGB rule...
 - `ReferenceError` when accessing a variable before it's declared
 - can't be reassigned (although data structures can be modified in-place)
 
-Use `const` whenever you can. If the value will change, use `let` instead.
+> Use `const` whenever you can. If the value will change, use `let` instead.
 
 #### How the list comprehension looks like in Python?
 
@@ -495,7 +496,7 @@ In Flask's case, the framework can add request receiving logic before running yo
 
 When you execute something synchronously, you **wait** for it to finish before moving on to another task.
 
-When you execute something asynchronously, you can move on to another task, and** get the results when ready**.
+When you execute something asynchronously, you can move on to another task, and **get the results when ready**.
 
 ## Programming languages
 
@@ -707,9 +708,9 @@ Here (web applications), the information design is the process of designing the 
 
 #### What is XML, XSLT, DTD?
 
-**XSLT** (Extensible Stylesheet Language):
+**XSLT** (Extensible Stylesheet Language Transformations):
 
-In case of HTML document, tags are predefined (such as table, div, and span), and the browser knows how to add style to them and display those using **CSS styles**. But in case of **XML** documents, **tags are not predefined**. In order to understand and style an XML document, XSL was developed which can act as **XML based Stylesheet Language**. A new document may be serialized (output) by the processor in standard XML syntax or in another format, such as **HTML** or **plain text**.
+In case of HTML document, tags are predefined (such as `<table>`, `<div>`, and `<span>`), and the browser knows how to add style to them and display those using **CSS styles**. But in case of **XML** documents, **tags are not predefined**. In order to understand and style an XML document, XSL was developed which can act as **XML based Stylesheet Language**. A new document may be serialized (output) by the processor in standard XML syntax or in another format, such as **HTML** or **plain text**.
 
 > An XSL document specifies how a browser should render an XML document.
 
@@ -733,7 +734,7 @@ It is the third layer of the layer cake of standard web technologies (HTML - CSS
 
 #### When to use AJAX? Bring examples of its usage.
 
-**AJAX** stands for **Asynchronous JavaScript And XML** (Asynchronous JavaScript And JSON), and it describes a set of development techniques used for building websites and web applications.
+**AJAX** stands for **Asynchronous JavaScript and XML** (Asynchronous JavaScript and JSON), and it describes a set of development techniques used for building websites and web applications.
 
 A user's web browser doesn't need to reload an entire web page when only a small portion of content on the page needs to change.
 
@@ -747,7 +748,7 @@ A Web page is a document. This document can be either displayed in the browser w
 
 The **DOM** is the way Javascript sees its containing pages' data. It is an object that includes how the HTML/XHTML/XML is formatted, as well as the browser state.
 
-A DOM element is something like a DIV, HTML, BODY element on a page. You can add classes to all of these using CSS, or interact with them using JS.
+A DOM element is something like a `<div>`, `<html>`, `<body>` element on a page. You can add classes to all of these using CSS, or interact with them using JS.
 
 We can select a DOM element and manipulate it form Javascript:
 
@@ -801,7 +802,7 @@ A common use of JSON is to read data from a web server, and display the data in 
 
 The **Gitflow** workflow.
 
-It relies on two long-lived branches and some short-lived ones. The permanent ones are the "master" and the "development." The state of "master" should always be pristine; it reflects the last "good", stable version that's in production.
+It relies on two long-lived branches and some short-lived ones. The permanent ones are the "master" (main) and the "development." The state of "master" (main) should always be pristine; it reflects the last "good", stable version that's in production.
 The other long-lived branch is the "develop" or "development" branch.
 
 Short lived branches can include:
@@ -880,7 +881,7 @@ The 5 key principles are:
 
 REST is a set of architectural principles, not a protocol or a standard. API developers can implement REST in a variety of ways.
 
-When a request is made via a RESTful API, it transfers a representation of the state of the resource to the requester. This information, or representation, is delivered in one of several formats via HTTP: JSON (Javascript Object Notation), HTML, XLT, or plain text. JSON is the most generally popular because, despite its name, it’s language agnostic, as well as readable by both humans and machines.
+When a request is made via a RESTful API, it transfers a representation of the state of the resource to the requester. This information, or representation, is delivered in one of several formats via HTTP: JSON, HTML, XLT, or plain text. JSON is the most generally popular because, despite its name, it’s language agnostic, as well as readable by both humans and machines.
 
 In order for an API to be considered RESTful, it has to conform to these criteria:
 
@@ -896,7 +897,7 @@ In order for an API to be considered RESTful, it has to conform to these criteri
 - Code-on-demand (optional): the ability to send executable code from the server to the client when requested, extending client functions.
 
 Though the REST API has these criteria to conform to, it is still considered easier to use than a prescribed protocol like SOAP (Simple Object Access Protocol), which has specific requirements like XML messaging, and built-in security and transaction compliance that make it slower and heavier.
-In contrast, REST is a set of guidelines that can be implemented as needed, making REST APIs faster and more lightweight—perfect for Internet of Things (IoT) and mobile app development.
+In contrast, REST is a set of guidelines that can be implemented as needed, making REST APIs faster and more lightweight—perfect for IoT (Internet of Things ) and mobile app development.
 
 > In short, if you make a RESTful API, you ensure other developers can understand the structure easily compared to creating endpoints without a standard.
 
@@ -956,7 +957,7 @@ The first layer is the application layer on the behalf of the sender and Link la
 - The transport protocols include:
   - **TCP (Transmission Control Protocol)**
   - **UDP (User Datagram Protocol)**
-  - etc
+  - etc.
 
 **Application layer**:
 
@@ -1089,13 +1090,13 @@ A typical status line looks like: `HTTP/1.1 404 Not Found`.
 
 #### What is DNS? How does it work?
 
-The **Domain Name System (DNS)** is the **phonebook of the Internet**. When users type domain names such as 'google.com' or 'nytimes.com' into web browsers, DNS is responsible for finding the correct IP address for those sites. Browsers then use those addresses to communicate with origin servers or CDN edge servers to access website information. This all happens thanks to **DNS servers**: machines dedicated to answering **DNS queries**.
+The **Domain Name System (DNS)** is the **phonebook of the Internet**. When users type domain names such as 'google.com' or 'nytimes.com' into web browsers, DNS is responsible for finding the correct IP address for those sites. Browsers then use those addresses to communicate with origin servers or CDN (Content Delivery Network) edge servers to access website information. This all happens thanks to **DNS servers**: machines dedicated to answering **DNS queries**.
 
 #### What is a web server?
 
 "Web server" can refer to hardware or software, or both of them working together:
 
-- On the **hardware** side, a web server is a computer that **stores web server software** and a **website's component files** (e.g. HTML documents, images, CSS stylesheets, and JavaScript files). It is connected to the Internet and supports** physical data interchange** with other devices connected to the web.
+- On the **hardware** side, a web server is a computer that **stores web server software** and a **website's component files** (e.g. HTML documents, images, CSS stylesheets, and JavaScript files). It is connected to the Internet and supports **physical data interchange** with other devices connected to the web.
 - On the **software** side, a web server includes several parts that control how web users access hosted files, at minimum an HTTP server.
 
 An **HTTP server** is a piece of software that understands URLs and HTTP. It can be accessed through the domain names (like mozilla.org) of websites it stores, and delivers their content to the end-user's device.
@@ -1123,7 +1124,7 @@ The solution is to **store that data server side**, give it an "id", and let the
 
 #### What would you use a cookie for?
 
-Using the **Set-Cookie** header field, an HTTP server can pass **name/value pairs and associated metadata** (called cookies) to a **user agent**. When the user agent makes subsequent requests to the server, the user agent uses the metadata and other information to determine whether to return the name/value pairs in the Cookie header.
+Using the `Set-Cookie` header field, an HTTP server can pass **name/value pairs and associated metadata** (called cookies) to a **user agent**. When the user agent makes subsequent requests to the server, the user agent uses the metadata and other information to determine whether to return the name/value pairs in the `Cookie` header.
 
 An HTTP **cookie** (web cookie, browser cookie) is a **small piece of data** (< 4KB) that a **server sends to the user**'s web browser. The browser may store it and send it back with later requests to the same server. Typically, it's used to **tell if two requests came from the same browser** — keeping a user logged-in, for example. It **remembers _stateful_ information** for the stateless HTTP protocol.
 
@@ -1206,11 +1207,13 @@ The Scrum Artifacts are:
 
 1.  **Product Backlog**:
 
-- An ordered list of everything that is known to be needed in the product. It is **the single source of requirements** for any changes to be made to the product. The **Product Owner** is responsible for the Product Backlog, including its content, availability, and ordering.
+- An ordered list of everything that is known to be needed in the product.
+- It is **the single source of requirements** for any changes to be made to the product.
+- The **Product Owner** is responsible for the Product Backlog, including its content, availability, and ordering.
 
 2.  **Sprint Backlog**:
 
-- The set of Product Backlog items **selected for the Sprint**, plus a plan for delivering the product Increment and realizing the Sprint Goal.
+- The set of Product Backlog **items selected for the Sprint**, plus a plan for delivering the product Increment and realizing the Sprint Goal.
 - A forecast by the Development Team about what functionality will be in the next Increment and the work needed to deliver that functionality into a "Done" Increment.
 
 3. **Increment**:
