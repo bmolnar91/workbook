@@ -1642,3 +1642,7 @@ Line `dataSource.getConnection().close();` opens and closes the connection. If t
 
 Database normalization is the restructuring process by which the database is organized into tables and columns, in order to reduce data redundancy and improve data integrity. The idea is that tables should be about a specific topic and only columns that are related to that topic are included in the table.
 A fully normalized database allows its structure to be extended to accommodate new types of data without changing existing structure too much. As a result, applications interacting with the database are minimally affected. Normalized relations, and the relationship between one normalized relation and another, mirror real-world concepts and their interrelationships.
+
+Database normalization is useful because it minimizes duplicate data in any single table, and allows for data in the database to grow independently of each other (ie. Types of car engines can grow independent of each type of car). As a trade-off, queries get slightly more complex since they have to be able to find data from different parts of the database, and performance issues can arise when working with many large tables.
+
+In order to answer questions about an entity that has data spanning multiple tables in a normalized database, we need to learn how to write a query that can combine all that data and pull out exactly the information we need.
