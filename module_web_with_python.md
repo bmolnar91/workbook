@@ -654,13 +654,13 @@ XHTML:
 
 #### How to include a JavaScript file in a webpage?
 
-Use the `<script>` tag that wraps around JavaScript code directly
-
-Use an external JavaScript file by adding a link to it in the head (inside `<meta>` tags, using the `defer` attribute) or lower body section of the HTML document.
+- Use the `<script>` tag that wraps around JavaScript code directly
+- Use an external JavaScript file by adding a link to it in the head (inside `<meta>` tags, using the `defer` attribute) or lower body section of the HTML document.
 
 #### How to include a CSS file in a webpage?
 
-Use an external style sheet by adding a link to it in the head section of the HTML document.
+- Use the `<style>` tag that wraps around CSS code directly
+- Use an external style sheet by adding a link to it in the head section of the HTML document.
 
 > **CSS** stands for **Cascading Style Sheets**.
 
@@ -684,7 +684,7 @@ Use an external style sheet by adding a link to it in the head section of the HT
 
 The `[attribute]` selector is used to select elements with a specified attribute.
 
-The following example selects all `<a>` elements with a target attribute:
+The following example selects all `<a>` elements with a `target` attribute:
 
 ```css
 a[target] {
@@ -848,6 +848,8 @@ Git local repository is the one on which we will make local changes, typically t
 A **package manager** or package-management system is a collection of software tools that **automates** the process of installing, upgrading, configuring, and removing computer programs for a computer's operating system in a **consistent** manner.
 
 A package manager deals with packages, distributions of software and data in archive files. Packages contain metadata, such as the software's name, description of its purpose, version number, vendor, checksum, and a list of dependencies necessary for the software to run properly. Upon installation, metadata is stored in a local package database. Package managers typically maintain a **database of software dependencies** and version information to prevent software mismatches and missing prerequisites.
+
+E.g. _apt_, _dnf_, _brew_, _chocolatey_, _scoop_, _npm_, _pip_, _nuget_
 
 #### Why is it good to use a virtual environment for a project?
 
