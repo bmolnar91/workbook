@@ -979,7 +979,27 @@ Although structs can contain constructors, constants, fields, methods, propertie
 
 Because structs are value types, they can be allocated slightly more efficiently than classes.
 
-Structs differ from classes in that they cannot be abstract and do not support implementation inheritance (implicitly sealed).
+Structs differ from classes in that they cannot be abstract and do not support implementation inheritance (implicitly `sealed`).
+
+Typically, you use structure types to design small data-centric types that provide little or no behavior (e.g. coordinates).
+
+Because structure types have value semantics, it's recommended to define _immutable_ (`readonly`) structure types.
+
+```csharp
+public readonly struct Coords
+{
+    public Coords(double x, double y)
+    {
+        X = x;
+        Y = y;
+    }
+
+    public double X { get; init; }
+    public double Y { get; init; }
+
+    public override string ToString() => $"({X}, {Y})";
+}
+```
 
 > You can think of a struct as a lightweight class.
 
@@ -1228,7 +1248,7 @@ WIP
 **A delegate is a type safe function _pointer_.**
 
 - Delegates are used to pass **methods as arguments** to other methods.
-- A **`Delegate` is a _type_** (class) that represents references to methods with a particular parameter list and return type. When you instantiate a delegate, you can associate its instance with **any method with a compatible _signature_ and _return type_**. You can invoke (call) the method through the **delegate instance**.
+- A **`delegate` is a _type_** (class) that represents references to methods with a particular parameter list and return type. When you instantiate a delegate, you can associate its instance with **any method with a compatible _signature_ and _return type_**. You can invoke (call) the method through the **delegate instance**.
 - Both **anonymous methods** and **lambda expressions** (in certain contexts) are **compiled to delegate types**.
 - There are 3 types of delegates:
 
