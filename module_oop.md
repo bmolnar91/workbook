@@ -77,7 +77,7 @@ WIP
 
 **Quicksort**:
 
-- Average: O(log n)
+- Average: O(n log n)
 - Worst case: O(n^2)
 
 **Binary Search Tree**:
@@ -295,9 +295,9 @@ The purpose of inheritance is twofold:
 
 #### Difference between overloading and overriding?
 
-**Early Binding** Static Binding:
+**Early Binding** or Static Binding:
 
-The binding that can be resolved at **compile time** is known as _static_ or _early binding_. The binding of _static_, _private_ and _final_ methods happens at compile-time. The reason is that the these method cannot be overridden and the type of the class is determined at the compile time. Method **overloading** is determined compile time.
+The binding that can be resolved at **compile time** is known as _static_ or _early binding_. The binding of `static`, `private` and `final` _methods_ happens at compile-time. The reason is that the these methods cannot be overridden and the type of the class is determined at the compile time. Method **overloading** is determined compile time.
 
 **Late Binding** or Dynamic Binding:
 
@@ -376,7 +376,7 @@ Rules for Method Overriding:
 - If a method cannot be inherited, it cannot be overridden.
 - Constructors cannot be overridden.
 - The _overriding method_ (subclass) can throw unchecked exceptions, regardless of whether the _overridden method_ (superclass) throws any exceptions or not. However the overriding method (subclass) should not throw checked exceptions that are new or broader than the ones declared by the overridden method (superclass).
-- If a class is extending an abstract class or implementing an interface then it has to override all the abstract methods unless the class itself is a abstract class.
+- If a class is extending an abstract class or implementing an interface then it has to override all the abstract methods unless the class itself is an abstract class.
 
 The `@Override` annotation is used to make your code easier to understand, because it makes it more obvious when methods are overridden.
 It also instructs the compiler: if you make any mistake such as wrong method name, wrong parameter types while overriding, you would get a compile time error.
@@ -725,7 +725,7 @@ An **unchecked exception** is an exception that you can provide for, but you don
 
 #### What is Error in Java and how does it relate to Exception?
 
-Exceptions are events that occurs in the code. A programmer can handle such conditions and take necessary corrective actions.
+Exceptions are events that occur in the code. A programmer can handle such conditions and take necessary corrective actions.
 
 Errors indicate that something severe enough has gone wrong, the application should crash rather than try to handle the error.
 
