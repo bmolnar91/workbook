@@ -1420,7 +1420,7 @@ If you prefaced that method with the `new` keyword, you indicate that this is an
 
 `is`:
 
-- The `is` operator is a **type-testing _keyword_** that checks if the result of an expression is compatible with a given type, or tests an expression against a pattern.
+- The `is` operator is a **_type-testing_ keyword** that checks if the result of an expression is compatible with a given type, or tests an expression against a pattern.
 - Simple type testing: `dog is Animal`
 - Pattern matching (Type pattern):
   - When using the type pattern to perform pattern matching, `is` tests whether an expression can be converted to a specified type and, if it can be, casts it to a variable of that type.
@@ -1500,7 +1500,7 @@ Extension methods "extend" an existing class (type); they can be **called as if 
 
 WIP
 
-**Lazy loading** (also called* on-demand loading*) is an **optimization technique** for the online content, be it a website or a web app.
+**Lazy loading** (also called _on-demand loading_) is an **optimization technique** for the online content, be it a website or a web app.
 
 Instead of loading the entire web page and rendering it to the user in one go as in _bulk loading_, the concept of lazy loading assists in **loading only the required section** and delays the remaining, until it is needed by the user.
 
